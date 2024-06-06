@@ -3,10 +3,13 @@ import './about.css'
 
 function about() {
   return (
-    <div>
-      <h1 className='about'>About</h1>
+    <div className='about'>
+
+      <h1>Motive of Charity</h1>
+      <p>“No one has ever become poor from giving"</p>
+
     </div>
   )
 }
 
-export default about
+export default about;
