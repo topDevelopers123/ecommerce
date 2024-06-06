@@ -1,3 +1,75 @@
-.about{
-    color: red;
+.about {
+    border: 2px solid black;
+    margin: 24px 0;
+    background-image: url('./images/banner01.jpg');
+    width: 100vw;
+    height: 70vh;
+    font-size: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.about .banner-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    color: #fff;
+}
+
+.about .banner-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* Image Gallery  */
+
+
+.image-gallery{
+    width: 100vw;
+    border: 2px solid black;
+}
+.charity-images{
+    width: 100%;
+}
+.charity-images img{
+    width: 186px;
+    margin: 8px;
+}
+.about-btn{
+    padding: 20px 30px;
+    background-color: #333;
+    color: #fff;
+    transition: .3s ease-in-out;
+    border: none;
+}
+.about-btn:hover{
+    background-color: #fff;
+    color: #333;
+}
+/* Objective */
+
+ .objective{
+    border: 2px solid black;
+}
+.objective-img img{
+width: 100%;
+} 
+.objective i{
+    margin: 0 30px;
+}
+
+
+/* What We Do  */
+
+.donate{
+    background-color: #cde8e5;
+    padding: 30px;
+}
+.donate-row{
+    background-color: #fff;
+    margin: 10px;
+    padding: 20px;
 }
