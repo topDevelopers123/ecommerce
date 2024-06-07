@@ -43,21 +43,21 @@ function productDetail() {
                                 <div className="title">Printed Kurta Set</div>
                                 <div className="theme-text mr-2">Product Ratings: </div>
                                 <div class="reviews-counter">
-								<div class="rate">
-								    <input type="radio" id="star5" name="rate" value="5" checked />
-								    <label for="star5" title="text">5 stars</label>
-								    <input type="radio" id="star4" name="rate" value="4" checked />
-								    <label for="star4" title="text">4 stars</label>
-								    <input type="radio" id="star3" name="rate" value="3" checked />
-								    <label for="star3" title="text">3 stars</label>
-								    <input type="radio" id="star2" name="rate" value="2" />
-								    <label for="star2" title="text">2 stars</label>
-								    <input type="radio" id="star1" name="rate" value="1" />
-								    <label for="star1" title="text">1 star</label>
-								  </div>
-								<span>3 Reviews</span>
-							</div>
-                              
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5" checked />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" checked />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" checked />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <span>3 Reviews</span>
+                                </div>
+
                                 <div className="price my-2">₹389<strike className="original-price"> ₹1,999</strike></div>
                                 <div className="theme-text subtitle">Brief Description:</div>
                                 <div className="brief-description">
@@ -75,17 +75,29 @@ function productDetail() {
                                 <div className="row">
                                     <div className="col-md-3">
                                         <div class="product-count">
-                                        <label for="size">Quantity</label>
-                                        <form action="#" class="d-flex">
-                                            <div class="qtyminus">-</div>
-                                            <input type="text" name="quantity" value="1" class="qty"/>
+                                            <label for="size">Quantity</label>
+                                            <form action="#" class="d-flex">
+                                                <div class="qtyminus">-</div>
+                                                <input type="text" name="quantity" value="1" class="qty" />
                                                 <div class="qtyplus">+</div>
-                                        </form>
+                                            </form>
                                         </div>
-                                        {/* <input type="number" className="form-control" defaultValue="1" /> */}
                                     </div>
-                                    <div className="col-md-9"><button className="btn btn-block addBtn">Add to basket</button></div>
+                                   <div className="col-md-3">
+                                    <div className="wishlist_btn">
+                                            <i class="bi bi-heart"></i>
+                                    </div>
+                                   </div>
                                 </div>
+
+                                <hr />
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <button className="btn btn-block addBtn">Add to basket</button>
+                                    </div>
+                                    <div className="col-md-3"><button className="btn btn-block addBtn">Buy Now</button></div>
+                                </div>
+
                             </div>
                         </div>
                         <div className="additional-details my-5 text-center">
