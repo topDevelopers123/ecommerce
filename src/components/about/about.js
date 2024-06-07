@@ -128,12 +128,12 @@ function about() {
 
       {/* Our Objective */}
 
-      <div className="objective">
+      <div className="container-fluid objective ">
         <div className="shape">
           <div className="objective-circle"></div>
         </div>
 
-        <div className="container">
+        <div className="container  position-relative">
           <div className="row ">
             <div className="col-md-6 ">
               <div className="objective-img">
@@ -142,19 +142,18 @@ function about() {
               </div>
             </div>
 
-            <div className="col-md-6">
-              <div className="obj-head-text">
-                <h1>Our Objective</h1>
+            <div className="col-md-6 ">
+              <div className=" text-start">
+                <h1 className="obj-head-text">Our Objective</h1>
                 <div className="row">
-                  <div className="col-md-6">
-                  <i class="bi bi-bullseye"></i>
-                  <i class="bi bi-bullseye"></i>
-                  </div>
-                  <div className="col-md-6">
-                    <h2>
-                      Objective 1
-                    </h2>
-                    <p>
+
+                  <div className="col-md-6 d-flex  w-100">
+                    <div className="d-flex justify-content-center w-100">
+                    <i class="bi bi-bullseye"></i>
+                    </div>
+                    <div>
+                    <h2 className="obj-text">Objective 1</h2>
+                    <p  >
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Blanditiis aliquid numquam repellat, molestiae excepturi
                       debitis fugit assumenda soluta possimus maxime neque
@@ -165,20 +164,32 @@ function about() {
                       possimus maxime neque animi! Officiis doloribus temporibus
                       itaque fugiat ex, eius facere
                     </p>
-                    <h2>
-                     Objective 1
-                    </h2>
-                    <p>
+                    </div>
+                   
+                  </div>
+                </div>
+
+                <div className="row ">
+                    
+                  <div className="col-md-6 d-flex  w-100">
+                    <div className="d-flex justify-content-center w-100">
+                    <i class="bi bi-bullseye"></i>
+                    </div>
+                    <div className="">
+                    <h2  className="obj-text">Objective 1</h2>
+                    <p >
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Blanditiis aliquid numquam repellat, molestiae excepturi
                       debitis fugit assumenda soluta possimus maxime neque
                       animi! Officiis doloribus temporibus itaque fugiat ex,
-                      eius facere.Lorem ipsum dolor, sit amet consectetur
+                      eius facere. Lorem ipsum dolor, sit amet consectetur
                       adipisicing elit. Blanditiis aliquid numquam repellat,
                       molestiae excepturi debitis fugit assumenda soluta
                       possimus maxime neque animi! Officiis doloribus temporibus
                       itaque fugiat ex, eius facere
                     </p>
+                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -190,18 +201,18 @@ function about() {
       {/* Counter Section Start  */}
 
       <section>
-        <div class="container d-flex justify-content-center align-content-center  mt-5 counter-bor">
+        <div class="container  d-flex justify-content-center align-content-center  mt-5 counter-bor">
           <div class="row">
             <div class="col-12">
-              <h1 class="text-dark  text-center fw-bold">
+              <h1 class="  text-center fw-bold">
                 Fashion with a Heart-Because{" "}
               </h1>
-              <h1 class="  fw-bold">Giving Back Never Goes Out of Style </h1>
+              <h1 class="fw-bold">Giving Back Never Goes Out of Style </h1>
             </div>
           </div>
         </div>
 
-        <div class="container m-0 m-md-5 p-5 d-flex justify-content-center ">
+        <div class="container m-0  m-md-5 p-5 d-flex justify-content-center ">
           <div class="row w-100">
             <div class="col-md-4 col-sm-12 text-center">
               <h1
@@ -232,7 +243,7 @@ function about() {
 
       {/* What We do  */}
 
-      <div className="donate">
+      <div className="donate container-fluid ">
         <h1 className="d-flex justify-content-center">What We Do</h1>
         <p className="d-flex justify-content-center">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore,
