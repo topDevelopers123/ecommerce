@@ -1,7 +1,6 @@
 .about {
-    border: 2px solid black;
     margin: 24px 0;
-    background-image: url('./images/charity06.jpg');
+    background-image: url('./images/charity01.jpg');
     width: 100vw;
     height: 70vh;
     font-size: 30px;
@@ -14,8 +13,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    padding: 100px 0 0 0 ;
     color: #4D869C;
+
 }
 
 .about .banner-text {
@@ -31,7 +31,9 @@
 
 .image-gallery{
     width: 100vw;
-    border: 2px solid black;
+}
+.image-gallery h1{
+    color: #4D869C;
 }
 .charity-images{
     width: 100%;
@@ -42,38 +44,67 @@
 }
 .about-btn{
     padding: 20px 30px;
-    background-color: #333;
+    background-color: #7AB2B2;
     color: #fff;
     transition: .3s ease-in-out;
     border: none;
 }
 .about-btn:hover{
-    background-color: #fff;
+    background-color: #CDE8E5;
     color: #333;
 }
 /* Objective */
 
  .objective{
-    border: 2px solid black;
-    border: 2px solid black;
+    margin: 30px 0;
+    padding: 40px 0px;
+    background-color: #EEF7FF;
+}
+.objective .obj-head-text{
+    color: #4D869C;
+}
+.objective .obj-text{
+    color: #7AB2B2;
 }
 .objective-img img{
 width: 30%;
 border: 10px solid #555;
 } 
+.objective-img{
+    position: relative;
+}
+.char02Img{
+    position: absolute;
+    top: 70%;
+    left: 20%;
+}
+ 
 .objective i{
-    margin: 0 30px;
+    font-size: 40px;
+    color: #7AB2B2;
+}
+
+.shape{
+    position: relative;
+}
+.objective-circle{
+    width: 400px;
+    height: 400px;
+    background-color: #CDE8E5;
+    border-radius: 50%  ;
+    position: absolute;
+    left: -50px;
 }
 
 /* Counter Section   */
 
-.counter-bor{
-    border: 2px solid black;
-}
 
 .charity_para{
 	font-weight: bold;	
 	font-size: 26px;
+}
+.fw-bold{
+    color: #4D869C;
 }
 
 
