@@ -58,7 +58,8 @@
     border: 2px solid black;
 }
 .objective-img img{
-width: 100%;
+width: 30%;
+border: 10px solid #555;
 } 
 .objective i{
     margin: 0 30px;

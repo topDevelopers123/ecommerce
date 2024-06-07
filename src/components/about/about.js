@@ -100,7 +100,6 @@ function about() {
 
             <div className="col-md-6 ">
               <div className="row ">
-
                 <div className="col-md-4">
                   <div className="charity-images">
                     <img src={charity1}></img>
@@ -129,40 +128,46 @@ function about() {
 
       {/* Our Objective */}
 
-      <div className="row objective">
-        <div className="col-md-6 objective-img">
-          <img src={charity1}></img>
-          <img src={charity6}></img>
-        </div>
+      <div className="objective">
+        <div className="container">
+          <div className="row objective">
+            <div className="col-md-6 ">
+              <div className="objective-img">
+                <img src={charity3}></img>
+                <img src={charity4}></img>
+              </div>
+            </div>
 
-        <div className="col-md-6">
-          <div>
-            <h2>
-              <i class="bi bi-bullseye"></i>Objective 1
-            </h2>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Blanditiis aliquid numquam repellat, molestiae excepturi debitis
-              fugit assumenda soluta possimus maxime neque animi! Officiis
-              doloribus temporibus itaque fugiat ex, eius facere. Lorem ipsum
-              dolor, sit amet consectetur adipisicing elit. Blanditiis aliquid
-              numquam repellat, molestiae excepturi debitis fugit assumenda
-              soluta possimus maxime neque animi! Officiis doloribus temporibus
-              itaque fugiat ex, eius facere
-            </p>
-            <h2>
-              <i class="bi bi-bullseye"></i>Objective 1
-            </h2>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Blanditiis aliquid numquam repellat, molestiae excepturi debitis
-              fugit assumenda soluta possimus maxime neque animi! Officiis
-              doloribus temporibus itaque fugiat ex, eius facere.Lorem ipsum
-              dolor, sit amet consectetur adipisicing elit. Blanditiis aliquid
-              numquam repellat, molestiae excepturi debitis fugit assumenda
-              soluta possimus maxime neque animi! Officiis doloribus temporibus
-              itaque fugiat ex, eius facere
-            </p>
+            <div className="col-md-6">
+              <div className="">
+                <h2>
+                  <i class="bi bi-bullseye"></i>Objective 1
+                </h2>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Blanditiis aliquid numquam repellat, molestiae excepturi
+                  debitis fugit assumenda soluta possimus maxime neque animi!
+                  Officiis doloribus temporibus itaque fugiat ex, eius facere.
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Blanditiis aliquid numquam repellat, molestiae excepturi
+                  debitis fugit assumenda soluta possimus maxime neque animi!
+                  Officiis doloribus temporibus itaque fugiat ex, eius facere
+                </p>
+                <h2>
+                  <i class="bi bi-bullseye"></i>Objective 1
+                </h2>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Blanditiis aliquid numquam repellat, molestiae excepturi
+                  debitis fugit assumenda soluta possimus maxime neque animi!
+                  Officiis doloribus temporibus itaque fugiat ex, eius
+                  facere.Lorem ipsum dolor, sit amet consectetur adipisicing
+                  elit. Blanditiis aliquid numquam repellat, molestiae excepturi
+                  debitis fugit assumenda soluta possimus maxime neque animi!
+                  Officiis doloribus temporibus itaque fugiat ex, eius facere
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
