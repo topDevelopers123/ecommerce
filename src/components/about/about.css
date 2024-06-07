@@ -61,10 +61,31 @@
 width: 30%;
 border: 10px solid #555;
 } 
+.objective-img{
+    position: relative;
+}
+.char02Img{
+    position: absolute;
+    top: 70%;
+    left: 20%;
+}
+.objective{
+    padding: 40px 0px;
+}
 .objective i{
     margin: 0 30px;
 }
-
+.shape{
+    position: relative;
+}
+.objective-circle{
+    width: 400px;
+    height: 400px;
+    background-color: #CDE8E5;
+    border-radius: 50%  ;
+    position: absolute;
+    left: -50px;
+}
 /* Counter Section   */
 
 .counter-bor{
