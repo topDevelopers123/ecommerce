@@ -1,12 +1,13 @@
 .about {
     border: 2px solid black;
     margin: 24px 0;
-    background-image: url('./images/banner01.jpg');
+    background-image: url('./images/charity06.jpg');
     width: 100vw;
     height: 70vh;
     font-size: 30px;
     background-size: cover;
     background-repeat: no-repeat;
+    opacity: 0.3;
 }
 
 .about .banner-heading {
@@ -14,14 +15,15 @@
     justify-content: center;
     align-items: center;
     margin-top: 100px;
-    color: #fff;
+    color: #4D869C;
 }
 
 .about .banner-text {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #4D869C;
+    font-size: 26px;
 }
 
 /* Image Gallery  */
@@ -36,7 +38,7 @@
 }
 .charity-images img{
     width: 186px;
-    margin: 8px;
+    padding: 8px;
 }
 .about-btn{
     padding: 20px 30px;
@@ -53,12 +55,24 @@
 
  .objective{
     border: 2px solid black;
+    border: 2px solid black;
 }
 .objective-img img{
 width: 100%;
 } 
 .objective i{
     margin: 0 30px;
+}
+
+/* Counter Section   */
+
+.counter-bor{
+    border: 2px solid black;
+}
+
+.charity_para{
+	font-weight: bold;	
+	font-size: 26px;
 }
 
 
