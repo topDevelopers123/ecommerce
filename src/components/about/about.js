@@ -129,43 +129,58 @@ function about() {
       {/* Our Objective */}
 
       <div className="objective">
+        <div className="shape">
+          <div className="objective-circle"></div>
+        </div>
+
         <div className="container">
-          <div className="row objective">
+          <div className="row ">
             <div className="col-md-6 ">
               <div className="objective-img">
                 <img src={charity3}></img>
-                <img src={charity4}></img>
+                <img className="char02Img" src={charity4}></img>
               </div>
             </div>
 
             <div className="col-md-6">
-              <div className="">
-                <h2>
-                  <i class="bi bi-bullseye"></i>Objective 1
-                </h2>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Blanditiis aliquid numquam repellat, molestiae excepturi
-                  debitis fugit assumenda soluta possimus maxime neque animi!
-                  Officiis doloribus temporibus itaque fugiat ex, eius facere.
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Blanditiis aliquid numquam repellat, molestiae excepturi
-                  debitis fugit assumenda soluta possimus maxime neque animi!
-                  Officiis doloribus temporibus itaque fugiat ex, eius facere
-                </p>
-                <h2>
-                  <i class="bi bi-bullseye"></i>Objective 1
-                </h2>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Blanditiis aliquid numquam repellat, molestiae excepturi
-                  debitis fugit assumenda soluta possimus maxime neque animi!
-                  Officiis doloribus temporibus itaque fugiat ex, eius
-                  facere.Lorem ipsum dolor, sit amet consectetur adipisicing
-                  elit. Blanditiis aliquid numquam repellat, molestiae excepturi
-                  debitis fugit assumenda soluta possimus maxime neque animi!
-                  Officiis doloribus temporibus itaque fugiat ex, eius facere
-                </p>
+              <div className="obj-head-text">
+                <h1>Our Objective</h1>
+                <div className="row">
+                  <div className="col-md-6">
+                  <i class="bi bi-bullseye"></i>
+                  <i class="bi bi-bullseye"></i>
+                  </div>
+                  <div className="col-md-6">
+                    <h2>
+                      Objective 1
+                    </h2>
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Blanditiis aliquid numquam repellat, molestiae excepturi
+                      debitis fugit assumenda soluta possimus maxime neque
+                      animi! Officiis doloribus temporibus itaque fugiat ex,
+                      eius facere. Lorem ipsum dolor, sit amet consectetur
+                      adipisicing elit. Blanditiis aliquid numquam repellat,
+                      molestiae excepturi debitis fugit assumenda soluta
+                      possimus maxime neque animi! Officiis doloribus temporibus
+                      itaque fugiat ex, eius facere
+                    </p>
+                    <h2>
+                     Objective 1
+                    </h2>
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Blanditiis aliquid numquam repellat, molestiae excepturi
+                      debitis fugit assumenda soluta possimus maxime neque
+                      animi! Officiis doloribus temporibus itaque fugiat ex,
+                      eius facere.Lorem ipsum dolor, sit amet consectetur
+                      adipisicing elit. Blanditiis aliquid numquam repellat,
+                      molestiae excepturi debitis fugit assumenda soluta
+                      possimus maxime neque animi! Officiis doloribus temporibus
+                      itaque fugiat ex, eius facere
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
