@@ -33,27 +33,27 @@ function Home() {
       <div>
         {/* Slider section start  */}
         <section className="main_slider">
-        <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src={slid01} className="d-block w-100" alt="..."/>
-    </div>
-    <div className="carousel-item">
-      <img src={slid02} className="d-block w-100" alt="..."/>
-    </div>
-    <div className="carousel-item">
-      <img src={slid03} className="d-block w-100" alt="..."/>
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
+          <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img src={slid01} className="d-block w-100" alt="..." />
+              </div>
+              <div className="carousel-item">
+                <img src={slid02} className="d-block w-100" alt="..." />
+              </div>
+              <div className="carousel-item">
+                <img src={slid03} className="d-block w-100" alt="..." />
+              </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
         </section>
         {/* Slider section end  */}
         {/* Featured products start */}
@@ -232,7 +232,7 @@ function Home() {
             </div>
             <div className="tp_area">
               <div className="row">
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp01} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -246,7 +246,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp02} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -260,7 +260,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp03} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -274,7 +274,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp04} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -290,7 +290,7 @@ function Home() {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp05} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -304,7 +304,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp06} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -318,7 +318,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp07} className="tp_img" alt="..." />
                     <div className="card-body">
@@ -332,7 +332,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
                     <img src={tp08} className="tp_img" alt="..." />
                     <div className="card-body">
