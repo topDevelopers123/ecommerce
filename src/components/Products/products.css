@@ -10,6 +10,7 @@
 .card_div img{
     width: 100%;
 height: 280px;
+object-fit: cover;
 }
 
 .discount_div{
@@ -52,10 +53,17 @@ height: 280px;
 
 .filter_mini_div{
     background-color: #F6F7FB;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+.filter_mini_div button{
+    color: #5e5c5c;
 }
  
 .card_mini_div{
     transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 .card_mini_div h6{
