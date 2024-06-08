@@ -7,44 +7,44 @@ function Products() {
   const obj = [
     {
       product_image:"https://assets.ajio.com/medias/sys_master/root/20230623/1gyg/6494b4aed55b7d0c63a300ba/-473Wx593H-464366270-green-MODEL.jpg",
-      product_title:"Stylish T-shirt For Men",
-      product_real_price:"1899/-",
+      product_title:"Trending Suit For Women",
+      product_real_price:"1899",
       product_discount_price:"1299",
       product_decsription:"some quick example to text to build on"
     },
     {
       product_image:"https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1678720119_3019465.jpg?v=2",
       product_title:"Stylish T-shirt For Men",
-      product_real_price:"1899/-",
-      product_discount_price:"1299",
+      product_real_price:"2500",
+      product_discount_price:"1999",
       product_decsription:"some quick example to text to build on"
     },
     {
       product_image:"https://assets.ajio.com/medias/sys_master/root/20230718/DElg/64b6be4aeebac147fc7727a1/-473Wx593H-466368522-black-MODEL.jpg",
-      product_title:"Stylish T-shirt For Men",
-      product_real_price:"1899/-",
-      product_discount_price:"1299",
+      product_title:"Girl's Frog",
+      product_real_price:"1500",
+      product_discount_price:"1100",
       product_decsription:"some quick example to text to build on"
     },
     {
       product_image:"https://www.urbanprints.in/cdn/shop/files/IMG_8772_f2ed6e1b-6bb8-4684-bc0d-ea8341c1790c.webp?v=1709473084",
-      product_title:"Stylish T-shirt For Men",
-      product_real_price:"1899/-",
-      product_discount_price:"1299",
+      product_title:"Fahionable Shirt For Men",
+      product_real_price:"1639",
+      product_discount_price:"1439",
       product_decsription:"some quick example to text to build on"
     },
     {
       product_image:"https://sunasa.in/cdn/shop/products/IMG_20220130_114744_1500x.jpg?v=1696511459",
-      product_title:"Stylish T-shirt For Men",
-      product_real_price:"1899/-",
-      product_discount_price:"1299",
+      product_title:"Stylish Saree",
+      product_real_price:"3999",
+      product_discount_price:"3299",
       product_decsription:"some quick example to text to build on"
     },
     {
       product_image:"https://5.imimg.com/data5/SELLER/Default/2022/6/MX/SA/JD/151275676/mens-blue-plain-cotton-kurta-500x500.jpg",
-      product_title:"Stylish T-shirt For Men",
-      product_real_price:"1899/-",
-      product_discount_price:"1299",
+      product_title:"Men's Kurta",
+      product_real_price:"2199/-",
+      product_discount_price:"1999",
       product_decsription:"some quick example to text to build on"
     },
   ]
@@ -221,7 +221,7 @@ function Products() {
                 </div>
                 })}
 
-<div className=" w-100 pagination_div d-flex justify-content-center pt-4">
+<div className=" w-100 pagination_div d-flex justify-content-center p-5">
 <nav aria-label="Page navigation example ">
   <ul class="pagination justify-content-end">
     <li class="page-item disabled">

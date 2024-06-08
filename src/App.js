@@ -3,13 +3,20 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/home/home';
 import About from './components/about/about';
+import ContactUs from './components/contact/ContactUs';
+
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import ProductDetails from './components/productDetails/productDetail';
 import Products from './components/Products/Products'
 import Login from './components/login/login'
 import Register from './components/register/register'
+<<<<<<< HEAD
 import Checkout from './components/checkout/checkout'
+=======
+import Wishlist from './components/wishlist/Wishlist';
+import Cart from './components/Cart/Cart';
+>>>>>>> b578749406a25eb027d21172590666d595bb35ca
 
 
 
@@ -21,11 +28,17 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
+          <Route path='/contact' element={<ContactUs/>}/>
           <Route path='/productdetails' element={<ProductDetails />}/>
           <Route path='/products' element={<Products/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+<<<<<<< HEAD
           <Route path='/checkout' element={<Checkout/>}/>
+=======
+          <Route path='/wishlist' element={<Wishlist/>}/>
+          <Route path='/cart' element={<Cart/>}/>
+>>>>>>> b578749406a25eb027d21172590666d595bb35ca
           
         </Routes>
         <Footer/>

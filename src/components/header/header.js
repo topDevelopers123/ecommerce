@@ -67,9 +67,9 @@ function Header() {
                   </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <a className="nav-link text-light" to="#">
+                  <Link className="nav-link text-light" to="/contact">
                     CONTACT
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -43,10 +43,13 @@
 .icons_div div i{
     font-size: 25px;
     color: #fff;
+    transition: all 0.3S ease;
 }
 
 .icons_div div i:hover{
-    color: #f6931d;
+    color: #EEF7FF;
+    scale: 1.2;
+    cursor: pointer;
     
 }
 
