@@ -33,7 +33,11 @@ function Home() {
       <div>
         {/* Slider section start  */}
         <section className="main_slider">
-          <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+          <div
+            id="carouselExampleControls"
+            className="carousel slide"
+            data-bs-ride="carousel"
+          >
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img src={slid01} className="d-block w-100" alt="..." />
@@ -45,12 +49,28 @@ function Home() {
                 <img src={slid03} className="d-block w-100" alt="..." />
               </div>
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
               <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
               <span className="visually-hidden">Next</span>
             </button>
           </div>
@@ -221,7 +241,9 @@ function Home() {
                 id="myTab"
                 role="tablist"
               >
-                <button className="btn btn-success border-0">All Products</button>
+                <button className="btn btn-success border-0">
+                  All Products
+                </button>
 
                 <button className="btn">Men's Fashion</button>
 
@@ -234,6 +256,14 @@ function Home() {
               <div className="row">
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                    <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp01} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -243,11 +273,27 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp02} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -257,11 +303,27 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp03} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -271,11 +333,27 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp04} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -285,6 +363,14 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -292,6 +378,14 @@ function Home() {
               <div className="row">
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp05} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -301,11 +395,27 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp06} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -315,11 +425,27 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp07} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -329,11 +455,27 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card">
+                  <div className="add_icons">
+                      <div className="icons">
+                        <i class="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
                     <img src={tp08} className="tp_img" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">Navy Blue Printed Shirt</h5>
@@ -343,6 +485,14 @@ function Home() {
                       <p className="pricing">
                         ₹429 <s> ₹999</s> <span>57% off</span>{" "}
                       </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
