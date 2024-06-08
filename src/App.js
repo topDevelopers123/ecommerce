@@ -12,6 +12,7 @@ import Products from './components/Products/Products'
 import Login from './components/login/login'
 import Register from './components/register/register'
 import Wishlist from './components/wishlist/Wishlist';
+import Cart from './components/Cart/Cart';
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/wishlist' element={<Wishlist/>}/>
+          <Route path='/cart' element={<Cart/>}/>
           
         </Routes>
         <Footer/>
