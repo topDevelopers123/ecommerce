@@ -11,6 +11,13 @@
 .main_box ul li{
     line-height: 40px;
     list-style: none;
+    transition: all 0.5s ease;
+}
+.main_box ul li:hover{
+    padding-left: 10px;
+    
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .main_box  li, p{
