@@ -142,7 +142,7 @@ function about() {
           <div className="row ">
             <div className="col-md-6 ">
               <div className="objective-img">
-                <img src={charity3}></img>
+                <img className="char01Img"  src={charity3}></img>
                 <img className="char02Img" src={charity4}></img>
               </div>
             </div>
