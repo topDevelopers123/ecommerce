@@ -76,29 +76,33 @@ function about() {
       </div>
 
       {/* Image Gallery  */}
-      <div className=" image-gallery">
+      <div className="image-gallery">
         <div className="container">
           <div className="row">
             <div className="col-md-6 ">
-              <h1>
-                <span>Welcome</span> To MayaviFashion
-              </h1>
-              <p>
-                Mayavi Fashion, the very name evokes images of ethereal beauty,
-                avant-garde designs, and a seamless blend of tradition and
-                modernity. As a leading force in the fashion industry, Mayavi
-                transcends mere clothing to become a statement of individuality,
-                elegance, and creativity. Origins and Inspiration: Mayavi
-                Fashion draws its inspiration from diverse sources - from the
-                rich cultural tapestry of India to the cutting-edge trends of
-                international fashion capitals. Founded by visionary designers
-                with a passion for innovation, Mayavi was born out of a desire
-                to redefine conventional notions of style and luxur.
-              </p>
-              <button className="about-btn rounded">Contact Us</button>
+              <div className="about_content">
+                <h1>
+                  <span>Welcome</span> To MayaviFashion
+                </h1>
+                <p>
+                  Mayavi Fashion, the very name evokes images of ethereal
+                  beauty, avant-garde designs, and a seamless blend of tradition
+                  and modernity. As a leading force in the fashion industry,
+                  Mayavi transcends mere clothing to become a statement of
+                  individuality, elegance, and creativity. Origins and
+                  Inspiration: Mayavi Fashion draws its inspiration from diverse
+                  sources - from the rich cultural tapestry of India to the
+                  cutting-edge trends of international fashion capitals. Founded
+                  by visionary designers with a passion for innovation, Mayavi
+                  was born out of a desire to redefine conventional notions of
+                  style and luxur.
+                </p>
+                <button className="about-btn rounded">Contact Us</button>
+              </div>
             </div>
 
             <div className="col-md-6 ">
+              <div className="img_gllry">
               <div className="row ">
                 <div className="col-md-4">
                   <div className="charity-images">
@@ -121,6 +125,7 @@ function about() {
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
         </div>
@@ -128,12 +133,12 @@ function about() {
 
       {/* Our Objective */}
 
-      <div className="container-fluid objective ">
+      <div className="objective ">
         <div className="shape">
           <div className="objective-circle"></div>
         </div>
 
-        <div className="container  position-relative">
+        <div className="container">
           <div className="row ">
             <div className="col-md-6 ">
               <div className="objective-img">
@@ -146,50 +151,46 @@ function about() {
               <div className=" text-start">
                 <h1 className="obj-head-text">Our Objective</h1>
                 <div className="row">
-
                   <div className="col-md-6 d-flex  w-100">
                     <div className="d-flex justify-content-center w-100">
-                    <i class="bi bi-bullseye"></i>
+                      <i class="bi bi-bullseye"></i>
                     </div>
                     <div>
-                    <h2 className="obj-text">Objective 1</h2>
-                    <p  >
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Blanditiis aliquid numquam repellat, molestiae excepturi
-                      debitis fugit assumenda soluta possimus maxime neque
-                      animi! Officiis doloribus temporibus itaque fugiat ex,
-                      eius facere. Lorem ipsum dolor, sit amet consectetur
-                      adipisicing elit. Blanditiis aliquid numquam repellat,
-                      molestiae excepturi debitis fugit assumenda soluta
-                      possimus maxime neque animi! Officiis doloribus temporibus
-                      itaque fugiat ex, eius facere
-                    </p>
+                      <h2 className="obj-text">Objective 1</h2>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Blanditiis aliquid numquam repellat, molestiae
+                        excepturi debitis fugit assumenda soluta possimus maxime
+                        neque animi! Officiis doloribus temporibus itaque fugiat
+                        ex, eius facere. Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Blanditiis aliquid numquam repellat,
+                        molestiae excepturi debitis fugit assumenda soluta
+                        possimus maxime neque animi! Officiis doloribus
+                        temporibus itaque fugiat ex, eius facere
+                      </p>
                     </div>
-                   
                   </div>
                 </div>
 
                 <div className="row ">
-                    
                   <div className="col-md-6 d-flex  w-100">
                     <div className="d-flex justify-content-center w-100">
-                    <i class="bi bi-bullseye"></i>
+                      <i class="bi bi-bullseye"></i>
                     </div>
                     <div className="">
-                    <h2  className="obj-text">Objective 1</h2>
-                    <p >
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Blanditiis aliquid numquam repellat, molestiae excepturi
-                      debitis fugit assumenda soluta possimus maxime neque
-                      animi! Officiis doloribus temporibus itaque fugiat ex,
-                      eius facere. Lorem ipsum dolor, sit amet consectetur
-                      adipisicing elit. Blanditiis aliquid numquam repellat,
-                      molestiae excepturi debitis fugit assumenda soluta
-                      possimus maxime neque animi! Officiis doloribus temporibus
-                      itaque fugiat ex, eius facere
-                    </p>
+                      <h2 className="obj-text">Objective 1</h2>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Blanditiis aliquid numquam repellat, molestiae
+                        excepturi debitis fugit assumenda soluta possimus maxime
+                        neque animi! Officiis doloribus temporibus itaque fugiat
+                        ex, eius facere. Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Blanditiis aliquid numquam repellat,
+                        molestiae excepturi debitis fugit assumenda soluta
+                        possimus maxime neque animi! Officiis doloribus
+                        temporibus itaque fugiat ex, eius facere
+                      </p>
                     </div>
-                   
                   </div>
                 </div>
               </div>
@@ -212,7 +213,7 @@ function about() {
           </div>
         </div>
 
-        <div class="container m-0  m-md-5 p-5 d-flex justify-content-center ">
+        <div class="container m-0  p-5 d-flex justify-content-center ">
           <div class="row w-100">
             <div class="col-md-4 col-sm-12 text-center">
               <h1
@@ -243,7 +244,7 @@ function about() {
 
       {/* What We do  */}
 
-      <div className="donate container-fluid ">
+      <div className="donate ">
         <h1 className="d-flex justify-content-center">What We Do</h1>
         <p className="d-flex justify-content-center">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore,

@@ -204,6 +204,24 @@
 }
 .tp_area .card{
     margin: 10px;
+    position: relative;
+}
+.tp_area .card .add_icons{
+    position: absolute;
+    right: 0;
+    display: flex;
+    top: 54%;
+}
+.tp_area .card .add_icons .icons{
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    background: #7AB2B2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 50%;
 }
 .tp_area .card img{
     height: 300px;
@@ -217,6 +235,9 @@
 }
 .tp_area .card-body{
     background: #EEF7FF;
+}
+.card-body button{
+    font-size: 14px;
 }
 .shop-services.home {
     padding: 60px 0;

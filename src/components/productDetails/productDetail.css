@@ -186,3 +186,15 @@
     width: 60px;
     text-align: center;
 }
+.wishlist_btn{
+    width: 40px;
+    height: 35px;
+    background: #4D869C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+.wishlist_btn i{
+    color: #fff;
+}

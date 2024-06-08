@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login_form_sec{
+    padding: 40px 0px;
+}
+.login-form h2{
+    text-align: center;
+}
+.login-form p{
+    text-align: center;
+}
+ .login_form_sec form input{
+    border-radius: 0 !important;
+    padding: 14px;
+    background-color: #EEF7FF !important;
+    border: 0;
+    border-left: 4px solid #4D869C;
+}
+.login_form_sec form input::placeholder{
+    font-size: 14px;
+}
+.login-form button{
+    border-radius: 0;
+    background-color: #4D869C;
+    border: 0;
+    padding: 12px 30px;
+}
+.login-form button:hover{
+    background: #7AB2B2;
+}
+.login-form .social_links .fb{
+    width: 50px;
+    height: 50px;
+    background-color: #395693;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 10px;
+}
+.login-form .social_links .google{
+    width: 50px;
+    height: 50px;
+    background-color: #e34133;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 10px;
+}
+.login-form .social_links .fb i{
+    color: #fff;
+    font-size: 25px;
+}
+.login-form .social_links .google i{
+    color: #fff;
+    font-size: 25px;
+}
+
+
+/* Mobile  */
+@media only screen and (max-width: 567px){
+    .login-form button {
+        padding: 8px 20px;
+        font-size: 10px;
+    }
+    .login-form .social_links .fb {
+        width: 35px;
+        height: 35px;
+        margin: 8px 10px;
+    }
+    .login-form .social_links .google {
+        width: 35px;
+        height: 35px;
+        margin: 8px 10px;
+    }
+    .login-form .social_links .fb i {
+        color: #fff;
+        font-size: 18px;
+    }
+    .login-form .social_links .google i {
+        color: #fff;
+        font-size: 18px;
+    }
+}

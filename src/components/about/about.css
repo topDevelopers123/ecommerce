@@ -1,7 +1,5 @@
 .about {
-    margin: 24px 0;
     background-image: url('./images/charity01.jpg');
-    width: 100vw;
     height: 70vh;
     font-size: 30px;
     background-size: cover;
@@ -30,7 +28,8 @@
 
 
 .image-gallery{
-    width: 100vw;
+    width: 100%;
+    padding: 40px 0px;
 }
 .image-gallery h1{
     color: #4D869C;
