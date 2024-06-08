@@ -54,3 +54,24 @@ margin-bottom: 12px;
     background-color: #416b7c;
 
 }
+.wish-text-2 div button{
+    background-color: #EEF7FF;
+}
+
+@media screen and (max-width: 992px) {
+   .cart_subtotal_div{
+    display: flex;
+    justify-content: start !important;
+    margin-top: 40px;
+   } 
+   .wish-text-2 div button, .wish-text-2 div div{
+    padding: 5px ;
+    width: 50px;
+    text-align: center;
+   }
+
+}
+
+ 
+
+

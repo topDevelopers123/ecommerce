@@ -89,3 +89,10 @@ border-radius: 50%;
             margin-block: 10px;
         }
 }
+
+@media screen and (max-width: 992px) {
+
+    .wish-text-2 h6 {
+            margin-block: 10px;
+        }
+}
