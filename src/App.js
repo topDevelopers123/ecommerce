@@ -11,6 +11,7 @@ import ProductDetails from './components/productDetails/productDetail';
 import Products from './components/Products/Products'
 import Login from './components/login/login'
 import Register from './components/register/register'
+import Wishlist from './components/wishlist/Wishlist';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/products' element={<Products/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='/wishlist' element={<Wishlist/>}/>
           
         </Routes>
         <Footer/>
