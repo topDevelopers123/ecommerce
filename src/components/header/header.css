@@ -1,5 +1,5 @@
 .navbar{
-    background-color: #555;
+    background-color: #4D869C;
 }
 
 .container-fluid-div{
@@ -19,12 +19,12 @@
 
 .icons_div div p{
     position: absolute;
-    font-size: 12px;
+    font-size: 15px;
     top: 6px;
-    right: 30px;
+    right: 26px;
     background-color: #f6931d;
     border-radius: 40%;
-    padding: 0px 3px;
+    padding: 0px 5px;
     
     
 }

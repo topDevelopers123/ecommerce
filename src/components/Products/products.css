@@ -1,5 +1,10 @@
 .go_btn{
-    background-color: #f6931d;
+    background-color: #4D869C;
+}
+
+.go_btn:hover{
+    background-color: #CDE8E5;
+    color: #000 !important;
 }
 
 .card_div img{
@@ -8,13 +13,17 @@ height: 280px;
 }
 
 .discount_div{
-    background-color: #f6931d;
+    background-color: #4D869C;
     padding: 0px 12px;
     border-radius: 8px;
-    font-size: 15px;
+  
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.discount_div p{
+    font-size: 11px;
 }
 
 .add_to_cart_div{
@@ -30,9 +39,28 @@ height: 280px;
     font-weight: 600;
     border: none;
     outline: none;
-    border-radius: 8px;
-    background-color: #f6931d;
+    border-radius: 7px;
+    background-color: #4D869C;
     color: #fff;
+    transition: all 0.3s ease;
+}
+
+.add_to_cart_div div button:hover{
+    background-color: #CDE8E5;
+    color: #000;
+}
+
+.filter_mini_div{
+    background-color: #F6F7FB;
+}
+ 
+.card_mini_div{
+    transition: all 0.3s ease;
+}
+
+.card_mini_div h6{
+    color: #4D869C;
+    
 }
 
 .card_mini_div:hover .add_to_cart_div{
@@ -40,11 +68,58 @@ height: 280px;
     bottom: 0px !important;
     left: 0 !important;
 }
-
-.add_to_cart_div div i:hover{
-    color: #f6931d;
+.card_mini_div:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 10px;
+    cursor: pointer;
 }
 
+.add_to_cart_div div .icons{
+    background-color: #4D869C;
+    border-radius: 50%;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    margin: 0px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_to_cart_div div .icons:hover{
+    color: #4D869C;
+    background-color: #fff;
+    
+    cursor: pointer;
+}
+
+.recent_post_mini img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #d3d0d06e;
+    padding: 10px;
+}
+
+.pagination_div{
+    background-color: #F6F7FB;
+}
+
+.recent_post_mini h6{
+    color:  #4D869C;
+}
+
+.poducts_filter_main_div .dropdown-menu div{
+    padding-inline: 20px;
+    background-color: #F6F7FB;
+}
+
+.range_div input  {
+    accent-color: #4D869C;
+    
+    
+    
+
+}
 
 @media screen and (max-width: 992px) {
     .poducts_filter_main_div{

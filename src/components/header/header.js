@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import logo from "./header_images/logo.png";
 import "./header.css";
 
@@ -34,7 +35,7 @@ function Header() {
       <nav className="navbar navbar-expand-lg  p-0 position-static">
         <div className="container-fluid container-fluid-div p-0 h-100 d-flex  align-items-center">
           <div className="col-lg-2 col-md-2 col-3  h-100 logo_div d-flex justify-content-around align-items-center">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" to="#">
               <img src={logo} />
             </a>
           </div>
@@ -47,26 +48,26 @@ function Header() {
               <i class="bi bi-x fs-1  cross_icon" onClick={hide_Navbar}></i>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
                 <li className="nav-item px-2">
-                  <a
+                  <Link
                     className="nav-link  text-light"
                     aria-current="page"
-                    href="#"
+                    to="/"
                   >
                     HOME
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="#">
+                  <Link className="nav-link text-light" to="/products">
                     PRODUCTS
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="#">
+                  <Link className="nav-link text-light" to="/about">
                     ABOUT
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="#">
+                  <a className="nav-link text-light" to="#">
                     CONTACT
                   </a>
                 </li>
@@ -97,12 +98,12 @@ function Header() {
             <div className="col-lg-4  col-md-4 col-4 d-flex  justify-content-around icons_div ">
               <div className=" d-flex position-relative w-100   justify-content-center align-items-center">
                 <i class="bi bi-suit-heart"></i>
-                <p className="text-light">0</p>
+                <p className="text-light">O</p>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center">
                 <i class="bi bi-cart3"></i>
-                <p className="text-light">0</p>
+                <p className="text-light">O</p>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
