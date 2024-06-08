@@ -1,0 +1,91 @@
+.wish-content{
+    margin: 60px 0;
+}
+.wish-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: #EEF7FF;
+height: 80px;
+}
+.wish-items{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-items: center;
+    margin: 40px 0;
+}
+.wish-items img{
+    width: 40%;
+    border-radius: 6px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+.wish-items img:hover{
+border-radius: 50%;
+}
+.wish-items button{
+    padding: 14px 16px;
+    background-color: #4D869C;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    transition: 0.3s ease-in-out;
+}
+.wish-items button:hover{
+    background-color: #CDE8E5;
+    color: #000;
+}
+.wish-items a{
+    text-decoration: none;
+    color: #000;
+    transition: 0.2s ease;
+    font-weight: 600;
+}
+.wish-items a:hover{
+    color: #4D869C;
+}
+.wish-items i{
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.wish-items i:hover{
+    color: #4D869C;
+}
+
+@media screen and (max-width: 992px) {
+    .wish-text-2{
+        flex-direction: column ;
+        
+    }
+    .wish-text-2 h6{
+        margin-block: 50px;
+    }
+    .wish-text-1{
+        display: none !important;
+    }
+    .wish-text-2{
+      
+        display: flex !important;
+        justify-content: start !important;
+    }
+    .wish-text-2 div, h6, button, a{
+        text-align: start;
+        padding-left: 20px;
+        font-size: 22px;
+     /* margin-block: 12px; */
+    }
+    .wish-items img{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .wish-text-2 h6 {
+            margin-block: 10px;
+        }
+}
