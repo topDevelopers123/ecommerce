@@ -71,10 +71,17 @@ border: 10px solid #555;
 } 
 .objective-img{
     position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.char01Img{
+    position: absolute;
+    top: 15%;
 }
 .char02Img{
     position: absolute;
-    top: 70%;
+    top: 45%;
     left: 20%;
 }
  
@@ -87,12 +94,13 @@ border: 10px solid #555;
     position: relative;
 }
 .objective-circle{
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background-color: #CDE8E5;
-    border-radius: 50%  ;
+    border-radius: 50%;
     position: absolute;
     left: -50px;
+    top: 30px;
 }
 
 /* Counter Section   */
