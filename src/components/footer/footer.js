@@ -13,7 +13,7 @@ function footer() {
                 <p className='text-light'>Got Question? Call us 24/7</p>
                 <h5 className='text-light'>9262852851</h5>
               </div>
-              <div className='col-lg-8 col-md-12 co-sm-12 border border-dark d-flex  p-4 flex-wrap px-5'>
+              <div className='col-lg-8 col-md-12 co-sm-12 border border-dark d-flex footer_li_div  p-4 flex-wrap px-5'>
 
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>Information</h6>

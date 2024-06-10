@@ -17,14 +17,14 @@
     border: none;
 }
 
-.icons_div div p{
+.icons_div div .para_cart{
     position: absolute;
     font-size: 15px;
     top: 6px;
-    right: 26px;
+    right: 20px;
     background-color: #f6931d;
     border-radius: 40%;
-    padding: 0px 5px;
+    padding: 0px 4px;
     
     
 }
@@ -51,6 +51,9 @@
     scale: 1.2;
     cursor: pointer;
     
+}
+.mobile_serach_icon i{
+    display: none;
 }
 
 .icons_div div .menu_icon{
@@ -137,6 +140,122 @@ left: 0; */
     .menu_div{
         display: flex !important;
     }
+    .icons_div div .para_cart{
+        right: 0px;
+    }
   }
 
+
+  @media screen and (max-width: 768px) {
+    .icons_div div .para_cart{
+        right: 5px;
+        top: 10px;
+        
+    }
+    .icons_div div i{
+        font-size: 20px;
+        padding: 0;
+    }
+    .icons_div div .menu_icon{
+        font-size: 35px;
+       
+    }
+    /* .form_div form{
+        display: none !important;
+    } */
+    /* .mobile_serach_icon i{
+        display: block;
+    } */
+    .wish-text-2 div, h6, button, a {
+        padding: 0 !important;
+    }
+    .form_div i{
+        padding: 10px ;
+    }
+    .wish-text-2 div, h6, button, a{
+        text-align: center !important;
+    }
+  }
+
+    @media screen and (max-width: 568px) {
+        .icons_div div .para_cart{
+            right: -4px;
+            top: 12px;
+            font-size:12px;
+        }
+        .icons_div div .menu_icon{
+            font-size: 25px;
+           
+        }
+        .icons_div div i{
+            font-size: 15px;
+            padding: 0;
+        }
+        
+        .logo_div img{
+            width: 75px !important;
+        }
+        .sub_mega h4{
+         font-size: 20px;
+            
+        }
+    
+  }
+
+  @media screen and (max-width: 468px) {
+    .logo_div img{
+        width: 75px !important;
+        padding-left: 10px;
+    }
+    .menu_div i{
+        margin-top: 8px;
+    }
+    .icons_div div .para_cart p{
+       
+        font-size:12px;
+    }
+    .form_div input{
+        height: 32px;
+    }
+    .form_div button{
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+    }
+    .main_form_div{
+        padding-left: 2px;
+    }
+    .sub_mega h4{
+        font-size: 17px;
+           
+       }
+       .sub_mega li{
+        
+       line-height: 18px;
+       font-size: 15px;
+    }
+    .category_main_div div img{
+        width: 75px;
+        height: 75px;
+        
+    }
+    .category_main_div div h6{
+        font-size: 18px;
+    }
+    .mens_cate:hover + .sub_categeries{
+        display: flex;
+        
+        position: absolute;
+        top: 200px;
+        left: 0;
+        z-index: 55;
+        }
+        .main_box h6{
+            text-align: start !important;
+        }
+        .main_box .footer_li_div{
+            padding: 0 !important;
+          
+        }
+    
+  }
  

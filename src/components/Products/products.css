@@ -58,6 +58,14 @@
 }
 .filter_mini_div button{
     color: #5e5c5c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+.dropdown-menu{
+    width: 100% !important;
 }
  
 .card_mini_div{

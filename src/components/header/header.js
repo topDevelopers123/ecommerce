@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./header_images/logo.png";
 import "./header.css";
 
 function Header() {
   const Li_show = useRef();
+ 
+
 
   const Toggle_Menu = () => {
     Li_show.current.style.display = "flex";
@@ -30,18 +32,20 @@ function Header() {
     // Li_show.current.style.width = "revert-layer"
   };
 
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg  p-0 position-static">
         <div className="container-fluid container-fluid-div p-0 h-100 d-flex  align-items-center">
-          <div className="col-lg-2 col-md-2 col-3  h-100 logo_div d-flex justify-content-around align-items-center">
-            <a className="navbar-brand" to="#">
+          <div className="col-lg-2 col-md-2 col-sm-2 col-2   h-100 logo_div d-flex justify-content-around align-items-center">
+           
               <img src={logo} />
-            </a>
+    
           </div>
 
           <div
-            className="col-lg-4 col-md-2  col-2  h-100  li_div"
+            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  li_div"
             ref={Li_show}
           >
             <div className=" navbar-collapse" id="navbarSupportedContent">
@@ -75,11 +79,11 @@ function Header() {
             </div>
           </div>
 
-          <div className="col-lg-6  col-md-10 col-9  h-100 d-flex align-items-center justify-content-center">
-            <div className="col-lg-8  col-md-8 col-8 d-flex  justify-content-center ">
+          <div className="col-lg-6  col-md-10 col-sm-10 col-10  h-100 main_form_div  d-flex align-items-center justify-content-center">
+            <div className="col-lg-8  col-md-8 col-sm-8 col-8 d-flex  justify-content-center  form_div">
               <form
                 className="d-flex   col-lg-10 col-md-10 col-10"
-                role="search"
+                role="search" 
               >
                 <input
                   className="form-control rounded-1 "
@@ -93,22 +97,33 @@ function Header() {
                 >
                   <i class="bi bi-search"></i>
                 </button>
+                
               </form>
             </div>
-            <div className="col-lg-4  col-md-4 col-4 d-flex  justify-content-around icons_div ">
+            <div className="col-lg-4  col-md-4  col-sm-4 col-4 d-flex  justify-content-around icons_div ">
+
+            {/* <div className="d-flex  position-relative  w-100 justify-content-center align-items-center mobile_serach_icon">
+                <i class="bi bi-search" ></i>
+              </div> */}
+
               <div className=" d-flex position-relative w-100   justify-content-center align-items-center">
                 <Link to="/wishlist"> <i class="bi bi-suit-heart"></i></Link>
-                <p className="text-light">O</p>
+                <div className="para_cart">
+                <p className="text-light m-0">O</p>
+                </div>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center">
                 <Link to="/cart"><i class="bi bi-cart3"></i></Link>
-                <p className="text-light">O</p>
+                <div className="para_cart">
+                <p className="text-light m-0">O</p>
+                </div>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
                 <i class="bi bi-list menu_icon" onClick={Toggle_Menu}></i>
               </div>
+              
             </div>
           </div>
         </div>
