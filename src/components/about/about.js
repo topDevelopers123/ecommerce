@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./about.css";
 import charity1 from "./images/charity01.jpg";
 import charity2 from "./images/charity02.jpg";
@@ -7,7 +7,7 @@ import charity4 from "./images/charity04.jpg";
 import charity5 from "./images/charity05.png";
 import charity6 from "./images/charity06.jpg";
 
-function about() {
+function About() {
   let downloadCount1 = 0;
   let downloadCount2 = 0;
   let downloadCount3 = 0;
@@ -63,9 +63,12 @@ function about() {
     updateDisplay3();
   }
 
-  intervalId1 = setInterval(incrementDownloads1, 10);
-  intervalId2 = setInterval(incrementDownloads2, 10);
-  intervalId3 = setInterval(incrementDownloads3, 10);
+
+    intervalId1 = setInterval(incrementDownloads1, 10);
+    intervalId2 = setInterval(incrementDownloads2, 10);
+    intervalId3 = setInterval(incrementDownloads3, 10);
+ 
+ 
 
   return (
     <div>
@@ -305,4 +308,4 @@ function about() {
   );
 }
 
-export default about;
+export default About;
