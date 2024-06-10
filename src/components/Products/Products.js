@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./products.css";
+import { Link } from "react-router-dom";
 
 function Products() {
   const [range, setRenge] = useState(100);
+  const navigate = useNavigate()
 
   const obj = [
     {
@@ -49,6 +52,10 @@ function Products() {
     },
   ]
 
+  const productDetailsPage = () =>{
+     navigate("/productdetails")
+     window.scrollTo(0, 0);
+  }
   return (
     <div>
       <div class="container-fluid mt-5 mb-5">
@@ -187,7 +194,7 @@ function Products() {
 
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
                 {obj.map((item)=>{
-                  return <div className="col-lg-4 col-md-6 col-sm-12 col-12 p-3  card_div">
+                  return <div className="col-lg-4 col-md-6 col-sm-12 col-12 p-3  card_div" onClick={productDetailsPage}>
                        <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item.product_image} alt={item.product_title}/>
                     <h6 className="mt-2 ps-2">{item.product_title}</h6>
@@ -219,6 +226,7 @@ function Products() {
                     </div>
                     </div>
                 </div>
+                
                 })}
 
 <div className=" w-100 pagination_div d-flex justify-content-center p-5">

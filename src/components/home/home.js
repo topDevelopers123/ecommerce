@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -28,6 +29,11 @@ import slid03 from "./img/slider/slider3.webp";
 import "./home.css";
 
 function Home() {
+  const navigate = useNavigate()
+  const productDetailsPage = () => {
+    navigate("/productdetails")
+    window.scrollTo(0, 0);
+  }
   const ImageCarousel = () => {
     return (
       <div>
@@ -254,8 +260,8 @@ function Home() {
             </div>
             <div className="tp_area">
               <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                <div className="col-lg-3 col-md-6 col-sm-12" >
+                  <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -285,7 +291,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -315,7 +321,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -345,7 +351,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -377,7 +383,7 @@ function Home() {
               </div>
               <div className="row">
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -407,7 +413,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -437,7 +443,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
@@ -467,7 +473,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card">
+                  <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
