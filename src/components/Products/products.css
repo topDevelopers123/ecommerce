@@ -9,15 +9,14 @@
 
 .card_div img{
     width: 100%;
-height: 280px;
-object-fit: cover;
+    height: 280px;
+    object-fit: cover;
 }
 
 .discount_div{
     background-color: #4D869C;
     padding: 0px 12px;
     border-radius: 8px;
-  
     position: absolute;
     top: 0;
     right: 0;
@@ -67,8 +66,7 @@ object-fit: cover;
 }
 
 .card_mini_div h6{
-    color: #4D869C;
-    
+    color: #4D869C;  
 }
 
 .card_mini_div:hover .add_to_cart_div{
@@ -96,7 +94,6 @@ object-fit: cover;
 .add_to_cart_div div .icons:hover{
     color: #4D869C;
     background-color: #fff;
-    
     cursor: pointer;
 }
 
@@ -122,15 +119,11 @@ object-fit: cover;
 }
 
 .range_div input  {
-    accent-color: #4D869C;
-    
-    
-    
-
+    accent-color: #4D869C;      
 }
 
 @media screen and (max-width: 992px) {
-    .poducts_filter_main_div{
+    .poducts_filter_main_div{ 
         display: flex;
         flex-direction: column;
     }

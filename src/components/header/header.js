@@ -97,12 +97,12 @@ function Header() {
             </div>
             <div className="col-lg-4  col-md-4 col-4 d-flex  justify-content-around icons_div ">
               <div className=" d-flex position-relative w-100   justify-content-center align-items-center">
-                <i class="bi bi-suit-heart"></i>
+                <Link to="/wishlist"> <i class="bi bi-suit-heart"></i></Link>
                 <p className="text-light">O</p>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center">
-                <i class="bi bi-cart3"></i>
+                <Link to="/cart"><i class="bi bi-cart3"></i></Link>
                 <p className="text-light">O</p>
               </div>
 
