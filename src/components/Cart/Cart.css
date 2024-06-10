@@ -66,7 +66,8 @@ margin-bottom: 12px;
    } 
    .wish-text-2 div button, .wish-text-2 div div{
     padding: 5px ;
-    width: 50px;
+    width: 50%;
+    font-size: 12px;
     text-align: center;
    }
 

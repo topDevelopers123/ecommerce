@@ -6,6 +6,7 @@ import charity3 from "./images/charity03.jpg";
 import charity4 from "./images/charity04.jpg";
 import charity5 from "./images/charity05.png";
 import charity6 from "./images/charity06.jpg";
+import banner01 from "./images/charity01.jpg";
 
 function About() {
   let downloadCount1 = 0;
@@ -23,17 +24,17 @@ function About() {
 
   function updateDisplay1() {
     document.getElementById("number1").textContent =
-      formatNumber(downloadCount1);
+    formatNumber(downloadCount1);
   }
 
   function updateDisplay2() {
     document.getElementById("number2").textContent =
-      formatNumber(downloadCount2);
+    formatNumber(downloadCount2);
   }
 
   function updateDisplay3() {
     document.getElementById("number3").textContent =
-      formatNumber(downloadCount3);
+    formatNumber(downloadCount3);
   }
 
   function incrementDownloads1() {
@@ -64,18 +65,24 @@ function About() {
   }
 
 
-    intervalId1 = setInterval(incrementDownloads1, 10);
-    intervalId2 = setInterval(incrementDownloads2, 10);
-    intervalId3 = setInterval(incrementDownloads3, 10);
- 
- 
+  intervalId1 = setInterval(incrementDownloads1, 10);
+  intervalId2 = setInterval(incrementDownloads2, 10);
+  intervalId3 = setInterval(incrementDownloads3, 10);
+
+
 
   return (
     <div>
       {/* Banner  */}
-      <div className="about">
-        <h1 className="banner-heading">Motive of Charity</h1>
-        <p className="banner-text">“No one has ever become poor from giving"</p>
+
+      <div className="about" style={{ backgroundImage: 'url(' + banner01 + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', background: 'rgba((76, 175, 80, 0.3))' }}>
+
+        <div className="overlay">
+          <div className="content">
+            <h2 className="banner-heading">Motive of Charity</h2>
+            <p className="banner-text">“No one has ever become poor from giving"</p>
+          </div>
+        </div>
       </div>
 
       {/* Image Gallery  */}
@@ -84,9 +91,9 @@ function About() {
           <div className="row">
             <div className="col-md-6 ">
               <div className="about_content">
-                <h1>
+                <h2>
                   <span>Welcome</span> To MayaviFashion
-                </h1>
+                </h2>
                 <p>
                   Mayavi Fashion, the very name evokes images of ethereal
                   beauty, avant-garde designs, and a seamless blend of tradition
@@ -106,28 +113,28 @@ function About() {
 
             <div className="col-md-6 ">
               <div className="img_gllry">
-              <div className="row ">
-                <div className="col-md-4">
-                  <div className="charity-images">
-                    <img src={charity1}></img>
-                    <img src={charity2}></img>
+                <div className="row ">
+                  <div className="col-md-4">
+                    <div className="charity-images">
+                      <img src={charity1}></img>
+                      <img src={charity2}></img>
+                    </div>
                   </div>
-                </div>
 
-                <div className="col-md-4">
-                  <div className="charity-images">
-                    <img src={charity3}></img>
-                    <img src={charity6}></img>
+                  <div className="col-md-4">
+                    <div className="charity-images">
+                      <img src={charity3}></img>
+                      <img src={charity6}></img>
+                    </div>
                   </div>
-                </div>
 
-                <div className="col-md-4">
-                  <div className="charity-images">
-                    <img src={charity5}></img>
-                    <img src={charity4}></img>
+                  <div className="col-md-4">
+                    <div className="charity-images">
+                      <img src={charity5}></img>
+                      <img src={charity4}></img>
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -145,7 +152,7 @@ function About() {
           <div className="row ">
             <div className="col-md-6 ">
               <div className="objective-img">
-                <img className="char01Img"  src={charity3}></img>
+                <img className="char01Img" src={charity3}></img>
                 <img className="char02Img" src={charity4}></img>
               </div>
             </div>

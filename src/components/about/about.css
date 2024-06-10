@@ -1,99 +1,128 @@
 .about {
-    background-image: url('./images/charity01.jpg');
-    height: 70vh;
-    font-size: 30px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 0.3;
+    width: 100%;
+    height: 500px;
+    position: relative;
+    color: white;
+    text-align: center;
+    margin: 30px 0;
 }
+
+.about .overlay {
+    width: 100%;
+    height: 500px;
+    background-color: rgba(3, 3, 3, 0.3);
+    position: absolute;
+    font-size: 30px;
+    top: 0;
+    left: 0;
+    z-index: 9
+}
+
+.about .content {
+    position: relative;
+    z-index: 9;
+}
+
 
 .about .banner-heading {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px 0 0 0 ;
-    color: #4D869C;
-
+    padding: 100px 0 0 0;
+    color: #fff;
 }
 
 .about .banner-text {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #4D869C;
+    color: #fff;
     font-size: 26px;
 }
 
 /* Image Gallery  */
 
 
-.image-gallery{
+.image-gallery {
     width: 100%;
     padding: 40px 0px;
 }
-.image-gallery h1{
+
+.image-gallery h2 {
     color: #4D869C;
 }
-.charity-images{
+
+.charity-images {
     width: 100%;
 }
-.charity-images img{
+
+.charity-images img {
     width: 186px;
     padding: 8px;
 }
-.about-btn{
+
+.about-btn {
     padding: 20px 30px;
     background-color: #7AB2B2;
     color: #fff;
     transition: .3s ease-in-out;
     border: none;
 }
-.about-btn:hover{
+
+.about-btn:hover {
     background-color: #CDE8E5;
     color: #333;
 }
+
 /* Objective */
 
- .objective{
+.objective {
     margin: 30px 0;
     padding: 40px 0px;
     background-color: #EEF7FF;
 }
-.objective .obj-head-text{
+
+.objective .obj-head-text {
     color: #4D869C;
 }
-.objective .obj-text{
+
+.objective .obj-text {
     color: #7AB2B2;
 }
-.objective-img img{
-width: 30%;
-border: 10px solid #555;
-} 
-.objective-img{
+
+.objective-img img {
+    width: 30%;
+    border: 10px solid #555;
+}
+
+.objective-img {
     position: relative;
     display: flex;
     align-items: center;
     height: 100%;
 }
-.char01Img{
+
+.char01Img {
     position: absolute;
     top: 15%;
 }
-.char02Img{
+
+.char02Img {
     position: absolute;
     top: 45%;
     left: 20%;
 }
- 
-.objective i{
+
+.objective i {
     font-size: 40px;
     color: #7AB2B2;
 }
 
-.shape{
+.shape {
     position: relative;
 }
-.objective-circle{
+
+.objective-circle {
     width: 500px;
     height: 500px;
     background-color: #CDE8E5;
@@ -106,23 +135,59 @@ border: 10px solid #555;
 /* Counter Section   */
 
 
-.charity_para{
-	font-weight: bold;	
-	font-size: 26px;
+.charity_para {
+    font-weight: bold;
+    font-size: 26px;
 }
-.fw-bold{
+
+.fw-bold {
     color: #4D869C;
 }
 
 
 /* What We Do  */
 
-.donate{
+.donate {
     background-color: #cde8e5;
     padding: 30px;
 }
-.donate-row{
+
+.donate-row {
     background-color: #fff;
     margin: 10px;
     padding: 20px;
+}
+
+/* Responsive */
+
+@media screen and (max-width:567px) {
+    p {
+        font-size: 14px;
+    }
+
+    .about .overlay {
+        height: 265px;
+    }
+
+    .about {
+        height: 265px;
+    }
+
+    .about .banner-heading {
+        font-size: 35px !important;
+    }
+
+    .about .banner-text {
+        font-size: 14px;
+    }
+
+    /* Image Gallery  */
+    .image-gallery h2 {
+        font-size: 30px !important;
+    }
+
+    .about-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
 }
