@@ -77,17 +77,15 @@
 }
 
 .sub_mega{
-    border-top: 3px solid #f7941d;
+    border-top: 3px solid #7ab2b2;
     display: flex;
-    
     flex-direction: column;
     padding-inline: 30px;
     text-align: left;
 }
 
 .sub_mega h4{
-    color: #f7941d;
-    
+    color: #7ab2b2;   
 }
 
 .sub_mega li{
@@ -95,7 +93,6 @@
    line-height: 23px;
    margin-top: 10px;
    transition: all 0.5s ease;
-
 }
 
 .sub_mega li:hover{

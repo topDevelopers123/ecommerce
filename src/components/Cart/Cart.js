@@ -55,7 +55,7 @@ function Cart() {
                                     </div>
 
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-12 cart_subtotal_div d-flex justify-content-end'>
-                                        <div className='d-flex flex-column w-75'>
+                                        <div className='d-flex flex-column w-75 '>
                                             <div className='d-flex justify-content-between'>
                                                 <p>Cart Subtotal</p>
                                                 <p>0.00₹</p>
@@ -66,7 +66,7 @@ function Cart() {
                                                 <div>0.00₹</div>
                                             </div>
                                             <button className='mt-5'>CHECKOUT</button>
-                                            <button>COUNTINUE SHOPPING</button>
+                                            <button>CONTINUE SHOPPING</button>
 
                                         </div>
                                     </div>
