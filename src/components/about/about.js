@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./about.css";
 import charity1 from "./images/charity01.jpg";
 import charity2 from "./images/charity02.jpg";
@@ -9,11 +9,47 @@ import charity6 from "./images/charity06.jpg";
 import banner01 from "./images/charity01.jpg";
 
 function About() {
-  let downloadCount1 = 0;
-  let downloadCount2 = 0;
-  let downloadCount3 = 0;
+  const [downloadCount1, setDownloadCount1] = useState(0);
+  const [downloadCount2, setDownloadCount2] = useState(0);
+  const [downloadCount3, setDownloadCount3] = useState(0);
 
-  let intervalId1, intervalId2, intervalId3;
+  useEffect(() => {
+    const intervalId1 = setInterval(() => {
+      setDownloadCount1((prev) => {
+        if (prev >= 600) {
+          clearInterval(intervalId1);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 10);
+
+    const intervalId2 = setInterval(() => {
+      setDownloadCount2((prev) => {
+        if (prev >= 700) {
+          clearInterval(intervalId2);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 10);
+
+    const intervalId3 = setInterval(() => {
+      setDownloadCount3((prev) => {
+        if (prev >= 800) {
+          clearInterval(intervalId3);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 10);
+
+    return () => {
+      clearInterval(intervalId1);
+      clearInterval(intervalId2);
+      clearInterval(intervalId3);
+    };
+  }, []);
 
   function formatNumber(number) {
     if (number >= 500) {
@@ -22,74 +58,19 @@ function About() {
     return number;
   }
 
-  function updateDisplay1() {
-    document.getElementById("number1").textContent =
-    formatNumber(downloadCount1);
-  }
-
-  function updateDisplay2() {
-    document.getElementById("number2").textContent =
-    formatNumber(downloadCount2);
-  }
-
-  function updateDisplay3() {
-    document.getElementById("number3").textContent =
-    formatNumber(downloadCount3);
-  }
-
-  function incrementDownloads1() {
-    downloadCount1++;
-    if (downloadCount1 === 600) {
-      clearInterval(intervalId1);
-      return;
-    }
-    updateDisplay1();
-  }
-
-  function incrementDownloads2() {
-    downloadCount2++;
-    if (downloadCount2 === 700) {
-      clearInterval(intervalId2);
-      return;
-    }
-    updateDisplay2();
-  }
-
-  function incrementDownloads3() {
-    downloadCount3++;
-    if (downloadCount3 === 800) {
-      clearInterval(intervalId3);
-      return;
-    }
-    updateDisplay3();
-  }
-
-
-  intervalId1 = setInterval(incrementDownloads1, 10);
-  intervalId2 = setInterval(incrementDownloads2, 10);
-  intervalId3 = setInterval(incrementDownloads3, 10);
-
-
-
   return (
     <div>
-      {/* Banner  */}
-
-      <div className="about" style={{ backgroundImage: 'url(' + banner01 + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', background: 'rgba((76, 175, 80, 0.3))' }}>
-
-        <div className="overlay">
-          <div className="content">
-            <h2 className="banner-heading">Motive of Charity</h2>
-            <p className="banner-text">“No one has ever become poor from giving"</p>
-          </div>
-        </div>
+      {/* Banner */}
+      <div className="about">
+        <h1 className="banner-heading">Motive of Charity</h1>
+        <p className="banner-text">“No one has ever become poor from giving"</p>
       </div>
 
-      {/* Image Gallery  */}
+      {/* Image Gallery */}
       <div className="image-gallery">
         <div className="container">
           <div className="row">
-            <div className="col-md-6 ">
+            <div className="col-md-6">
               <div className="about_content">
                 <h2>
                   <span>Welcome</span> To MayaviFashion
@@ -111,13 +92,13 @@ function About() {
               </div>
             </div>
 
-            <div className="col-md-6 ">
+            <div className="col-md-6">
               <div className="img_gllry">
-                <div className="row ">
+                <div className="row">
                   <div className="col-md-4">
                     <div className="charity-images">
-                      <img src={charity1}></img>
-                      <img src={charity2}></img>
+                      <img src={charity1} alt="Charity 1" />
+                      <img src={charity2} alt="Charity 2" />
                     </div>
                   </div>
 
@@ -125,6 +106,8 @@ function About() {
                     <div className="charity-images">
                       <img src={charity3}></img>
                       <img src={charity6}></img>
+                      <img src={charity3} alt="Charity 3" />
+                      <img src={charity6} alt="Charity 6" />
                     </div>
                   </div>
 
@@ -132,6 +115,8 @@ function About() {
                     <div className="charity-images">
                       <img src={charity5}></img>
                       <img src={charity4}></img>
+                      <img src={charity5} alt="Charity 5" />
+                      <img src={charity4} alt="Charity 4" />
                     </div>
                   </div>
                 </div>
@@ -142,28 +127,29 @@ function About() {
       </div>
 
       {/* Our Objective */}
-
-      <div className="objective ">
+      <div className="objective">
         <div className="shape">
           <div className="objective-circle"></div>
         </div>
 
         <div className="container">
-          <div className="row ">
-            <div className="col-md-6 ">
+          <div className="row">
+            <div className="col-md-6">
               <div className="objective-img">
                 <img className="char01Img" src={charity3}></img>
                 <img className="char02Img" src={charity4}></img>
+                <img className="char01Img" src={charity3} alt="Charity 3" />
+                <img className="char02Img" src={charity4} alt="Charity 4" />
               </div>
             </div>
 
-            <div className="col-md-6 ">
-              <div className=" text-start">
+            <div className="col-md-6">
+              <div className="text-start">
                 <h1 className="obj-head-text">Our Objective</h1>
                 <div className="row">
-                  <div className="col-md-6 d-flex  w-100">
+                  <div className="col-md-6 d-flex w-100">
                     <div className="d-flex justify-content-center w-100">
-                      <i class="bi bi-bullseye"></i>
+                      <i className="bi bi-bullseye"></i>
                     </div>
                     <div>
                       <h2 className="obj-text">Objective 1</h2>
@@ -182,12 +168,12 @@ function About() {
                   </div>
                 </div>
 
-                <div className="row ">
-                  <div className="col-md-6 d-flex  w-100">
+                <div className="row">
+                  <div className="col-md-6 d-flex w-100">
                     <div className="d-flex justify-content-center w-100">
-                      <i class="bi bi-bullseye"></i>
+                      <i className="bi bi-bullseye"></i>
                     </div>
-                    <div className="">
+                    <div>
                       <h2 className="obj-text">Objective 1</h2>
                       <p>
                         Lorem ipsum dolor, sit amet consectetur adipisicing
@@ -209,52 +195,46 @@ function About() {
         </div>
       </div>
 
-      {/* Counter Section Start  */}
-
+      {/* Counter Section Start */}
       <section>
-        <div class="container  d-flex justify-content-center align-content-center  mt-5 counter-bor">
-          <div class="row">
-            <div class="col-12">
-              <h1 class="  text-center fw-bold">
+        <div className="container d-flex justify-content-center align-content-center mt-5 counter-bor">
+          <div className="row">
+            <div className="col-12">
+              <h1 className="text-center fw-bold">
                 Fashion with a Heart-Because{" "}
               </h1>
-              <h1 class="fw-bold">Giving Back Never Goes Out of Style </h1>
+              <h1 className="fw-bold">Giving Back Never Goes Out of Style </h1>
             </div>
           </div>
         </div>
 
-        <div class="container m-0  p-5 d-flex justify-content-center ">
-          <div class="row w-100">
-            <div class="col-md-4 col-sm-12 text-center">
-              <h1
-                class="text-warning display-3 fw-bold number_s"
-                id="number1"
-              ></h1>
-              <p class="charity_para ">Donated to charity</p>
+        <div className="container m-0 p-5 d-flex justify-content-center">
+          <div className="row w-100">
+            <div className="col-md-4 col-sm-12 text-center">
+              <h1 className="text-warning display-3 fw-bold number_s" id="number1">
+                {formatNumber(downloadCount1)}
+              </h1>
+              <p className="charity_para">Donated to charity</p>
             </div>
-            <div class="col-md-4 col-sm-12 text-center ">
-              <h1
-                class="text-warning display-3 fw-bold number_s"
-                id="number2"
-              ></h1>
-              <p class="charity_para ">Charity partner</p>
+            <div className="col-md-4 col-sm-12 text-center">
+              <h1 className="text-warning display-3 fw-bold number_s" id="number2">
+                {formatNumber(downloadCount2)}
+              </h1>
+              <p className="charity_para">Charity partner</p>
             </div>
-            <div class="col-md-4 col-sm-12 text-center">
-              <h1
-                class="text-warning display-3 fw-bold number_s"
-                id="number3"
-              ></h1>
-              <p class="charity_para ">Happy customers</p>
+            <div className="col-md-4 col-sm-12 text-center">
+              <h1 className="text-warning display-3 fw-bold number_s" id="number3">
+                {formatNumber(downloadCount3)}
+              </h1>
+              <p className="charity_para">Happy customers</p>
             </div>
           </div>
         </div>
       </section>
+      {/* Counter Section End */}
 
-      {/* Counter Section End  */}
-
-      {/* What We do  */}
-
-      <div className="donate ">
+      {/* What We do */}
+      <div className="donate">
         <h1 className="d-flex justify-content-center">What We Do</h1>
         <p className="d-flex justify-content-center">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore,
@@ -262,7 +242,7 @@ function About() {
         </p>
 
         <div className="row">
-          <div className="col-md-3 col-sm-6 ">
+          <div className="col-md-3 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
@@ -274,7 +254,7 @@ function About() {
             </div>
           </div>
 
-          <div className="col-md-3 col-sm-6 ">
+          <div className="col-md-3 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
@@ -286,7 +266,7 @@ function About() {
             </div>
           </div>
 
-          <div className="col-md-3 col-sm-6 ">
+          <div className="col-md-3 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
@@ -298,7 +278,7 @@ function About() {
             </div>
           </div>
 
-          <div className="col-md-3 col-sm-6 ">
+          <div className="col-md-3 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
