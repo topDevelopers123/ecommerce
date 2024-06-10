@@ -28,14 +28,14 @@ function Cart() {
     </div>
     <div className='wish-text wish-text-2   col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center'>
         <Link className='col-lg-2 col-md-12 col-sm-12 col-12 '>EYEBOGLER Polo T-shirt For Men</Link>
-        <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>250.00₹</h6>
+        <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 250.00</h6>
         <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex'>
 
             <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>-</button>
             <div type='text' className='col-lg-4 col-md-4 col-sm-4 col-4 d-flex align-items-center justify-content-center'>0</div>
             <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>+</button>
             </div>
-            <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>1000.00₹</h6>
+            <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 1000.00</h6>
         <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i class="bi bi-trash3"></i></h6>
     </div>
 </div>
