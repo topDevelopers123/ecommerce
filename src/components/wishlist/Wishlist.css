@@ -18,9 +18,10 @@
     align-items: center;
     padding: 20px 0;
     padding-block: 10px;
-    }
-    .wish-items-shadow{
-            border: 1px solid #E7E7E7
+}
+
+.wish-items-shadow {
+    border: 1px solid #E7E7E7
 }
 
 .wish-items img {
@@ -37,7 +38,7 @@
 .wish-items button {
     padding: 14px 16px;
     background-color: #4D869C !important;
-    color: #fff;
+    color: #fff !important;
     border: none;
     border-radius: 6px;
     transition: 0.3s ease-in-out;
