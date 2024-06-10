@@ -95,7 +95,7 @@ function Home() {
               margin={10}
               nav
               items={4}
-              dots
+              dots={false}
               responsive={{
                 0: {
                   items: 1, // 1 item in mobile view

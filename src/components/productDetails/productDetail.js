@@ -23,7 +23,7 @@ function productDetail() {
                         <div className="row details-snippet1">
                             <div className="col-md-7">
                                 <div className="row">
-                                    <div className="col-md-2 col-sm-2 mini-preview">
+                                    <div className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
                                         <img className="img-fluid" src={p01} alt="preview" />
                                         <img className="img-fluid" src={p02} alt="preview" />
                                         <img className="img-fluid" src={p03} alt="preview" />
@@ -31,7 +31,7 @@ function productDetail() {
                                         <img className="img-fluid" src={p05} alt="preview" />
                                         <img className="img-fluid" src={p06} alt="preview" />
                                     </div>
-                                    <div className="col-md-10 col-sm-10">
+                                    <div className="col-md-10 col-sm-10 order-1 order-sm-2">
                                         <div className="product-image">
                                             <img className="img-fluid" src={model} alt="product" />
                                         </div>
@@ -92,10 +92,9 @@ function productDetail() {
 
                                 <hr />
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="d-flex">
                                         <button className="btn btn-block addBtn">Add to basket</button>
-                                    </div>
-                                    <div className="col-md-3"><button className="btn btn-block addBtn">Buy Now</button></div>
+                                    <button className="btn btn-block addBtn ms-3">Buy Now</button></div>
                                 </div>
 
                             </div>

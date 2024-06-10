@@ -37,6 +37,7 @@
     width: 30px;
     height: 30px;
     color: #fff;
+    text-align: center;
 }
 .featured_products{
     padding: 40px 0px;
@@ -47,10 +48,10 @@
 }
 .shop_category .owl-carousel .owl-item img {
     display: block;
-    height: 300px;
+    height: 270px;
     border-radius: 50%;
     object-fit: cover;
-    width: 300px;
+    width: 270px;
     transition: transform 0.2s linear;
 }
 .shop_category .owl-carousel .owl-item img:hover{
@@ -240,7 +241,8 @@
     background: #EEF7FF;
 }
 .card-body button{
-    font-size: 14px;
+    font-size: 12px;
+    padding: 8px 20px;
 }
 .shop-services.home {
     padding: 60px 0;
@@ -278,6 +280,12 @@
     font-size: 14px;
 }
 /* mobile and tab */
+@media screen and (max-width:567px) {
+    .main_slider .carousel-inner .carousel-item img {
+        height: 200px;
+        object-fit: cover;
+    }
+}
 @media screen and (max-width: 991px){
     .tp_area .card .add_icons{
         top: 57%;
