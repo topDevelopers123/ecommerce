@@ -66,6 +66,7 @@
 }
 .shop_category .owl-carousel .owl-item .item h4{
     margin-top: 15px;
+    text-align: center;
 }
 .sum_banner{
     padding: 40px 0px;
@@ -196,7 +197,7 @@
     margin-bottom: 20px;
 }
 .trending_products .nav-main .nav button{
-    border: 1px solid #000;
+    border: 1px solid #e7e7e7;
     border-radius: 0;
     margin: 10px;
 }
@@ -281,9 +282,66 @@
 }
 /* mobile and tab */
 @media screen and (max-width:567px) {
+    h2{
+        font-size: 1.4em;
+    }
+    .bdr {
+        width: 20%;
+    }
+    .featured_products {
+        padding: 20px 0px;
+    }
+    .featured_products .owl-carousel .owl-item img {
+        height: 100px;
+    }
+    .sum_banner {
+        padding: 20px 0px;
+    }
+    .owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next {
+        width: 20px;
+        height: 20px;
+        line-height: 1;
+    }
+    .trending_products .nav-main .nav button {
+        padding: 5px 10px !important;
+    }
+    .card-body button {
+        padding: 8px 20px !important;
+    }
     .main_slider .carousel-inner .carousel-item img {
         height: 200px;
         object-fit: cover;
+    }
+    .shop_category .owl-carousel .owl-item img {
+        height: 60px;
+        border-radius: 50%;
+        width: 60px;
+    }
+    .shop_category .owl-carousel .owl-item .item h4 {
+    margin-top: 10px;
+    font-size: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+}
+
+/* Tab view  */
+@media only screen and (min-width:567px) and (max-width:768px){
+    .main_slider .carousel-inner .carousel-item img {
+        height: 350px;
+    }
+    .trending_products .nav-main .nav button {
+        padding: 5px 10px !important;
+    }
+    .card-body button {
+        padding: 8px 20px !important;
+    }
+    .shop_category .owl-carousel .owl-item .item h4 {
+        font-size: 16px;
+    }
+    .shop_category .owl-carousel .owl-item img{
+        width: 150px;
+        height: 150px;
     }
 }
 @media screen and (max-width: 991px){
@@ -299,9 +357,13 @@
         top: 50%;
     }
 }
-@media screen and (min-width: 768px) and (max-width: 991px){
+@media screen and (min-width: 768px) and (max-width: 1024px){
     .shop_category .owl-carousel .owl-item img{
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
+    }
+    .card-body button {
+        font-size: 8px;
+        padding: 8px 10px;
     }
 }

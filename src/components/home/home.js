@@ -98,7 +98,7 @@ function Home() {
               dots={false}
               responsive={{
                 0: {
-                  items: 1, // 1 item in mobile view
+                  items: 4, // 1 item in mobile view
                 },
                 768: {
                   items: 3, // 3 items in tablet view
@@ -137,14 +137,14 @@ function Home() {
                 nav={false} // Hide navigation arrows
                 dots={false} // Hide dots
                 autoplay
-                autoplayTimeout={3000}
+                autoplayTimeout={5000}
                 items={4} // Number of items to display
                 responsive={{
                   0: {
-                    items: 1, // 1 item in mobile view
+                    items: 4, // 1 item in mobile view
                   },
                   768: {
-                    items: 3, // 3 items in tablet view
+                    items: 4, // 3 items in tablet view
                   },
                   1200: {
                     items: 4, // 4 items in desktop view
@@ -175,14 +175,14 @@ function Home() {
                 nav={false} // Hide navigation arrows
                 dots={false} // Hide dots
                 autoplay
-                autoplayTimeout={3000}
+                autoplayTimeout={5000}
                 items={4} // Number of items to display
                 responsive={{
                   0: {
-                    items: 1, // 1 item in mobile view
+                    items: 4, // 1 item in mobile view
                   },
                   768: {
-                    items: 3, // 3 items in tablet view
+                    items: 4, // 3 items in tablet view
                   },
                   1200: {
                     items: 4, // 4 items in desktop view
