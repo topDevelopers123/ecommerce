@@ -62,8 +62,13 @@
 }
 
 .cross_icon{
+    color: #fff;
     display: none;
 }
+.cross_icon:hover{
+    scale: 1.2;
+}
+
 .category_main_div div img{
     width: 100px;
     height: 100px;
@@ -139,6 +144,22 @@ left: 0; */
     }
     .icons_div div .para_cart{
         right: 0px;
+    }
+    .li_div i{
+        font-size: 100px !important;
+    }
+    .li_div div ul li{
+        display: flex;;
+        justify-content: center;
+        padding-block: 20px;
+    }
+    .li_div div ul li a{
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .li_div div ul li:hover{
+        cursor: pointer;
+        background-color: #d3d9db91;
     }
   }
 
@@ -219,7 +240,8 @@ left: 0; */
         border-bottom-right-radius: 5px !important;
     }
     .main_form_div{
-        padding-left: 2px;
+        padding-left: 15px !important;
+        
     }
     .sub_mega h4{
         font-size: 17px;
@@ -236,7 +258,8 @@ left: 0; */
         
     }
     .category_main_div div h6{
-        font-size: 18px;
+        font-size: 15px;
+        text-align: center !important;
     }
     .mens_cate:hover + .sub_categeries{
         display: flex;

@@ -134,4 +134,71 @@
         display: flex;
         flex-direction: column;
     }
+    .range_div button{
+        width: 100px;
+    }
+    .add_to_cart_div button{
+        padding-inline: 20px;
+    }
+  }
+
+  
+@media screen and (max-width: 768px) {
+    
+    .add_to_cart_div button{
+        padding-inline: 40px !important;
+    }
+  }
+
+  @media screen and (max-width: 468px) {
+    
+    .add_to_cart_div button{
+        padding-inline: 20px !important;
+        
+    }
+    .card_mini_div h6{
+        text-align: start !important;
+    }
+    .page-link{
+        padding-inline: 3px !important;
+        padding-block: 5px !important;
+    }
+    .wish-text-2 div, h6{
+        text-align: start !important;
+        font-size: 15px !important;
+    }
+  }
+
+  @media screen and (max-width: 388px) {
+    
+    .add_to_cart_div button{
+        padding-inline: 13px !important;
+
+        
+    }
+    .range_div button{
+        padding-block: 5px !important;
+    }
+    .clear_all a{
+        font-size: 18px;
+    }
+    .for_margin{
+        margin-top: 5px !important;
+    }
+    .dropdown-menu li{
+        padding-left: 10px !important;
+
+    }
+    .dropdown-menu li a{
+        font-size: 17px !important;
+    }
+    .dropdown-toggle{
+        padding-inline: 10px !important;
+        padding-block: 5px !important;
+    }
+    .dropdown-toggle:focus-within{
+        border: none !important; 
+        outline: none !important;
+    }
+   
   }
