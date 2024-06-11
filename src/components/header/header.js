@@ -10,14 +10,15 @@ function Header() {
 
   const Toggle_Menu = () => {
     Li_show.current.style.display = "flex";
-    Li_show.current.style.position = "fixed";
-    Li_show.current.style.top = "0";
-    Li_show.current.style.left = "0";
+    Li_show.current.style.position = "absolute";
+    Li_show.current.style.top = "0px";
+    Li_show.current.style.right = "0px";
     Li_show.current.style.width = "100%";
-    Li_show.current.style.height = "100%";
+    Li_show.current.style.height = "100vh";
     Li_show.current.style.background = "#303330";
     Li_show.current.style.zIndex = "5";
   };
+
 
   window.onresize = displayWindowSize;
     window.onload = displayWindowSize;
@@ -26,6 +27,9 @@ function Header() {
       let myHeight = window.innerHeight;
       if (window.innerWidth < 992) {
         Li_show.current.style.display = "none";
+      }else{
+        Li_show.current.style.display = "flex";
+        Li_show.current.style.position = "inital";
       }
 
     }
@@ -35,6 +39,7 @@ function Header() {
   
    
       Li_show.current.style.display = "none";
+      
     
   
    
@@ -48,7 +53,7 @@ function Header() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg  p-0 position-static">
+      <nav className="navbar navbar-expand-lg  p-0 position-sticky top-0 ">
         <div className="container-fluid container-fluid-div p-0 h-100 d-flex  align-items-center">
           <div className="col-lg-2 col-md-2 col-sm-2 col-2   h-100 logo_div d-flex justify-content-around align-items-center">
            
@@ -57,42 +62,41 @@ function Header() {
           </div>
 
           <div
-            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  li_div "
-            ref={Li_show}
+            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100 li_div" ref={Li_show}
           >  <i class="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
             <div className=" navbar-collapse" id="navbarSupportedContent">
             
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
-                <li className="nav-item px-2 border">
-                  <Link
+                <li className="nav-item px-2">
+                  <a
                     className="nav-link  text-light"
                     aria-current="page"
-                    to="/"
+                    href="/"
                   >
                     HOME
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item px-2">
-                  <Link className="nav-link text-light" to="/products">
+                  <a className="nav-link text-light" href="/products">
                     PRODUCTS
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item px-2">
-                  <Link className="nav-link text-light" to="/about">
+                  <a className="nav-link text-light" href="/about">
                     ABOUT
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item px-2">
-                  <Link className="nav-link text-light" to="/contact">
+                  <a className="nav-link text-light" href="/contact">
                     CONTACT
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="col-lg-6  col-md-10 col-sm-10 col-10  h-100 main_form_div  d-flex align-items-center justify-content-center">
-            <div className="col-lg-8  col-md-8 col-sm-8 col-8 d-flex  justify-content-center  form_div">
+          <div className="col-lg-6  col-md-10 col-sm-10 col-10  h-100 pe-1 main_form_div  d-flex align-items-center justify-content-center">
+            <div className="col-lg-8  col-md-8 col-sm-8 col-7 d-flex  justify-content-center  form_div">
               <form
                 className="d-flex   col-lg-10 col-md-10 col-10"
                 role="search" 
@@ -101,7 +105,7 @@ function Header() {
                   className="form-control rounded-1 "
                   type="search"
                   placeholder="Search"
-                  aria-label="Search"
+                  aria-label="Search" 
                 />
                 <button
                   className="btn btn-outline-success rounded-0 search_btn "
@@ -112,7 +116,7 @@ function Header() {
                 
               </form>
             </div>
-            <div className="col-lg-4  col-md-4  col-sm-4 col-4 d-flex  justify-content-around icons_div ">
+            <div className="col-lg-4  col-md-4  col-sm-4 col-5 d-flex  justify-content-around icons_div ">
 
             {/* <div className="d-flex  position-relative  w-100 justify-content-center align-items-center mobile_serach_icon">
                 <i class="bi bi-search" ></i>
@@ -120,14 +124,14 @@ function Header() {
 
               <div className=" d-flex position-relative w-100   justify-content-center align-items-center">
                 <Link to="/wishlist"> <i class="bi bi-suit-heart"></i></Link>
-                <div className="para_cart">
+                <div className="para_cart d-flex justify-content-center align-items-center">
                 <p className="text-light m-0">O</p>
                 </div>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center">
                 <Link to="/cart"><i class="bi bi-cart3"></i></Link>
-                <div className="para_cart">
+                <div className="para_cart d-flex justify-content-center align-items-center">
                 <p className="text-light m-0">O</p>
                 </div>
               </div>

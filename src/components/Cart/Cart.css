@@ -70,9 +70,66 @@ margin-bottom: 12px;
     font-size: 12px;
     text-align: center;
    }
+   .quentity button, .quentity div{
+    width: 50px !important;
+    font-size: 25px !important;
+    margin-top: 10px !important;
+   }
+   .wish-items-4{
+    align-items: start !important;
+   }
+   .add_to_cart_mini_div button{
+    padding-inline: 20px !important;
+   }
+
 
 }
 
- 
+
+@media screen and (max-width: 768px) {
+    .wish-text-2 h6, a{
+        text-align: start !important;
+        padding-left: 15px !important;
+    }
+    .quentity button{
+        margin-left: 15px !important;
+        text-align: center !important;
+    }
+   
+}
+
+@media screen and (max-width: 468px) {
+    
+    .wish-items-4 div img{
+        height:200px !important;
+    }
+    .wish-text-2 h6, a{
+        font-size: 15px !important;
+    }
+    .quentity button, .quentity div{
+        width: 30px !important;
+        font-size: 20px !important;
+        margin-top: 5px !important;
+        height: 30px !important;
+       }
+       
+       .add_to_cart_mini_div input{
+        width: 180px;
+        padding-left: 10px;
+       }
+       .product_heading{
+        padding-left: 20px !important;
+        font-size: 20px !important;
+       }
+       .cart_subtotal_div div button{
+        width: 81vw !important;
+       }
+       .wish-items-4{
+        margin-top: 10px;
+        padding-inline: 10px !important;
+       }
+       
+}
+
 
 

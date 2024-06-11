@@ -75,7 +75,7 @@ function Products() {
                   <p>
                     Range : {range > 100 ? "0-" : ""} {range}
                   </p>
-                  <button className="btn go_btn  fw-bold text-light  px-4">
+                  <button className="btn go_btn  fw-bold text-light  ">
                     FILTER
                   </button>
                 </div>
