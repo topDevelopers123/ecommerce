@@ -61,10 +61,20 @@ function About() {
   return (
     <div>
       {/* Banner */}
-      <div className="about">
-        <h1 className="banner-heading">Motive of Charity</h1>
-        <p className="banner-text">“No one has ever become poor from giving"</p>
-      </div>
+
+      <section class="about" style={{
+        backgroundImage: 'url(' + banner01 + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover', backgroundPosition: 'center'
+      }}>
+
+        <div class="overlay">
+          <div class="content">
+            <h2>Motive of Charity</h2>
+            <p>“Everyone can be great because everyone can serve.</p>
+          </div>
+        </div>
+      </section>
+
 
       {/* Image Gallery */}
       <div className="image-gallery">
@@ -106,8 +116,6 @@ function About() {
                     <div className="charity-images">
                       <img src={charity3}></img>
                       <img src={charity6}></img>
-                      <img src={charity3} alt="Charity 3" />
-                      <img src={charity6} alt="Charity 6" />
                     </div>
                   </div>
 
@@ -115,8 +123,6 @@ function About() {
                     <div className="charity-images">
                       <img src={charity5}></img>
                       <img src={charity4}></img>
-                      <img src={charity5} alt="Charity 5" />
-                      <img src={charity4} alt="Charity 4" />
                     </div>
                   </div>
                 </div>
@@ -138,8 +144,6 @@ function About() {
               <div className="objective-img">
                 <img className="char01Img" src={charity3}></img>
                 <img className="char02Img" src={charity4}></img>
-                <img className="char01Img" src={charity3} alt="Charity 3" />
-                <img className="char02Img" src={charity4} alt="Charity 4" />
               </div>
             </div>
 
@@ -200,10 +204,10 @@ function About() {
         <div className="container d-flex justify-content-center align-content-center mt-5 counter-bor">
           <div className="row">
             <div className="col-12">
-              <h1 className="text-center fw-bold">
+              <h2 className="text-center fw-bold">
                 Fashion with a Heart-Because{" "}
-              </h1>
-              <h1 className="fw-bold">Giving Back Never Goes Out of Style </h1>
+              </h2>
+              <h2 className="fw-bold">Giving Back Never Goes Out of Style </h2>
             </div>
           </div>
         </div>
@@ -235,7 +239,7 @@ function About() {
 
       {/* What We do */}
       <div className="donate">
-        <h1 className="d-flex justify-content-center">What We Do</h1>
+        <h2 className="d-flex justify-content-center">What We Do</h2>
         <p className="d-flex justify-content-center">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore,
           nisi eos! Exercitationem laboriosam hic aliquid.
