@@ -15,29 +15,24 @@
     font-size: 30px;
     top: 0;
     left: 0;
-    z-index: 9
+    z-index: 9;
 }
 
 .about .content {
     position: relative;
     z-index: 9;
-}
-
-
-.about .banner-heading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 100px 0 0 0;
-    color: #fff;
 }
 
-.about .banner-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.about h2 {
+    margin-top: 80px;
+}
+
+.about p {
+    margin-top: 8px;
+    font-size: 35px;
     color: #fff;
-    font-size: 26px;
 }
 
 /* Image Gallery  */
@@ -160,11 +155,7 @@
 
 /* Responsive */
 
-@media screen and (max-width:567px) {
-    p {
-        font-size: 14px;
-    }
-
+@media screen and (max-width: 567px) {
     .about .overlay {
         height: 265px;
     }
@@ -173,11 +164,12 @@
         height: 265px;
     }
 
-    .about .banner-heading {
+    .about h2 {
         font-size: 35px !important;
+        margin-top: 0px;
     }
 
-    .about .banner-text {
+    .about p {
         font-size: 14px;
     }
 
@@ -189,5 +181,32 @@
     .about-btn {
         padding: 12px 20px;
         font-size: 14px;
+    }
+
+    /* Image Gallery  */
+    .image-gallery p {
+        text-align: justify;
+    }
+
+    .image-gallery .about-btn {
+        padding: 14px 26px !important;
+    }
+
+    .charity-images img {
+        width: 100%;
+    }
+
+    .fw-bold {
+        font-size: 22px;
+    }
+
+    .donate h2 {
+        font-size: 30px;
+    }
+
+    /* Our Objective  */
+
+    .objective-img img{
+        width: 100%;
     }
 }
