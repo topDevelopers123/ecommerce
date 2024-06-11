@@ -106,22 +106,22 @@ function About() {
               <div className="img_gllry">
                 <div className="row">
                   <div className="col-md-4">
-                    <div className="charity-images">
+                    <div className="charity-images ">
                       <img src={charity1} alt="Charity 1" />
                       <img src={charity2} alt="Charity 2" />
                     </div>
                   </div>
 
-                  <div className="col-md-4">
+                  <div className="col-md-4 ">
                     <div className="charity-images">
                       <img src={charity3}></img>
                       <img src={charity6}></img>
                     </div>
                   </div>
 
-                  <div className="col-md-4">
-                    <div className="charity-images">
-                      <img src={charity5}></img>
+                  <div className="col-md-4 ">
+                    <div className="charity-images ">
+                      <img  src={charity5}></img>
                       <img src={charity4}></img>
                     </div>
                   </div>
@@ -141,15 +141,18 @@ function About() {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
+              <h1 className="obj-head-text">Our Objective</h1>
+
               <div className="objective-img">
+
                 <img className="char01Img" src={charity3}></img>
                 <img className="char02Img" src={charity4}></img>
               </div>
             </div>
 
             <div className="col-md-6">
+                <h1 className="obj-head-text d-none d-sm-block">Our Objective</h1>
               <div className="text-start">
-                <h1 className="obj-head-text">Our Objective</h1>
                 <div className="row">
                   <div className="col-md-6 d-flex w-100">
                     <div className="d-flex justify-content-center w-100">
@@ -162,11 +165,7 @@ function About() {
                         elit. Blanditiis aliquid numquam repellat, molestiae
                         excepturi debitis fugit assumenda soluta possimus maxime
                         neque animi! Officiis doloribus temporibus itaque fugiat
-                        ex, eius facere. Lorem ipsum dolor, sit amet consectetur
-                        adipisicing elit. Blanditiis aliquid numquam repellat,
-                        molestiae excepturi debitis fugit assumenda soluta
-                        possimus maxime neque animi! Officiis doloribus
-                        temporibus itaque fugiat ex, eius facere
+                        ex, eius facere. Lorem ipsum dolor,
                       </p>
                     </div>
                   </div>
@@ -184,11 +183,7 @@ function About() {
                         elit. Blanditiis aliquid numquam repellat, molestiae
                         excepturi debitis fugit assumenda soluta possimus maxime
                         neque animi! Officiis doloribus temporibus itaque fugiat
-                        ex, eius facere. Lorem ipsum dolor, sit amet consectetur
-                        adipisicing elit. Blanditiis aliquid numquam repellat,
-                        molestiae excepturi debitis fugit assumenda soluta
-                        possimus maxime neque animi! Officiis doloribus
-                        temporibus itaque fugiat ex, eius facere
+                        ex, eius facere. Lorem ipsum dolor,
                       </p>
                     </div>
                   </div>
@@ -205,7 +200,7 @@ function About() {
           <div className="row">
             <div className="col-12">
               <h2 className="text-center fw-bold">
-                Fashion with a Heart-Because{" "}
+                Fashion with a Heart-Because
               </h2>
               <h2 className="fw-bold">Giving Back Never Goes Out of Style </h2>
             </div>
@@ -240,56 +235,56 @@ function About() {
       {/* What We do */}
       <div className="donate">
         <h2 className="d-flex justify-content-center">What We Do</h2>
-        <p className="d-flex justify-content-center">
+        <p className="d-flex justify-content-center text-center">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore,
           nisi eos! Exercitationem laboriosam hic aliquid.
         </p>
 
         <div className="row">
-          <div className="col-md-3 col-sm-6">
+          <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
                 aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
                 magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora, sapiente animi!
+                laudantium? Tempora,
               </p>
             </div>
           </div>
 
-          <div className="col-md-3 col-sm-6">
+          <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
                 aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
                 magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora, sapiente animi!
+                laudantium? Tempora,
               </p>
             </div>
           </div>
 
-          <div className="col-md-3 col-sm-6">
+          <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
                 aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
                 magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora, sapiente animi!
+                laudantium? Tempora,
               </p>
             </div>
           </div>
 
-          <div className="col-md-3 col-sm-6">
+          <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">
               <h2>Donation</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
                 aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
                 magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora, sapiente animi!
+                laudantium? Tempora,
               </p>
             </div>
           </div>
