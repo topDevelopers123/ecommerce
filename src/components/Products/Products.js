@@ -58,7 +58,7 @@ function Products() {
   }
   return (
     <div>
-      <div class="container-fluid mt-5 mb-5">
+      <div class="container-fluid for_margin mt-5 mb-5">
         <div className="container">
           <div className="row">
             <div className="col-12 d-flex poducts_filter_main_div">
@@ -80,7 +80,7 @@ function Products() {
                   </button>
                 </div>
 
-                <div className="d-flex justify-content-end px-2 w-100 ">
+                <div className="d-flex justify-content-end px-2 w-100 clear_all">
                   <a href="void::javascript" className="text-decoration-none fw-bold">CLEAR ALL</a>
                 </div>
               </div>
@@ -229,17 +229,17 @@ function Products() {
                 
                 })}
 
-<div className=" w-100 pagination_div d-flex justify-content-center p-5">
-<nav aria-label="Page navigation example ">
-  <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
+<div className="  container pagination_div d-flex justify-content-center   p-4  border">
+<nav aria-label="Page navigation example  border border-dark d-flex justify-content-center align-items-center col-12">
+  <ul class="pagination justify-content-center ">
+    <li class="page-item disabled col-md-10 col-sm-10 col-10">
+      <a class="page-link text-center" href="#" tabindex="-1">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+    <li class="page-item col-2"><a class="page-link text-center text-dark" href="#">1</a></li>
+    <li class="page-item col-2"><a class="page-link text-center text-dark" href="#">2</a></li>
+    <li class="page-item col-2"><a class="page-link text-center text-dark" href="#">3</a></li>
+    <li class="page-item col-4">
+      <a class="page-link text-center text-secondary " href="#">Next</a>
     </li>
   </ul>
 </nav>

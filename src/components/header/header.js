@@ -10,27 +10,39 @@ function Header() {
 
   const Toggle_Menu = () => {
     Li_show.current.style.display = "flex";
-    Li_show.current.style.position = "absolute";
+    Li_show.current.style.position = "fixed";
     Li_show.current.style.top = "0";
     Li_show.current.style.left = "0";
     Li_show.current.style.width = "100%";
     Li_show.current.style.height = "100%";
-    Li_show.current.style.background = "lightgreen";
+    Li_show.current.style.background = "#303330";
     Li_show.current.style.zIndex = "5";
   };
 
-  useEffect(() => {
-    if (window.innerWidth < 992) {
-      Li_show.current.style.display = "none";
+  window.onresize = displayWindowSize;
+    window.onload = displayWindowSize;
+    function displayWindowSize() {
+      let myWidth = window.innerWidth;
+      let myHeight = window.innerHeight;
+      if (window.innerWidth < 992) {
+        Li_show.current.style.display = "none";
+      }
+
     }
-  }, [window.innerWidth]);
+    
 
   const hide_Navbar = () => {
-    Li_show.current.style.display = "none";
+  
+   
+      Li_show.current.style.display = "none";
+    
+  
+   
 
     // Li_show.current.style.position = "inherit"
     // Li_show.current.style.width = "revert-layer"
   };
+
 
 
 
@@ -45,13 +57,13 @@ function Header() {
           </div>
 
           <div
-            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  li_div"
+            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  li_div "
             ref={Li_show}
-          >
+          >  <i class="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
             <div className=" navbar-collapse" id="navbarSupportedContent">
-              <i class="bi bi-x fs-1  cross_icon" onClick={hide_Navbar}></i>
+            
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
-                <li className="nav-item px-2">
+                <li className="nav-item px-2 border">
                   <Link
                     className="nav-link  text-light"
                     aria-current="page"
