@@ -18,7 +18,7 @@ import Cart from './components/Cart/Cart';
 
 function App() {
   return (
-    <>
+    <> 
       <BrowserRouter>
       <Header/>
         <Routes>
@@ -32,7 +32,6 @@ function App() {
           <Route path='/checkout' element={<Checkout/>}/>
           <Route path='/wishlist' element={<Wishlist/>}/>
           <Route path='/cart' element={<Cart/>}/>
-          
         </Routes>
         <Footer/>
       </BrowserRouter>

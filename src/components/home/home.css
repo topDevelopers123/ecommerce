@@ -20,6 +20,35 @@
 }
 .head_title{
     color: #4D869C;
+    
+}
+.head_title h2{
+    position: relative;
+    text-transform: uppercase;
+    background-image: linear-gradient(
+      -225deg,
+      #4d869c 0%,
+      #7ab2b2 29%,
+      #4d869c 67%,
+      #cde8e5 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 4s linear infinite;
+    display: inline-block;
+}
+
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
 }
 .head_title .bdr{
     margin-bottom: 20px;
@@ -243,7 +272,7 @@
 }
 .card-body button{
     font-size: 12px;
-    padding: 8px 20px;
+    padding: 8px 10px;
 }
 .shop-services.home {
     padding: 60px 0;
@@ -313,13 +342,13 @@
         object-fit: cover;
     }
     .shop_category .owl-carousel .owl-item img {
-        height: 60px;
+        height: 110px;
         border-radius: 50%;
-        width: 60px;
+        width: 110px;
     }
     .shop_category .owl-carousel .owl-item .item h4 {
     margin-top: 10px;
-    font-size: 8px;
+    font-size: 12px;
     text-align: center;
     font-weight: 600;
 }

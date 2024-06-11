@@ -86,7 +86,7 @@ function Home() {
         <section className="featured_products">
           <div className="container">
             <div className="head_title">
-              <h2>Featured Products</h2>
+              <h2 className="fp_heading" data-text="Featured Products">Featured Products</h2>
               <div className="bdr"></div>
             </div>
             <OwlCarousel
@@ -141,7 +141,7 @@ function Home() {
                 items={4} // Number of items to display
                 responsive={{
                   0: {
-                    items: 4, // 1 item in mobile view
+                    items: 3, // 1 item in mobile view
                   },
                   768: {
                     items: 4, // 3 items in tablet view
@@ -179,7 +179,7 @@ function Home() {
                 items={4} // Number of items to display
                 responsive={{
                   0: {
-                    items: 4, // 1 item in mobile view
+                    items: 3, // 1 item in mobile view
                   },
                   768: {
                     items: 4, // 3 items in tablet view
