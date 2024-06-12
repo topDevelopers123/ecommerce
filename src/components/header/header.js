@@ -7,24 +7,8 @@ function Header() {
   const Li_show = useRef();
  
 
-<<<<<<< HEAD
-  const Toggle_menu = () => {
-    hidden_menu.classList.add("show_div")
-=======
-
-  const Toggle_Menu = () => {
-    Li_show.current.style.display = "flex";
-    Li_show.current.style.position = "absolute";
-    Li_show.current.style.top = "0px";
-    Li_show.current.style.right = "0px";
-    Li_show.current.style.width = "100%";
-    Li_show.current.style.height = "100vh";
-    Li_show.current.style.height = "100vh !important";
-    Li_show.current.style.background = "#303330";
-    Li_show.current.style.zIndex = "5";
->>>>>>> 024cc56b3557bdca8c2cb7227198adeaf5f16f8a
-  };
-
+  
+ 
 
   window.onresize = displayWindowSize;
     window.onload = displayWindowSize;
@@ -143,7 +127,7 @@ function Header() {
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
-                <i class="bi bi-list menu_icon" onClick={Toggle_menu}></i>
+                <i class="bi bi-list menu_icon" ></i>
               </div>
               
             </div>
