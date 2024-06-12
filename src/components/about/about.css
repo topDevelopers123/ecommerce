@@ -278,16 +278,22 @@
         }
 
     /* Objective  */
+    .objective-img img {
+        width: 50%;
+    }
 
     .objective-circle {
-        width: 350px;
-        height: 350px;
+        width: 500px;
+        height: 500px;
+    }
+    .objective-circle {
+        left: -120px;
     }
 
     .char02Img {
         position: absolute;
-        top: 24%;
-        left: 20%;
+        top: 40%;
+        left: 32%;
     }
 
     .objective i {

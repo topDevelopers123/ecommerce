@@ -24,7 +24,6 @@
 }
 .head_title h2{
     position: relative;
-    text-transform: uppercase;
     background-image: linear-gradient(
       -225deg,
       #4d869c 0%,
@@ -312,11 +311,22 @@
 /* mobile and tab */
 @media screen and (max-width:567px) {
     h2{
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
     .bdr {
         width: 20%;
     }
+    .main_slider .carousel-control-next, .carousel-control-prev {
+        width: 30px;
+        height: 30px;
+     }
+    
+    .main_slider .carousel-control-next-icon, .carousel-control-prev-icon {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+
+     }
     .featured_products {
         padding: 20px 0px;
     }
@@ -342,9 +352,9 @@
         object-fit: cover;
     }
     .shop_category .owl-carousel .owl-item img {
-        height: 110px;
+        height: 100px;
         border-radius: 50%;
-        width: 110px;
+        width: 100px;
     }
     .shop_category .owl-carousel .owl-item .item h4 {
     margin-top: 10px;

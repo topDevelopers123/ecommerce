@@ -32,7 +32,7 @@ function productDetail() {
                                         <img className="img-fluid" src={p06} alt="preview" />
                                     </div>
                                     <div className="col-md-10 col-sm-10 order-1 order-sm-2">
-                                        <div className="product-image">
+                                        <div className="product-image" >
                                             <img className="img-fluid" src={model} alt="product" />
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@ function productDetail() {
                                 </div>
                                 <hr />
                                 <div className="row">
-                                    <div className="col-md-3">
+                                    <div className="col-md-6 col-6">
                                         <div class="product-count">
                                             <label for="size">Quantity</label>
                                             <form action="#" class="d-flex">
@@ -83,7 +83,7 @@ function productDetail() {
                                             </form>
                                         </div>
                                     </div>
-                                   <div className="col-md-3">
+                                   <div className="col-md-4 col-4">
                                     <div className="wishlist_btn">
                                             <i class="bi bi-heart"></i>
                                     </div>
