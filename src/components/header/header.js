@@ -14,11 +14,8 @@ function Header() {
     Li_show.current.style.top = "0px";
     Li_show.current.style.right = "0px";
     Li_show.current.style.width = "100%";
-<<<<<<< HEAD
     Li_show.current.style.height = "100vh";
-=======
     Li_show.current.style.height = "100vh !important";
->>>>>>> d5247609fbf47f368f226cf0b2beef99ee73b137
     Li_show.current.style.background = "#303330";
     Li_show.current.style.zIndex = "5";
   };
