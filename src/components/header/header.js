@@ -4,75 +4,20 @@ import logo from "./header_images/logo.png";
 import "./header.css";
 
 function Header() {
-  const Li_show = useRef();
-  const [flag, setFlag] = useState(false)
+
  
-
-  const [isContainerActive, setIsContainerActive] = React.useState(false);
-  const signUpButton = () => {
-     setIsContainerActive(false);
-  };  
-  const signInButton = () => {
-     setIsContainerActive(true);
-
-  }
-
-  const Toggle_menu = () => {
-    // hidden_menu.classList.add("show_div")
-  };
-  
-  // window.onresize = displayWindowSize;
-  //   window.onload = displayWindowSize;
-  //   function displayWindowSize() {
-  //     let myWidth = window.innerWidth;
-  //     let myHeight = window.innerHeight;
-  //     if (window.innerWidth < 992) {
-  //       Li_show.current.style.display = "none";
-  //     }else{
-  //       Li_show.current.style.display = "flex";
-  //       Li_show.current.style.position = "inital";
-  //     }
-
-  //   }
-
-  
- 
-
-  // window.onresize = displayWindowSize;
-  //   window.onload = displayWindowSize;
-  //   function displayWindowSize() {
-  //     let myWidth = window.innerWidth;
-  //     let myHeight = window.innerHeight;
-  //     if (window.innerWidth < 992) {
-  //       Li_show.current.style.display = "none";
-  //     }else{
-  //       Li_show.current.style.display = "flex";
-  //       Li_show.current.style.position = "inital";
-  //     }
-
-  //   }
-    
-
-  // const hide_Navbar = () => {
-  
-   
-  //     Li_show.current.style.display = "none";
-      
-  
-  
-  //   // Li_show.current.style.position = "inherit"
-  //   // Li_show.current.style.width = "revert-layer"
-  // };
-
-
-
-
   return (
     <>
 
-      <nav className="navbar bg-secondary navbar-expand-xl navbar-dark">
-        <div className="container">
-          <a href="#" className="navbar-brand">Binaryville</a>
+      <nav className="navbar  navbar-expand-xl navbar-dark d-flex p-0">
+        <div className="container-fluid p-0 m-0 w-100 h-100">
+          <div className="col-lg-2 col-md-2 col-sm-2 col-2 h-100  d-flex justify-content-center align-items-center">
+
+         
+          <a href="#" className="navbar-brand">Mayavi</a>
+          </div>
+
+          <div className="col-lg-4 col-md-1 col-sm-1 col-1 h-100 order-lg-1 order-md-3 d-flex justify-content-center align-items-center order-sm-3 order-3 ">
           <button className="navbar-toggler" type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#navbarOffcanvas"
@@ -80,72 +25,33 @@ function Header() {
             aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
+
           <div className="offcanvas offcanvas-end bg-secondary" id="navbarOffcanvas"
             tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
             <div className="offcanvas-header">
-              <h5 className="offcanvas-title text-light" id="offcanvasNavbarLabel">Offcanvas</h5>
+              <h5 className="offcanvas-title text-light" id="offcanvasNavbarLabel">Mayavi</h5>
               <button type="button" className="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+           
             <div className="offcanvas-body">
-              <div className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <a className="nav-item nav-link active" aria-current="page" href="#">Bubbles</a>
-                <a className="nav-item nav-link" href="#">Cosmo</a>
+              <div className="navbar-nav justify-content-center flex-grow-1 pe-3">
+                <Link className="nav-item nav-link" aria-current="page" to="/">HOME</Link>
+                <Link className="nav-item nav-link" aria-current="page" to="/products">PRODUCTS</Link>
+                <Link className="nav-item nav-link" aria-current="page" to="/about">ABOUT</Link>
+                <Link className="nav-item nav-link" aria-current="page" to="/contact">CONTACT</Link>
+             
               </div>
             </div>
+     
           </div>
-        </div>
-      </nav>
-      
-      {/* <nav className="navbar navbar-expand-lg  p-0 position-sticky top-0 ">
-        <div className="container-fluid container-fluid-div p-0 h-100 d-flex  align-items-center">
-          <div className="col-lg-2 col-md-2 col-sm-2 col-2   h-100 logo_div d-flex justify-content-around align-items-center">
-           
-              <img src={logo} />
-    
           </div>
 
-          <div
-            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100 li_div" 
-          >  
-            <div className=" navbar-collapse" id="navbarSupportedContent">
-            
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
-                <li className="nav-item px-2">
-                  <a
-                    className="nav-link  text-light"
-                    aria-current="page"
-                    href="/"
-                  >
-                    HOME
-                  </a>
-                </li>
-                <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="/products">
-                    PRODUCTS
-                  </a>
-                </li>
-                <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="/about">
-                    ABOUT
-                  </a>
-                </li>
-                <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="/contact">
-                    CONTACT
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="col-lg-6  col-md-10 col-sm-10 col-10  h-100 pe-1 main_form_div  d-flex align-items-center justify-content-center">
-            <div className="col-lg-8  col-md-8 col-sm-8 col-7 d-flex  justify-content-center  form_div">
-              <form
-                className="d-flex   col-lg-10 col-md-10 col-10"
-                role="search" 
-              >
+          <div className="col-lg-4 col-md-7 col-sm-7 col-6 d-flex justify-content-center align-items-center h-100 order-lg-2 order-md-2 order-sm-2 order-1">
+          <div className="nav_right_div d-flex">
+          
+             
                 <input
-                  className="form-control rounded-1 "
+                  className="form-control "
                   type="search"
                   placeholder="Search"
                   aria-label="Search" 
@@ -157,79 +63,34 @@ function Header() {
                   <i className="bi bi-search"></i>
                 </button>
                 
-              </form>
-            </div>
-            <div className="col-lg-4  col-md-4  col-sm-4 col-5 d-flex  justify-content-around icons_div ">
-
            
+              </div>
+              </div>
+              <div className="col-lg-2 col-md-2 col-sm-2 col-3 d-flex justify-content-center align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2 d-flex justify-content-center">
+              <div className="d-flex navbar_right_icon icons_div justify-content-around w-100">
 
-              <div className=" d-flex position-relative w-100   justify-content-center align-items-center">
+              <div className=" d-flex position-relative      align-items-center">
                 <Link to="/wishlist"> <i className="bi bi-suit-heart"></i></Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
                 <p className="text-light m-0">O</p>
                 </div>
               </div>
 
-              <div className="d-flex  position-relative  w-100 justify-content-center align-items-center">
+              <div className="d-flex  position-relative   align-items-center">
                 <Link to="/cart"><i className="bi bi-cart3"></i></Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
                 <p className="text-light m-0">O</p>
                 </div>
               </div>
 
-              <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
-                <i className="bi bi-list menu_icon" onClick={signUpButton}></i>
-                <i className="bi bi-list menu_icon" ></i>
               </div>
-              
-            </div>
-          </div>
+              </div>
+       
+        
         </div>
-      </nav> */}
-
-      {/* <div className={`container-fluid bg-dark  container${isContainerActive ? " " : "show_menu_div"}`}   ref={Li_show}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12 d-flex justify-content-around">
-            <div
-            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  hidden_menu" 
-          >  <i className="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
-            <div className=" navbar-collapse" id="navbarSupportedContent">
-            
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
-                <li className="nav-item px-2">
-                  <a
-                    className="nav-link  text-light"
-                    aria-current="page"
-                    href="/"
-                  >
-                    HOME
-                  </a>
-                </li>
-                <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="/products">
-                    PRODUCTS
-                  </a>
-                </li>
-                <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="/about">
-                    ABOUT
-                  </a>
-                </li>
-                <li className="nav-item px-2">
-                  <a className="nav-link text-light" href="/contact">
-                    CONTACT
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+      </nav>
+      
+      
 
       <div className="container-fluid">
         <div className="container">
@@ -405,7 +266,7 @@ function Header() {
             </div>
           </div>
         </div>
-      </div> */}
+      </div> 
     </>
   );
 }

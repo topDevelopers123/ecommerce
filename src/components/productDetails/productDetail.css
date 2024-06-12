@@ -198,7 +198,8 @@
 /* Mobile  */
 @media screen and (max-width: 567px){
     .details-snippet1 .mini-preview img {
-        margin: 8px;
+        margin: 5px;
+        width: 14%; 
     }
 }
 @media screen and (max-width: 992px){

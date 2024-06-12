@@ -29,11 +29,11 @@ import slid03 from "./img/slider/slider3.webp";
 import "./home.css";
 
 function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const productDetailsPage = () => {
-    navigate("/productdetails")
+    navigate("/productdetails");
     window.scrollTo(0, 0);
-  }
+  };
   const ImageCarousel = () => {
     return (
       <div>
@@ -82,11 +82,14 @@ function Home() {
           </div>
         </section>
         {/* Slider section end  */}
+
         {/* Featured products start */}
         <section className="featured_products">
           <div className="container">
             <div className="head_title">
-              <h2 className="fp_heading" data-text="Featured Products">Featured Products</h2>
+              <h2 className="fp_heading" data-text="Featured Products">
+                Featured Products
+              </h2>
               <div className="bdr"></div>
             </div>
             <OwlCarousel
@@ -260,7 +263,7 @@ function Home() {
             </div>
             <div className="tp_area">
               <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-12" >
+                <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
@@ -292,7 +295,7 @@ function Home() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>
@@ -322,7 +325,7 @@ function Home() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>
@@ -352,7 +355,7 @@ function Home() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>
@@ -384,7 +387,7 @@ function Home() {
               <div className="row">
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>
@@ -414,7 +417,7 @@ function Home() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>
@@ -444,7 +447,7 @@ function Home() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>
@@ -474,7 +477,7 @@ function Home() {
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
+                    <div className="add_icons">
                       <div className="icons">
                         <i class="bi bi-heart-fill"></i>
                       </div>

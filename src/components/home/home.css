@@ -308,7 +308,7 @@
     line-height: 28px;
     font-size: 14px;
 }
-/* mobile and tab */
+/* mobile */
 @media screen and (max-width:567px) {
     h2{
         font-size: 1.2em;
@@ -352,9 +352,9 @@
         object-fit: cover;
     }
     .shop_category .owl-carousel .owl-item img {
-        height: 100px;
+        height: 80px;
         border-radius: 50%;
-        width: 100px;
+        width: 80px;
     }
     .shop_category .owl-carousel .owl-item .item h4 {
     margin-top: 10px;

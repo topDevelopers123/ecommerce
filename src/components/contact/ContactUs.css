@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .contact-div {
     padding: 70px 0;
     margin-left: 6px;
@@ -29,7 +34,7 @@
     border: none;
     background: #EEF7FF;
     border-radius: 6px;
-    color: #fff;
+    cursor: pointer;
 }
 
 .contact-form ::placeholder {
