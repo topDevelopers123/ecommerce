@@ -14,6 +14,10 @@
   width: 100px;
 }
 
+.show_div{
+  background-color: #4d869c;
+}
+
 .search_btn {
   background-color: #333333;
   color: #fff;
