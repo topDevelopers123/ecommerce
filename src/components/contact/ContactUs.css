@@ -85,3 +85,17 @@
     list-style: none;
     letter-spacing: 1px;
 }
+
+@media screen and (max-width: 567px){
+    .contact-form span {
+            display: block;
+        }
+         .contact-form button{
+            padding: 14px 22px !important;
+            font-weight: 300;
+         }
+         .contact-location i {
+    padding: 12px 14px;
+    border-radius: 6px;
+}
+}
