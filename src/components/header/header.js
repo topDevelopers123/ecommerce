@@ -5,40 +5,29 @@ import "./header.css";
 
 function Header() {
   const Li_show = useRef();
+  const [flag, setFlag] = useState(false)
  
-
-<<<<<<< HEAD
-  const Toggle_menu = () => {
-    hidden_menu.classList.add("show_div")
-=======
-
-  const Toggle_Menu = () => {
-    Li_show.current.style.display = "flex";
-    Li_show.current.style.position = "absolute";
-    Li_show.current.style.top = "0px";
-    Li_show.current.style.right = "0px";
-    Li_show.current.style.width = "100%";
-    Li_show.current.style.height = "100vh";
-    Li_show.current.style.height = "100vh !important";
-    Li_show.current.style.background = "#303330";
-    Li_show.current.style.zIndex = "5";
->>>>>>> 024cc56b3557bdca8c2cb7227198adeaf5f16f8a
+  const [isContainerActive, setIsContainerActive] = React.useState(false);
+  const signUpButton = () => {
+     setIsContainerActive(false);
+  };  
+  const signInButton = () => {
+     setIsContainerActive(true);
   };
+  
+  // window.onresize = displayWindowSize;
+  //   window.onload = displayWindowSize;
+  //   function displayWindowSize() {
+  //     let myWidth = window.innerWidth;
+  //     let myHeight = window.innerHeight;
+  //     if (window.innerWidth < 992) {
+  //       Li_show.current.style.display = "none";
+  //     }else{
+  //       Li_show.current.style.display = "flex";
+  //       Li_show.current.style.position = "inital";
+  //     }
 
-
-  window.onresize = displayWindowSize;
-    window.onload = displayWindowSize;
-    function displayWindowSize() {
-      let myWidth = window.innerWidth;
-      let myHeight = window.innerHeight;
-      if (window.innerWidth < 992) {
-        Li_show.current.style.display = "none";
-      }else{
-        Li_show.current.style.display = "flex";
-        Li_show.current.style.position = "inital";
-      }
-
-    }
+  //   }
     
 
   const hide_Navbar = () => {
@@ -46,10 +35,8 @@ function Header() {
    
       Li_show.current.style.display = "none";
       
-    
   
-   
-
+  
     // Li_show.current.style.position = "inherit"
     // Li_show.current.style.width = "revert-layer"
   };
@@ -68,8 +55,8 @@ function Header() {
           </div>
 
           <div
-            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100 li_div" ref={Li_show}
-          >  <i class="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
+            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100 li_div" 
+          >  
             <div className=" navbar-collapse" id="navbarSupportedContent">
             
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
@@ -143,7 +130,7 @@ function Header() {
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
-                <i class="bi bi-list menu_icon" onClick={Toggle_menu}></i>
+                <i class="bi bi-list menu_icon" onClick={signUpButton}></i>
               </div>
               
             </div>
@@ -151,7 +138,7 @@ function Header() {
         </div>
       </nav>
 
-      <div className="container-fluid bg-dark show_div">
+      <div className={`container-fluid bg-dark  container${isContainerActive ? " " : "show_menu_div"}`}   ref={Li_show}>
         <div className="container">
           <div className="row">
             <div className="col-12 d-flex justify-content-around">
