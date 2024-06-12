@@ -7,6 +7,10 @@ function Header() {
   const Li_show = useRef();
  
 
+<<<<<<< HEAD
+  const Toggle_menu = () => {
+    hidden_menu.classList.add("show_div")
+=======
 
   const Toggle_Menu = () => {
     Li_show.current.style.display = "flex";
@@ -18,6 +22,7 @@ function Header() {
     Li_show.current.style.height = "100vh !important";
     Li_show.current.style.background = "#303330";
     Li_show.current.style.zIndex = "5";
+>>>>>>> 024cc56b3557bdca8c2cb7227198adeaf5f16f8a
   };
 
 
@@ -138,13 +143,57 @@ function Header() {
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
-                <i class="bi bi-list menu_icon" onClick={Toggle_Menu}></i>
+                <i class="bi bi-list menu_icon" onClick={Toggle_menu}></i>
               </div>
               
             </div>
           </div>
         </div>
       </nav>
+
+      <div className="container-fluid bg-dark show_div">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 d-flex justify-content-around">
+            <div
+            className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  hidden_menu" 
+          >  <i class="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
+            <div className=" navbar-collapse" id="navbarSupportedContent">
+            
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
+                <li className="nav-item px-2">
+                  <a
+                    className="nav-link  text-light"
+                    aria-current="page"
+                    href="/"
+                  >
+                    HOME
+                  </a>
+                </li>
+                <li className="nav-item px-2">
+                  <a className="nav-link text-light" href="/products">
+                    PRODUCTS
+                  </a>
+                </li>
+                <li className="nav-item px-2">
+                  <a className="nav-link text-light" href="/about">
+                    ABOUT
+                  </a>
+                </li>
+                <li className="nav-item px-2">
+                  <a className="nav-link text-light" href="/contact">
+                    CONTACT
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <div className="container-fluid">
         <div className="container">
