@@ -7,10 +7,15 @@ function Header() {
   const Li_show = useRef();
  
 
+<<<<<<< HEAD
   const Toggle_menu = () => {
     // hidden_menu.classList.add("show_div")
   };
 
+=======
+  
+ 
+>>>>>>> 3fec8a21a7cf7f48e9ab5fdfe31dc9265b4a0613
 
   window.onresize = displayWindowSize;
     window.onload = displayWindowSize;
@@ -129,7 +134,7 @@ function Header() {
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
-                <i class="bi bi-list menu_icon" onClick={Toggle_menu}></i>
+                <i class="bi bi-list menu_icon" ></i>
               </div>
               
             </div>

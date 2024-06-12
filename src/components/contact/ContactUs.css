@@ -1,13 +1,15 @@
-.contact-div{
+.contact-div {
     padding: 70px 0;
 }
+
 .contact-form {
     padding: 50px 30px;
 }
-.contact-form-div{
-        box-shadow: 4px 4px 20px #CDE8E5;
-        height: 100%;
-        padding: 30px 0;
+
+.contact-form-div {
+    box-shadow: 4px 4px 20px #CDE8E5;
+    height: 100%;
+    padding: 30px 0;
 }
 
 .contact-form span {
@@ -81,7 +83,47 @@
     text-decoration: none;
     color: #4D869C
 }
-.contact-icon li{
+
+.contact-icon li {
     list-style: none;
     letter-spacing: 1px;
+}
+
+@media screen and (max-width: 567px) {
+    .contact-form span {
+        display: block;
+    }
+
+    .contact-form button {
+        padding: 14px 22px !important;
+        font-weight: 300;
+    }
+
+    .contact-location i {
+        padding: 12px 14px;
+        border-radius: 6px;
+    }
+}
+
+@media screen and (min-width:567px) and (max-width:1024px) {
+    .contact-icon a {
+        font-size: 16px;
+    }
+
+    .contact-icon li {
+        letter-spacing: 0px;
+    }
+
+    .contact-location i {
+        padding: 12px 14px;
+    }
+
+    .contact-form button {
+        padding: 14px 18px !important;
+        font-weight: 300;
+    }
+
+    .contact-form span {
+        display: block;
+    }
 }

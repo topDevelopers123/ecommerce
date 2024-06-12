@@ -8,7 +8,7 @@ function ContactUs() {
                 <div className='contact-div'>
                     <div className='row'>
 
-                        <div className='col-md-8 '>
+                        <div className='col-lg-8 col-md-6'>
                             <div className='contact-form-div'>
                             <div className='contact-form'>
                                 <h6>Get in touch</h6>
@@ -16,19 +16,19 @@ function ContactUs() {
                                 <div className='row'>
                                     <div className='col-md-6'>
                                         <label id='Your Name'>Your Name <span>*</span></label><br />
-                                        <input type='text' placeholder='Enter Your Name' /><br />
+                                        <input type='text' placeholder='Your Name' /><br />
 
                                         <label id='Your Name'>Your Email<span>*</span></label><br />
-                                        <input type='text' placeholder='Enter Your Email' />
+                                        <input type='text' placeholder='Your Email' />
 
                                     </div>
 
                                     <div className='col-md-6'>
                                         <label id='Your Name'>Your Subject<span>*</span></label><br />
-                                        <input type='text' placeholder='Enter Your Subject' /><br />
+                                        <input type='text' placeholder='Your Subject' /><br />
 
                                         <label id='Your Name'>Your Phone<span>*</span></label><br />
-                                        <input type='text' placeholder='Enter Your Phone' />
+                                        <input type='text' placeholder='Your Phone' />
 
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@ function ContactUs() {
                             </div>
                         </div>
 
-                        <div className='col-md-4 '>
+                        <div className='col-lg-4 col-md-6 '>
                             <div className='contact-form-div'>
                             <div className='contact-location'>
                                 <div className='contact-icon'>
