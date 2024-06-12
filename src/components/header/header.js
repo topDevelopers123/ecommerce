@@ -38,38 +38,65 @@ function Header() {
   
  
 
-  window.onresize = displayWindowSize;
-    window.onload = displayWindowSize;
-    function displayWindowSize() {
-      let myWidth = window.innerWidth;
-      let myHeight = window.innerHeight;
-      if (window.innerWidth < 992) {
-        Li_show.current.style.display = "none";
-      }else{
-        Li_show.current.style.display = "flex";
-        Li_show.current.style.position = "inital";
-      }
+  // window.onresize = displayWindowSize;
+  //   window.onload = displayWindowSize;
+  //   function displayWindowSize() {
+  //     let myWidth = window.innerWidth;
+  //     let myHeight = window.innerHeight;
+  //     if (window.innerWidth < 992) {
+  //       Li_show.current.style.display = "none";
+  //     }else{
+  //       Li_show.current.style.display = "flex";
+  //       Li_show.current.style.position = "inital";
+  //     }
 
-    }
+  //   }
     
 
-  const hide_Navbar = () => {
+  // const hide_Navbar = () => {
   
    
-      Li_show.current.style.display = "none";
+  //     Li_show.current.style.display = "none";
       
   
   
-    // Li_show.current.style.position = "inherit"
-    // Li_show.current.style.width = "revert-layer"
-  };
+  //   // Li_show.current.style.position = "inherit"
+  //   // Li_show.current.style.width = "revert-layer"
+  // };
 
 
 
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg  p-0 position-sticky top-0 ">
+
+      <nav className="navbar bg-secondary navbar-expand-xl navbar-dark">
+        <div className="container">
+          <a href="#" className="navbar-brand">Binaryville</a>
+          <button className="navbar-toggler" type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#navbarOffcanvas"
+            aria-controls="navbarOffcanvas"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="offcanvas offcanvas-end bg-secondary" id="navbarOffcanvas"
+            tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
+            <div className="offcanvas-header">
+              <h5 className="offcanvas-title text-light" id="offcanvasNavbarLabel">Offcanvas</h5>
+              <button type="button" className="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div className="offcanvas-body">
+              <div className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <a className="nav-item nav-link active" aria-current="page" href="#">Bubbles</a>
+                <a className="nav-item nav-link" href="#">Cosmo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      {/* <nav className="navbar navbar-expand-lg  p-0 position-sticky top-0 ">
         <div className="container-fluid container-fluid-div p-0 h-100 d-flex  align-items-center">
           <div className="col-lg-2 col-md-2 col-sm-2 col-2   h-100 logo_div d-flex justify-content-around align-items-center">
            
@@ -127,48 +154,46 @@ function Header() {
                   className="btn btn-outline-success rounded-0 search_btn "
                   type="submit"
                 >
-                  <i class="bi bi-search"></i>
+                  <i className="bi bi-search"></i>
                 </button>
                 
               </form>
             </div>
             <div className="col-lg-4  col-md-4  col-sm-4 col-5 d-flex  justify-content-around icons_div ">
 
-            {/* <div className="d-flex  position-relative  w-100 justify-content-center align-items-center mobile_serach_icon">
-                <i class="bi bi-search" ></i>
-              </div> */}
+           
 
               <div className=" d-flex position-relative w-100   justify-content-center align-items-center">
-                <Link to="/wishlist"> <i class="bi bi-suit-heart"></i></Link>
+                <Link to="/wishlist"> <i className="bi bi-suit-heart"></i></Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
                 <p className="text-light m-0">O</p>
                 </div>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center">
-                <Link to="/cart"><i class="bi bi-cart3"></i></Link>
+                <Link to="/cart"><i className="bi bi-cart3"></i></Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
                 <p className="text-light m-0">O</p>
                 </div>
               </div>
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
-                <i class="bi bi-list menu_icon" onClick={signUpButton}></i>
-                <i class="bi bi-list menu_icon" ></i>
+                <i className="bi bi-list menu_icon" onClick={signUpButton}></i>
+                <i className="bi bi-list menu_icon" ></i>
               </div>
               
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
-      <div className={`container-fluid bg-dark  container${isContainerActive ? " " : "show_menu_div"}`}   ref={Li_show}>
+      {/* <div className={`container-fluid bg-dark  container${isContainerActive ? " " : "show_menu_div"}`}   ref={Li_show}>
         <div className="container">
           <div className="row">
             <div className="col-12 d-flex justify-content-around">
             <div
             className="col-lg-4 col-md-2 col-sm-2  col-2  h-100  hidden_menu" 
-          >  <i class="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
+          >  <i className="bi bi-x fs-1  cross_icon position-absolute top-0 end-0 me-3 " onClick={hide_Navbar}></i>
             <div className=" navbar-collapse" id="navbarSupportedContent">
             
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
@@ -380,7 +405,7 @@ function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
