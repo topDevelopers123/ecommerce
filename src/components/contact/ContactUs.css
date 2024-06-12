@@ -1,5 +1,6 @@
 .contact-div {
     padding: 70px 0;
+    margin-left: 6px;
 }
 
 .contact-form {
@@ -126,4 +127,10 @@
     .contact-form span {
         display: block;
     }
+   .contact-location {
+    padding: 4px;
+}
+.contact-form {
+    padding: 6px;
+}
 }

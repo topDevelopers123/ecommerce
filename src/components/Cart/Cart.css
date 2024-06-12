@@ -1,4 +1,4 @@
-.add_to_cart_mini_div input{
+.add_to_cart_mini_div input {
     width: 220px;
     display: inline-block;
     background-color: #e7e7e7;
@@ -9,7 +9,7 @@
     box-shadow: 0px 0px 5px #0000000a;
 }
 
-.add_to_cart_mini_div button{
+.add_to_cart_mini_div button {
     display: inline-block;
     height: 48px;
     border: navajowhite;
@@ -22,19 +22,19 @@
 
 }
 
-.add_to_cart_mini_div button:hover{
+.add_to_cart_mini_div button:hover {
     background-color: #416b7c;
 }
 
 
-.cart_subtotal_div div  p{
-font-size: 15px;
-font-weight: 400;
-color: #333;
-margin-bottom: 12px;
+.cart_subtotal_div div p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 12px;
 }
 
-.cart_subtotal_div div button{
+.cart_subtotal_div div button {
     text-align: center;
     border-radius: 0;
     width: 100%;
@@ -50,86 +50,126 @@ margin-bottom: 12px;
     transition: all 0.2S ease;
 }
 
-.cart_subtotal_div div button:hover{
+.cart_subtotal_div div button:hover {
     background-color: #416b7c;
 
 }
-.wish-text-2 div button{
+
+.wish-text-2 div button {
     background-color: #EEF7FF;
 }
 
 @media screen and (max-width: 992px) {
-   .cart_subtotal_div{
-    display: flex;
-    justify-content: start !important;
-    margin-top: 40px;
-   } 
-   .wish-text-2 div button, .wish-text-2 div div{
-    padding: 5px ;
-    width: 50%;
-    font-size: 12px;
-    text-align: center;
-   }
-   .quentity button, .quentity div{
-    width: 50px !important;
-    font-size: 25px !important;
-    margin-top: 10px !important;
-   }
-   .wish-items-4{
-    align-items: start !important;
-   }
-   .add_to_cart_mini_div button{
-    padding-inline: 20px !important;
-   }
+    .cart_subtotal_div {
+        display: flex;
+        justify-content: start !important;
+        margin-top: 40px;
+    }
 
+    .wish-text-2 div button,
+    .wish-text-2 div div {
+        padding: 5px;
+        width: 50%;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .quentity button,
+    .quentity div {
+        width: 50px !important;
+        font-size: 25px !important;
+        margin-top: 10px !important;
+    }
+
+    .wish-items-4 {
+        align-items: start !important;
+    }
+
+    .add_to_cart_mini_div button {
+        padding-inline: 20px !important;
+    }
+
+    .wish-text-2 div button,
+    .wish-text-2 div div {
+        padding: 12px !important;
+        margin: 20px;
+    }
+        .wish-items i {
+            padding-left: 80px !important;
+        }
 
 }
 
 
 @media screen and (max-width: 768px) {
-    .wish-text-2 h6, a{
+
+    .wish-text-2 h6,
+    a {
         text-align: start !important;
         padding-left: 15px !important;
     }
-    .quentity button{
+
+    .quentity button {
         margin-left: 15px !important;
         text-align: center !important;
     }
-   
+
+    .wish-text-2 div button,
+    .wish-text-2 div div {
+        padding: 12px !important;
+        margin: 20px;
+    }
+                 .wish-items i {
+                     padding-left: 60px !important;
+                 }
 }
 
 @media screen and (max-width: 468px) {
-    
-    .wish-items-4 div img{
-        height:200px !important;
+
+    .wish-items-4 div img {
+        height: 200px !important;
     }
-    .wish-text-2 h6, a{
+
+    .wish-text-2 h6,
+    a {
         font-size: 15px !important;
     }
-    .quentity button, .quentity div{
+
+    .quentity button,
+    .quentity div {
         width: 30px !important;
         font-size: 20px !important;
         margin-top: 5px !important;
         height: 30px !important;
-       }
-       
-       .add_to_cart_mini_div input{
+    }
+
+    .add_to_cart_mini_div input {
         width: 180px;
         padding-left: 10px;
-       }
-       .product_heading{
+    }
+
+    .product_heading {
         padding-left: 20px !important;
         font-size: 20px !important;
-       }
-       .cart_subtotal_div div button{
+    }
+
+    .cart_subtotal_div div button {
         width: 81vw !important;
-       }
-       .wish-items-4{
+    }
+
+    .wish-items-4 {
         margin-top: 10px;
         padding-inline: 10px !important;
-       }
-       
+    }
+
+    .wish-text-2 div button,
+    .wish-text-2 div div {
+        padding: 6px !important;
+        margin: 20px;
+    }
+
+    .wish-items i {
+        padding-left: 20px;
+    }
+
 }
-
-
-

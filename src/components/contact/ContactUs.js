@@ -4,7 +4,7 @@ import "./ContactUs.css"
 function ContactUs() {
     return (
         <div>
-            <div className='container '>
+            <div className=' container-fluid'>
                 <div className='contact-div'>
                     <div className='row'>
 

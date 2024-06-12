@@ -97,7 +97,6 @@
         text-align: start;
         padding-left: 20px;
         font-size: 22px;
-        /* margin-block: 12px; */
     }
 
     .wish-items img {
@@ -105,6 +104,11 @@
         justify-content: flex-start;
         width: 100%;
     }
+         .wish-list {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+         }
 }
 
 @media screen and (max-width: 750px) {
@@ -112,6 +116,11 @@
     .wish-text-2 h6 {
         margin-block: 10px;
     }
+         .wish-list {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+         }
 }
 
 @media screen and (max-width: 992px) {
@@ -119,4 +128,10 @@
     .wish-text-2 h6 {
         margin-block: 10px;
     }
+
+        .wish-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 }
