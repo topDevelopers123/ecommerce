@@ -47,7 +47,7 @@
 
 .wish-items button:hover {
     background-color: #CDE8E5 !important;
-    color: #000;
+    color: #000 !important;
 }
 
 .wish-items a {
@@ -64,6 +64,7 @@
 .wish-items i {
     cursor: pointer;
     transition: 0.2s ease;
+    color: red !important;
 }
 
 .wish-items i:hover {
@@ -104,11 +105,12 @@
         justify-content: flex-start;
         width: 100%;
     }
-         .wish-list {
-             display: flex;
-             justify-content: center;
-             align-items: center;
-         }
+
+    .wish-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -116,11 +118,12 @@
     .wish-text-2 h6 {
         margin-block: 10px;
     }
-         .wish-list {
-             display: flex;
-             justify-content: center;
-             align-items: center;
-         }
+
+    .wish-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -129,9 +132,9 @@
         margin-block: 10px;
     }
 
-        .wish-list {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .wish-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

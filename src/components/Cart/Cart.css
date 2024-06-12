@@ -94,11 +94,16 @@
         padding: 12px !important;
         margin: 20px;
     }
-        .wish-items i {
-            padding-left: 80px !important;
-        }
 
+    .wish-items i {
+        padding: 12px;
+        color: red;
+        background-color: #CDE8E5;
+        border-radius: 8px;
+    }
 }
+
+
 
 
 @media screen and (max-width: 768px) {
@@ -119,9 +124,13 @@
         padding: 12px !important;
         margin: 20px;
     }
-                 .wish-items i {
-                     padding-left: 60px !important;
-                 }
+
+    .wish-items i {
+        padding: 12px;
+        color: red;
+        background-color: #CDE8E5;
+        border-radius: 8px;
+    }
 }
 
 @media screen and (max-width: 468px) {
@@ -169,7 +178,10 @@
     }
 
     .wish-items i {
-        padding-left: 20px;
+        padding: 12px;
+        color: red;
+        background-color: #CDE8E5;
+        border-radius: 8px;
     }
 
 }

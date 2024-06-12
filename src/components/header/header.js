@@ -70,7 +70,7 @@ function Header() {
   return (
     <>
 
-      <nav className="navbar bg-secondary navbar-expand-xl navbar-dark">
+      <nav className="navbar bg-secondary navbar-expand-xl navbar-dark sticky-top">
         <div className="container">
           <a href="#" className="navbar-brand">Binaryville</a>
           <button className="navbar-toggler" type="button"
@@ -95,7 +95,7 @@ function Header() {
           </div>
         </div>
       </nav>
-      
+
       {/* <nav className="navbar navbar-expand-lg  p-0 position-sticky top-0 ">
         <div className="container-fluid container-fluid-div p-0 h-100 d-flex  align-items-center">
           <div className="col-lg-2 col-md-2 col-sm-2 col-2   h-100 logo_div d-flex justify-content-around align-items-center">
