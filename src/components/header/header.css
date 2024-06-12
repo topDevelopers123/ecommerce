@@ -195,12 +195,7 @@ left: 0; */
   .form_div i {
     padding: 10px;
   }
-  .wish-text-2 div,
-  h6,
-  button,
-  a {
-    text-align: center !important;
-  }
+  
 }
 
 @media screen and (max-width: 568px) {

@@ -97,9 +97,6 @@
     color: #464343;
     font-weight: bold;
 }
-
-
-
 .additional-details .nav-link {
     border: none;
     color: #464343;
@@ -197,4 +194,28 @@
 }
 .wishlist_btn i{
     color: #fff;
+}
+/* Mobile  */
+@media screen and (max-width: 567px){
+    .details-snippet1 .mini-preview img {
+        margin: 8px;
+    }
+}
+@media screen and (max-width: 992px){
+    .addBtn {
+        padding: 10px !important;
+    }
+    .details-snippet1 .title {
+        font-size: 1.2rem;
+    }
+    .tab-content>.active {
+        display: block;
+        font-size: 14px;
+    }
+    .tab-content>.active {
+        font-size: 14px;
+    };
+}
+@media only screen and (min-width:567px) and (max-width:768px){
+
 }

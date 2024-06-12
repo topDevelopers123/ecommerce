@@ -7,12 +7,18 @@ function Header() {
   const Li_show = useRef();
   const [flag, setFlag] = useState(false)
  
+
   const [isContainerActive, setIsContainerActive] = React.useState(false);
   const signUpButton = () => {
      setIsContainerActive(false);
   };  
   const signInButton = () => {
      setIsContainerActive(true);
+
+
+
+  const Toggle_menu = () => {
+    // hidden_menu.classList.add("show_div")
   };
   
   // window.onresize = displayWindowSize;
@@ -28,6 +34,23 @@ function Header() {
   //     }
 
   //   }
+
+  
+ 
+
+  window.onresize = displayWindowSize;
+    window.onload = displayWindowSize;
+    function displayWindowSize() {
+      let myWidth = window.innerWidth;
+      let myHeight = window.innerHeight;
+      if (window.innerWidth < 992) {
+        Li_show.current.style.display = "none";
+      }else{
+        Li_show.current.style.display = "flex";
+        Li_show.current.style.position = "inital";
+      }
+
+    }
     
 
   const hide_Navbar = () => {
@@ -131,6 +154,7 @@ function Header() {
 
               <div className="d-flex  position-relative  w-100 justify-content-center align-items-center menu_div d-none">
                 <i class="bi bi-list menu_icon" onClick={signUpButton}></i>
+                <i class="bi bi-list menu_icon" ></i>
               </div>
               
             </div>
