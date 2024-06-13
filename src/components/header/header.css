@@ -8,18 +8,23 @@
 .offcanvas.offcanvas-end .nav-link{
   color: #fff;
 }
+.sel_cat_left select{
+  color: #000;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 40px;
+}
 
 .nav_right_div input{
   height: 40px;
- 
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+border-radius: 0px;
 }
 
+
 .navbar_right_icon div i{
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
 
 }
@@ -78,6 +83,7 @@
 
 .icons_div {
   height: 100% !important;
+  width: 50% !important;
 }
 
 

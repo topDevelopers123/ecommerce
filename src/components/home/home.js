@@ -34,6 +34,9 @@ function Home() {
     navigate("/productdetails");
     window.scrollTo(0, 0);
   };
+
+  // Shorten desc 
+  
   const ImageCarousel = () => {
     return (
       <div>
@@ -126,10 +129,10 @@ function Home() {
         {/* Featured products end  */}
 
         {/* Shop by category start */}
-        <section className="shop_category">
+        <section className="new_arrivals">
           <div className="container">
             <div className="head_title">
-              <h2>Shop by Category</h2>
+              <h2>New Arrivals</h2>
               <div className="bdr"></div>
             </div>
             <div className="categories">

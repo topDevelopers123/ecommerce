@@ -6,6 +6,11 @@
 .product-detail-sec{
     padding: 50px 0px;
 }
+/* .prod_desc_sec{
+    height: 700px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+} */
 .details-snippet1 {
     color: #585656;
 }
@@ -32,6 +37,19 @@
     font-weight: bold;
     font-size: 1.8rem;
 }
+.details-snippet1 .delivery{
+    padding: 5px 14px;
+    background: #eef7ff;
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.details-snippet1 .price span {
+    color: #00d200;
+    font-size: 14px;
+}
 
 .details-snippet1 .original-price {
     font-weight: normal;
@@ -42,16 +60,13 @@
     /* color: #585656; */
     color: #464343;
 }
+.brief-description p{
+    line-height: 12px;
+}
 
 
 .select-colors .color {
-    display: inline-block;
-    border: 1px solid grey;
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
     margin-right: 5px;
-    background-color: black;
 }
 
 .select-colors .color.blue {
@@ -64,6 +79,15 @@
 
 .select-colors .color.black {
     background-color: black;
+}
+.select-size .size{
+    border: 1px solid #000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
 }
 
 
@@ -194,6 +218,57 @@
 }
 .wishlist_btn i{
     color: #fff;
+}
+.interested_prod .card .pricing{
+    font-weight: 600;
+}
+.interested_prod .card .pricing span{
+    color: #00d200;
+}
+.interested_prod .card{
+    margin: 10px;
+    position: relative;
+}
+.interested_prod .card .add_icons{
+    position: absolute;
+    right: 0;
+    display: flex;
+    top: 54%;
+}
+.interested_prod .card .add_icons .icons{
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    background: #7AB2B2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 50%;
+}
+.interested_prod .card img{
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0 !important;
+}
+.interested_prod .card .pricing s{
+    font-weight: 300;
+}
+.interested_prod .card-body .card-title{
+    color: #4D869C;
+}
+.interested_prod .card-body .card-text{
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.interested_prod .card-body{
+    background: #EEF7FF;
+}
+.card-body button{
+    font-size: 12px;
+    padding: 8px 10px;
 }
 /* Mobile  */
 @media screen and (max-width: 567px){

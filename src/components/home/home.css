@@ -70,29 +70,29 @@
 .featured_products{
     padding: 40px 0px;
 }
-.shop_category {
+.new_arrivals {
     padding: 20px 25px;
     background-color: #EEF7FF;
 }
-.shop_category .owl-carousel .owl-item img {
+.new_arrivals .owl-carousel .owl-item img {
     display: block;
-    height: 270px;
+    height: 260px;
     border-radius: 50%;
     object-fit: cover;
-    width: 270px;
+    width: 260px;
     transition: transform 0.2s linear;
 }
-.shop_category .owl-carousel .owl-item img:hover{
+.new_arrivals .owl-carousel .owl-item img:hover{
     transform: scale(1.1, 1.1);
 }
-.shop_category .owl-carousel .owl-item .item{
+.new_arrivals .owl-carousel .owl-item .item{
     margin: 20px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.shop_category .owl-carousel .owl-item .item h4{
+.new_arrivals .owl-carousel .owl-item .item h4{
     margin-top: 15px;
     text-align: center;
 }
@@ -266,6 +266,12 @@
 .tp_area .card-body .card-title{
     color: #4D869C;
 }
+.tp_area .card-body .card-text{
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .tp_area .card-body{
     background: #EEF7FF;
 }
@@ -351,12 +357,12 @@
         height: 200px;
         object-fit: cover;
     }
-    .shop_category .owl-carousel .owl-item img {
+    .new_arrivals .owl-carousel .owl-item img {
         height: 80px;
         border-radius: 50%;
         width: 80px;
     }
-    .shop_category .owl-carousel .owl-item .item h4 {
+    .new_arrivals .owl-carousel .owl-item .item h4 {
     margin-top: 10px;
     font-size: 12px;
     text-align: center;
@@ -375,10 +381,10 @@
     .card-body button {
         padding: 8px 20px !important;
     }
-    .shop_category .owl-carousel .owl-item .item h4 {
+    .new_arrivals .owl-carousel .owl-item .item h4 {
         font-size: 16px;
     }
-    .shop_category .owl-carousel .owl-item img{
+    .new_arrivals .owl-carousel .owl-item img{
         width: 150px;
         height: 150px;
     }
@@ -393,11 +399,11 @@
 }
 @media screen and (min-width: 992px) and (max-width: 1400px){
     .tp_area .card .add_icons{
-        top: 50%;
+        top: 52%;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
-    .shop_category .owl-carousel .owl-item img{
+    .new_arrivals .owl-carousel .owl-item img{
         width: 150px;
         height: 150px;
     }
