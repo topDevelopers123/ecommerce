@@ -8,7 +8,6 @@ function Wishlist() {
         <div>
 
             <div className='container-fluid mt-5 mb-5'>
-
                 <div className='container'>
 
                     <div className='wish-list p-0 w-100 '>
@@ -18,6 +17,7 @@ function Wishlist() {
                         <div className='wish-text wish-text-1 text-center  col-lg-10 d-flex justify-content-between'>
                             <h6 className='col-lg-2  col-12'>NAME</h6>
                             <h6 className='col-lg-2  col-12'>Size</h6>
+                            <h6 className='col-lg-2  col-12'>Colour</h6>
                             <h6 className='col-lg-2  col-12'>TOTAL</h6>
                             <h6 className='col-lg-2  col-12'>ADD TO CART</h6>
                             <h6 className='col-lg-2  col-12'><i class="bi bi-trash3"></i></h6>
@@ -32,6 +32,8 @@ function Wishlist() {
                                 <Link className='col-lg-2 col-md-12 col-sm-12 '>EYEBOGLER Polo T-shirt For Men</Link>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 '>
                                     M</h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 '>
+                                    Grey</h6>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 '>&#8377;
                                     199.00</h6>
                                 <div className='col-lg-2 col-md-12 col-sm-12 '>
