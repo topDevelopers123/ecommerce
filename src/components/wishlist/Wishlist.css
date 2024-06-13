@@ -37,7 +37,7 @@
 }
 
 .wish-items button {
-    padding: 14px 16px;
+    padding: 8px 14px !important;
     background-color: #4D869C !important;
     color: #fff !important;
     border: none;

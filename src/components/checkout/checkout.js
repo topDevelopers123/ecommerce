@@ -20,20 +20,20 @@ function Checkout() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label">First Name *</label>
+                          <label className="form-label">Full Name *</label>
                           <input
                             type="text"
-                            placeholder="Enter First Name"
+                            placeholder="Enter Full Name"
                             className="form-control"
                           />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label">Last Name *</label>
+                          <label className="form-label">Email Address *</label>
                           <input
                             type="text"
-                            placeholder="Enter Last Name"
+                            placeholder="Enter Your Email"
                             className="form-control"
                           />
                         </div>
@@ -42,17 +42,17 @@ function Checkout() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label">Email Address *</label>
+                          <label className="form-label">Phone Number *</label>
                           <input
                             type="email"
-                            placeholder="Enter Your Email"
+                            placeholder="Enter Phone Number"
                             className="form-control"
                           />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label">Phone Number *</label>
+                          <label className="form-label">Alternate Phone Number *</label>
                           <input
                             type="number"
                             placeholder="Enter Phone Number"
@@ -62,6 +62,56 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="row">
+                      {/* <div className="col-md-6">
+                        <div className="mb-3">
+                          <div className="form-group">
+                            <label className="form-label">
+                              Country<span>*</span>
+                            </label>
+                            <select
+                              className="form-select"
+                              aria-label="Default select example"
+                            >
+                              <option value="IN" selected>
+                                India
+                              </option>
+                              <option value="AX">Åland Islands</option>
+                              <option value="AL">Albania</option>
+                              <option value="DZ">Algeria</option>
+                              <option value="AS">American Samoa</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div> */}
+
+                      <div className="col-md-6">
+                        <div className="mb-3">
+                          <label className="form-label">Area, Colony</label>
+                          <input
+                            type="text"
+                            placeholder="Enter Area, Colony"
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-md-6">
+                        <div className="mb-3">
+                          <label className="form-label">
+                            House No., Building Name *
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Enter House No., Building Name"
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div className="row">
+
                       <div className="col-md-6">
                         <div className="mb-3">
                           <div className="form-group">
@@ -83,30 +133,45 @@ function Checkout() {
                           </div>
                         </div>
                       </div>
+
+
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label">
-                            House No., Building Name *
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="Enter House No., Building Name"
-                            className="form-control"
-                          />
+                          <div className="form-group">
+                            <label className="form-label">
+                              State<span>*</span>
+                            </label>
+                            <select
+                              className="form-select"
+                              aria-label="Default select example"
+                            >
+                              <option value="IN" selected>
+                                Delhi
+                              </option>
+                              <option value="AP">Andhra Pradesh</option>
+                              <option value="AP">Arunachal Pradesh</option>
+                              <option value="HP">Himachal Pradesh</option>
+                              <option value="UP">	Uttar Pradesh</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
+
+
                     <div className="row">
+
                       <div className="col-md-6">
                         <div className="mb-3">
-                          <label className="form-label">Area, Colony</label>
+                          <label className="form-label">City</label>
                           <input
                             type="text"
-                            placeholder="Enter Area, Colony"
+                            placeholder="Enter City Name"
                             className="form-control"
                           />
                         </div>
                       </div>
+                     
                       <div className="col-md-6">
                         <div className="mb-3">
                           <label className="form-label">PIN Code</label>
@@ -118,7 +183,9 @@ function Checkout() {
                         </div>
                       </div>
                     </div>
+
                   </form>
+
                   <div className="payment_mode">
                     <section>
                       <h2 className="payment-title">Choose your payment method</h2>
@@ -152,7 +219,7 @@ function Checkout() {
                               <div className="select-logo-sub logo-spacer">
                                 <img src={visa} alt="Visa" />
                               </div>
-                              
+
                             </div>
                           </div>
                         </div>
@@ -226,7 +293,7 @@ function Checkout() {
                             </div>
                           </div>
                         </div>
-                       
+
                       </form>
                     </section>
                   </div>

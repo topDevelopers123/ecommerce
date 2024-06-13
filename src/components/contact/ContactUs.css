@@ -103,6 +103,8 @@
     .contact-form button {
         padding: 14px 22px !important;
         font-weight: 300;
+        width: 100%;
+        text-align: center;
     }
 
     .contact-location i {
@@ -127,6 +129,8 @@
     .contact-form button {
         padding: 14px 18px !important;
         font-weight: 300;
+        width: 100%;
+        text-align: center;
     }
 
     .contact-form span {

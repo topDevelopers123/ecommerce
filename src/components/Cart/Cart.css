@@ -123,6 +123,7 @@
     .wish-text-2 div div {
         padding: 12px !important;
         margin: 20px;
+        width: 90%;
     }
 
     .wish-items i {
@@ -178,6 +179,7 @@
     .wish-text-2 div div {
         padding: 6px !important;
         margin: 20px;
+        width: 80%;
     }
 
     .wish-items i {

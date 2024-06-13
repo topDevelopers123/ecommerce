@@ -49,6 +49,9 @@ function ContactUs() {
                     Your Message<span>*</span>
                   </label>
                   <br />
+                  <textarea type='text' placeholder='Your Message' />
+                  <br />
+                  <button>Send Message</button>
                 </div>
               </div>
             </div>
