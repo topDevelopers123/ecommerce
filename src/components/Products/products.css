@@ -1,6 +1,19 @@
 .go_btn{
     background-color: #4D869C;
 }
+.filter_btn{
+    background-color: #4D869C;
+    display: none !important;
+}
+
+.filter_btn i{
+    font-size: 25px;
+}
+
+.filter_btn:hover{
+    background-color: #CDE8E5;
+    color: #000 !important;
+}
 
 .go_btn:hover{
     background-color: #CDE8E5;
@@ -126,8 +139,38 @@
 }
 
 .range_div input  {
-    accent-color: #4D869C;      
+    accent-color: #4D869C !important;      
 }
+.range_div_2{
+    display: none !important;
+}
+
+.filter_mini_div{
+    flex-direction: column; 
+}
+
+/* .show_filters{
+    display: flex !important;
+   
+   
+} */
+
+.hide_filter {
+    display: flex !important;
+    flex-direction: column;
+    transition: all 0.5s ease !important;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    border-radius: 12px;
+    height: 500px;
+   z-index: 10;
+   width: 37vw;
+   margin-right: 12px;
+
+}
+
+
 
 @media screen and (max-width: 992px) {
     .poducts_filter_main_div{ 
@@ -140,6 +183,23 @@
     .add_to_cart_div button{
         padding-inline: 20px;
     }
+   
+    .range_div_2{
+        display: flex !important;
+    }
+    .filter_btn{
+       
+        display: flex !important;
+    }
+    .filter_mini_div{
+        display: none ;
+        
+    }
+    .clear_all a{
+        font-size: 18px;
+    }
+    
+    
   }
 
   
@@ -148,7 +208,42 @@
     .add_to_cart_div button{
         padding-inline: 40px !important;
     }
+    .filter_btn{
+        padding-inline: 20px !important;
+        padding-block: 8px !important;
+        margin-bottom: 10px;
+    }
+    .hide_filter {
+        top: 35px;
+        width: 45vw !important;
+    }
+    .go_btn{
+        padding-inline: 20px !important;
+        padding-block: 8px !important;
+    }
+    
   }
+
+  @media screen and (max-width: 568px) {
+    
+    .hide_filter {
+        
+        width:90vw !important;
+    }
+    .item2 img{
+        height: 300px !important;
+    }
+    .owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next {
+        width: 36px;
+        height: 30px;
+        font-size: 20px;
+        
+        line-height: 1;
+    }
+    
+  }
+
+
 
   @media screen and (max-width: 468px) {
     
