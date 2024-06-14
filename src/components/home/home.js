@@ -27,6 +27,7 @@ import slid01 from "./img/slider/slider1.webp";
 import slid02 from "./img/slider/slider2.webp";
 import slid03 from "./img/slider/slider3.webp";
 import "./home.css";
+import { useStateManagement } from "../../Context/index.context";
 
 function Home() {
   const navigate = useNavigate();
@@ -38,6 +39,8 @@ function Home() {
   // Shorten desc 
   
   const ImageCarousel = () => {
+    // const {data} = useStateManagement()
+
     return (
       <div>
         {/* Slider section start  */}
@@ -68,7 +71,7 @@ function Home() {
                 className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span className="visually-hidden">Previous</span>
+              <span className="visually-hidden"></span>
             </button>
             <button
               className="carousel-control-next"

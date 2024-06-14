@@ -64,14 +64,16 @@ border-radius: 0px;
 
  .para_cart {
   position: absolute;
-  font-size: 15px;
-  top: 5px;
-  right: -17px;
+  top: 12px;
+  right: -13px;
   background-color: #f6931d;
   border-radius: 50%;
-  text-align: center;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+}
+
+.para_cart  p{
+  font-size: 12px !important;
 }
 
 .li_div {
@@ -111,8 +113,8 @@ border-radius: 0px;
 }
 
 .category_main_div div img {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 }
 
@@ -155,7 +157,7 @@ border-radius: 0px;
   display: flex;
 
   position: absolute;
-  top: 220px;
+  top: 190px;
   left: 0;
   z-index: 55;
 }
@@ -170,6 +172,10 @@ border-radius: 0px;
   /* position: absolute;
 top: 225px;
 left: 0; */
+}
+
+.icons_div{
+  gap: 20px;
 }
 
 @media screen and (max-width: 992px) {
@@ -201,6 +207,14 @@ left: 0; */
     cursor: pointer;
     background-color: #d3d9db91;
   }
+  .icons_div{
+    gap: 0 !important;
+  }
+  .right_icons_box{
+    display: flex !important;
+    justify-content: center !important;
+
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -229,6 +243,9 @@ left: 0; */
   }
   .form_div i {
     padding: 10px;
+  }
+  .search_Bar{
+    display: none !important;
   }
   
 }

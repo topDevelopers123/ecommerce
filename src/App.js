@@ -1,6 +1,7 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Home from './components/home/home';
 import About from './components/about/about';
 import ContactUs from './components/contact/ContactUs';
@@ -14,6 +15,7 @@ import Register from './components/register/register'
 import Checkout from './components/checkout/checkout'
 import Wishlist from './components/wishlist/Wishlist'
 import Cart from './components/Cart/Cart';
+import { useState } from 'react';
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
   return (
     <> 
       <BrowserRouter>
+   
       <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -37,6 +40,7 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
         </Routes>
         <Footer/>
+   
       </BrowserRouter>
     </>
   );
