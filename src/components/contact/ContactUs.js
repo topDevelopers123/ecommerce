@@ -15,7 +15,7 @@ function ContactUs() {
                     Write Us A Message <span> [You Need To Login First]</span>
                   </h3>
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-lg-6 col-md-12 ">
                       <label id="Your Name">
                         Your Name <span>*</span>
                       </label>
@@ -30,7 +30,7 @@ function ContactUs() {
                       <input type="text" placeholder="Your Email" />
                     </div>
 
-                    <div className="col-md-6">
+                    <div className="col-lg-6 col-md-12">
                       <label id="Your Name">
                         Your Subject<span>*</span>
                       </label>
