@@ -62,27 +62,7 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="row">
-                      {/* <div className="col-md-6">
-                        <div className="mb-3">
-                          <div className="form-group">
-                            <label className="form-label">
-                              Country<span>*</span>
-                            </label>
-                            <select
-                              className="form-select"
-                              aria-label="Default select example"
-                            >
-                              <option value="IN" selected>
-                                India
-                              </option>
-                              <option value="AX">Åland Islands</option>
-                              <option value="AL">Albania</option>
-                              <option value="DZ">Algeria</option>
-                              <option value="AS">American Samoa</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div> */}
+
 
                       <div className="col-md-6">
                         <div className="mb-3">
@@ -122,7 +102,7 @@ function Checkout() {
                               className="form-select"
                               aria-label="Default select example"
                             >
-                              <option value="IN" selected>
+                              <option className='dropdown-select' value="IN" selected>
                                 India
                               </option>
                               <option value="AX">Åland Islands</option>
@@ -171,7 +151,7 @@ function Checkout() {
                           />
                         </div>
                       </div>
-                     
+
                       <div className="col-md-6">
                         <div className="mb-3">
                           <label className="form-label">PIN Code</label>
@@ -223,8 +203,8 @@ function Checkout() {
                             </div>
                           </div>
                         </div>
-                       
-                       
+
+
                       </form>
                     </section>
                   </div>

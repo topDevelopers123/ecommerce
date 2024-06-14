@@ -20,7 +20,9 @@
     padding: 14px;
     background-color: #EEF7FF !important;
     border: 0;
+    color: #555a5f;
 }
+
 .checkout_form .form_area form input,
 .checkout_form .form_area form select::placeholder{
     font-size: 14px;
