@@ -254,7 +254,7 @@ function Products() {
 
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
                 {obj.map((item)=>{
-                  return <div className="col-lg-4 col-md-6 col-sm-12 col-12 p-3  card_div" onClick={productDetailsPage}>
+                  return <div className="col-lg-4 col-md-6 col-sm-6  col-12 p-3  card_div" onClick={productDetailsPage}>
                        <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item.product_image} alt={item.product_title}/>
                     <h6 className="mt-2 ps-2">{item.product_title}</h6>

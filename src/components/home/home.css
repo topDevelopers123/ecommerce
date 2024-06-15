@@ -314,6 +314,10 @@
     line-height: 28px;
     font-size: 14px;
 }
+
+
+  
+  
 /* mobile */
 @media screen and (max-width:567px) {
     h2{

@@ -5,10 +5,15 @@ import "./header.css";
  
 function Header() {
   const [flag, setFlag] = useState(false)
+  const [flag2, setFlag2] = useState(false)
+
   const show_searchBar = () => {
     flag ? setFlag(false) : setFlag(true)
   }
 
+  const toggleFlag2 = () => {
+    flag2 ? setFlag2(false) : setFlag2(true)
+  }
 
   return (
     <>
@@ -21,9 +26,9 @@ function Header() {
           </div>
 
        
-          <div className={`col-lg-7 col-md-7 col-sm-6 ${flag ? "col-10 rounded" : "col-6"} d-flex justify-content-center align-items-center h-100  `  }>
+           <div className={`col-lg-7  ${flag ? "col-md-10 col-sm-10 col-10 rounded" : "col-6"} d-flex justify-content-center align-items-center h-100  `  }>
             <div className="nav_right_div d-flex  w-100 h-100 align-items-center justify-content-center ">
-              <div className={`search_Bar d-lg-flex d-md-none  ${flag ? "d-flex" : "d-none"} w-75`}>
+              <div className={`search_Bar    ${flag ? " d-lg-flex d-md-flex d-sm-flex " : "d-none"} w-75`}>
             
               <input
                 className="form-control w-100"
@@ -160,7 +165,7 @@ function Header() {
                 </div>
               </div>
 
-              <div className="d-flex  position-relative  justify-content-center   align-items-center">
+              <div className="d-flex  position-relative   justify-content-center   align-items-center" onClick={toggleFlag2}>
                 <Link to="">
                 <i class="bi bi-person fs-2"></i>
                 </Link>
@@ -328,6 +333,17 @@ function Header() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className={`profile_main_box p-2 ${flag2 ? "d-block" : "d-none"}`}>
+
+          <h6>Welcome</h6>
+          <p>To access account and manage orders To access account and manage orders </p>
+          <div className="d-flex justify-content-around">
+          <p><Link to="/login" className="text-secondary">LOGIN</Link></p>
+          <p><Link to="/register" className="text-secondary">REGISTER</Link></p>
+          </div>
+ 
         </div>
       </div>
     </>
