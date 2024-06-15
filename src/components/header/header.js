@@ -4,17 +4,53 @@ import logo from "./header_images/logo.png";
 import "./header.css";
  
 function Header() {
+  const [flag, setFlag] = useState(false)
+  const show_searchBar = () => {
+    flag ? setFlag(false) : setFlag(true)
+  }
+
+
   return (
     <>
       <nav className="navbar  navbar-expand-xl navbar-dark d-flex p-0">
         <div className="container-fluid p-0 m-0 w-100 h-100 ">
-          <div className="col-lg-2 col-md-2 col-sm-2 col-2 h-100  d-flex justify-content-center align-items-center">
-            <Link to="/" className="navbar-brand">
+          <div className={`col-lg-2 col-md-2 col-sm-2 ${flag ? "col-2" : "col-2"} h-100  d-flex justify-content-center align-items-center`}>
+            <Link to="/" className="navbar-brand ps-5">
               Mayavi
             </Link>
           </div>
-          <div className="col-lg-7 col-md-7 col-sm-7 col-7 d-flex justify-content-center align-items-center h-100 search_Bar ">
-            <div className="nav_right_div d-flex  w-100 h-100 align-items-center justify-content-center">
+
+       
+          <div className={`col-lg-7 col-md-7 col-sm-6 ${flag ? "col-10 rounded" : "col-6"} d-flex justify-content-center align-items-center h-100  `  }>
+            <div className="nav_right_div d-flex  w-100 h-100 align-items-center justify-content-center ">
+              <div className={`search_Bar d-lg-flex d-md-none  ${flag ? "d-flex" : "d-none"} w-75`}>
+            
+              <input
+                className="form-control w-100"
+                type="search"
+                placeholder="Search"
+                aria-label="Search" 
+              />
+             
+             
+              </div>
+              <button
+                className={`btn btn-outline mr-1  search_btn ${flag ? "rounded-0 w-inherit" : "bg-md-transparent"} `} onClick={show_searchBar}
+                type="submit"
+              >
+                
+                <i className="bi bi-search" ></i>
+              </button>
+
+             
+            </div>
+          </div>
+
+
+          {/* second serach bar */}
+          
+          {/* <div className={`col-lg-7 col-md-7 col-sm-7 col-7 d-flex justify-content-center align-items-center h-100  hidden_search_Bar `}>
+            <div className="nav_right_div d-flex  w-100 h-100 align-items-center justify-content-center border border-dark">
               <div className="sel_cat_left ">
                 <select
                   className="form-select"
@@ -34,14 +70,17 @@ function Header() {
                 placeholder="Search"
                 aria-label="Search" 
               />
-              <button
+                  <button
                 className="btn btn-outline-success rounded-0 search_btn "
                 type="submit"
               >
                 <i className="bi bi-search"></i>
               </button>
+             
             </div>
-          </div>
+          </div> */}
+
+            {/* <i class="bi bi-search search_icon" onClick={show_searchBar}></i> */}
 
           {/* <div className="col-lg-1 col-md-1 col-sm-1 col-1 h-100  d-flex justify-content-center align-items-center order-sm-3 order-3 ">
             <button
@@ -96,9 +135,13 @@ function Header() {
           </div> */}
 
           
-          <div className="col-lg-2 col-md-2 col-sm-2 col-2 d-flex justify-content-center align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2 border border-dark right_icons_box">
+          <div className={`col-lg-3 col-md-3 col-sm-4 col-4 d-flex justify-content-center align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2  right_icons_box ${flag ? "d-none " : "d-flex"}`}>
             <div className="d-flex navbar_right_icon icons_div justify-content-center  w-100 ">
-              <div className=" d-flex position-relative      align-items-center">
+            
+
+            
+
+              <div className=" d-flex position-relative       align-items-center">
                 <Link to="/wishlist">
                   {" "}
                   <i className="bi bi-suit-heart"></i>
@@ -108,7 +151,7 @@ function Header() {
                 </div>
               </div>
 
-              <div className="d-flex  position-relative  justify-content-center  align-items-center">
+              <div className="d-flex  position-relative   justify-content-center  align-items-center">
                 <Link to="/cart">
                    <i className="bi bi-cart3"></i>
                 </Link>
@@ -117,7 +160,7 @@ function Header() {
                 </div>
               </div>
 
-              <div className="d-flex  position-relative justify-content-center   align-items-center">
+              <div className="d-flex  position-relative  justify-content-center   align-items-center">
                 <Link to="">
                 <i class="bi bi-person fs-2"></i>
                 </Link>

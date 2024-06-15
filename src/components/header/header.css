@@ -32,8 +32,7 @@ border-radius: 0px;
 .nav_right_div  button{
   height: 40px;
   width: 80px;
-  border-top-right-radius: 3px !important;
-  border-bottom-right-radius: 3px !important;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,7 +174,22 @@ left: 0; */
 }
 
 .icons_div{
-  gap: 20px;
+  gap: 25px;
+}
+
+.search_icon{
+  color: #fff;
+  font-size: 25px;
+  
+}
+
+.diplay_none{
+  display: none !important;
+}
+
+.search_Bar input{
+  transition: all 2s ease !important;
+  
 }
 
 @media screen and (max-width: 992px) {
@@ -211,9 +225,20 @@ left: 0; */
     gap: 0 !important;
   }
   .right_icons_box{
-    display: flex !important;
+    display: flex ;
     justify-content: center !important;
 
+  }
+  .nav_right_div{
+    justify-content: end !important;
+  }
+  .search_btn{
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% ;
+    border-top-right-radius: 50% !important; 
+    border-bottom-right-radius: 50% !important;
+    margin-right: 10px;
   }
 }
 
@@ -244,9 +269,9 @@ left: 0; */
   .form_div i {
     padding: 10px;
   }
-  .search_Bar{
-    display: none !important;
-  }
+ 
+ 
+  
   
 }
 
@@ -273,12 +298,20 @@ left: 0; */
     font-size: 20px;
   }
   .nav_right_div input{
-   width: 32vw;
-   height: 35px;
+   width: auto;
+   height: 30px;
+   border-top-left-radius: 100px;
+   border-bottom-left-radius: 100px;
   }
+  .nav_right_div input::placeholder{
+    font-size: 14px;
+  }
+  .navbar_right_icon div a 
   .nav_right_div button{
-    width: 10vw;
-    height: 35px;
+    width: 30px !important;
+    
+    height: 30px !important;
+    
    }
   .icons_div div i{
     font-size: 20px;
@@ -288,6 +321,30 @@ left: 0; */
     justify-content: start !important;
     align-items: center;
   }
+  .right_icons_box{
+    justify-content: start !important;
+  }
+  .icons_div{
+    gap: 0px !important;
+    justify-content: space-around !important;
+  }
+  .icons_div div i{
+    font-size: 20px  !important;
+    
+  }
+  .search_btn{
+    font-size: 14px !important;
+    width: 32px !important;
+    height: 32px !important;
+    color: #fff;
+    
+  }
+  
+  .search_btn:hover, .search_btn:active{
+    background-color: #000 !important;
+    color: #fff;
+  }
+
 }
 
 @media screen and (max-width: 468px) {
@@ -296,11 +353,12 @@ left: 0; */
     border-bottom: 1px solid #d5d5d5;
     color: #fff;
   }
-    .icons_div div .para_cart {
+    .icons_div div .para_cart p{
         right: -20px;
         top: 12px;
-        font-size: 12px;
+        
       }
+     
   .logo_div img {
     width: 75px !important;
     padding-left: 10px;
@@ -362,13 +420,13 @@ left: 0; */
    
   }
   .icons_div div .para_cart {
-    top: -12px;
+    top: -8px;
     right: -7px;
     background-color: #f6931d;
     border-radius: 50%;
     text-align: center;
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
   }
   .form_div input{
     width: 120px;
