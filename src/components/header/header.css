@@ -2,6 +2,10 @@
   background-color: #4d869c;
   height: 75px;
 }
+.navbar .navbar-brand img{
+  width: 60%;
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
 .navbar .offcanvas.offcanvas-end{
   background-color: #4d869c !important;
 }
@@ -19,7 +23,8 @@
 
 .nav_right_div input{
   height: 40px;
-border-radius: 0px;
+border-top-left-radius: 100px;
+border-bottom-left-radius: 100px;
 }
 
 
@@ -32,10 +37,16 @@ border-radius: 0px;
 .nav_right_div  button{
   height: 40px;
   width: 80px;
-  
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+.nav_right_div button:hover{
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
 }
 
 .navbar-expand-lg{
@@ -73,6 +84,7 @@ border-radius: 0px;
 
 .para_cart  p{
   font-size: 12px !important;
+  line-height: 0;
 }
 
 .li_div {
@@ -120,7 +132,8 @@ border-radius: 0px;
 .sub_categeries {
   display: none;
   background-color: #f6f7fb;
-  transition: all 0.5 ease;
+  transition: all 0.5s ease;
+  opacity: 0;
 }
 
 .sub_mega {
@@ -154,7 +167,7 @@ border-radius: 0px;
 
 .mens_cate:hover + .sub_categeries {
   display: flex;
-
+  opacity: 1;
   position: absolute;
   top: 190px;
   left: 0;
@@ -371,22 +384,28 @@ left: 0; */
     font-size: 20px  !important;
     
   }
+  .icons_div div .bi-person{
+    font-size: 26px !important;
+  }
   .search_btn{
     font-size: 14px !important;
     width: 32px !important;
     height: 32px !important;
-    color: #fff;
-    
+    color: #fff; 
   }
-  
   .search_btn:hover, .search_btn:active{
     background-color: #000 !important;
     color: #fff;
   }
-
 }
 
 @media screen and (max-width: 468px) {
+  .navbar .navbar-brand{
+    padding-left: 10px !important;
+  }
+  .navbar .navbar-brand img {
+    width: 200% !important;
+}
  .offcanvas.offcanvas-end .nav-link{
     padding: 20px 0px !important;
     border-bottom: 1px solid #d5d5d5;

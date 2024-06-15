@@ -220,23 +220,29 @@ function Home() {
         </section>
         {/* Shop by category end  */}
 
-        {/* Summer banner section start  */}
-        <section className="sum_banner">
+         {/* Summer banner section start  */}
+         <section className="sum_banner">
           <div className="container">
             <div className="row">
               <div className="col-md-4">
                 <div className="banner_img">
+                <figure>
                   <img src={sum_banner01} />
+                  </figure>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="banner_img">
+                <figure>
                   <img src={sum_banner02} />
+                  </figure>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="banner_img">
+                <figure>
                   <img src={sum_banner03} />
+                 </figure>
                 </div>
               </div>
             </div>
