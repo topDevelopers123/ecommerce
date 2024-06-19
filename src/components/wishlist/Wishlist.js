@@ -25,7 +25,7 @@ function Wishlist() {
                     </div>
                     <div className='wish-items-shadow'>
                         <div className='wish-items text-center w-100 '>
-                            <div className=' col-lg-2 col-md-5 col-sm-5 col-6'>
+                            <div className=' col-lg-2 col-md-5 col-sm-5 col-6 img-fluid'>
                                 <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ815kJ-v7Uks_o0V9j0SHxU-2m79ugH17qIC0az_TCbowEaenkpmcqcMS9jMwI4QnldKcEw5rp7kp9NnTa1AUPa9w8aWT4xj2MrL8tmLI' />
                             </div>
                             <div className='wish-text wish-text-3 col-lg-10 col-md-7 col-sm-7 col-6 d-flex justify-content-between align-items-center'>
