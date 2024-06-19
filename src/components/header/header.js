@@ -167,10 +167,15 @@ function Header() {
                 </div>
               </div>
 
-              <div className="d-flex  position-relative   justify-content-center   align-items-center" onClick={toggleFlag2}>
-                <Link to="">
-                <i class="bi bi-person fs-2"></i>
+              <div className="d-flex  position-relative   justify-content-center   align-items-center" >
+                {flag2 ? 
+                <Link to="" onClick={toggleFlag2}>
+                <i class="bi bi-x-lg fs-2"></i>
                 </Link>
+                  : <Link to="" onClick={toggleFlag2}>
+                    <i class="bi bi-person fs-2"></i>
+                  </Link>
+}
                 
               </div>
             </div>
