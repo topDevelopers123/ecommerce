@@ -32,7 +32,7 @@ function Cart() {
                         <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity'>
 
                             <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>-</button>
-                            <div type='text' className='col-lg-4 col-md-4 col-sm-4 col-4 d-flex align-items-center justify-content-center'>0</div>
+                            <div type='text' className='col-lg-4 col-md-4 col-sm-4 col-4 d-flex align-items-center justify-content-center zero_input'>0</div>
                             <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>+</button>
                         </div>
                         <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 1000.00</h6>
