@@ -59,6 +59,7 @@
     font-size: .9rem;
     background-color: #4D869C;
     border: none;
+    text-align: center;
    }
    .checkout_total_box .group{
    margin: 10px 0;
