@@ -18,10 +18,11 @@ function Header() {
 
   return (
     <>
+    <header>
       <nav className="navbar  navbar-expand-xl navbar-dark d-flex p-0">
         <div className="container-fluid p-0 m-0 w-100 h-100 ">
           <div className={`col-lg-2 col-md-2 col-sm-2 ${flag ? "col-2" : "col-2"} h-100  d-flex justify-content-center align-items-center`}>
-            <Link to="/" className="navbar-brand ps-5">
+            <Link to="/" className="navbar-brand ps-md-5 ps-0">
               {/* Mayavi */}
               <img src={logo2}></img>
             </Link>
@@ -42,7 +43,7 @@ function Header() {
              
               </div>
               <button
-                className={`btn btn-outline mr-1  search_btn ${flag ? "rounded-0 w-inherit" : "bg-md-transparent"} `} onClick={show_searchBar}
+                className={`btn btn-outline mr-1  search_btn ${flag ? " w-inherit" : "bg-md-transparent"} `} onClick={show_searchBar}
                 type="submit"
               >
                 
@@ -353,6 +354,7 @@ function Header() {
  
         </div>
       </div>
+      </header>
     </>
   );
 }

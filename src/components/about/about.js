@@ -207,7 +207,7 @@ function About() {
           </div>
         </div>
 
-        <div className="container m-0 p-5 d-flex justify-content-center">
+        <div className="container p-5 d-flex justify-content-center">
           <div className="row w-100">
             <div className="col-md-4 col-sm-12 text-center">
               <h1 className="text-warning display-3 fw-bold number_s" id="number1">
