@@ -89,24 +89,18 @@ function Login() {
                   </label>
                 </div>
                 <p><a href="#">Forget your password ?</a></p></div>
-                <div className="d-flex align-items-center">
-                  <button type="submit" class="btn btn-primary" >
+                <div className="d-flex align-items-center login_register_box">
+                  <button type="submit" class="btn btn-primary login" >
+                    
                     Login
                   </button>
-                  <button type="submit" class="btn btn-primary ms-3">
+                  <button type="submit" class="btn btn-primary register ms-3">
                     <Link to='/register'>
                     Register
                     </Link>
                   </button>
-                  &nbsp;&nbsp;&nbsp; OR&nbsp;&nbsp;
-                  <div className="social_links d-flex">
-                    <div className="fb">
-                      <i class="bi bi-facebook"></i>
-                    </div>
-                    <div className="google">
-                      <i class="bi bi-google"></i>
-                    </div>
-                  </div>
+               
+                  
                 </div>
               </form>
             </div>

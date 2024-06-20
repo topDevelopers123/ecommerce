@@ -59,6 +59,57 @@
 }
 
 
+@media only screen and (max-width:992px) {
+    .login_register_box .login {
+        width: 150px !important;
+        padding: 8px 21px !important;
+
+    }
+
+    .login_register_box .register {
+        width: 150px;
+        padding: 8px 21px !important;
+
+    }
+
+    .login_register_box .register a {
+        padding-left: 0 !important;
+        font-size: 20px !important;
+    }
+
+    .login_register_box .login {
+
+        font-size: 20px !important;
+    }
+}
+
+
+
+@media only screen and (max-width:768px) {
+        .login_register_box .login {
+                width: 150px !important;
+                padding: 8px 21px !important;
+        
+            }
+        
+            .login_register_box .register {
+                width: 150px;
+                padding: 8px 21px !important;
+        
+            }
+        
+            .login_register_box .register a {
+                padding-left: 0 !important;
+                font-size: 20px !important;
+            }
+        
+            .login_register_box .login {
+        
+                font-size: 20px !important;
+            }
+}
+
+
 /* Mobile  */
 @media only screen and (max-width: 567px){
     .login-form button {
@@ -83,4 +134,24 @@
         color: #fff;
         font-size: 18px;
     }
+    .login_register_box .login{
+        width: 150px !important;
+        padding: 8px 21px !important;
+   
+    }
+        .login_register_box .register {
+            width: 150px;
+            padding: 8px 21px !important;
+    
+        }
+        
+        .login_register_box .register a{
+            padding-left: 0 !important;
+            font-size: 20px !important;
+        }
+
+                  .login_register_box .login {
+                   
+                      font-size: 20px !important;
+                  }
 }

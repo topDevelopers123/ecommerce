@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./header_images/logo.png";
+import logo2 from './header_images/FINAL LOGO white with Drop Shadow.png'
 import "./header.css";
  
 function Header() {
@@ -23,7 +24,7 @@ function Header() {
           <div className={`col-lg-2 col-md-2 col-sm-2 ${flag ? "col-2" : "col-2"} h-100  d-flex justify-content-center align-items-center`}>
             <Link to="/" className="navbar-brand ps-md-5 ps-0">
               {/* Mayavi */}
-              <img src={logo}></img>
+              <img src={logo2}></img>
             </Link>
           </div>
 
@@ -167,10 +168,15 @@ function Header() {
                 </div>
               </div>
 
-              <div className="d-flex  position-relative   justify-content-center   align-items-center" onClick={toggleFlag2}>
-                <Link to="">
-                <i class="bi bi-person fs-2"></i>
+              <div className="d-flex  position-relative   justify-content-center   align-items-center" >
+                {flag2 ? 
+                <Link to="" onClick={toggleFlag2}>
+                <i class="bi bi-x-lg fs-2"></i>
                 </Link>
+                  : <Link to="" onClick={toggleFlag2}>
+                    <i class="bi bi-person fs-2"></i>
+                  </Link>
+}
                 
               </div>
             </div>

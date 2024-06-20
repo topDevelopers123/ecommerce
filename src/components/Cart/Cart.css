@@ -66,20 +66,20 @@
         margin-top: 40px;
     }
 
-    .wish-text-2 div button,
+    /* .wish-text-2 div button,
     .wish-text-2 div div {
         padding: 5px;
         width: 50%;
         font-size: 12px;
         text-align: center;
-    }
+    } */
 
-    .quentity button,
-    .quentity div {
-        width: 50px !important;
+    .quentity button {
+        width: 10px !important;
         font-size: 25px !important;
         margin-top: 10px !important;
     }
+          
 
     .wish-items-4 {
         align-items: start !important;
@@ -89,10 +89,8 @@
         padding-inline: 20px !important;
     }
 
-    .wish-text-2 div button,
-    .wish-text-2 div div {
-        padding: 12px !important;
-        margin: 20px;
+    .zero_input {
+        padding: 0 !important;
     }
 
     .wish-items i {
@@ -101,6 +99,30 @@
         background-color: #CDE8E5;
         border-radius: 8px;
     }
+    .wish-text-2{
+        flex-direction: column;
+    }
+        .wish-text-2 div button {
+            width: 50px !important;
+            height: 40px !important;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 0px !important;
+        }
+                .wish-text-2 div{
+                    margin-left: 20px !important;
+                }
+                .wish-text-2 .quentity div{
+                    width: 50px;
+                    height: 50px;
+                    font-size: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 0 !important;
+                }
 }
 
 
@@ -114,17 +136,21 @@
         padding-left: 15px !important;
     }
 
-    .quentity button {
-        margin-left: 15px !important;
-        text-align: center !important;
+    .quentity {
+        margin-left: 20px !important;
     }
 
-    .wish-text-2 div button,
-    .wish-text-2 div div {
-        padding: 12px !important;
-        margin: 20px;
-        width: 90%;
+    .quentity button {
+        width: 50px !important;
+        font-size: 25px !important;
+        margin-top: 10px !important;
+
     }
+        .wish-text-2 div{
+            margin-left: 20px !important;
+        }
+
+
 
     .wish-items i {
         padding: 12px;
@@ -132,7 +158,8 @@
         background-color: #CDE8E5;
         border-radius: 8px;
     }
-    .card_div{
+
+    .card_div {
         padding: 0 !important;
     }
 }
@@ -148,12 +175,17 @@
         font-size: 15px !important;
     }
 
-    .quentity button,
+
+    .quentity {
+        margin-left: 0px !important;
+    }
+
     .quentity div {
-        width: 30px !important;
+        width: 50px !important;
+        height: 50px !important;
         font-size: 20px !important;
         margin-top: 5px !important;
-        height: 30px !important;
+
     }
 
     .add_to_cart_mini_div input {
@@ -175,18 +207,24 @@
         padding-inline: 10px !important;
     }
 
-    .wish-text-2 div button,
-    .wish-text-2 div div {
-        padding: 6px !important;
-        margin: 20px;
-        width: 80%;
-    }
+
 
     .wish-items i {
         padding: 12px;
         color: red;
         background-color: #CDE8E5;
         border-radius: 8px;
+    }
+
+    .wish-text-2 div button {
+        width: 40px !important;
+        height: 40px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wish-text-2 h6{
+        margin-top:10px !important;
     }
 
 }
