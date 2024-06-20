@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -49,8 +50,8 @@ function productDetail() {
                 </div>
                 <div className="title">Printed Kurta Set</div>
                 <div className="theme-text mr-2">Product Ratings: </div>
-                <div class="reviews-counter">
-                  <div class="rate">
+                <div className="reviews-counter">
+                  <div className="rate">
                     <input
                       type="radio"
                       id="star5"
@@ -139,28 +140,28 @@ function productDetail() {
                 <hr />
                 <div className="row">
                   <div className="col-md-6 col-6 col-lg-4">
-                    <div class="product-count">
+                    <div className="product-count">
                       <label for="size">Quantity</label>
-                      <form action="#" class="d-flex">
-                        <div class="qtyminus">-</div>
+                      <form action="#" className="d-flex">
+                        <div className="qtyminus">-</div>
                         <input
                           type="text"
                           name="quantity"
                           value="1"
-                          class="qty"
+                          className="qty"
                         />
-                        <div class="qtyplus">+</div>
+                        <div className="qtyplus">+</div>
                       </form>
                     </div>
                   </div>
                   <div className="col-md-1 col-1 col-lg-1">
                     <div className="wishlist_btn">
-                      <i class="bi bi-heart"></i>
+                      <i className="bi bi-heart"></i>
                     </div>
                   </div>
                   <div className="col-md-1 col-1 col-lg-1">
                     <div className="wishlist_btn ms-2">
-                      <i class="bi bi-share-fill"></i>
+                      <i className="bi bi-share-fill"></i>
                     </div>
                   </div>
                 </div>
@@ -182,23 +183,23 @@ function productDetail() {
             <div className="additional-details my-5 text-center">
               <ul className="nav nav-tabs justify-content-center">
                 <li className="nav-item">
-                  <a
+                  <Link
                     className="nav-link active"
                     data-bs-toggle="tab"
-                    href="#home"
+                    to="#home"
                   >
                     Description
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" data-bs-toggle="tab" href="#menu1">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#menu1">
                     Reviews
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" data-bs-toggle="tab" href="#menu2">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#menu2">
                     Specifications
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <div className="tab-content mt-4 mb-3">
@@ -269,10 +270,10 @@ function productDetail() {
               <div className="card">
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp01} className="tp_img" alt="..." />
@@ -299,10 +300,10 @@ function productDetail() {
               <div className="card">
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp01} className="tp_img" alt="..." />
@@ -329,10 +330,10 @@ function productDetail() {
               <div className="card">
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp01} className="tp_img" alt="..." />

@@ -96,10 +96,6 @@
 }
 
 @media screen and (max-width: 567px) {
-    .contact-form span {
-        display: block;
-    }
-
     .contact-form button {
         padding: 14px 22px !important;
         font-weight: 300;
@@ -133,9 +129,7 @@
         text-align: center;
     }
 
-    .contact-form span {
-        display: block;
-    }
+   
    .contact-location {
     padding: 4px;
 }

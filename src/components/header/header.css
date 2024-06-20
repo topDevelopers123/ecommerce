@@ -445,10 +445,7 @@ border-bottom-left-radius: 100px;
     line-height: 18px;
     font-size: 15px;
   }
-  .category_main_div div img {
-    width: 75px;
-    height: 75px;
-  }
+
   .category_main_div div h6 {
     font-size: 15px;
     text-align: center !important;
