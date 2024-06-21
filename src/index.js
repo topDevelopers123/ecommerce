@@ -4,17 +4,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import StateManagementProvider from "./Context/stateManagement/StateManagement";
 import AuthContextProvider from "./Context/authContext/authContext";
+import CategoryContextProvider from "./Context/categoryContext/CategoryContext";
+import WishlistProvider from "./Context/wishlist/WishlistContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-    <StateManagementProvider>
-      <App />
-    </StateManagementProvider>
+      <CategoryContextProvider>
+        <WishlistProvider>
+          <App />
+        </WishlistProvider>
+      </CategoryContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );
