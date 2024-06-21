@@ -18,6 +18,7 @@ import Cart from './components/Cart/Cart';
 import Thankyou from './components/login/Thankyou';
 import TrackOrder from './components/trackOrder/TrackOrder';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   
   return (
     <> 
+    <Toaster/>
       <BrowserRouter>
    
       <Header/>
