@@ -28,25 +28,25 @@ function Otp_verify() {
         <div>
             <section className="login_form_sec">
                 <div className="container">
-                    <div class="col-lg-6 offset-lg-3 col-12">
-                        <div class="login-form">
+                    <div className="col-lg-6 offset-lg-3 col-12">
+                        <div className="login-form">
                             <h2>OTP Verification</h2>
 
                             <form onSubmit={handleSubmit} >
 
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">
+                                <div className="mb-3">
+                                    <label for="exampleInputEmail1" className="form-label">
                                     </label>
                                     <input
                                         type="text"
                                         placeholder="Enter OTP here"
-                                        class="form-control"
+                                        className="form-control"
                                         id="exampleInputEmail1"
                                     />
                                 </div>
 
                                 <div className="d-flex align-items-center">
-                                    <button type="submit" class="btn btn-primary ms-3">
+                                    <button type="submit" className="btn btn-primary ms-3">
                                         <Link to='/login'>
                                             Verify OTP
                                         </Link>

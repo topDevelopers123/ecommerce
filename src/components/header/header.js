@@ -88,7 +88,7 @@ function Header() {
             </div>
           </div> */}
 
-            {/* <i class="bi bi-search search_icon" onClick={show_searchBar}></i> */}
+            {/* <i className="bi bi-search search_icon" onClick={show_searchBar}></i> */}
 
           {/* <div className="col-lg-1 col-md-1 col-sm-1 col-1 h-100  d-flex justify-content-center align-items-center order-sm-3 order-3 ">
             <button
@@ -171,10 +171,10 @@ function Header() {
               <div className="d-flex  position-relative   justify-content-center   align-items-center" >
                 {flag2 ? 
                 <Link to="" onClick={toggleFlag2}>
-                <i class="bi bi-x-lg fs-2"></i>
+                <i className="bi bi-x-lg fs-2"></i>
                 </Link>
                   : <Link to="" onClick={toggleFlag2}>
-                    <i class="bi bi-person fs-2"></i>
+                    <i className="bi bi-person fs-2"></i>
                   </Link>
 }
                 

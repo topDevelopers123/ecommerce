@@ -210,10 +210,11 @@
 
 
     .wish-items i {
-        padding: 12px;
-        color: red;
-        background-color: #CDE8E5;
-        border-radius: 8px;
+            padding: 8px;
+                color: red;
+                background-color: #CDE8E5;
+                border-radius: 15%;
+                font-size: 15px;
     }
 
     .wish-text-2 div button {

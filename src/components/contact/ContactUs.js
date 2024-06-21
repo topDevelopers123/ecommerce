@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ContactUs.css";
 
 function ContactUs() {
@@ -60,21 +61,21 @@ function ContactUs() {
               <div className="contact-form-div">
                 <div className="contact-location">
                   <div className="contact-icon">
-                    <i class="bi bi-telephone "></i>
+                    <i className="bi bi-telephone "></i>
                     <h4>Call us Now :</h4>
-                    <a href="tel:9262852851">9262852851</a>
+                    <Link to="tel:9262852851">9262852851</Link>
                     <br />
                   </div>
                   <div className="contact-icon">
-                    <i class="bi bi-envelope-open"></i>
+                    <i className="bi bi-envelope-open"></i>
                     <h4>Email</h4>
-                    <a href="mailto:mayavifashion@gmail.com">
+                    <Link to="mailto:mayavifashion@gmail.com">
                       mayavifashion@gmail.com
-                    </a>
+                    </Link>
                     <br />
                   </div>
                   <div className="contact-icon">
-                    <i class="bi bi-geo-alt"></i>
+                    <i className="bi bi-geo-alt"></i>
                     <h4>Our Address :</h4>
                     <ul>
                       <li>355, 3rd Floor, Aggarwal Millennium</li>

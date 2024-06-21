@@ -62,13 +62,13 @@ function About() {
     <div>
       {/* Banner */}
 
-      <section class="about" style={{
+      <section className="about" style={{
         backgroundImage: 'url(' + banner01 + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover', backgroundPosition: 'center'
       }}>
 
-        <div class="overlay">
-          <div class="content">
+        <div className="overlay">
+          <div className="content">
             <h2>Motive of Charity</h2>
             <p>“Everyone can be great because everyone can serve.</p>
           </div>
@@ -198,7 +198,7 @@ function About() {
       <section>
         <div className="container d-flex justify-content-center align-content-center mt-5 counter-bor">
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 text-center">
               <h2 className="text-center fw-bold">
                 Fashion with a Heart-Because
               </h2>

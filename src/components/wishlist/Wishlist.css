@@ -104,7 +104,6 @@
         display: flex;
         justify-content: flex-start;
         width: 100%;
-        height: 300px;
     }
 
     .wish-list {
@@ -113,11 +112,9 @@
         align-items: center;
     }
     .wish-items{
-       align-items: start ;
+       align-items: center ;
     }
-    .wish-text-3 div button{
-        margin-bottom: 20px !important;
-    }
+  
 }
 
 @media screen and (max-width: 750px) {
@@ -151,7 +148,6 @@
          .wish-items img {
     
              width: 100%;
-             height: 300px;
          }
         
 }
@@ -181,9 +177,9 @@
 
 @media screen and (max-width: 468px) {
     .wish-text-3 div button{
-        width: 110px !important;
+        width: 100% !important;
         height: 30px !important;
-        font-size: 12px;
+        font-size: 8px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -199,8 +195,7 @@
          }
         .wish-items img {
            
-            width: 100%;
-            height: 235px;
+            width: 80%;
         }
         .wish-text-3 a{
             padding-left: 10px !important;

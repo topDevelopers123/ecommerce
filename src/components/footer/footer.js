@@ -67,13 +67,13 @@ function footer() {
       <div className='container mt-3'>
         <div className='row'>
           <div className='col-lg-8 col-md-12 col-12'>
-            <p class='text-light'>Copyright © 2024 | All Rights Reserved | Paras Parivaar Pvt Ltd. New Delhi</p>
+            <p className='text-light'>Copyright © 2024 | All Rights Reserved | Paras Parivaar Pvt Ltd. New Delhi</p>
           </div>
           <div className='col-lg-4 col-md-12 col-12 d-flex justify-content-end pe-5'>
-          <i class="bi bi-facebook mx-3 text-light"></i>
-          <i class="bi bi-instagram mx-3 text-light"></i>
-          <i class="bi bi-twitter-x mx-3 text-light"></i>
-          <i class="bi bi-youtube mx-3 text-light"></i>
+          <i className="bi bi-facebook mx-3 text-light"></i>
+          <i className="bi bi-instagram mx-3 text-light"></i>
+          <i className="bi bi-twitter-x mx-3 text-light"></i>
+          <i className="bi bi-youtube mx-3 text-light"></i>
           </div>
         </div>
       </div>
