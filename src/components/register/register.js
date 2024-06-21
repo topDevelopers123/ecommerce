@@ -5,15 +5,19 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./register.css";
 import { Formik, useFormik } from "formik";
 import * as yup from 'yup'
+import { useAuthContext } from "../../Context/index.context";
+
 
 function Register() {
 
+  const {register} = useAuthContext()
   const initialValue = {
     name:"",
     email:"",
     phone:"",
     password:"",
-    confirm_Password:""
+    confirm_Password:"",
+    role:"user"
   }
 
   const registered = yup.object({
@@ -28,7 +32,7 @@ function Register() {
     initialValues:initialValue,
     validationSchema:registered,
     onSubmit:(value)=>{
-      console.log(value);
+      register(value)
     }
   })
 
@@ -80,7 +84,7 @@ function Register() {
                     Mobile Number *
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     placeholder="Enter Your Email"
                     class="form-control"
                     id="exampleInputEmail1"
