@@ -227,27 +227,6 @@ function Products() {
                     <button type="button" className="btn filter_btn  fw-bold text-light d-flex justify-content-center align-items-center " onClick={showFilter}>
                       {flag ? "CLOSE" : ` FILTER`}
                     </button>
-                    {/* <div className="d-flex p-2 range_div_2">
-                  <div className="w-100 range_div ">
-                  <h4>Filters</h4>
-                  <input
-                    type="range"
-                    min={100}
-                    max={5000}
-                    onChange={(event) => setRenge(event.target.value)}
-                  />
-                  <p>
-                    Range : {range > 100 ? "0-" : ""} {range}
-                  </p>
-                  <button className="btn go_btn  fw-bold text-light  ">
-                    FILTER
-                  </button>
-                </div>
-
-                <div className="d-flex justify-content-end px-2 w-100 clear_all">
-                  <Link to="void::javascript" className="text-decoration-none fw-bold">CLEAR ALL</Link>
-                </div>
-              </div> */}
                   </div>
                 </div>
               </div>
@@ -267,7 +246,12 @@ function Products() {
                         <div className="d-flex">
                           <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.product_real_price} </p></del>
                           <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.product_discount_price}</p>
-                          <p className=" fw-bold fs-7">{item.discount}OFF</p>
+                          <p className="ms-1
+                          
+                          
+                          
+                          
+                          fw-bold fs-7">{item.discount}OFF</p>
                         </div>
 
 
@@ -325,7 +309,7 @@ function Products() {
         </div>
       </div>
 
-     
+
       <section className="featured_products p-0">
         <div className="container">
           <div className="head_title">
