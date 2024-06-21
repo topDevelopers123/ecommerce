@@ -155,6 +155,9 @@
 /* Responsive */
 
 @media screen and (max-width: 567px) {
+    .charity_para {
+            font-size: 20px;
+        }
     .about .overlay {
         height: 265px;
         z-index: 2;

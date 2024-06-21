@@ -20,7 +20,7 @@ function Wishlist() {
                             <h6 className='col-lg-2  col-12'>Colour</h6>
                             <h6 className='col-lg-2  col-12'>TOTAL</h6>
                             <h6 className='col-lg-2  col-12'>ADD TO CART</h6>
-                            <h6 className='col-lg-2  col-12'><i class="bi bi-trash3"></i></h6>
+                            <h6 className='col-lg-2  col-12'><i className="bi bi-trash3"></i></h6>
                         </div>
                     </div>
                     <div className='wish-items-shadow'>
@@ -30,15 +30,15 @@ function Wishlist() {
                             </div>
                             <div className='wish-text wish-text-3 col-lg-10 col-md-7 col-sm-7 col-6 d-flex justify-content-between align-items-center'>
                                 <Link className='col-lg-2 col-md-12 col-sm-12 '>EYEBOGLER Polo T-shirt For Men</Link>
-                                <h6 className='col-lg-2 col-md-12 col-sm-12 '>
+                                <h6 className='col-lg-2 col-md-12 col-sm-6 col-6'>
                                     M</h6>
-                                <h6 className='col-lg-2 col-md-12 col-sm-12 '>
+                                <h6 className='col-lg-2 col-md-12 col-sm-6 col-6 '>
                                     Grey</h6>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 '>&#8377;
                                     199.00</h6>
-                                <div className='col-lg-2 col-md-12 col-sm-12 add_to_cart_delete_box'>
+                                <div className='col-lg-2 col-md-12 col-sm-9 col-9 add_to_cart_delete_box'>
                                     <button >ADD TO CART</button></div>
-                                <h6 className='col-lg-2 col-md-12 col-sm-12 '><i class="bi bi-trash3"></i></h6>
+                                <div className='col-lg-2 col-md-12 col-sm-3 col-3 '><i className="bi bi-trash3"></i></div>
                             </div>
 
                         </div>

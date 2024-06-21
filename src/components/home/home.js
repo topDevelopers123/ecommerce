@@ -279,10 +279,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp01} className="tp_img" alt="..." />
@@ -309,10 +309,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp02} className="tp_img" alt="..." />
@@ -339,10 +339,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp03} className="tp_img" alt="..." />
@@ -369,10 +369,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp04} className="tp_img" alt="..." />
@@ -401,10 +401,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp05} className="tp_img" alt="..." />
@@ -431,10 +431,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp06} className="tp_img" alt="..." />
@@ -461,10 +461,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp07} className="tp_img" alt="..." />
@@ -491,10 +491,10 @@ function Home() {
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
                       <div className="icons">
-                        <i class="bi bi-heart-fill"></i>
+                        <i className="bi bi-heart-fill"></i>
                       </div>
                       <div className="icons">
-                        <i class="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                     <img src={tp08} className="tp_img" alt="..." />

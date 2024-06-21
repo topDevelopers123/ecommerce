@@ -5,15 +5,19 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./register.css";
 import { Formik, useFormik } from "formik";
 import * as yup from 'yup'
+import { useAuthContext } from "../../Context/index.context";
+
 
 function Register() {
 
+  const {register} = useAuthContext()
   const initialValue = {
     name:"",
     email:"",
     phone:"",
     password:"",
-    confirm_Password:""
+    confirm_Password:"",
+    role:"user"
   }
 
   const registered = yup.object({
@@ -28,7 +32,7 @@ function Register() {
     initialValues:initialValue,
     validationSchema:registered,
     onSubmit:(value)=>{
-      console.log(value);
+      register(value)
     }
   })
 
@@ -38,33 +42,33 @@ function Register() {
       {/* Login form section start  */}
       <section className="login_form_sec">
         <div className="container">
-          <div class="col-lg-6 offset-lg-3 col-12">
-            <div class="login-form">
+          <div className="col-lg-6 offset-lg-3 col-12">
+            <div className="login-form">
               <h2>REGISTER</h2>
           
               <form onSubmit={handleSubmit}>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputEmail1" className="form-label">
                     Your Name *
                   </label>
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    class="form-control" name="name" value={values.name}
+                    className="form-control" name="name" value={values.name}
                     onBlur={handleBlur}
                     onChange={handleChange} 
                   />
 
 {touched.name && errors.name ? <p className="text-start text-danger ps-1 mt-1">{errors.name}</p> : null}
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputEmail1" className="form-label">
                     Your Email *
                   </label>
                   <input
                     type="email"
                     placeholder="Enter Your Email"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     name="email"
@@ -75,14 +79,14 @@ function Register() {
                   {touched.email && errors.email ? <p className="text-start text-danger ps-1 mt-1">{errors.email}</p> : null}
                 </div>
 
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputEmail1" className="form-label">
                     Mobile Number *
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     placeholder="Enter Your Email"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     name="phone"
@@ -93,14 +97,14 @@ function Register() {
                   {touched.phone && errors.phone ? <p className="text-start text-danger ps-1 mt-1">{errors.phone}</p> : null}
                 </div>
 
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputPassword1" className="form-label">
                     Your Password *
                   </label>
                   <input
                     type="password"
                     placeholder="Enter Your Password"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputPassword1"
                     name="password"
                     value={values.password}
@@ -110,14 +114,14 @@ function Register() {
                     {touched.password && errors.password ? <p className="text-start text-danger ps-1 mt-1">{errors.password}</p> : null}
                 </div>
                 
-                <div class="mb-3">
-                  <label for="exampleInputPassword2" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputPassword2" className="form-label">
                     Confirm Password *
                   </label>
                   <input
                     type="password"
                     placeholder="Confirm Password"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputPassword2"
                     name="confirm_Password"
                     value={values.confirm_Password}
@@ -128,24 +132,17 @@ function Register() {
                 </div>
 
                 
-                <div className="d-flex align-items-center">
-                  <button type="submit" class="btn btn-primary">
+                <div className="d-flex align-items-center login_register_box">
+                  <button type="submit" className="btn btn-primary  login">
                     Register
                   </button>
-                  <button type="submit" class="btn btn-primary ms-3">
+                  <button type="submit" className="btn btn-primary ms-3 register">
                     <Link to="/login">
                       Login
                     </Link>
                   </button>
-                  &nbsp;&nbsp;&nbsp; OR&nbsp;&nbsp;
-                  <div className="social_links d-flex">
-                    <div className="fb">
-                      <i class="bi bi-facebook"></i>
-                    </div>
-                    <div className="google">
-                      <i class="bi bi-google"></i>
-                    </div>
-                  </div>
+                 
+                 
                 </div>
               </form>
             </div>

@@ -5,13 +5,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import StateManagementProvider from "./Context/stateManagement/StateManagement";
+import AuthContextProvider from "./Context/authContext/authContext";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <AuthContextProvider>
     <StateManagementProvider>
       <App />
     </StateManagementProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

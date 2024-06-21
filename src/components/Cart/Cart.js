@@ -18,7 +18,7 @@ function Cart() {
                         <h6 className='col-lg-2  col-12'>UNIT PRICE</h6>
                         <h6 className='col-lg-2  col-12'>QUANTITY</h6>
                         <h6 className='col-lg-2  col-12'>TOTAL</h6>
-                        <h6 className='col-lg-2  col-12'><i class="bi bi-trash3"></i></h6>
+                        <h6 className='col-lg-2  col-12'><i className="bi bi-trash3"></i></h6>
 
                     </div>
                 </div>
@@ -36,7 +36,7 @@ function Cart() {
                             <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>+</button>
                         </div>
                         <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 1000.00</h6>
-                        <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i class="bi bi-trash3"></i></h6>
+                        <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3"></i></h6>
                     </div>
                 </div>
 

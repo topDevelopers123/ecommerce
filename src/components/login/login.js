@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
-import { useStateManagement } from "../../Context/index.context";
+import { useAuthContext, useStateManagement } from "../../Context/index.context";
 import { useFormik } from "formik";
 import * as yup from "yup"
 
 function Login() {
+  const { login } = useAuthContext()
 
   const initialValue = {
     email:"",
@@ -25,7 +26,7 @@ function Login() {
     initialValues:initialValue,
     validationSchema:Login,
     onSubmit:(value)=>{
-      console.log(value)
+     login(value) 
     
     
   }
@@ -37,19 +38,19 @@ function Login() {
       {/* Login form section start  */}
       <section className="login_form_sec">
         <div className="container">
-          <div class="col-lg-6 offset-lg-3 col-12">
-            <div class="login-form">
+          <div className="col-lg-6 offset-lg-3 col-12">
+            <div className="login-form">
               <h2>LOGIN</h2>
 
               <form onSubmit={handleSubmit} >
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputEmail1" className="form-label">
                     Your Email *
                   </label>
                   <input
                     type="email"
                     placeholder="Enter Your Email"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp" 
                     name="email"
@@ -61,14 +62,14 @@ function Login() {
                  
                 {touched.email && errors.email ? <p className="text-start text-danger ps-1 mt-1">{errors.email}</p> : null}
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleInputPassword1" className="form-label">
                     Your Password *
                   </label>
                   <input
                     type="password"
                     placeholder="Enter Your Password"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputPassword1" 
                     name="password"
                     value={values.password}
@@ -78,23 +79,23 @@ function Login() {
                   {touched.password && errors.password ? <p className="text-start text-danger ps-1 mt-1">{errors.password}</p> : null}
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                <div class="mb-3 form-check">
+                <div className="mb-3 form-check">
                   <input
                     type="checkbox"
-                    class="form-check-input p-0 border-0 "
+                    className="form-check-input p-0 border-0 "
                     id="exampleCheck1"
                   />
-                  <label class="form-check-label" for="exampleCheck1">
+                  <label className="form-check-label" for="exampleCheck1">
                     Remember me
                   </label>
                 </div>
-                <p><a href="#">Forget your password ?</a></p></div>
+                <p><Link to="#">Forget your password ?</Link></p></div>
                 <div className="d-flex align-items-center login_register_box">
-                  <button type="submit" class="btn btn-primary login" >
+                  <button type="submit" className="btn btn-primary login" >
                     
                     Login
                   </button>
-                  <button type="submit" class="btn btn-primary register ms-3">
+                  <button type="submit" className="btn btn-primary register ms-3">
                     <Link to='/register'>
                     Register
                     </Link>
