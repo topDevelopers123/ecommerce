@@ -6,7 +6,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthContextProvider from "./Context/authContext/authContext";
 import CategoryContextProvider from "./Context/categoryContext/CategoryContext";
-import WishlistProvider from "./Context/wishlist/WishlistContext";
+import WishlistProvider from "./Context/wishlistContext/WishlistContext";
+import CartProvider from "./Context/cartContext/CartContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,7 +16,9 @@ root.render(
     <AuthContextProvider>
       <CategoryContextProvider>
         <WishlistProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </WishlistProvider>
       </CategoryContextProvider>
     </AuthContextProvider>
