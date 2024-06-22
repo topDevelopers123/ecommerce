@@ -177,7 +177,7 @@ function Checkout() {
                               <label htmlFor="radio1"></label>
                             </div>
                             <div className="select-txt">
-                              <p className="pymt-type-name">Online</p>
+                              <p className="pymt-type-name">Online Payment</p>
                               <p className="pymt-type-desc">Safe payment online. All services available : Paytm , Paypal , PhonePe , Razorpay.</p>
                             </div>
                             <div className="select-logo">

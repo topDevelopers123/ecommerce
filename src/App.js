@@ -19,6 +19,7 @@ import Thankyou from './components/login/Thankyou';
 import TrackOrder from './components/trackOrder/TrackOrder';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import Email_verify from './components/login/Email_verify'
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/thankyou' element={<Thankyou />}/>
           <Route path='/track_order' element={<TrackOrder />}/>
+          <Route path='/Email_verify' element={<Email_verify />} />
+
         </Routes>
         <Footer/>
    
