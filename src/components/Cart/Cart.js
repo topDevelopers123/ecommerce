@@ -1,8 +1,12 @@
 import React from 'react'
 import './Cart.css'
 import { Link } from 'react-router-dom'
+import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
+    const { cartData } = useCartContext()
+    console.log(cartData)
+    
     return (
 
         <div className='container-fluid mt-5 mb-5'>
@@ -23,10 +27,14 @@ function Cart() {
                     </div>
                 </div>
                 <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center '>
-                    <div className=' col-lg-2 col-md-5 col-sm-5 col-5'>
-                        <img src='https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ815kJ-v7Uks_o0V9j0SHxU-2m79ugH17qIC0az_TCbowEaenkpmcqcMS9jMwI4QnldKcEw5rp7kp9NnTa1AUPa9w8aWT4xj2MrL8tmLI' />
-                    </div>
+                    {cartData?.map((item,i)=>(
+                        <div className=' col-lg-2 col-md-5 col-sm-5 col-5'>
+                            <img src={""} />
+                        </div>
+                    ))}
+                   
                     <div className='wish-text wish-text-2   col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center'>
+                        {/* {cartData?.map(())} */}
                         <Link className='col-lg-2 col-md-12 col-sm-12 col-12 '>EYEBOGLER Polo T-shirt For Men</Link>
                         <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 250.00</h6>
                         <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity'>
