@@ -23,6 +23,7 @@ import tp08 from "./img/trending/8.webp";
 import "./home.css";
 import axios from "axios";
 
+
 function Home() {
   const navigate = useNavigate();
   const productDetailsPage = () => {
@@ -268,36 +269,39 @@ function Home() {
           </div>
           <div className="tp_area">
             <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
+
+
+                <div className="col-lg-3 col-md-6 col-sm-12">
+                  <div className="card" onClick={productDetailsPage}>
+                    <div className="add_icons">
+                      <div className="icons">
+                        <i className="bi bi-heart-fill"></i>
+                      </div>
+                      <div className="icons">
+                        <i className="bi bi-share-fill"></i>
+                      </div>
                     </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp01} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
+                    <img src={tp01} className="tp_img" alt="..." />
+                    <div className="card-body">
+                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                      <p className="card-text">
+                        Some quick example text to build on ..
+                      </p>
+                      <p className="pricing">
+                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                      </p>
+                      <div className="d-flex">
+                        <button className="btn btn-block addBtn">
+                          Add to basket
+                        </button>
+                        <button className="btn btn-block addBtn ms-2">
+                          Buy Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+
               <div className="col-lg-3 col-md-6 col-sm-12">
                 <div className="card" onClick={productDetailsPage}>
                   <div className="add_icons">

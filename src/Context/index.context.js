@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { StateManagement } from "./stateManagement/StateManagement";
 import { AuthContext } from "./authContext/authContext";
 import { categoryContext } from "./categoryContext/CategoryContext";
 import { wishlistContext } from "./wishlistContext/WishlistContext";

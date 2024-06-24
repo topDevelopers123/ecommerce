@@ -1,26 +1,27 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-export const ProductContext=createContext();
+export const ProductContext = createContext();
 
-function ProductProvider({children}){
-    const [productData,setProductData]=useState(null);
-    const token=localStorage.getItem("token");
+function ProductProvider({ children }) {
+    const [productData, setProductData] = useState(null);
+    const token = localStorage.getItem("token");
 
-    const getProductData=async()=>{
+    const getProductData = async () => {
         try {
-            const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/wishlist/get', {
+            const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/product/get', {
                 headers: { 'Authorization': token, },
             })
             setProductData(resp.data);
             console.log(resp);
         } catch (error) {
-           console.log(error); 
+            console.log(error);
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         getProductData();
-    },[])
-    return(
+    }, [])
+    return (
         <ProductContext.Provider value={{ productData }}>
             {children}
         </ProductContext.Provider>
