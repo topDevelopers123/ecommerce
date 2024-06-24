@@ -12,9 +12,6 @@ import sbc01 from "./img/category/men_casual.jpg";
 import sbc02 from "./img/category/men_formal.webp";
 import sbc03 from "./img/category/women_casual.jpg";
 import sbc04 from "./img/category/women_ethnic.webp";
-import sum_banner01 from "./img/summer_banners/1.jpg";
-import sum_banner02 from "./img/summer_banners/2.avif";
-import sum_banner03 from "./img/summer_banners/3.jpg";
 import tp01 from "./img/trending/1.jpg";
 import tp02 from "./img/trending/2.webp";
 import tp03 from "./img/trending/3.jpg";
@@ -23,11 +20,7 @@ import tp05 from "./img/trending/5.webp";
 import tp06 from "./img/trending/6.jpg";
 import tp07 from "./img/trending/7.webp";
 import tp08 from "./img/trending/8.webp";
-import slid01 from "./img/slider/slider1.webp";
-import slid02 from "./img/slider/slider2.webp";
-import slid03 from "./img/slider/slider3.webp";
 import "./home.css";
-import { useStateManagement } from "../../Context/index.context";
 import axios from "axios";
 
 function Home() {
@@ -39,23 +32,25 @@ function Home() {
 
 
   const [bannner, setBanner] = useState(null);
+  const [shortBanner, setShortBanner] = useState(null);
 
   const getbannerData = async () => {
     try {
       const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/banner/get'
       )
+      const resp2 = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/shortBanner/get'
+      )
       setBanner(resp.data.data)
-
+      setShortBanner(resp2.data.data)
     } catch (error) {
       console.log(error);
     }
   }
+  console.log(shortBanner)
 
   useEffect(() => {
     getbannerData();
   }, [])
-
-
 
 
   return (
@@ -228,35 +223,25 @@ function Home() {
       </section>
       {/* Shop by category end  */}
 
-      {/* Summer banner section start  */}
+      {/* Short Banner  */}
+
       <section className="sum_banner">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-              <div className="banner_img">
-                <figure>
-                  <img src={sum_banner01} />
-                </figure>
+            {shortBanner?.map((item, i) => (
+              <div className="col-md-4" key={i}>
+                <div className="banner_img">
+                  <figure>
+                    <img src={item?.image?.image_url} alt={`Banner ${i + 1}`} />
+                  </figure>
+                </div>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div className="banner_img">
-                <figure>
-                  <img src={sum_banner02} />
-                </figure>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="banner_img">
-                <figure>
-                  <img src={sum_banner03} />
-                </figure>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-      {/* Summer banner section end  */}
+
+      {/* Short Banner  */}
 
       {/* Trending products section start  */}
       <section className="trending_products">
