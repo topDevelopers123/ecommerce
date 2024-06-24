@@ -22,6 +22,7 @@ import tp07 from "./img/trending/7.webp";
 import tp08 from "./img/trending/8.webp";
 import "./home.css";
 import axios from "axios";
+import { useProductContext } from "../../Context/index.context";
 
 
 function Home() {
@@ -30,8 +31,8 @@ function Home() {
     navigate("/productdetails");
     window.scrollTo(0, 0);
   };
-
-
+  const { productData }=useProductContext()
+  console.log(productData)
   const [bannner, setBanner] = useState(null);
   const [shortBanner, setShortBanner] = useState(null);
 
@@ -47,7 +48,6 @@ function Home() {
       console.log(error);
     }
   }
-  console.log(shortBanner)
 
   useEffect(() => {
     getbannerData();
@@ -267,10 +267,10 @@ function Home() {
               <button className="btn">Kid's</button>
             </ul>
           </div>
+
+          {/* Product Start  */}
           <div className="tp_area">
             <div className="row">
-
-
                 <div className="col-lg-3 col-md-6 col-sm-12">
                   <div className="card" onClick={productDetailsPage}>
                     <div className="add_icons">
