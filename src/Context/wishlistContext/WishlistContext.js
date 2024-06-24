@@ -14,9 +14,7 @@ function WishlistProvider({ children }) {
             const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/wishlist/get', {
                 headers: { 'Authorization': token, },
             })
-            setWishlistData(resp.data)
-            console.log(resp.data)
-
+            setWishlistData(resp.data.data)
         } catch (error) {
             console.log(error);
         }

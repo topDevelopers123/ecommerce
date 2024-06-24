@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -28,6 +28,7 @@ import slid02 from "./img/slider/slider2.webp";
 import slid03 from "./img/slider/slider3.webp";
 import "./home.css";
 import { useStateManagement } from "../../Context/index.context";
+import axios from "axios";
 
 function Home() {
   const navigate = useNavigate();
@@ -36,81 +37,131 @@ function Home() {
     window.scrollTo(0, 0);
   };
 
-  // Shorten desc 
-  
-  const ImageCarousel = () => {
-    // const {data} = useStateManagement()
 
-    return (
-      <div>
-        {/* Slider section start  */}
-        <section className="main_slider">
-          <div
-            id="carouselExampleControls"
-            className="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src={slid01} className="d-block w-100" alt="..." />
+  const [bannner, setBanner] = useState(null);
+
+  const getbannerData = async () => {
+    try {
+      const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/banner/get'
+      )
+      setBanner(resp.data.data)
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getbannerData();
+  }, [])
+
+
+
+
+  return (
+    <div>
+      {/* Slider section start  */}
+      <section className="main_slider">
+        <div
+          id="carouselExampleControls"
+          className="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div className="carousel-inner">
+            {bannner?.map((item, index) => (
+              <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
+                <img src={item?.image?.image_url} className="d-block w-100" alt={`Slide ${index}`} />
               </div>
-              <div className="carousel-item">
-                <img src={slid02} className="d-block w-100" alt="..." />
-              </div>
-              <div className="carousel-item">
-                <img src={slid03} className="d-block w-100" alt="..." />
-              </div>
-            </div>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden"></span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Next</span>
-            </button>
+            ))}
           </div>
-        </section>
-        {/* Slider section end  */}
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
 
-        {/* Featured products start */}
-        <section className="featured_products">
-          <div className="container">
-            <div className="head_title">
-              <h2 className="fp_heading" data-text="Featured Products">
-                Featured Products
-              </h2>
-              <div className="bdr"></div>
+      {/* Slider section end  */}
+
+      {/* Featured products start */}
+      <section className="featured_products">
+        <div className="container">
+          <div className="head_title">
+            <h2 className="fp_heading" data-text="Featured Products">
+              Featured Products
+            </h2>
+            <div className="bdr"></div>
+          </div>
+          <OwlCarousel
+            className="owl-theme"
+            loop
+            margin={10}
+            nav
+            items={4}
+            dots={false}
+            responsive={{
+              0: {
+                items: 4, // 1 item in mobile view
+              },
+              768: {
+                items: 3, // 3 items in tablet view
+              },
+              1200: {
+                items: 4, // 4 items in desktop view
+              },
+            }}
+          >
+            <div className="item">
+              <img src={fea01} alt="Featured Product 1" />
             </div>
+            <div className="item">
+              <img src={fea02} alt="Featured Product 2" />
+            </div>
+            <div className="item">
+              <img src={fea03} alt="Featured Product 3" />
+            </div>
+          </OwlCarousel>
+        </div>
+      </section>
+      {/* Featured products end  */}
+
+      {/* Shop by category start */}
+      <section className="new_arrivals">
+        <div className="container">
+          <div className="head_title">
+            <h2>New Arrivals</h2>
+            <div className="bdr"></div>
+          </div>
+          <div className="categories">
             <OwlCarousel
               className="owl-theme"
               loop
               margin={10}
-              nav
-              items={4}
-              dots={false}
+              nav={false} // Hide navigation arrows
+              dots={false} // Hide dots
+              autoplay
+              autoplayTimeout={5000}
+              items={4} // Number of items to display
               responsive={{
                 0: {
-                  items: 4, // 1 item in mobile view
+                  items: 3, // 1 item in mobile view
                 },
                 768: {
-                  items: 3, // 3 items in tablet view
+                  items: 4, // 3 items in tablet view
                 },
                 1200: {
                   items: 4, // 4 items in desktop view
@@ -118,456 +169,413 @@ function Home() {
               }}
             >
               <div className="item">
-                <img src={fea01} alt="Featured Product 1" />
+                <img src={sbc01} />
+                <h4>Men's Causal Wear</h4>
               </div>
               <div className="item">
-                <img src={fea02} alt="Featured Product 2" />
+                <img src={sbc02} />
+                <h4>Men's Formal Wear</h4>
               </div>
               <div className="item">
-                <img src={fea03} alt="Featured Product 3" />
+                <img src={sbc03} />
+                <h4>Category 1</h4>
+              </div>
+              <div className="item">
+                <img src={sbc04} />
+                <h4>Category 1</h4>
+              </div>
+            </OwlCarousel>
+            <OwlCarousel
+              className="owl-theme"
+              loop
+              margin={10}
+              nav={false} // Hide navigation arrows
+              dots={false} // Hide dots
+              autoplay
+              autoplayTimeout={5000}
+              items={4} // Number of items to display
+              responsive={{
+                0: {
+                  items: 3, // 1 item in mobile view
+                },
+                768: {
+                  items: 4, // 3 items in tablet view
+                },
+                1200: {
+                  items: 4, // 4 items in desktop view
+                },
+              }}
+            >
+              <div className="item">
+                <img src={sbc01} />
+                <h4>Men's Causal Wear</h4>
+              </div>
+              <div className="item">
+                <img src={sbc02} />
+                <h4>Men's Formal Wear</h4>
+              </div>
+              <div className="item">
+                <img src={sbc03} />
+                <h4>Category 1</h4>
+              </div>
+              <div className="item">
+                <img src={sbc04} />
+                <h4>Category 1</h4>
               </div>
             </OwlCarousel>
           </div>
-        </section>
-        {/* Featured products end  */}
+        </div>
+      </section>
+      {/* Shop by category end  */}
 
-        {/* Shop by category start */}
-        <section className="new_arrivals">
-          <div className="container">
-            <div className="head_title">
-              <h2>New Arrivals</h2>
-              <div className="bdr"></div>
-            </div>
-            <div className="categories">
-              <OwlCarousel
-                className="owl-theme"
-                loop
-                margin={10}
-                nav={false} // Hide navigation arrows
-                dots={false} // Hide dots
-                autoplay
-                autoplayTimeout={5000}
-                items={4} // Number of items to display
-                responsive={{
-                  0: {
-                    items: 3, // 1 item in mobile view
-                  },
-                  768: {
-                    items: 4, // 3 items in tablet view
-                  },
-                  1200: {
-                    items: 4, // 4 items in desktop view
-                  },
-                }}
-              >
-                <div className="item">
-                  <img src={sbc01} />
-                  <h4>Men's Causal Wear</h4>
-                </div>
-                <div className="item">
-                  <img src={sbc02} />
-                  <h4>Men's Formal Wear</h4>
-                </div>
-                <div className="item">
-                  <img src={sbc03} />
-                  <h4>Category 1</h4>
-                </div>
-                <div className="item">
-                  <img src={sbc04} />
-                  <h4>Category 1</h4>
-                </div>
-              </OwlCarousel>
-              <OwlCarousel
-                className="owl-theme"
-                loop
-                margin={10}
-                nav={false} // Hide navigation arrows
-                dots={false} // Hide dots
-                autoplay
-                autoplayTimeout={5000}
-                items={4} // Number of items to display
-                responsive={{
-                  0: {
-                    items: 3, // 1 item in mobile view
-                  },
-                  768: {
-                    items: 4, // 3 items in tablet view
-                  },
-                  1200: {
-                    items: 4, // 4 items in desktop view
-                  },
-                }}
-              >
-                <div className="item">
-                  <img src={sbc01} />
-                  <h4>Men's Causal Wear</h4>
-                </div>
-                <div className="item">
-                  <img src={sbc02} />
-                  <h4>Men's Formal Wear</h4>
-                </div>
-                <div className="item">
-                  <img src={sbc03} />
-                  <h4>Category 1</h4>
-                </div>
-                <div className="item">
-                  <img src={sbc04} />
-                  <h4>Category 1</h4>
-                </div>
-              </OwlCarousel>
-            </div>
-          </div>
-        </section>
-        {/* Shop by category end  */}
-
-         {/* Summer banner section start  */}
-         <section className="sum_banner">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="banner_img">
+      {/* Summer banner section start  */}
+      <section className="sum_banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <div className="banner_img">
                 <figure>
                   <img src={sum_banner01} />
-                  </figure>
-                </div>
+                </figure>
               </div>
-              <div className="col-md-4">
-                <div className="banner_img">
+            </div>
+            <div className="col-md-4">
+              <div className="banner_img">
                 <figure>
                   <img src={sum_banner02} />
-                  </figure>
-                </div>
+                </figure>
               </div>
-              <div className="col-md-4">
-                <div className="banner_img">
+            </div>
+            <div className="col-md-4">
+              <div className="banner_img">
                 <figure>
                   <img src={sum_banner03} />
-                 </figure>
-                </div>
+                </figure>
               </div>
             </div>
           </div>
-        </section>
-        {/* Summer banner section end  */}
+        </div>
+      </section>
+      {/* Summer banner section end  */}
 
-        {/* Trending products section start  */}
-        <section className="trending_products">
-          <div className="container">
-            <div className="head_title text-center">
-              <h2>Trending Products</h2>
-            </div>
-            <div className="nav-main">
-              <ul
-                className="nav nav-tabs filter-tope-group d-flex justify-content-center"
-                id="myTab"
-                role="tablist"
-              >
-                <button className="btn btn-success border-0">
-                  All Products
-                </button>
-
-                <button className="btn">Men's Fashion</button>
-
-                <button className="btn">Women's Fashion</button>
-
-                <button className="btn">Kid's</button>
-              </ul>
-            </div>
-            <div className="tp_area">
-              <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp01} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp02} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp03} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp04} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp05} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp06} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp07} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp08} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Trending products section start  */}
+      <section className="trending_products">
+        <div className="container">
+          <div className="head_title text-center">
+            <h2>Trending Products</h2>
           </div>
-        </section>
-        {/* Trending products section end  */}
+          <div className="nav-main">
+            <ul
+              className="nav nav-tabs filter-tope-group d-flex justify-content-center"
+              id="myTab"
+              role="tablist"
+            >
+              <button className="btn btn-success border-0">
+                All Products
+              </button>
 
-        {/* Services area start  */}
-        <section className="shop-services section home">
-          <div className="container">
+              <button className="btn">Men's Fashion</button>
+
+              <button className="btn">Women's Fashion</button>
+
+              <button className="btn">Kid's</button>
+            </ul>
+          </div>
+          <div className="tp_area">
             <div className="row">
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service">
-                  <i className="bi bi-rocket  "></i>
-                  <h4>Free shiping</h4>
-                  <p className="m-0">Orders over $100</p>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp01} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service">
-                  <i className="bi bi-arrow-return-right"></i>
-                  <h4>Free Return</h4>
-                  <p className="m-0">Within 30 days returns</p>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp02} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service">
-                  <i className="bi bi-lock"></i>
-                  <h4>Sucure Payment</h4>
-                  <p className="m-0">100% secure payment</p>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp03} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service" style={{ borderRight: "none" }}>
-                  <i className="bi bi-tags"></i>
-                  <h4>Best Price</h4>
-                  <p className="m-0">Guaranteed price</p>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp04} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp05} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp06} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp07} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <div className="card" onClick={productDetailsPage}>
+                  <div className="add_icons">
+                    <div className="icons">
+                      <i className="bi bi-heart-fill"></i>
+                    </div>
+                    <div className="icons">
+                      <i className="bi bi-share-fill"></i>
+                    </div>
+                  </div>
+                  <img src={tp08} className="tp_img" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
+                    <p className="card-text">
+                      Some quick example text to build on ..
+                    </p>
+                    <p className="pricing">
+                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
+                    </p>
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-2">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-        {/* Services area end  */}
-      </div>
-    );
-  };
+        </div>
+      </section>
+      {/* Trending products section end  */}
 
-  return (
-    <div>
-      <ImageCarousel />
+      {/* Services area start  */}
+      <section className="shop-services section home">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-3 col-md-6 col-12">
+              <div className="single-service">
+                <i className="bi bi-rocket  "></i>
+                <h4>Free shiping</h4>
+                <p className="m-0">Orders over $100</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12">
+              <div className="single-service">
+                <i className="bi bi-arrow-return-right"></i>
+                <h4>Free Return</h4>
+                <p className="m-0">Within 30 days returns</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12">
+              <div className="single-service">
+                <i className="bi bi-lock"></i>
+                <h4>Sucure Payment</h4>
+                <p className="m-0">100% secure payment</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12">
+              <div className="single-service" style={{ borderRight: "none" }}>
+                <i className="bi bi-tags"></i>
+                <h4>Best Price</h4>
+                <p className="m-0">Guaranteed price</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Services area end  */}
     </div>
   );
-}
+};
+
+// return (
+//   <div>
+//     <ImageCarousel />
+//   </div>
+// );
+
 
 export default Home;
