@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
+import { useProductContext } from "../../Context/index.context"
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
@@ -17,7 +18,10 @@ import color1 from "./img/color1.webp";
 import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 
-function productDetail() {
+function ProductDetail() {
+  const { productData } = useProductContext()
+  console.log(productData);
+  const [image, tryImage] = useState(model)
     
   return (
     <div>
@@ -29,16 +33,16 @@ function productDetail() {
               <div className="col-md-7">
                 <div className="row">
                   <div className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
-                    <img className="img-fluid" src={p01} alt="preview" />
-                    <img className="img-fluid" src={p02} alt="preview" />
-                    <img className="img-fluid" src={p03} alt="preview" />
-                    <img className="img-fluid" src={p04} alt="preview" />
-                    <img className="img-fluid" src={p05} alt="preview" />
-                    <img className="img-fluid" src={p06} alt="preview" />
+                    <img className="img-fluid" src={p01} onClick={() => tryImage(p01)} alt="preview" />
+                    <img className="img-fluid" src={p02} onClick={() => tryImage(p02)} alt="preview" />
+                    <img className="img-fluid" src={p03} onClick={() => tryImage(p03)} alt="preview" />
+                    <img className="img-fluid" src={p04} onClick={() => tryImage(p04)} alt="preview" />
+                    <img className="img-fluid" src={p05} onClick={() => tryImage(p05)} alt="preview" />
+                    <img className="img-fluid" src={p06} onClick={() => tryImage(p06)} alt="preview" />
                   </div>
                   <div className="col-md-10 col-sm-10 order-1 order-sm-2">
                     <div className="product-image">
-                      <img className="img-fluid" src={model} alt="product" />
+                      <img className="img-fluid" src={image} alt="product" />
                     </div>
                   </div>
                 </div>
@@ -364,4 +368,4 @@ function productDetail() {
   );
 }
 
-export default productDetail;
+export default ProductDetail;
