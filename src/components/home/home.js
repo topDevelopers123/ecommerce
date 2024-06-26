@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+
 import fea01 from "./img/1.jpg";
 import fea02 from "./img/2.webp";
 import fea03 from "./img/3.jpg";
@@ -57,7 +58,7 @@ function Home() {
   return (
     <div>
       {/* Slider section start  */}
-      <section className="main_slider">
+      <section className="main_slider mt-3">
         <div
           id="carouselExampleControls"
           className="carousel slide"
@@ -271,249 +272,54 @@ function Home() {
           {/* Product Start  */}
           <div className="tp_area">
             <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-12">
-                  <div className="card" onClick={productDetailsPage}>
-                    <div className="add_icons">
-                      <div className="icons">
-                        <i className="bi bi-heart-fill"></i>
-                      </div>
-                      <div className="icons">
-                        <i className="bi bi-share-fill"></i>
-                      </div>
-                    </div>
-                    <img src={tp01} className="tp_img" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                      <p className="card-text">
-                        Some quick example text to build on ..
-                      </p>
-                      <p className="pricing">
-                        ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                      </p>
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-2">
-                          Buy Now
-                        </button>
+              {productData?.map((item, i)=>(
+                item?.ProductDetails?.map((ite, i)=>(
+                  <div className="col-lg-3 col-md-6 col-sm-12">
+                    <div className="card" onClick={productDetailsPage}>
+                    
+                      <img src={tp01} className="tp_img" alt="..." />
+                      <div className="card-body">
+                        <div className="add_icons">
+                          <div className="icons">
+                            <i className="bi bi-heart-fill"></i>
+                          </div>
+                          <div className="icons">
+                            <i className="bi bi-share-fill"></i>
+                          </div>
+                        </div>
+                        <h5 className="card-title">{item.title}</h5>
+                        <p className="card-text m-0">
+                          {item.description}
+                        </p>
+                        {item?.category?.map((cate_ele, i)=>(
+                          <p className="m-0">Category : {cate_ele.category_name}</p>
+                        ))}
+                        {
+                          (ite.inStock <= 100 ? <p className="m-0">InStock : {ite.inStock} Left</p> : "")
+                        }
+                       
+                        <p className="pricing">
+                         
+                          
+                          ₹{ite.sellingPrice} <s> ₹{ite.MRP}</s> <span>{Math.round((ite.MRP - ite.sellingPrice) / ite.MRP * 100)}% off</span>{" "}
+                        </p>
+                        <div className="d-flex cart_n_buy">
+                          <button className="btn btn-block addBtn">
+                            Add to basket
+                          </button>
+                          <button className="btn btn-block addBtn ms-2">
+                            Buy Now
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))
+                
+              ))}
+                
 
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp02} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp03} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp04} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp05} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp06} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp07} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="card" onClick={productDetailsPage}>
-                  <div className="add_icons">
-                    <div className="icons">
-                      <i className="bi bi-heart-fill"></i>
-                    </div>
-                    <div className="icons">
-                      <i className="bi bi-share-fill"></i>
-                    </div>
-                  </div>
-                  <img src={tp08} className="tp_img" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                    <p className="card-text">
-                      Some quick example text to build on ..
-                    </p>
-                    <p className="pricing">
-                      ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                    </p>
-                    <div className="d-flex">
-                      <button className="btn btn-block addBtn">
-                        Add to basket
-                      </button>
-                      <button className="btn btn-block addBtn ms-2">
-                        Buy Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>

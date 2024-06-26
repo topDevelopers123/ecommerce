@@ -11,7 +11,7 @@ function ProductProvider({ children }) {
             const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/product/get',
             )
             setProductData(resp.data.data);
-            console.log(resp);
+          
         } catch (error) {
             console.log(error);
         }
