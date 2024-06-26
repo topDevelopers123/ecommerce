@@ -20,7 +20,7 @@ import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
   const { productData } = useProductContext()
-  console.log(productData);
+  // console.log(productData);
   const [image, tryImage] = useState(model)
     
   return (

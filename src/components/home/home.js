@@ -23,19 +23,28 @@ import tp07 from "./img/trending/7.webp";
 import tp08 from "./img/trending/8.webp";
 import "./home.css";
 import axios from "axios";
-import { useProductContext } from "../../Context/index.context";
+import { useCartContext, useProductContext } from "../../Context/index.context";
 
 
 function Home() {
+  const { productData } = useProductContext()
+  const { addToCart } = useCartContext()
+  console.log(productData)
+  const [bannner, setBanner] = useState(null);
+  const [shortBanner, setShortBanner] = useState(null);
+
+
   const navigate = useNavigate();
   const productDetailsPage = () => {
     navigate("/productdetails");
     window.scrollTo(0, 0);
-  };
-  const { productData }=useProductContext()
-  console.log(productData)
-  const [bannner, setBanner] = useState(null);
-  const [shortBanner, setShortBanner] = useState(null);
+  }
+
+  const addtocartHandler = (product_id, productDetails_id) => {
+    addToCart(product_id, productDetails_id, addToCart.quantity)
+  }
+  
+  
 
   const getbannerData = async () => {
     try {
@@ -52,6 +61,7 @@ function Home() {
 
   useEffect(() => {
     getbannerData();
+
   }, [])
 
 
@@ -275,9 +285,15 @@ function Home() {
               {productData?.map((item, i)=>(
                 item?.ProductDetails?.map((ite, i)=>(
                   <div className="col-lg-3 col-md-6 col-sm-12">
-                    <div className="card" onClick={productDetailsPage}>
-                    
-                      <img src={tp01} className="tp_img" alt="..." />
+                    <div className="card" >
+                     
+                      {(ite.image.map((img, i)=>(
+                        <>
+                         
+                          <img src={img.image_url} onClick={productDetailsPage} className="tp_img " alt="..." />
+                        </>
+                      )))}
+                   
                       <div className="card-body">
                         <div className="add_icons">
                           <div className="icons">
@@ -295,7 +311,7 @@ function Home() {
                           <p className="m-0">Category : {cate_ele.category_name}</p>
                         ))}
                         {
-                          (ite.inStock <= 100 ? <p className="m-0">InStock : {ite.inStock} Left</p> : "")
+                          (ite.inStock <= 100 ? <p className="m-0" >InStock : {ite.inStock} Left</p> : "")
                         }
                        
                         <p className="pricing">
@@ -304,7 +320,8 @@ function Home() {
                           ₹{ite.sellingPrice} <s> ₹{ite.MRP}</s> <span>{Math.round((ite.MRP - ite.sellingPrice) / ite.MRP * 100)}% off</span>{" "}
                         </p>
                         <div className="d-flex cart_n_buy">
-                          <button className="btn btn-block addBtn">
+                       
+                          <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id,ite._id)  }>
                             Add to basket
                           </button>
                           <button className="btn btn-block addBtn ms-2">
