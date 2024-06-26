@@ -9,6 +9,7 @@ import CategoryContextProvider from "./Context/categoryContext/CategoryContext";
 import WishlistProvider from "./Context/wishlistContext/WishlistContext";
 import CartProvider from "./Context/cartContext/CartContext";
 import ProductProvider from "./Context/productContext/ProductContext";
+import UserAddressProvider from "./Context/userAddressContext/UserAddressContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,13 +17,15 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <ProductProvider>
-        <CategoryContextProvider>
-          <WishlistProvider>
-            <CartProvider>
-              <App />
-            </CartProvider>
-          </WishlistProvider>
-        </CategoryContextProvider>
+        <UserAddressProvider>
+          <CategoryContextProvider>
+            <WishlistProvider>
+              <CartProvider>
+                <App />
+              </CartProvider>
+            </WishlistProvider>
+          </CategoryContextProvider>
+        </UserAddressProvider>
       </ProductProvider>
     </AuthContextProvider>
   </React.StrictMode>

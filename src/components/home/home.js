@@ -32,7 +32,7 @@ function Home() {
     navigate("/productdetails");
     window.scrollTo(0, 0);
   };
-  const { productData }=useProductContext()
+  const { productData } = useProductContext()
   console.log(productData)
   const [bannner, setBanner] = useState(null);
   const [shortBanner, setShortBanner] = useState(null);
@@ -272,11 +272,11 @@ function Home() {
           {/* Product Start  */}
           <div className="tp_area">
             <div className="row">
-              {productData?.map((item, i)=>(
-                item?.ProductDetails?.map((ite, i)=>(
+              {productData?.map((item, i) => (
+                item?.ProductDetails?.map((ite, i) => (
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="card" onClick={productDetailsPage}>
-                    
+
                       <img src={tp01} className="tp_img" alt="..." />
                       <div className="card-body">
                         <div className="add_icons">
@@ -291,16 +291,16 @@ function Home() {
                         <p className="card-text m-0">
                           {item.description}
                         </p>
-                        {item?.category?.map((cate_ele, i)=>(
+                        {item?.category?.map((cate_ele, i) => (
                           <p className="m-0">Category : {cate_ele.category_name}</p>
                         ))}
                         {
                           (ite.inStock <= 100 ? <p className="m-0">InStock : {ite.inStock} Left</p> : "")
                         }
-                       
+
                         <p className="pricing">
-                         
-                          
+
+
                           ₹{ite.sellingPrice} <s> ₹{ite.MRP}</s> <span>{Math.round((ite.MRP - ite.sellingPrice) / ite.MRP * 100)}% off</span>{" "}
                         </p>
                         <div className="d-flex cart_n_buy">
@@ -315,11 +315,11 @@ function Home() {
                     </div>
                   </div>
                 ))
-                
-              ))}
-                
 
-              
+              ))}
+
+
+
             </div>
           </div>
         </div>
