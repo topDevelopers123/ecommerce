@@ -4,6 +4,7 @@ import { categoryContext } from "./categoryContext/CategoryContext";
 import { wishlistContext } from "./wishlistContext/WishlistContext";
 import { CartContext } from "./cartContext/CartContext";
 import { ProductContext } from "./productContext/ProductContext";
+import { UserAddressContext } from "./userAddressContext/UserAddressContext";
 
 
 
@@ -14,3 +15,4 @@ export const useCategoryContext = () => useContext(categoryContext);
 export const useWishlistContext = () => useContext(wishlistContext);
 export const useCartContext = () => useContext(CartContext);
 export const useProductContext = () => useContext(ProductContext);
+export const useUserAddressContext = () => useContext(UserAddressContext);
