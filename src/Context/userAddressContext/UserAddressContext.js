@@ -14,7 +14,6 @@ function UserAddressProvider({ children }) {
                 headers: { 'Authorization': token, },
             })
             setUserAddressData(res.data.data)
-
         } catch (error) {
             console.log(error)
         }
