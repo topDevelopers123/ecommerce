@@ -49,7 +49,6 @@ function App() {
           <Route path='/Email_verify' element={<Email_verify />} />
           <Route path='/OldAddress' element={<OldAddress />} />
 
-
         </Routes>
         <Footer/>
    
