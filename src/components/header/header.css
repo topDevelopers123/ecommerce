@@ -41,6 +41,7 @@ border-bottom-left-radius: 100px;
   align-items: center;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
+  margin: 0;
 }
 .nav_right_div button:hover{
   color: #fff;
