@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-   "proxy": "https://mayavi-fashion-backend-o22mfb2qda-em.a.run.app/api/v1",
+   "proxy": "https://e-commerce-backend-4tmn.onrender.com/api/v1",
   "eslintConfig": {
     "extends": [
       "react-app",

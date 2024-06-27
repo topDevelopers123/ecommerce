@@ -5,9 +5,9 @@ import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
     const { cartData, addToCartUpdate, deleteCartProduct } = useCartContext()
-   
-
-    const getTotel = cartData?.reduce((i, r) => i + r.productDetails.sellingPrice * r.quantity,0)
+        
+    console.log(cartData)
+    const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity,0)
 
     // let sellingPrice = 0
     // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
@@ -38,22 +38,22 @@ function Cart() {
                         
                         <div className=' col-lg-2 col-md-5 col-sm-5 col-5 mt-3'>
                             
-                                {item.productDetails.image?.map((img)=>(
-                                    <img src={img.image_url } />
+                                {item?.productDetails?.image?.map((img,i)=>(
+                                    <img src={i === 0 && img?.image_url } />
                                 ))}
                         </div>
 
                             <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center'>
                                 {/* {cartData?.map(())} */}
-                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>{item.product_id.title}</h6>
-                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item.productDetails.sellingPrice}</h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>{item?.product_id?.title}</h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice}</h6>
                                 <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity justify-content-md-center'>
 
                                    
                                         <div type='text' className='col-lg-4 col-md-4 col-sm-4 col-4 d-flex align-items-center justify-content-center zero_input'>
-                                        <select defaultValue={item.quantity} onChange={(event) => {
+                                        <select defaultValue={item?.quantity} onChange={(event) => {
                                             
-                                            addToCartUpdate(item._id, event.target.value);  }}>
+                                            addToCartUpdate(item?._id, event.target.value);  }}>
                                                 <option value={1}>01 qty</option>
                                                 <option value={2}>02 qty</option>
                                                 <option value={3}>03 qty</option>
@@ -65,9 +65,9 @@ function Cart() {
                                     
                                    
                                 </div>  
-                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item.productDetails.sellingPrice * item.quantity}</h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice * item?.quantity}</h6>
                             
-                                <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3" onClick={() => deleteCartProduct(item._id)}></i></h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3" onClick={() => deleteCartProduct(item?._id)}></i></h6>
                             </div>
                         </>
                     ))}

@@ -39,24 +39,23 @@ function Wishlist() {
                             {wishlistData?.map((item,i)=>(
                                 <div className='d-flex flex-row'>
                                 <div key={i} className=' col-lg-2 col-md-5 col-sm-5 col-6 img-fluid'>
-                                    {item.product_detail_id.image.map((img)=>(
+                                    {item?.product_detail_id?.image?.map((img,i)=>(
 
-                                        <img src={img.image_url} />
+                                        <img src={i === 0 && img?.image_url} />
                                     ))}
                                 </div>
 
                                     <div className='wish-text wish-text-3 col-lg-10 col-md-7 col-sm-7 col-6 d-flex justify-content-between align-items-center'>
-                                        <Link className='col-lg-2 col-md-12 col-sm-12 '>{item.product_id
-.title}</Link>
+                                        <Link className='col-lg-2 col-md-12 col-sm-12 '>{item?.product_id?.title}</Link>
                                         <h6 className='col-lg-2 col-md-12 col-sm-6 col-6'>
-                                            {item.product_detail_id.Size}</h6>
+                                            {item?.product_detail_id?.Size}</h6>
                                         <h6 className='col-lg-2 col-md-12 col-sm-6 col-6 '>
-                                            {item.product_detail_id.color}</h6>
+                                            {item?.product_detail_id?.color}</h6>
                                         <h6 className='col-lg-2 col-md-12 col-sm-12 '>&#8377;
-                                            {item.product_detail_id.sellingPrice}</h6>
+                                            {item?.product_detail_id?.sellingPrice}</h6>
                                         <div className='col-lg-2 col-md-12 col-sm-9 col-9 add_to_cart_delete_box'>
-                                            <button onClick={() => addToCartHandler(item.product_id._id, item.product_detail_id._id)}>ADD TO CART</button></div>
-                                        <div className='col-lg-2 col-md-12 col-sm-3 col-3 '><i className="bi bi-trash3" onClick={() => deleteWishlistProduct(item._id)}></i></div>
+                                            <button onClick={() => addToCartHandler(item?.product_id?._id, item?.product_detail_id?._id)}>ADD TO CART</button></div>
+                                        <div className='col-lg-2 col-md-12 col-sm-3 col-3 '><i className="bi bi-trash3" onClick={() => deleteWishlistProduct(item?._id)}></i></div>
                                     </div>
 
                                     </div>

@@ -46,6 +46,7 @@ function Home() {
   }
 
   const addtocartHandler = (product_id, productDetails_id) => {
+    console.log(product_id, productDetails_id);
     addToCart(product_id, productDetails_id, addToCart.quantity)
   }
 
@@ -315,7 +316,7 @@ function Home() {
                         <div className="card-body">
                           <div className="add_icons">
                             <div className="icons">
-                              <i className="bi bi-heart-fill" onClick={()=>wishlistHandler(item._id, item.ProductDetails._id)}></i>
+                              <i className="bi bi-heart-fill" onClick={()=>wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
                             </div>
                             <div className="icons">
                               <i className="bi bi-share-fill"></i>
@@ -337,7 +338,7 @@ function Home() {
                           </p>
                           <div className="d-flex cart_n_buy">
 
-                            <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails._id)}>
+                            <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id)}>
                               Add to basket
                             </button>
                             <button className="btn btn-block addBtn ms-2">

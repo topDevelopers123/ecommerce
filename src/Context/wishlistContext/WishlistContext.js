@@ -26,7 +26,7 @@ function WishlistProvider({ children }) {
 
     const addToWishlist = async (data) => {
        
-
+        console.log(data);
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`/wishlist/add`, data, {
