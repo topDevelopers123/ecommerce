@@ -303,7 +303,7 @@
     bottom: 10px;
 }
 .card-body button{
-    
+    margin: 0;
     font-size: 12px;
     padding: 8px 10px;
 }

@@ -6,6 +6,7 @@ export const CartContext = createContext();
 
 function CartProvider({ children }) {
     const [cartData, setCartData] = useState(null);
+    const [cartLength, setCartLength] = useState(0)
     const [disable, setDisable] = useState(false)
     const token = localStorage.getItem("token")
 
@@ -15,6 +16,7 @@ function CartProvider({ children }) {
                 headers: { 'Authorization': `Bearer ${token}` },
             })
             setCartData(resp.data.data)
+            setCartLength(resp.data.data.length)
            
 
         } catch (error) {
@@ -65,6 +67,28 @@ function CartProvider({ children }) {
         }
     }
 
+
+    const deleteCartProduct = async(id) => {
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.delete(`/cart/remove-cart/${id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+
+            getCartData()
+            
+        } catch (error) {
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+            console.log(error);
+            
+        }
+    }
+
+
+  
     
 
     useEffect(() => {
@@ -72,7 +96,7 @@ function CartProvider({ children }) {
     }, [])
 
     return (
-        <CartContext.Provider value={{ cartData, addToCart, addToCartUpdate }}>
+        <CartContext.Provider value={{ cartData, addToCart, addToCartUpdate, cartLength, deleteCartProduct }}>
             {children}
         </CartContext.Provider>
     )

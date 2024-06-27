@@ -4,8 +4,12 @@ import logo from "./header_images/logo.png";
 import logo2 from './header_images/FINAL LOGO white with Drop Shadow.png'
 import "./header.css";
 import CategoryPage from "./CategoryPage"
+import { useCartContext, useWishlistContext } from "../../Context/index.context";
  
 function Header() {
+  const { wishlistLength } = useWishlistContext()
+  const { cartLength } = useCartContext()
+
   const [flag, setFlag] = useState(false)
   const [flag2, setFlag2] = useState(false)
 
@@ -72,7 +76,7 @@ function Header() {
                   <i className="bi bi-suit-heart"></i>
                 </Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
-                  <p className="text-light m-0">O</p>
+                    <p className="text-light m-0">{wishlistLength}</p>
                 </div>
               </div>
 
@@ -81,7 +85,7 @@ function Header() {
                    <i className="bi bi-cart3"></i>
                 </Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
-                  <p className="text-light m-0">O</p>
+                    <p className="text-light m-0">{cartLength}</p>
                 </div>
               </div>
 

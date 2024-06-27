@@ -4,19 +4,13 @@ import { Link } from 'react-router-dom'
 import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
-    const { cartData, addToCartUpdate } = useCartContext()
-   
-
-  
+    const { cartData, addToCartUpdate, deleteCartProduct } = useCartContext()
    
 
     const getTotel = cartData?.reduce((i, r) => i + r.productDetails.sellingPrice * r.quantity,0)
 
     // let sellingPrice = 0
     // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
-
-
-  
 
 
     return (
@@ -73,7 +67,7 @@ function Cart() {
                                 </div>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item.productDetails.sellingPrice * item.quantity}</h6>
                             
-                                <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3"></i></h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3" onClick={() => deleteCartProduct(item._id)}></i></h6>
                             </div>
                         </>
                     ))}
