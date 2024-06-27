@@ -5,8 +5,8 @@ import { useUserAddressContext } from '../../Context/index.context';
 
 function OldAddress() {
     const [modalVisible, setModalVisible] = useState(false);
-    const {UserAddressData}=useUserAddressContext();
-    
+    const { UserAddressData } = useUserAddressContext();
+
 
     const newAddress = () => {
         setModalVisible(true);
@@ -155,7 +155,10 @@ function OldAddress() {
                                 <input type='text' id='street' name='street' placeholder='Enter Phone' required />
 
 
-                                <label htmlFor='street'>Address *</label>
+                                <label htmlFor='street'>Address 1 *</label>
+                                <input type='text' id='street' name='street' placeholder='Enter Address' required />
+
+                                <label htmlFor='street'>Address 2 </label>
                                 <input type='text' id='street' name='street' placeholder='Enter Address' required />
 
                                 <label htmlFor='city'>City *</label>
