@@ -20,6 +20,7 @@ import TrackOrder from './components/trackOrder/TrackOrder';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import Email_verify from './components/login/Email_verify'
+import OldAddress from './components/checkout/OldAddress';
 
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
           <Route path='/thankyou' element={<Thankyou />}/>
           <Route path='/track_order' element={<TrackOrder />}/>
           <Route path='/Email_verify' element={<Email_verify />} />
+          <Route path='/OldAddress' element={<OldAddress />} />
+
 
         </Routes>
         <Footer/>

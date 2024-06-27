@@ -9,6 +9,7 @@ import CategoryContextProvider from "./Context/categoryContext/CategoryContext";
 import WishlistProvider from "./Context/wishlistContext/WishlistContext";
 import CartProvider from "./Context/cartContext/CartContext";
 import ProductProvider from "./Context/productContext/ProductContext";
+import UserAddressProvider from "./Context/userAddressContext/UserAddressContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,19 +17,18 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <ProductProvider>
-        <CategoryContextProvider>
-          <WishlistProvider>
-            <CartProvider>
-              <App />
-            </CartProvider>
-          </WishlistProvider>
-        </CategoryContextProvider>
+        <UserAddressProvider>
+          <CategoryContextProvider>
+            <WishlistProvider>
+              <CartProvider>
+                <App />
+              </CartProvider>
+            </WishlistProvider>
+          </CategoryContextProvider>
+        </UserAddressProvider>
       </ProductProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
