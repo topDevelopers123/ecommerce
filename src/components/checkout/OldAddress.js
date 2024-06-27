@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './OldAddress.css';
 import './checkout.css'
+import { useUserAddressContext } from '../../Context/index.context';
 
 function OldAddress() {
     const [modalVisible, setModalVisible] = useState(false);
+    const {UserAddressData}=useUserAddressContext();
+    
 
     const newAddress = () => {
         setModalVisible(true);
