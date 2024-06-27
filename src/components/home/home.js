@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { useCartContext, useProductContext } from "../../Context/index.context";
+import { useCartContext, useProductContext, useWishlistContext } from "../../Context/index.context";
 import fea01 from "./img/1.jpg";
 import fea02 from "./img/2.webp";
 import fea03 from "./img/3.jpg";
@@ -31,10 +31,13 @@ import axios from "axios";
 function Home() {
   const { productData } = useProductContext()
   const { addToCart } = useCartContext()
-  console.log(productData)
+  const { addToWishlist } = useWishlistContext()
   const [bannner, setBanner] = useState(null);
   const [shortBanner, setShortBanner] = useState(null);
-
+  // const [sendWishlistData, setSendWishlistData] = useState({
+  //   product_id:"",
+  //   product_detail_id:""
+  // })
 
   const navigate = useNavigate();
   const productDetailsPage = () => {
@@ -44,6 +47,15 @@ function Home() {
 
   const addtocartHandler = (product_id, productDetails_id) => {
     addToCart(product_id, productDetails_id, addToCart.quantity)
+  }
+
+  const wishlistHandler =(item_Id, ite_Id)=>{
+    const obj = {
+      product_id:item_Id,
+      product_detail_id:ite_Id
+    }
+   
+    addToWishlist(obj)
   }
   
   
@@ -302,7 +314,7 @@ function Home() {
                         <div className="card-body">
                           <div className="add_icons">
                             <div className="icons">
-                              <i className="bi bi-heart-fill"></i>
+                              <i className="bi bi-heart-fill" onClick={()=>wishlistHandler(item._id, ite._id)}></i>
                             </div>
                             <div className="icons">
                               <i className="bi bi-share-fill"></i>
