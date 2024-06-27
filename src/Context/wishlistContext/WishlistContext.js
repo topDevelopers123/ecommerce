@@ -18,7 +18,7 @@ function WishlistProvider({ children }) {
             })
             setWishlistData(resp.data.data)
             setWishlistLength(resp.data.data.length)
-            console.log(resp.data.data);
+            
         } catch (error) {
             console.log(error);
         }

@@ -40,8 +40,8 @@ function Home() {
   // })
 
   const navigate = useNavigate();
-  const productDetailsPage = () => {
-    navigate("/productdetails");
+  const productDetailsPage = (id) => {
+    navigate(`/productdetails/${id}`);
     window.scrollTo(0, 0);
   }
 
@@ -300,21 +300,22 @@ function Home() {
             <div className="tp_area">
               <div className="row">
                 {productData?.map((item, i) => (
-                  item?.ProductDetails?.map((ite, i) => (
+                 
                     <div className="col-lg-3 col-md-6 col-sm-12">
                       <div className="card" >
 
-                        {(ite.image.map((img, i) => (
+                        
                           <>
+                        {console.log(item.ProductDetails[0].sellingPrice)}
 
-                            <img src={img.image_url} onClick={productDetailsPage} className="tp_img " alt="..." />
+                          <img src={item?.ProductDetails[i]?.image[0]?.image_url} onClick={()=>productDetailsPage(item._id)} className="tp_img " alt="..." />
                           </>
-                        )))}
+                       
 
                         <div className="card-body">
                           <div className="add_icons">
                             <div className="icons">
-                              <i className="bi bi-heart-fill" onClick={()=>wishlistHandler(item._id, ite._id)}></i>
+                              <i className="bi bi-heart-fill" onClick={()=>wishlistHandler(item._id, item.ProductDetails._id)}></i>
                             </div>
                             <div className="icons">
                               <i className="bi bi-share-fill"></i>
@@ -324,21 +325,19 @@ function Home() {
                           <p className="card-text m-0">
                             {item.description}
                           </p>
-                          {item?.category?.map((cate_ele, i) => (
-                            <p className="m-0">Category : {cate_ele.category_name}</p>
-                          ))}
+                        
                           {
-                            (ite.inStock <= 100 ? <p className="m-0" >InStock : {ite.inStock} Left</p> : "")
+                          (item?.ProductDetails[0]?.inStock <= 100 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : "")
                           }
 
                           <p className="pricing">
 
 
-                            ₹{ite.sellingPrice} <s> ₹{ite.MRP}</s> <span>{Math.round((ite.MRP - ite.sellingPrice) / ite.MRP * 100)}% off</span>{" "}
+                          ₹{item.ProductDetails[0].sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item.ProductDetails[0].sellingPrice) / item.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
                           </p>
                           <div className="d-flex cart_n_buy">
 
-                            <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, ite._id)}>
+                            <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails._id)}>
                               Add to basket
                             </button>
                             <button className="btn btn-block addBtn ms-2">
@@ -348,7 +347,7 @@ function Home() {
                         </div>
                       </div>
                     </div>
-                  ))
+                 
 
                 ))}
 
