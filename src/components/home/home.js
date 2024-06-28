@@ -307,9 +307,9 @@ function Home() {
 
                         
                           <>
-                        {console.log(item.ProductDetails[0].sellingPrice)}
-
-                          <img src={item?.ProductDetails[i]?.image[0]?.image_url} onClick={()=>productDetailsPage(item._id)} className="tp_img " alt="..." />
+                     
+                      
+                          <img src={item?.ProductDetails[0]?.image[0]?.image_url} onClick={()=>productDetailsPage(item._id)} className="tp_img " alt="..." />
                           </>
                        
 
