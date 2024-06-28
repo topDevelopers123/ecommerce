@@ -18,11 +18,9 @@ function OldAddress() {
         house_no: "",
         pincode: ""
     })
-  
-    // console.log(data)
 
     const newAddress = () => {
-        setModalVisible((prev)=>!prev);
+        setModalVisible((prev) => !prev);
     };
 
     const closeModal = () => {
@@ -40,7 +38,7 @@ function OldAddress() {
                 <div className='container'>
                     <div className='row'>
                         <h5>Select Your Address</h5>
-                        <div className='newAdd col-lg-7 col-md-7 p-3'>
+                        <div className='newAdd col-lg-8 col-md-7 p-3'>
                             <div>
                                 <h6>Your Addresses</h6>
                             </div>
@@ -50,17 +48,16 @@ function OldAddress() {
                                     <div className="form-check">
                                         <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios1">
-
-                                            {item.house_no}|
-                                            {item.area}
-                                            {item?.state}| <span onClick={() => deleteAddress(item._id)}>Delete</span>
-
+                                            <div className='preAdd gap-2'>
+                                                <span> {item.house_no}</span>&nbsp;
+                                                <span>{item.area}</span>&nbsp;
+                                                <span>{item?.state}</span>&nbsp;
+                                                <span>{item?.pincode}</span>&nbsp;
+                                                <span className='delAdd' onClick={() => deleteAddress(item._id)}>Delete Address</span>
+                                            </div>
                                         </label>
                                     </div>
                                 </div>))}
-
-
-
 
                             <div className='p-2'>
                                 <button onClick={newAddress}><span className='addplus'>+</span> Add new Address</button>
@@ -68,7 +65,7 @@ function OldAddress() {
                         </div>
 
 
-                        <div className="col-lg-5 col-md-5 col-12">
+                        <div className="col-lg-4 col-md-5 col-12">
                             <div className="checkout_total_box">
                                 <div className="wrapper">
                                     <div className="group">
@@ -173,7 +170,7 @@ function OldAddress() {
                                 <label htmlFor='zip'>Zip Code *</label>
                                 <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' required />
 
-                                <button onClick={()=>addNewAddress(data)} className='d-flex justify-content-center' type='submit'>Add New Address</button>
+                                <button onClick={() => addNewAddress(data)} className='d-flex justify-content-center' type='submit'>Add New Address</button>
                             </form>
                         </div>
                     </div>

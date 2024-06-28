@@ -5,21 +5,24 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
 import { useFormik } from "formik";
 import * as yup from "yup"
+import { useAuthContext } from "../../Context/index.context";
 
 function Otp_verify() {
+    const { otpVerify } = useAuthContext();
 
     const initialValue = {
         password: ""
     }
 
-    const Login = yup.object({
+    const Otp_verify = yup.object({
         password: yup.string().min(6).max(16).required("password is requierd")
     })
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    const { handleSubmit } = useFormik({
         initialValues: initialValue,
-        validationSchema: Login,
+        validationSchema: Otp_verify,
         onSubmit: (value) => {
+            otpVerify(value)
             console.log(value)
         }
     })
@@ -47,7 +50,7 @@ function Otp_verify() {
 
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        <Link to='/login'>
+                                        <Link >
                                             Verify OTP
                                         </Link>
                                     </button>
