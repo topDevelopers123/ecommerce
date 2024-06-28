@@ -16,15 +16,15 @@ function UserAddressProvider({ children }) {
                 headers: { 'Authorization': token, },
             })
             setUserAddressData(res?.data?.find)
-            
-            
+
+
         } catch (error) {
             console.log(error)
         }
     }
     const addNewAddress = async (data) => {
         try {
-            const res = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/add',data, {
+            const res = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/add', data, {
                 headers: { 'Authorization': token, },
             })
             getUserAddressData()
