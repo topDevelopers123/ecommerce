@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Cart.css'
 import { Link } from 'react-router-dom'
 import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
-    const { cartData } = useCartContext()
+    const { cartData, addToCartUpdate, deleteCartProduct } = useCartContext()
+        
     console.log(cartData)
-    
+    const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity,0)
+
+    // let sellingPrice = 0
+    // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
+
+
     return (
 
         <div className='container-fluid mt-5 mb-5'>
@@ -26,26 +32,47 @@ function Cart() {
 
                     </div>
                 </div>
-                <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center '>
+                <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center flex-row flex-wrap'>
                     {cartData?.map((item,i)=>(
-                        <div className=' col-lg-2 col-md-5 col-sm-5 col-5'>
-                            <img src={""} />
+                        <>
+                        
+                        <div className=' col-lg-2 col-md-5 col-sm-5 col-5 mt-3'>
+                            
+                                {item?.productDetails?.image?.map((img,i)=>(
+                                    <img src={i === 0 && img?.image_url } />
+                                ))}
                         </div>
+
+                            <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center'>
+                                {/* {cartData?.map(())} */}
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>{item?.product_id?.title}</h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice}</h6>
+                                <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity justify-content-md-center'>
+
+                                   
+                                        <div type='text' className='col-lg-4 col-md-4 col-sm-4 col-4 d-flex align-items-center justify-content-center zero_input'>
+                                        <select defaultValue={item?.quantity} onChange={(event) => {
+                                            
+                                            addToCartUpdate(item?._id, event.target.value);  }}>
+                                                <option value={1}>01 qty</option>
+                                                <option value={2}>02 qty</option>
+                                                <option value={3}>03 qty</option>
+                                                <option value={4}>04 qty</option>
+                                                <option value={5}>05 qty</option>
+                                            </select>
+                                        </div> 
+                                   
+                                    
+                                   
+                                </div>  
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice * item?.quantity}</h6>
+                            
+                                <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3" onClick={() => deleteCartProduct(item?._id)}></i></h6>
+                            </div>
+                        </>
                     ))}
                    
-                    <div className='wish-text wish-text-2   col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center'>
-                        {/* {cartData?.map(())} */}
-                        <Link className='col-lg-2 col-md-12 col-sm-12 col-12 '>EYEBOGLER Polo T-shirt For Men</Link>
-                        <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 250.00</h6>
-                        <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity'>
-
-                            <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>-</button>
-                            <div type='text' className='col-lg-4 col-md-4 col-sm-4 col-4 d-flex align-items-center justify-content-center zero_input'>0</div>
-                            <button className='col-lg-4 col-md-4 col-sm-4 col-4  text-dark'>+</button>
-                        </div>
-                        <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>₹ 1000.00</h6>
-                        <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3"></i></h6>
-                    </div>
+                    
                 </div>
 
 
@@ -66,7 +93,7 @@ function Cart() {
                                         <div className='d-flex flex-column w-75 '>
                                             <div className='d-flex justify-content-between'>
                                                 <p>Cart Subtotal</p>
-                                                <p>₹0.00</p>
+                                    <p>₹ {getTotel}</p>
                                             </div>
                                             <hr />
                                             <div className='d-flex justify-content-between'>

@@ -266,9 +266,10 @@
 .interested_prod .card-body{
     background: #EEF7FF;
 }
-.card-body button{
+.interested_prod .card-body button{
     font-size: 12px;
     padding: 8px 10px;
+    margin: 0;
 }
 /* Mobile  */
 @media screen and (max-width: 567px){

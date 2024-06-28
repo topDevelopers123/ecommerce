@@ -13,7 +13,7 @@
 
 .wish-items {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     align-items: center;
     padding: 20px 0;
@@ -37,12 +37,13 @@
 }
 
 .wish-items button {
-    padding: 8px 14px !important;
-    background-color: #4D869C !important;
-    color: #fff !important;
-    border: none;
-    border-radius: 6px;
-    transition: 0.3s ease-in-out;
+    padding: 8px 8px !important;
+        background-color: #4D869C !important;
+        color: #fff !important;
+        border: none;
+        border-radius: 6px;
+        transition: 0.3s ease-in-out;
+        font-size: 12px;
 }
 
 .wish-items button:hover {
@@ -78,7 +79,9 @@
     }
 
     .wish-text-3 h6 {
-        margin-block: 10px;
+       margin: 0 !important;
+       font-size: 14px;
+
     }
 
     .wish-text-1 {
@@ -154,13 +157,12 @@
 
 @media screen and (max-width: 568px) {
     .wish-text-3 div button {
-        width: 150px !important;
-        height: 40px !important;
-        font-size: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 0px !important;
+        font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0px !important;
+            padding: 6px 6px;
     }
 
     .wish-text-3 div,
