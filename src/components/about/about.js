@@ -86,17 +86,7 @@ function About() {
                   <span>Welcome</span> To MayaviFashion
                 </h2>
                 <p>
-                  Mayavi Fashion, the very name evokes images of ethereal
-                  beauty, avant-garde designs, and a seamless blend of tradition
-                  and modernity. As a leading force in the fashion industry,
-                  Mayavi transcends mere clothing to become a statement of
-                  individuality, elegance, and creativity. Origins and
-                  Inspiration: Mayavi Fashion draws its inspiration from diverse
-                  sources - from the rich cultural tapestry of India to the
-                  cutting-edge trends of international fashion capitals. Founded
-                  by visionary designers with a passion for innovation, Mayavi
-                  was born out of a desire to redefine conventional notions of
-                  style and luxur.
+                  Fashion is all about comfort and elegance. Mayavi Fashion stands out for hope and change. All clothing for men, women, and kids. With a foundation of giving back, Mayavi Fashion's principle stands out by giving a positive impact to society. Every penny earned is funneled to donations and charity. Mayavi Fashion's mission is simple yet profound: to use the power of fashion to create meaningful change. A core message from Mayavi Fashion is to be ethical and sustainable. Mayavi Fashion believes in the power of community and collaboration. The brand partners with various nonprofit organizations and charities to ensure that funds are directed where they are needed the most. 
                 </p>
                 <button className="about-btn rounded">Contact Us</button>
               </div>
@@ -159,13 +149,9 @@ function About() {
                       <i className="bi bi-bullseye"></i>
                     </div>
                     <div>
-                      <h2 className="obj-text">Objective 1</h2>
+                      <h2 className="obj-text">Charties</h2>
                       <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Blanditiis aliquid numquam repellat, molestiae
-                        excepturi debitis fugit assumenda soluta possimus maxime
-                        neque animi! Officiis doloribus temporibus itaque fugiat
-                        ex, eius facere. Lorem ipsum dolor,
+                        Mayavi Fashion wants ensures that funds are used to to fostering hope and change in society. Charities are not named the brands overarchibg objectives is to support community initiatives and causes that align with their mission of ehtical and sustainable practices. 
                       </p>
                     </div>
                   </div>
@@ -177,13 +163,9 @@ function About() {
                       <i className="bi bi-bullseye"></i>
                     </div>
                     <div>
-                      <h2 className="obj-text">Objective 1</h2>
+                      <h2 className="obj-text">Donation</h2>
                       <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Blanditiis aliquid numquam repellat, molestiae
-                        excepturi debitis fugit assumenda soluta possimus maxime
-                        neque animi! Officiis doloribus temporibus itaque fugiat
-                        ex, eius facere. Lorem ipsum dolor,
+                        A significant portion of Mayavi Fashions profit is dedicated to charitable cause particularly those aimed at supporting the needy . This initiative is rooted in the belief that fashion should not only make people look good but also do good . 
                       </p>
                     </div>
                   </div>
@@ -243,48 +225,36 @@ function About() {
         <div className="row">
           <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">
-              <h2>Donation</h2>
+              <h5>INNOVATIVE DESIGN AND QUALITY</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
-                aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
-                magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora,
+                We prioritize state of the fine art and premium quality in every piece of clothing ensuring our customers. Receive stylish and durable product. 
               </p>
             </div>
           </div>
 
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="donate-row">
-              <h2>Donation</h2>
+              <h5>SUSTAINABLE <br></br> PRACTICES</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
-                aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
-                magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora,
+                We commit to sustainable sourcing go material and ethical labor practices, reducing our environmental impact and promoting fair working condition. 
               </p>
             </div>
           </div>
 
           <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">
-              <h2>Donation</h2>
+              <h5>PHILANTHROPIC INITIATIVES</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
-                aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
-                magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora,
+                A significant portion of our profit is dedicated to charitable causes supporting programs that provide clothing shelter and essential service to underprivileged communities. 
               </p>
             </div>
           </div>
 
           <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">
-              <h2>Donation</h2>
+              <h5>CUSTOMERS EMPOWERMENT</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
-                aliquid. Eaque fugiat laborum ducimus, saepe aut debitis ad
-                magnam, nulla ex aliquid incidunt veniam tenetur repellendus
-                laudantium? Tempora,
+                By choosing mayavi fashion our customers contribute to a broader mission of social welfare and upliftment merging style with social responsibility. 
               </p>
             </div>
           </div>
