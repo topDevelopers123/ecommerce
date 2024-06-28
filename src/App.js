@@ -17,41 +17,39 @@ import Wishlist from './components/wishlist/Wishlist'
 import Cart from './components/Cart/Cart';
 import Thankyou from './components/login/Thankyou';
 import TrackOrder from './components/trackOrder/TrackOrder';
-import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import Email_verify from './components/login/Email_verify'
 import OldAddress from './components/checkout/OldAddress';
+import Otp_verify from './components/login/Otp_verify';
 
 
 function App() {
 
 
-  
-  return (
-    <> 
-    <Toaster/>
-      <BrowserRouter>
-   
-      <Header/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/contact' element={<ContactUs/>}/>
-          <Route path='/productdetails/:id' element={<ProductDetails />}/>
-          <Route path='/products' element={<Products/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/checkout' element={<Checkout/>}/>
-          <Route path='/wishlist' element={<Wishlist/>}/>
-          <Route path='/cart' element={<Cart/>}/>
-          <Route path='/thankyou' element={<Thankyou />}/>
-          <Route path='/track_order' element={<TrackOrder />}/>
-          <Route path='/Email_verify' element={<Email_verify />} />
-          <Route path='/OldAddress' element={<OldAddress />} />
 
+  return (
+    <>
+      <Toaster />
+      <BrowserRouter>
+
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<ContactUs />} />
+          <Route path='/productdetails/:id' element={<ProductDetails />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/wishlist' element={<Wishlist />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/thankyou' element={<Thankyou />} />
+          <Route path='/track_order' element={<TrackOrder />} />
+          <Route path='/Otp_verify' element={<Otp_verify />} />
+          <Route path='/OldAddress' element={<OldAddress />} />
         </Routes>
-        <Footer/>
-   
+        <Footer />
+
       </BrowserRouter>
     </>
   );
