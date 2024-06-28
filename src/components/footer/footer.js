@@ -9,7 +9,7 @@ function footer() {
           <div className='row'>
             <div className='col-12 d-flex flex-wrap'>
               <div className='col-lg-4 col-md-12 co-sm-12 border border-dark p-3'>
-                <p className='text-light mt-5'>Mayavi Fashion, the very name evokes images of ethereal beauty, avant-garde designs, and a seamless blend of tradition and modernity. As a leading force in the fashion industry, Mayavi transcends mere clothing to become a statement of individuality, elegance, and creativity. Origins and Inspiration: Mayavi Fashion draws its inspiration from diverse sources - from the rich cultural tapestry of India to the cutting-edge trends of international fashion capitals. Founded by visionary designers with a passion for innovation, Mayavi was born out of a desire to redefine conventional notions of style and luxur</p>
+                <p className='text-light mt-5'>Mayavi Fashion redefines what it means to be a fashion brand in the modern world . By chanelling a porton of its profit to support those in need it merges style with substance , proving that fashion can be a force for good. </p>
                 <p className='text-light'>Got Question? Call us 24/7</p>
                 <h5 className='text-light'>9262852851</h5>
               </div>

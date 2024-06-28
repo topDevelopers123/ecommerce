@@ -31,13 +31,13 @@ function Wishlist() {
                             <h6 className='col-lg-2  col-12'>Colour</h6>
                             <h6 className='col-lg-2  col-12'>TOTAL</h6>
                             <h6 className='col-lg-2  col-12'>ADD TO CART</h6>
-                            <h6 className='col-lg-2  col-12'><i className="bi bi-trash3"></i></h6>
+                            <h6 className='col-lg-2  col-12'>DELETE</h6>
                         </div>
                     </div>
                     <div className='wish-items-shadow '>
                         <div className='wish-items text-center d-flex flex-column w-100 '>
                             {wishlistData?.map((item,i)=>(
-                                <div className='d-flex flex-row'>
+                                <div className='d-flex flex-row w-100'>
                                 <div key={i} className=' col-lg-2 col-md-5 col-sm-5 col-6 img-fluid'>
                                     {item?.product_detail_id?.image?.map((img,i)=>(
 

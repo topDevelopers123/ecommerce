@@ -280,9 +280,6 @@ border-bottom-left-radius: 100px;
     background-color: #000 !important;
     color: #fff;
   }
-
- 
-  
 }
 
 @media screen and (max-width: 768px) {
@@ -303,12 +300,6 @@ border-bottom-left-radius: 100px;
   .icons_div div .menu_icon {
     font-size: 35px;
   }
-  /* .form_div form{
-        display: none !important;
-    } */
-  /* .mobile_serach_icon i{
-        display: block;
-    } */
   .wish-text-2 div,
   h6,
   button,
@@ -325,13 +316,16 @@ border-bottom-left-radius: 100px;
     background-color: #000 !important;
     color: #fff;
   }
- 
- 
-  
-  
 }
 
 @media screen and (max-width: 568px) {
+  .category_main_div div img{
+    width: 50px;
+    height: 50px;
+  }
+    .category_main_div div h6{
+      font-size: 16px;
+    }
   .icons_div div .para_cart {
     right: -15px !important;
     top: -5px;
