@@ -10,28 +10,28 @@ import { useAuthContext } from "../../Context/index.context";
 
 function Register() {
 
-  const {register} = useAuthContext()
+  const { register } = useAuthContext()
   const initialValue = {
-    name:"",
-    email:"",
-    phone:"",
-    password:"",
-    confirm_Password:"",
-    role:"user"
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirm_Password: "",
+    role: "user"
   }
 
   const registered = yup.object({
-    name:yup.string().required("Name is Required "),
-    email:yup.string().email().required("Email is Required"),
-    phone:yup.string().required("Mobile Number is Required"),
-    password:yup.string().min(6).max(16).required("Password is Required"),
-    confirm_Password:yup.string().min(6).max(16).required("Confirm Password does not Match")
+    name: yup.string().required("Name is Required "),
+    email: yup.string().email().required("Email is Required"),
+    phone: yup.string().required("Mobile Number is Required"),
+    password: yup.string().min(6).max(16).required("Password is Required"),
+    confirm_Password: yup.string().min(6).max(16).required("Confirm Password does not Match")
   })
 
-  const {values, errors, touched, handleBlur, handleSubmit, handleChange} = useFormik({
-    initialValues:initialValue,
-    validationSchema:registered,
-    onSubmit:(value)=>{
+  const { values, errors, touched, handleBlur, handleSubmit, handleChange } = useFormik({
+    initialValues: initialValue,
+    validationSchema: registered,
+    onSubmit: (value) => {
       register(value)
     }
   })
@@ -45,7 +45,7 @@ function Register() {
           <div className="col-lg-6 offset-lg-3 col-12">
             <div className="login-form">
               <h2>REGISTER</h2>
-          
+
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label for="exampleInputEmail1" className="form-label">
@@ -56,10 +56,10 @@ function Register() {
                     placeholder="Enter Your Name"
                     className="form-control" name="name" value={values.name}
                     onBlur={handleBlur}
-                    onChange={handleChange} 
+                    onChange={handleChange}
                   />
 
-{touched.name && errors.name ? <p className="text-start text-danger ps-1 mt-1">{errors.name}</p> : null}
+                  {touched.name && errors.name ? <p className="text-start text-danger ps-1 mt-1">{errors.name}</p> : null}
                 </div>
                 <div className="mb-3">
                   <label for="exampleInputEmail1" className="form-label">
@@ -111,9 +111,9 @@ function Register() {
                     onBlur={handleBlur}
                     onChange={handleChange}
                   />
-                    {touched.password && errors.password ? <p className="text-start text-danger ps-1 mt-1">{errors.password}</p> : null}
+                  {touched.password && errors.password ? <p className="text-start text-danger ps-1 mt-1">{errors.password}</p> : null}
                 </div>
-                
+
                 <div className="mb-3">
                   <label for="exampleInputPassword2" className="form-label">
                     Confirm Password *
@@ -128,10 +128,10 @@ function Register() {
                     onBlur={handleBlur}
                     onChange={handleChange}
                   />
-                    {touched.confirm_Password && errors.confirm_Password ? <p className="text-start text-danger ps-1 mt-1">{errors.confirm_Password}</p> : null}
+                  {touched.confirm_Password && errors.confirm_Password ? <p className="text-start text-danger ps-1 mt-1">{errors.confirm_Password}</p> : null}
                 </div>
 
-                
+
                 <div className="d-flex align-items-center login_register_box">
                   <button type="submit" className="btn btn-primary  login">
                     Register
@@ -141,8 +141,8 @@ function Register() {
                       Login
                     </Link>
                   </button>
-                 
-                 
+
+
                 </div>
               </form>
             </div>
