@@ -22,32 +22,39 @@ function ProductDetail() {
   const { productDetailsData } = useProductDetailsContext()
   // console.log(productDetailsData);
   const [image, setImage] = useState(null)
-  const [color,setColor] = useState("")
-  const [size,setSize] = useState(null)
+  const [color, setColor] = useState("")
+  const [size, setSize] = useState(null)
   const [details, setDetails] = useState({
-    title:"",
-    Size:"",
-    MRP:"",
-    sellingPrice:"",
-    images:[],
-    color:""
+    title: "",
+    Size: "",
+    MRP: "",
+    sellingPrice: "",
+    images: [],
+    color: ""
   })
 
 
-  
+
   let productDetailId;
   const { id } = useParams()
 
-  // Remove n add value 
-  const [qty, setQty] = useState(1)
 
-  const addValue = () => {
-    setQty(qty + 1)
-  }
 
-  const removeValue = () => {
-    setQty(qty - 1)
-  }
+  const data = productDetailsData?.filter((item, i) => {
+    return id === item._id
+  })[0]
+
+  const Prouctdetail = data?.ProductDetails[0]
+
+  const filter = data?.ProductDetails?.filter((item) => item.color === color)
+  const filter2 = filter?.filter((item) => item._id === size)[0]
+
+  useEffect(() => {
+
+    setImage(filter ? filter[0]?.image[0]?.image_url : Prouctdetail?.image[0]?.image_url)
+    setColor(Prouctdetail?.color)
+    setSize(Prouctdetail?._id)
+  }, [productDetailsData])
 
 
 
@@ -57,9 +64,9 @@ function ProductDetail() {
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
-            
 
-{
+
+            {
               // productDetailsData?.filter((item) => {
               //   return item?._id === id
               // }).map((ite, ind) => (
@@ -69,44 +76,46 @@ function ProductDetail() {
               //       return ele._id === productDetailId
               //     }).map((element,i) => (
 
-                    <div className="row details-snippet1">
-                     
+              <div className="row details-snippet1">
 
 
-                      <div className="col-md-7" >
 
-                        <div className="row">
+                <div className="col-md-7" >
 
-                          <div key="" className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
-                            { filter  ? filter[0]?.image.map((photo,i)=>(
-                              
-                              <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)}  alt="preview" />
-                            )) : Prouctdetail?.image.map((photo,i)=>(
+                  <div className="row">
 
-                      <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />)) }
+                    <div key="" className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
+                      {filter ? filter[0]?.image.map((photo, i) => (
 
-                           
-                          </div>
+                        <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
+                      )) : Prouctdetail?.image.map((photo, i) => (
 
-                             
+                        <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
 
-                          <div className="col-md-10 col-sm-10 order-1 order-sm-2">
-                            <div className="product-image">
-                              
-                        <img className="img-fluid" src={image ? image : Prouctdetail?.image[0]?.image_url}  alt="product" />
 
-                            </div>
-                          </div>
-                        </div>
+                    </div>
+
+
+
+                    <div className="col-md-10 col-sm-10 order-1 order-sm-2">
+                      <div className="product-image">
+
+                        <img className="img-fluid" src={image ? image : Prouctdetail?.image[0]?.image_url} alt="product" />
+
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-5">
-                    {item?.category?.map((cate) => (
+                </div >
 
-                      <div className="theme-text mr-2">Category : <span className="text-secondary">{cate.category_name}</span></div>
-                    ))}
-                    {/* <div className="theme-text mr-2">Product Ratings: </div>
+
+
+
+                <div className="col-md-5">
+
+
+                  <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
+
+                  {/* <div className="theme-text mr-2">Product Ratings: </div>
                       <div className="reviews-counter">
                         <div className="rate">
                           <input
@@ -151,106 +160,125 @@ function ProductDetail() {
                         <span>3 Reviews</span>
                       </div> */}
 
-                    <div><h3>{item.title}</h3></div>
-                    {item?.ProductDetails?.map((price) => (
-                      <div className="price my-2">
-                        {price.sellingPrice}<strike className="original-price">  {price.MRP}</strike> <span>13% off</span>
-                      </div>
-                    ))}
+                  <div><h3>{data?.title}</h3></div>
 
-                    <div className="delivery shadow">Free Delivery</div>
-                    <div className="theme-text subtitle mb-3">Brief Description:</div>
-                    <div className="brief-description">
-                      {item.description}
-                    </div>
-                    {/* <div>
-                  <div className="subtitle my-3 theme-text">Colors:</div>
-                  <div className="select-colors d-flex">
-                    <div className="color blue"></div>
-                    <div className="color silver"></div>
-                    <div className="color black"></div>
+                  <div className="price my-2">
+                    {filter2?.sellingPrice}<strike className="original-price">  {filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
                   </div>
-                </div>*/}
-                    <hr />
-                    <div>
-                      <div className="subtitle my-3 theme-text">Colors:</div>
-                      <div className="d-flex flex-row gap-2 p-2">
-                        {item?.ProductDetails?.map((photos, i) => (
-                          <div className="select-colors d-flex">
-                            <div className="color blue ">
-                              <div className="">
 
+                  <div className="delivery">Free Delivery</div>
+                  <div className="theme-text subtitle mb-3">Brief Description:</div>
+                  <div className="brief-description">
+                    {data?.description}
+                  </div>
 
-                                {console.log(photos)}
-                                <img src={photos?.image[0].image_url} style={{ width: "100px", height: "100px" }} />
+                  <hr />
+                  <div>
+                    <div className="subtitle my-3 theme-text">Colors:</div>
+                    <div className="d-flex flex-row gap-2 p-2">
 
-                              </div>
-                            </div>
+                      <div className="select-colors d-flex">
+                        <div className="color blue ">
+                          <div className="">
 
+                            {/* {arr.map((color) => {
+                                    if (color === element.color) {
+                                      console.log(color)
+                                    }
+                                  })} */}
+                            {(data?.ProductDetails?.map((photo) => (
+                              <>
 
+                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url) }} />}
+
+                              </>
+                            )))}
+
+                            {/* {ite?.ProductDetails.map((forId) => (
+                                    
+                              ))} */}
                           </div>
+                        </div>
 
-                        ))}
+
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <hr />
+                  <div>
+
+                    <div>Size: </div>
+                    <div className="subtitle my-3 theme-text">
+
+
+                      {filter?.map((item) => (
+                        <span className="px-2 py-1 border border-dark mx-1 " onClick={() => setSize(item._id)} >
+                          {item?.Size}
+                        </span>
+                      ))}
+
+                    </div>
+                  </div>
+
+
+                  <hr />
+                  <div className="row">
+                    <div className="col-md-6 col-6 col-lg-4">
+                      <div className="product-count">
+                        <label for="size">Quantity</label>
+                        <form action="#" className="d-flex">
+                          <div className="qtyminus">-</div>
+                          <input
+                            type="text"
+                            name="quantity"
+                            value="1"
+                            className="qty"
+                          />
+                          <div className="qtyplus">+</div>
+                        </form>
                       </div>
                     </div>
-                    <hr />
-                    <div>
-
-                      <div>Size: </div>
-                      <div className="subtitle my-3 theme-text">
-                        {item?.ProductDetails?.map((size) => (
-                          <span className="px-2 py-1 border border-dark mx-1">
-                            {size.Size}
-                          </span>
-                        ))}
+                    <div className="col-md-1 col-1 col-lg-1">
+                      <div className="wishlist_btn">
+                        <i className="bi bi-heart"></i>
                       </div>
                     </div>
-
-
-                    <hr />
-                    <div className="row">
-                      <div className="col-md-6 col-6 col-lg-4">
-                        <div className="product-count">
-                          <label for="size">Quantity</label>
-                          <form action="#" className="d-flex">
-                            <div className="qtyminus" onClick={removeValue}>-</div>
-                            <input
-                              type="text"
-                              name="quantity"
-                              value={qty}
-                              className="qty"
-                            />
-                            <div className="qtyplus" onClick={addValue}>+</div>
-                          </form>
-                        </div>
-                      </div>
-                      <div className="col-md-1 col-1 col-lg-1">
-                        <div className="wishlist_btn">
-                          <i className="bi bi-heart"></i>
-                        </div>
-                      </div>
-                      <div className="col-md-1 col-1 col-lg-1">
-                        <div className="wishlist_btn ms-2">
-                          <i className="bi bi-share-fill"></i>
-                        </div>
-                      </div>
-                    </div>
-
-                    <hr />
-                    <div className="row">
-                      <div className="d-flex">
-                        <button className="btn btn-block addBtn">
-                          Add to basket
-                        </button>
-                        <button className="btn btn-block addBtn ms-3">
-                          Buy Now
-                        </button>
+                    <div className="col-md-1 col-1 col-lg-1">
+                      <div className="wishlist_btn ms-2">
+                        <i className="bi bi-share-fill"></i>
                       </div>
                     </div>
                   </div>
 
-                </>
-              ))}
+                  <hr />
+                  <div className="row">
+                    <div className="d-flex">
+                      <button className="btn btn-block addBtn">
+                        Add to basket
+                      </button>
+                      <button className="btn btn-block addBtn ms-3">
+                        Buy Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+
+
+              // ))}
+              //           </>
+              //         ))
+            }
+
+
+
+
+
 
 
             <div className="additional-details my-5 text-center">
@@ -269,7 +297,11 @@ function ProductDetail() {
                     Reviews
                   </Link>
                 </li>
-               
+                <li className="nav-item">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#menu2">
+                    Specifications
+                  </Link>
+                </li>
               </ul>
               <div className="tab-content mt-4 mb-3">
                 <div className="tab-pane container active" id="home">
@@ -292,62 +324,14 @@ function ProductDetail() {
                 </div>
                 <div className="tab-pane container fade" id="menu1">
                   <div className="review">
-                    <div className="theme-text mr-2 text-start">Product Ratings: </div>
-                      <div className="reviews-counter text-start">
-                        <div className="rate">
-                          <input
-                            type="radio"
-                            id="star5"
-                            name="rate"
-                            value="5"
-                            checked
-                          />
-                          <label for="star5" title="text">
-                            5 stars
-                          </label>
-                          <input
-                            type="radio"
-                            id="star4"
-                            name="rate"
-                            value="4"
-                            checked
-                          />
-                          <label for="star4" title="text">
-                            4 stars
-                          </label>
-                          <input
-                            type="radio"
-                            id="star3"
-                            name="rate"
-                            value="3"
-                            checked
-                          />
-                          <label for="star3" title="text">
-                            3 stars
-                          </label>
-                          <input type="radio" id="star2" name="rate" value="2" />
-                          <label for="star2" title="text">
-                            2 stars
-                          </label>
-                          <input type="radio" id="star1" name="rate" value="1" />
-                          <label for="star1" title="text">
-                            1 star
-                          </label>
-                        </div>
-                        <span>3 Reviews</span>
-                      </div>
-
-                      <div class="form-group text-start my-3">
-                        <label for="">Your Feedback</label>
-                        <textarea type="text"
-                          class="form-control" name="" id="" rows={5} aria-describedby="helpId" placeholder="Type your Feedback"/>
-                      </div>
-                    <div className="submitBtn ">
-                      <button>Submit Review</button>
-                    </div>
+                    <p>Please add your reviews here.</p>
                   </div>
                 </div>
-               
+                <div className="tab-pane container fade" id="menu2">
+                  <div className="specification">
+                    <p>Please add specifications here.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
