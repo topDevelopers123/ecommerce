@@ -1,28 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
-import { useFormik } from "formik";
-import * as yup from "yup"
+import { useAuthContext } from "../../Context/index.context";
 
 function Otp_verify() {
+    const { otpVerify } = useAuthContext();
+    const [otp,setOtp] = useState(null)
 
-    const initialValue = {
-        password: ""
-    }
-
-    const Login = yup.object({
-        password: yup.string().min(6).max(16).required("password is requierd")
-    })
-
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: initialValue,
-        validationSchema: Login,
-        onSubmit: (value) => {
-            console.log(value)
-        }
-    })
 
     return (
         <div>
@@ -32,28 +18,27 @@ function Otp_verify() {
                         <div className="login-form">
                             <h2>OTP Verification</h2>
 
-                            <form onSubmit={handleSubmit} >
-
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="exampleInputEmail1" className="form-label">
                                     </label>
                                     <input
-                                        type="text"
+                                    
+                                        type="number"
                                         placeholder="Enter OTP here"
                                         className="form-control"
                                         id="exampleInputEmail1"
+                                        onChange={(e) => setOtp(e.target.value)}
+
                                     />
                                 </div>
 
                                 <div className="d-flex align-items-center">
-                                    <button type="submit" className="btn btn-primary ms-3">
-                                        <Link to='/login'>
+                                    <button type="submit" onClick={()=>otpVerify(otp)} className="btn btn-primary ms-3">
+                                        <Link >
                                             Verify OTP
                                         </Link>
                                     </button>
-
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

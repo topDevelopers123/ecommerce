@@ -13,7 +13,7 @@ import "./home.css";
 
 function Home() {
   return (
-  <>
+    <>
       <div>
       <MainSlier />
       <FeaturedProducts />
@@ -22,6 +22,8 @@ function Home() {
       <TrendingProducts />
       <Services />
       </div>
+     
+    
   </>
   );
 

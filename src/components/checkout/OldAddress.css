@@ -17,14 +17,10 @@
     font-size: 20px;
 }
 
-.newAdd span {
-    color: #4D869C;
+.newAdd .delAdd {
+    color: red;
     cursor: pointer;
 }
-
-/* .newAdd span:hover {
-    color: #054761;
-} */
 
 button {
     margin: 20px;

@@ -17,7 +17,7 @@ function footer() {
                 </Link>
                 <p className='text-light '>Mayavi Fashion redefines what it means to be a fashion brand in the modern world . By chanelling a porton of its profit to support those in need it merges style with substance , proving that fashion can be a force for good. </p>
               </div>
-              <div className='col-lg-8 col-md-12 co-sm-12 border border-dark d-flex footer_li_div  p-4 flex-wrap px-5'>
+              <div className='col-lg-8 col-md-12 co-sm-12 d-flex footer_li_div  p-4 flex-wrap px-5'>
 
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>USEFUL LINKS</h6>

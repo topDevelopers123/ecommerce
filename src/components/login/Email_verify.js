@@ -1,28 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
 import { useFormik } from "formik";
-import * as yup from "yup"
+import * as yup from "yup";
+import { useAuthContext } from "../../Context/index.context";
 
-function Email_verify() {
+function EmailVerify() {
+    const { emailVerify } = useAuthContext();
 
-    const initialValue = {
+    const initialValues = {
         email: "",
-    }
+        password:""
+    };
 
-    const Login = yup.object({
+    const emailVerified = yup.object({
         email: yup.string().email().required("Email is required"),
-    })
+    });
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: initialValue,
-        validationSchema: Login,
+        initialValues: initialValues,
+        validationSchema: emailVerified,
         onSubmit: (value) => {
-            console.log(value)
-        }
-    })
+            emailVerify(value);
+        },
+    });
 
     return (
         <div>
@@ -32,9 +34,9 @@ function Email_verify() {
                         <div className="login-form">
                             <h2>Forget Password</h2>
 
-                            <form onSubmit={handleSubmit} >
+                            <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="exampleInputEmail1" className="form-label">
                                         Your Email *
                                     </label>
                                     <input
@@ -49,17 +51,17 @@ function Email_verify() {
                                         onChange={handleChange}
                                     />
 
-                                    {touched.email && errors.email ? <p className="text-start text-danger ps-1 mt-1">{errors.email}</p> : null}
+                                    {touched.email && errors.email ? (
+                                        <p className="text-start text-danger ps-1 mt-1">
+                                            {errors.email}
+                                        </p>
+                                    ) : null}
                                 </div>
 
                                 <div className="d-flex align-items-center">
-
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        <Link to='/login'>
-                                            Verify Email
-                                        </Link>
+                                        Verify Email
                                     </button>
-
                                 </div>
                             </form>
                         </div>
@@ -69,4 +71,5 @@ function Email_verify() {
         </div>
     );
 }
-export default Email_verify;
+
+export default EmailVerify;
