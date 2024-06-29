@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useAsyncError, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -20,8 +20,22 @@ import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
   const { productDetailsData } = useProductDetailsContext()
-  console.log(productDetailsData);
-  const [image, tryImage] = useState(model)
+  // console.log(productDetailsData);
+  const [image, setImage] = useState(null)
+  const [color,setColor] = useState("")
+  const [size,setSize] = useState(null)
+  const [details, setDetails] = useState({
+    title:"",
+    Size:"",
+    MRP:"",
+    sellingPrice:"",
+    images:[],
+    color:""
+  })
+
+
+  
+  let productDetailId;
   const { id } = useParams()
 
   // Remove n add value 
@@ -43,25 +57,46 @@ function ProductDetail() {
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
-            <div className="row details-snippet1">
-              {productDetailsData?.filter((item, i) => {
+            
 
-                return id === item._id
-              }).map((item, i) => (
-                <>
-                  <div className="col-md-7">
-                    <div className="row">
-                      <div className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
-                        <img className="img-fluid" src={p01} onClick={() => tryImage(p01)} alt="preview" />
-                        <img className="img-fluid" src={p02} onClick={() => tryImage(p02)} alt="preview" />
-                        <img className="img-fluid" src={p03} onClick={() => tryImage(p03)} alt="preview" />
-                        <img className="img-fluid" src={p04} onClick={() => tryImage(p04)} alt="preview" />
-                        <img className="img-fluid" src={p05} onClick={() => tryImage(p05)} alt="preview" />
-                        <img className="img-fluid" src={p06} onClick={() => tryImage(p06)} alt="preview" />
-                      </div>
-                      <div className="col-md-10 col-sm-10 order-1 order-sm-2">
-                        <div className="product-image">
-                          <img className="img-fluid" src={image} alt="product" />
+{
+              // productDetailsData?.filter((item) => {
+              //   return item?._id === id
+              // }).map((ite, ind) => (
+              //   <>
+              //     {productDetailId = ite?.ProductDetails[0]?._id}
+              //     {ite?.ProductDetails.filter((ele) => {
+              //       return ele._id === productDetailId
+              //     }).map((element,i) => (
+
+                    <div className="row details-snippet1">
+                     
+
+
+                      <div className="col-md-7" >
+
+                        <div className="row">
+
+                          <div key="" className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
+                            { filter  ? filter[0]?.image.map((photo,i)=>(
+                              
+                              <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)}  alt="preview" />
+                            )) : Prouctdetail?.image.map((photo,i)=>(
+
+                      <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />)) }
+
+                           
+                          </div>
+
+                             
+
+                          <div className="col-md-10 col-sm-10 order-1 order-sm-2">
+                            <div className="product-image">
+                              
+                        <img className="img-fluid" src={image ? image : Prouctdetail?.image[0]?.image_url}  alt="product" />
+
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -218,7 +253,6 @@ function ProductDetail() {
               ))}
 
 
-            </div>
             <div className="additional-details my-5 text-center">
               <ul className="nav nav-tabs justify-content-center">
                 <li className="nav-item">
