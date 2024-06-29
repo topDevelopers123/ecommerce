@@ -368,7 +368,7 @@ function Home() {
                 <div className="single-service">
                   <i className="bi bi-rocket  "></i>
                   <h4>Free shiping</h4>
-                  <p className="m-0">Orders over $100</p>
+                  <p className="m-0">Orders over ₹1000</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-12">

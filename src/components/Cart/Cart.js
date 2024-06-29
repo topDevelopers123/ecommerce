@@ -28,7 +28,7 @@ function Cart() {
                         <h6 className='col-lg-2  col-12'>UNIT PRICE</h6>
                         <h6 className='col-lg-2  col-12'>QUANTITY</h6>
                         <h6 className='col-lg-2  col-12'>TOTAL</h6>
-                        <h6 className='col-lg-2  col-12'><i className="bi bi-trash3"></i></h6>
+                        <h6 className='col-lg-2  col-12'>DELETE</h6>
 
                     </div>
                 </div>

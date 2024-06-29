@@ -1,5 +1,7 @@
 import React from 'react'
 import './footer.css'
+import logo from '../header/header_images/footer_logo.png'
+import { Link } from 'react-router-dom'
 
 function footer() {
   return (
@@ -8,45 +10,37 @@ function footer() {
         <div className='container'>
           <div className='row'>
             <div className='col-12 d-flex flex-wrap'>
-              <div className='col-lg-4 col-md-12 co-sm-12 border border-dark p-3'>
-                <p className='text-light mt-5'>Mayavi Fashion redefines what it means to be a fashion brand in the modern world . By chanelling a porton of its profit to support those in need it merges style with substance , proving that fashion can be a force for good. </p>
-                <p className='text-light'>Got Question? Call us 24/7</p>
-                <h5 className='text-light'>9262852851</h5>
+              <div className='col-lg-4 col-md-12 co-sm-12 p-3'>
+                <div className='footer_logo'>
+                  <img src={logo}></img>
+                </div>
+                <p className='text-light mt-2'>Mayavi Fashion redefines what it means to be a fashion brand in the modern world . By chanelling a porton of its profit to support those in need it merges style with substance , proving that fashion can be a force for good. </p>
               </div>
-              <div className='col-lg-8 col-md-12 co-sm-12 border border-dark d-flex footer_li_div  p-4 flex-wrap px-5'>
+              <div className='col-lg-8 col-md-12 co-sm-12 d-flex footer_li_div  p-4 flex-wrap px-5'>
 
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
-                  <h6>Information</h6>
+                  <h6>USEFUL LINKS</h6>
                   <ul className="p-0">
-                    <li className='text-light'>About Us</li>
-                    <li className='text-light'>FAQ</li>
-                    <li className='text-light'>Terms & Conditions</li>
-                    <li className='text-light'>Contact Us</li>
-                    <li className='text-light'>Help</li>
-                    
-                  </ul>
-                </div>
-                
-
-
-
-
-
-                <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
-                <h6>Customer Service</h6>
-                  <ul className="p-0">
-                    <li className='text-light'>Payment Methods</li>
-                    <li className='text-light'>Money-back</li>
-                    <li className='text-light'>Returns</li>
-                    <li className='text-light'>Shipping</li>
+                    <Link to="/about"><li className='text-light'>About Us</li></Link>
                     <li className='text-light'>Privacy Policy</li>
+                    <li className='text-light'>Terms & Conditions</li>
+                    <li className='text-light'>Refunds & Cancellation</li>
+                    <li className='text-light'>Contact Us</li>
                     
                   </ul>
                 </div>
                 
-
-
-
+                <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
+                <h6>SHOP BY CATEGORY</h6>
+                  <ul className="p-0">
+                    <li className='text-light'>Shirt</li>
+                    <li className='text-light'>Jeans</li>
+                    <li className='text-light'>Footwear</li>
+                    <li className='text-light'>Kid's Clothing</li>
+                    <li className='text-light'>Women's Topwear</li>                   
+                  </ul>
+                </div>
+                
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                 <h6>Get In Touch</h6>
                   <ul className="p-0">
