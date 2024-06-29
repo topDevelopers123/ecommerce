@@ -4,25 +4,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
 import { useFormik } from "formik";
-import * as yup from "yup"
+import { useAuthContext } from "../../Context/index.context";
 
-function Change_password() {
+function ChangePassword() {
+    const { changePassword } = useAuthContext();
 
-    const initialValue = {
-        password: ""
-    }
 
-    const Login = yup.object({
-        password: yup.string().min(6).max(16).required("password is requierd")
-    })
+    const initialValues = {
+        oldpassword: "",
+        newPassword: "",
+        confirmPassword: ""
+    };
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: initialValue,
-        validationSchema: Login,
+    const { handleSubmit, handleChange, values } = useFormik({
+        initialValues: initialValues,
         onSubmit: (value) => {
-            console.log(value)
-        }
-    })
+            changePassword(value);
+        },
+    });
 
     return (
         <div>
@@ -32,50 +31,55 @@ function Change_password() {
                         <div className="login-form">
                             <h2>Change Password</h2>
 
-                            <form onSubmit={handleSubmit} >
-
+                            <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="oldpassword" className="form-label">
                                         Current Password *
                                     </label>
                                     <input
                                         type="password"
                                         placeholder="Enter current password"
                                         className="form-control"
-                                        id="exampleInputEmail1"
+                                        id="oldpassword"
+                                        name="oldpassword"
+                                        value={values.oldpassword}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="newPassword" className="form-label">
                                         New Password *
                                     </label>
                                     <input
                                         type="password"
                                         placeholder="Enter new password"
                                         className="form-control"
-                                        id="exampleInputEmail1"
+                                        id="newPassword"
+                                        name="newPassword"
+                                        value={values.newPassword}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="confirmPassword" className="form-label">
                                         Confirm Password *
                                     </label>
                                     <input
                                         type="password"
                                         placeholder="Enter confirm password"
                                         className="form-control"
-                                        id="exampleInputEmail1"
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        value={values.confirmPassword}
+                                        onChange={handleChange}
                                     />
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        <Link to='/login'>
-                                            Submit
-                                        </Link>
+                                        Submit
                                     </button>
-
                                 </div>
                             </form>
                         </div>
@@ -85,4 +89,5 @@ function Change_password() {
         </div>
     );
 }
-export default Change_password;
+
+export default ChangePassword;

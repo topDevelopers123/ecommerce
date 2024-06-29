@@ -1,28 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
 import { useFormik } from "formik";
-import * as yup from "yup"
+import { useAuthContext } from "../../Context/index.context";
 
-function New_password() {
+function NewPassword() {
+    const { newPassword } = useAuthContext();
 
-    const initialValue = {
-        password: ""
-    }
+    const initialValues = {
+        email: "",
+        newPassword: "",
+        confirmPassword: ""
+    };
 
-    const Login = yup.object({
-        password: yup.string().min(6).max(16).required("password is requierd")
-    })
-
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: initialValue,
-        validationSchema: Login,
-        onSubmit: (value) => {
-            console.log(value)
+    const { handleSubmit, handleChange, values } = useFormik({
+        initialValues: initialValues,
+        onSubmit: (values) => {
+            newPassword(values);
+            console.log(values);
         }
-    })
+    });
 
     return (
         <div>
@@ -32,39 +30,42 @@ function New_password() {
                         <div className="login-form">
                             <h2>Create New Password</h2>
 
-                            <form onSubmit={handleSubmit} >
+                            <form onSubmit={handleSubmit}>
 
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="newPassword" className="form-label">
                                         New Password *
                                     </label>
                                     <input
                                         type="password"
                                         placeholder="Enter new password"
                                         className="form-control"
-                                        id="exampleInputEmail1"
+                                        id="newPassword"
+                                        name="newPassword"
+                                        value={values.newPassword}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="confirmPassword" className="form-label">
                                         Confirm Password *
                                     </label>
                                     <input
                                         type="password"
                                         placeholder="Enter confirm password"
                                         className="form-control"
-                                        id="exampleInputEmail1"
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        value={values.confirmPassword}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        <Link to='/login'>
-                                            Submit
-                                        </Link>
+                                        Submit
                                     </button>
-
                                 </div>
                             </form>
                         </div>
@@ -74,4 +75,5 @@ function New_password() {
         </div>
     );
 }
-export default New_password;
+
+export default NewPassword;

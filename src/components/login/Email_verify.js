@@ -11,6 +11,7 @@ function EmailVerify() {
 
     const initialValues = {
         email: "",
+        password:""
     };
 
     const emailVerified = yup.object({
@@ -22,7 +23,6 @@ function EmailVerify() {
         validationSchema: emailVerified,
         onSubmit: (value) => {
             emailVerify(value);
-            console.log(value);
         },
     });
 

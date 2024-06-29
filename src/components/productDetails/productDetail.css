@@ -152,14 +152,14 @@
 
 .rate:not(:checked)>label {
     float: right;
-    width: 15px;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 21px;
-    color: #ccc;
-    margin-bottom: 0;
-    line-height: 21px;
+        width: 22px;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 25px;
+        color: #ccc;
+        margin-bottom: 0;
+        line-height: 21px;
 }
 
 .rate:not(:checked)>label:before {
@@ -206,6 +206,7 @@
 .product-count .qty {
     width: 60px;
     text-align: center;
+    height: 34px;
 }
 .wishlist_btn{
     width: 40px;
