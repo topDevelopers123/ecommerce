@@ -30,7 +30,7 @@ function Wishlist() {
                             <h6 className='col-lg-2  col-12'>Size</h6>
                             <h6 className='col-lg-2  col-12'>Colour</h6>
                             <h6 className='col-lg-2  col-12'>TOTAL</h6>
-                            <h6 className='col-lg-2  col-12'>ADD TO CART</h6>
+                            <h6 className='col-lg-2  col-12'>ADD TO CART</h6>   
                             <h6 className='col-lg-2  col-12'>DELETE</h6>
                         </div>
                     </div>

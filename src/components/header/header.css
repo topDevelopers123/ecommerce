@@ -209,7 +209,14 @@ border-bottom-left-radius: 100px;
   z-index: 5;
   right: 20px;
 }
-
+.serach_preiew{
+      position: absolute;
+        top: 78%;
+          width: 50%;
+          /* background: aliceblue; */
+          left: 20%;
+          max-height: 100px;
+}
 
 .profile_main_box div p a{
   transition: all 0.2s ease;
@@ -262,8 +269,7 @@ border-bottom-left-radius: 100px;
   }
   .right_icons_box{
     display: flex ;
-    justify-content: center !important;
-
+    justify-content: center !important; 
   }
   .nav_right_div{
     justify-content: end !important;
@@ -271,7 +277,7 @@ border-bottom-left-radius: 100px;
   .search_btn{
     width: 45px !important;
     height: 45px !important;
-    border-radius: 50% ;
+    border-radius: 0 ;
     border-top-right-radius: 50% !important; 
     border-bottom-right-radius: 50% !important;
     margin-right: 10px;

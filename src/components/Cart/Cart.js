@@ -28,11 +28,11 @@ function Cart() {
                         <h6 className='col-lg-2  col-12'>UNIT PRICE</h6>
                         <h6 className='col-lg-2  col-12'>QUANTITY</h6>
                         <h6 className='col-lg-2  col-12'>TOTAL</h6>
-                        <h6 className='col-lg-2  col-12'><i className="bi bi-trash3"></i></h6>
+                        <h6 className='col-lg-2  col-12'>DELETE</h6>
 
                     </div>
                 </div>
-                <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center flex-row flex-wrap'>
+                <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center flex-row flex-wrap '>
                     {cartData?.map((item,i)=>(
                         <>
                         
@@ -43,7 +43,7 @@ function Cart() {
                                 ))}
                         </div>
 
-                            <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center'>
+                            <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center '>
                                 {/* {cartData?.map(())} */}
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>{item?.product_id?.title}</h6>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice}</h6>
