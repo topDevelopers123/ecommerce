@@ -50,17 +50,17 @@ function Home() {
     addToCart(product_id, productDetails_id, addToCart.quantity)
   }
 
-  const wishlistHandler =(item_Id, ite_Id)=>{
+  const wishlistHandler = (item_Id, ite_Id) => {
     const obj = {
-      product_id:item_Id,
-      product_detail_id:ite_Id
+      product_id: item_Id,
+      product_detail_id: ite_Id
     }
-   
+
     addToWishlist(obj)
   }
-  
-  
-  
+
+
+
 
 
   const getbannerData = async () => {
@@ -83,7 +83,7 @@ function Home() {
 
 
   return (
-  <>
+    <>
       <div>
         {/* Slider section start  */}
         <section className="main_slider mt-3">
@@ -301,102 +301,103 @@ function Home() {
             <div className="tp_area">
               <div className="row">
                 {productData?.map((item, i) => (
-                 
-                    <div className="col-lg-3 col-md-6 col-sm-12">
-                      <div className="card" >
 
-                        
-                          <>
-                        {(item.ProductDetails[0].sellingPrice)}
+                  <div className="col-lg-3 col-md-6 col-sm-12">
+                    <div className="card" >
 
-                          <img src={item?.ProductDetails[i]?.image[0]?.image_url} onClick={()=>productDetailsPage(item._id)} className="tp_img " alt="..." />
+
+                      <>
+
+
+  <img src={item?.ProductDetails[0]?.image[0]?.image_url} onClick={() => productDetailsPage(item._id)} className="tp_img " alt="..." />
                           </>
-                       
-
-                        <div className="card-body">
-                          <div className="add_icons">
-                            <div className="icons">
-                              <i className="bi bi-heart-fill" onClick={()=>wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
-                            </div>
-                            <div className="icons">
-                              <i className="bi bi-share-fill"></i>
-                            </div>
-                          </div>
-                          <h5 className="card-title">{item.title}</h5>
-                          <p className="card-text m-0">
-                            {item.description}
-                          </p>
-                        
-                          {
-                          (item?.ProductDetails[0]?.inStock <= 100 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : "")
-                          }
-
-                          <p className="pricing">
 
 
-                          ₹{item.ProductDetails[0].sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item.ProductDetails[0].sellingPrice) / item.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
-                          </p>
-                          <div className="d-flex cart_n_buy">
+    <div className="card-body">
+      <div className="add_icons">
+        <div className="icons">
+          <i className="bi bi-heart-fill" onClick={() => wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
+        </div>
+        <div className="icons">
+          <i className="bi bi-share-fill"></i>
+        </div>
+      </div>
+      <h5 className="card-title">{item.title}</h5>
+      <p className="card-text m-0">
+        {item.description}
+      </p>
 
-                            <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id)}>
-                              Add to basket
-                            </button>
-                            <button className="btn btn-block addBtn ms-2">
-                              Buy Now
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+      {
+        (item?.ProductDetails[0]?.inStock <= 100 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : "")
+      }
+
+      <p className="pricing">
+
+
+        ₹{item.ProductDetails[0].sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item.ProductDetails[0].sellingPrice) / item.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
+      </p>
+      <div className="d-flex cart_n_buy">
+
+        <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id)}>
+          Add to basket
+        </button>
+        <button className="btn btn-block addBtn ms-2">
+          Buy Now
+        </button>
+      </div>
+    </div>
+                      </div >
+                    </div >
                  
 
-                ))}
+                ))
+}
 
 
 
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Trending products section end  */}
+              </div >
+            </div >
+          </div >
+        </section >
+  {/* Trending products section end  */ }
 
-        {/* Services area start  */}
-        <section className="shop-services section home">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service">
-                  <i className="bi bi-rocket  "></i>
-                  <h4>Free shiping</h4>
-                  <p className="m-0">Orders over $100</p>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service">
-                  <i className="bi bi-arrow-return-right"></i>
-                  <h4>Free Return</h4>
-                  <p className="m-0">Within 30 days returns</p>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service">
-                  <i className="bi bi-lock"></i>
-                  <h4>Sucure Payment</h4>
-                  <p className="m-0">100% secure payment</p>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-12">
-                <div className="single-service" style={{ borderRight: "none" }}>
-                  <i className="bi bi-tags"></i>
-                  <h4>Best Price</h4>
-                  <p className="m-0">Guaranteed price</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Services area end  */}
+{/* Services area start  */ }
+<section className="shop-services section home">
+  <div className="container">
+    <div className="row">
+      <div className="col-lg-3 col-md-6 col-12">
+        <div className="single-service">
+          <i className="bi bi-rocket  "></i>
+          <h4>Free shiping</h4>
+          <p className="m-0">Orders over $100</p>
+        </div>
       </div>
+      <div className="col-lg-3 col-md-6 col-12">
+        <div className="single-service">
+          <i className="bi bi-arrow-return-right"></i>
+          <h4>Free Return</h4>
+          <p className="m-0">Within 30 days returns</p>
+        </div>
+      </div>
+      <div className="col-lg-3 col-md-6 col-12">
+        <div className="single-service">
+          <i className="bi bi-lock"></i>
+          <h4>Sucure Payment</h4>
+          <p className="m-0">100% secure payment</p>
+        </div>
+      </div>
+      <div className="col-lg-3 col-md-6 col-12">
+        <div className="single-service" style={{ borderRight: "none" }}>
+          <i className="bi bi-tags"></i>
+          <h4>Best Price</h4>
+          <p className="m-0">Guaranteed price</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{/* Services area end  */ }
+      </div >
   </>
   );
 

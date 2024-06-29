@@ -27,8 +27,8 @@ function Wishlist() {
                         </div>
                         <div className='wish-text wish-text-1 text-center  col-lg-10 d-flex justify-content-between'>
                             <h6 className='col-lg-2  col-12'>NAME</h6>
-                            <h6 className='col-lg-2  col-12'>Size</h6>
-                            <h6 className='col-lg-2  col-12'>Colour</h6>
+                            <h6 className='col-lg-2  col-12'>SIZE</h6>
+                            <h6 className='col-lg-2  col-12'>COLOUR</h6>
                             <h6 className='col-lg-2  col-12'>TOTAL</h6>
                             <h6 className='col-lg-2  col-12'>ADD TO CART</h6>
                             <h6 className='col-lg-2  col-12'>DELETE</h6>
@@ -37,7 +37,7 @@ function Wishlist() {
                     <div className='wish-items-shadow '>
                         <div className='wish-items text-center d-flex flex-column w-100 '>
                             {wishlistData?.map((item,i)=>(
-                                <div className='d-flex flex-row w-100'>
+                                <div className='d-flex flex-row w-100 border-bottom my-2'>
                                 <div key={i} className=' col-lg-2 col-md-5 col-sm-5 col-6 img-fluid'>
                                     {item?.product_detail_id?.image?.map((img,i)=>(
 
