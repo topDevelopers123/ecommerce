@@ -19,7 +19,11 @@ import Thankyou from './components/login/Thankyou';
 import TrackOrder from './components/trackOrder/TrackOrder';
 import { Toaster } from 'react-hot-toast';
 import OldAddress from './components/checkout/OldAddress';
+import Email_verify from './components/login/Email_verify';
 import Otp_verify from './components/login/Otp_verify';
+import New_password from './components/login/New_password';
+import Change_password from './components/login/Change_password';
+
 
 
 function App() {
@@ -45,11 +49,13 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/track_order' element={<TrackOrder />} />
-          <Route path='/Otp_verify' element={<Otp_verify />} />
           <Route path='/OldAddress' element={<OldAddress />} />
+          <Route path='/Email_verify' element={<Email_verify />} />
+          <Route path='/Otp_verify' element={<Otp_verify />} />
+          <Route path='/New_password' element={<New_password />} />
+          <Route path='/Change_password' element={<Change_password />} />
         </Routes>
         <Footer />
-
       </BrowserRouter>
     </>
   );

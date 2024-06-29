@@ -15,7 +15,7 @@ function UserAddressProvider({ children }) {
             const res = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/get', {
                 headers: { 'Authorization': token, },
             })
-            setUserAddressData(res?.data?.find)
+            setUserAddressData(res?.data?.data)
 
 
         } catch (error) {
@@ -52,7 +52,7 @@ function UserAddressProvider({ children }) {
     }
 
     useEffect(() => {
-        getUserAddressData()
+        if (token) getUserAddressData()
     }, [])
 
     return (

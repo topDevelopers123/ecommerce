@@ -6,7 +6,6 @@ import { useCartContext } from '../../Context/index.context'
 function Cart() {
     const { cartData, addToCartUpdate, deleteCartProduct } = useCartContext()
         
-    console.log(cartData)
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity,0)
 
     // let sellingPrice = 0
