@@ -217,11 +217,7 @@ function About() {
       {/* What We do */}
       <div className="donate">
         <h2 className="d-flex justify-content-center">What We Do</h2>
-        <p className="d-flex justify-content-center text-center">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore,
-          nisi eos! Exercitationem laboriosam hic aliquid.
-        </p>
-
+       
         <div className="row">
           <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row">

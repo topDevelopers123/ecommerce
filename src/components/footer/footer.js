@@ -26,7 +26,7 @@ function footer() {
                     <Link to=""><li className='text-light'>Privacy Policy</li></Link>
                     <Link to=""><li className='text-light'>Terms & Conditions</li></Link>
                     <Link to=""><li className='text-light'>Refunds & Cancellation</li></Link>
-                    <Link to=""><li className='text-light'>Contact Us</li></Link>
+                    <Link to="/contact"><li className='text-light'>Contact Us</li></Link>
                   </ul>
                 </div>
 
@@ -49,6 +49,7 @@ function footer() {
                     <li className='text-light'>9262852851</li>
                   </ul>
                 </div>
+                
               </div>
             </div>
           </div>

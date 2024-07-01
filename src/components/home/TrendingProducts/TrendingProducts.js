@@ -30,10 +30,10 @@ function TrendingProducts() {
           {/* Trending products section start  */}
           <section className="trending_products">
               <div className="container">
-                  <div className="head_title text-center">
+                  <div className="head_title">
                       <h2>Trending Products</h2>
                   </div>
-                  <div className="nav-main">
+                  {/* <div className="nav-main">
                       <ul
                           className="nav nav-tabs filter-tope-group d-flex justify-content-center"
                           id="myTab"
@@ -49,7 +49,7 @@ function TrendingProducts() {
 
                           <button className="btn">Kid's</button>
                       </ul>
-                  </div>
+                  </div> */}
 
                   {/* Product Start  */}
                   <div className="tp_area">
