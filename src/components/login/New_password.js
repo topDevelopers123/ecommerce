@@ -5,6 +5,7 @@ import "./login.css";
 import * as yup from 'yup';
 import { useFormik } from "formik";
 import { useAuthContext } from "../../Context/index.context";
+import { Link } from "react-router-dom";
 
 function NewPassword() {
     const { newPassword } = useAuthContext();
@@ -39,23 +40,7 @@ function NewPassword() {
                             <h2>Create New Password</h2>
 
                             <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">
-                                        Email *
-                                    </label>
-                                    <input
-                                        type="email"
-                                        placeholder="Enter email"
-                                        className="form-control"
-                                        id="email"
-                                        name="email"
-                                        value={values.email}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.email && touched.email ? (
-                                        <div className="text-danger">{errors.email}</div>
-                                    ) : null}
-                                </div>
+                              
 
                                 <div className="mb-3">
                                     <label htmlFor="newPassword" className="form-label">
@@ -95,7 +80,8 @@ function NewPassword() {
 
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        Submit
+                                        <Link to="/login">Submit</Link>
+                                       
                                     </button>
                                 </div>
                             </form>

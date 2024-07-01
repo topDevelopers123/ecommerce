@@ -50,9 +50,9 @@ function App() {
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/track_order' element={<TrackOrder />} />
           <Route path='/OldAddress' element={<OldAddress />} />
-          <Route path='/Email_verify' element={<Email_verify />} />
-          <Route path='/Otp_verify' element={<Otp_verify />} />
-          <Route path='/New_password' element={<New_password />} />
+          <Route path='/emailVerify' element={<Email_verify />} />
+          <Route path='/otpVerify' element={<Otp_verify />} />
+          <Route path='/newPassword' element={<New_password />} />
           <Route path='/Change_password' element={<Change_password />} />
         </Routes>
         <Footer />

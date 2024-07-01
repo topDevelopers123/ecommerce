@@ -16,8 +16,8 @@ function Otp_verify() {
                 <div className="container">
                     <div className="col-lg-6 offset-lg-3 col-12">
                         <div className="login-form">
-                            <h2>OTP Verification</h2>
-
+                            <h2>Verify OTP</h2>
+<form>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">
                                     </label>
@@ -31,10 +31,10 @@ function Otp_verify() {
 
                                     />
                                 </div>
-
+                            </form>
                                 <div className="d-flex align-items-center">
                                     <button type="submit" onClick={()=>otpVerify(otp)} className="btn btn-primary ms-3">
-                                        <Link >
+                                    <Link to="/newPassword">
                                             Verify OTP
                                         </Link>
                                     </button>
