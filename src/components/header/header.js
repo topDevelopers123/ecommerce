@@ -1,26 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./header_images/logo.png";
 import logo2 from './header_images/FINAL LOGO white with Drop Shadow.png'
 import "./header.css";
 import CategoryPage from "./CategoryPage"
-import { useCartContext, useWishlistContext } from "../../Context/index.context";
+import { useCartContext, useProductContext, useWishlistContext } from "../../Context/index.context";
+import { useToaster } from "react-hot-toast";
  
 function Header() {
   const { wishlistLength } = useWishlistContext()
   const { cartLength } = useCartContext()
+  const naviate = useNavigate()
 
   const [flag, setFlag] = useState(false)
   const [flag2, setFlag2] = useState(false)
-
+  const [flag3,setflag3] = useState(false)
+  const [Searchdata,setSearchdata]= useState([])
+  const [search,setSearch]= useState("")
   
-
+  const {  productData, setProductData } = useProductContext()  
   const show_searchBar = () => {
     flag ? setFlag(false) : setFlag(true)
   }
 
   const toggleFlag2 = () => {
     flag2 ? setFlag2(false) : setFlag2(true)
+  }
+  
+  const handleSearch = (e)=>{
+    const {value} = e.target
+    setSearch(value)
+    const filter = value && productData && productData.filter((item) => item.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')))
+    setSearchdata(filter || null)
   }
 
   return (
@@ -34,7 +45,6 @@ function Header() {
               <img src={logo2}></img>
             </Link>
           </div>
-
        
            <div className={`col-lg-7  ${flag ? "col-md-10 col-sm-10 col-10 rounded" : "col-5"} d-flex justify-content-center align-items-center h-100  `  }>
             <div className="nav_right_div d-flex  w-100 h-100 align-items-center justify-content-center ">
@@ -45,9 +55,10 @@ function Header() {
                 type="search"
                 placeholder="Search here.."
                 aria-label="Search" 
+                    value={search}
+                    onChange={handleSearch}
               />
-             
-             
+                    
               </div>
               <button
                 className={`btn btn-outline mr-1  search_btn ${flag ? " w-inherit" : "bg-md-transparent"} `} onClick={show_searchBar}
@@ -57,13 +68,13 @@ function Header() {
                 <i className="bi bi-search" ></i>
               </button>
 
-             
+              <div className={`serach_preiew bg-white  rounded shadow ${flag3 ? "p-3":"display:none"}`}>
+                  {Searchdata?.map((item, i) => <p className="p-3" key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchdata(null)}} >{item?.title}</p>)   }  
+                  
+                </div>             
             </div>
           </div>
-
-
-        
-          
+                    
           <div className={`col-lg-3 col-md-3 col-sm-4 col-5 d-flex justify-content-center align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2  right_icons_box ${flag ? "d-none " : "d-flex"}`}>
             <div className="d-flex navbar_right_icon icons_div justify-content-center  w-100 ">
             

@@ -6,16 +6,22 @@ import fea02 from "../home/img/2.webp";
 import fea03 from "../home/img/3.jpg";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
+import { useCategoryContext, useProductContext } from "../../Context/index.context";
 
 function Products() {
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
+  const { productData, searchdata }=useProductContext()
+  const { selectedCategory } =useCategoryContext()
+  
+  console.log(searchdata)
+  
   const navigate = useNavigate()
-
-  const showFilter = () => {
+  const showFilter = () => {  
     flag ? setFlag(false) : setFlag(true)
   }
-  console.log(flag);
+  
+  
 
   const obj = [
     {
@@ -79,7 +85,7 @@ function Products() {
       delivery_status: "Free Delivery"
     },
   ]
-
+  console.log(productData)
   const productDetailsPage = () => {
     navigate("/productdetails")
     window.scrollTo(0, 0);
@@ -220,7 +226,7 @@ function Products() {
 
               </div>
 
-
+         
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-end w-100">
@@ -230,58 +236,60 @@ function Products() {
                   </div>
                 </div>
               </div>
-
+              
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
-                {obj.map((item) => {
-                  return <div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" onClick={productDetailsPage}>
-                    <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
-                      <img src={item.product_image} alt={item.product_title} />
-                      <h6 className="mt-2 ps-2">{item.product_title}</h6>
-                      <p className="ps-2 py-0 my-0 desc">{item.product_decsription}</p>
-                      <div className="d-flex flex-column">
-                        <div>
-                          <p className="ps-2 fw-bold text-success my-0 py-0">{item.delivery_status}</p>
-                          <p className="ps-2 fw-bold text-secondary my-0 py-0">ONLY {item.stock} LEFT </p>
-                        </div>
-                        <div className="d-flex">
-                          <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.product_real_price} </p></del>
-                          <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.product_discount_price}</p>
-                          <p className="ms-1
+                {productData?.map((item) => 
+                (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
+                 
+                  <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
+                    <img src={item.product_image} alt={item.product_title} />
+                    <h6 className="mt-2 ps-2">{item.title}</h6>
+                    <p className="ps-2 py-0 my-0 desc">{item.description.slice(0,30)}...</p>
+                    <div className="d-flex flex-column">
+                      <div>
+                        <p className="ps-2 fw-bold text-success my-0 py-0">{item.delivery_status}</p>
+                        <p className="ps-2 fw-bold text-secondary my-0 py-0">ONLY {item?.ProductDetails?.inStock} LEFT </p>
+                      </div>
+                      <div className="d-flex">
+                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.product_real_price} </p></del>
+                        <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.product_discount_price}</p>
+                        <p className="ms-1
                           
                           
                           
                           
                           fw-bold fs-7">{item.discount}OFF</p>
+                      </div>
+
+
+
+                      <div className="discount_div d-flex justify-content-center align-items-center">
+
+                        <p className="mb-0 text-light fw-bold">3 % OFF</p>
+                      </div>
+
+                      <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
+                        <div className="">
+                          <button type="button">Add To Cart</button>
                         </div>
 
+                        <div className="px-2 d-flex align-items-center justify-content-between">
+                          <div className="icons">
+                            <i className="bi bi-share px-2 mx-1" title="Share"></i>
 
-
-                        <div className="discount_div d-flex justify-content-center align-items-center">
-
-                          <p className="mb-0 text-light fw-bold">3 % OFF</p>
-                        </div>
-
-                        <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
-                          <div className="">
-                            <button type="button">Add To Cart</button>
                           </div>
-
-                          <div className="px-2 d-flex align-items-center justify-content-between">
-                            <div className="icons">
-                              <i className="bi bi-share px-2 mx-1" title="Share"></i>
-
-                            </div>
-                            <div className="icons">
-                              <i className="bi bi-heart px-2 mx-1" title="Wishlist"></i>
-                            </div>
+                          <div className="icons">
+                            <i className="bi bi-heart px-2 mx-1" title="Wishlist"></i>
                           </div>
-
                         </div>
+
                       </div>
                     </div>
                   </div>
+                </div>)
 
-                })}
+
+                )}
 
                 {/*<div className="  container pagination_div d-flex justify-content-center   p-4  border">
 <nav aria-label="Page navigation example  border border-dark d-flex justify-content-center align-items-center col-12">

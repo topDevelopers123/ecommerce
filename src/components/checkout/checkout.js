@@ -270,7 +270,7 @@ function Checkout() {
                       </tr>
                     </tbody>
                   </table>
-                  <div className="group submitBtn">
+                  <div className="submitBtn">
                     <button>Confirm Order</button>
                   </div>
                 </div>

@@ -21,6 +21,14 @@
     font-weight: bold;
 }
 
+.details-snippet1 .size span{
+    cursor: pointer;
+}
+.details-snippet1 .size span:active{
+    background-color: #4d869c;
+    color: #fff;
+}
+
 .details-snippet1 .mini-preview img {
     border: 1px solid #585656;
     border: 1px solid #4D869C;
@@ -152,14 +160,14 @@
 
 .rate:not(:checked)>label {
     float: right;
-        width: 22px;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 25px;
-        color: #ccc;
-        margin-bottom: 0;
-        line-height: 21px;
+    width: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 25px;
+    color: #ccc;
+    margin-bottom: 0;
+    line-height: 21px;
 }
 
 .rate:not(:checked)>label:before {

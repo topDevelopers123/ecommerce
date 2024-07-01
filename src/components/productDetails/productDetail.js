@@ -19,6 +19,16 @@ import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
+const [qty, setQty] = useState(1)
+
+const addValue = ()=>{
+  setQty(qty + 1)
+}
+
+const removeValue =()=>{
+  setQty(qty -1)
+}
+
   const { productDetailsData } = useProductDetailsContext()
   // console.log(productDetailsData);
   const [image, setImage] = useState(null)
@@ -163,7 +173,7 @@ function ProductDetail() {
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
-                    {filter2?.sellingPrice}<strike className="original-price">  {filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
+                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
                   </div>
 
                   <div className="delivery">Free Delivery</div>
@@ -188,9 +198,7 @@ function ProductDetail() {
                                   })} */}
                             {(data?.ProductDetails?.map((photo) => (
                               <>
-
                                 {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url) }} />}
-
                               </>
                             )))}
 
@@ -210,33 +218,28 @@ function ProductDetail() {
                   <div>
 
                     <div>Size: </div>
-                    <div className="subtitle my-3 theme-text">
-
-
+                    <div className="subtitle my-3 theme-text size">
                       {filter?.map((item) => (
                         <span className="px-2 py-1 border border-dark mx-1 " onClick={() => setSize(item._id)} >
                           {item?.Size}
                         </span>
                       ))}
-
                     </div>
                   </div>
-
-
                   <hr />
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
                         <label for="size">Quantity</label>
                         <form action="#" className="d-flex">
-                          <div className="qtyminus">-</div>
+                          <div className="qtyminus" onClick={removeValue} >-</div>
                           <input
                             type="text"
                             name="quantity"
-                            value="1"
+                            value={qty}
                             className="qty"
                           />
-                          <div className="qtyplus">+</div>
+                          <div className="qtyplus" onClick={addValue}>+</div>
                         </form>
                       </div>
                     </div>
@@ -255,7 +258,7 @@ function ProductDetail() {
                   <hr />
                   <div className="row">
                     <div className="d-flex">
-                      <button className="btn btn-block addBtn">
+                      <button className="btn btn-block addBtn" >
                         Add to basket
                       </button>
                       <button className="btn btn-block addBtn ms-3">
@@ -275,12 +278,6 @@ function ProductDetail() {
               //         ))
             }
 
-
-
-
-
-
-
             <div className="additional-details my-5 text-center">
               <ul className="nav nav-tabs justify-content-center">
                 <li className="nav-item">
@@ -295,11 +292,6 @@ function ProductDetail() {
                 <li className="nav-item">
                   <Link className="nav-link" data-bs-toggle="tab" to="#menu1">
                     Reviews
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" data-bs-toggle="tab" to="#menu2">
-                    Specifications
                   </Link>
                 </li>
               </ul>
@@ -324,12 +316,67 @@ function ProductDetail() {
                 </div>
                 <div className="tab-pane container fade" id="menu1">
                   <div className="review">
-                    <p>Please add your reviews here.</p>
-                  </div>
-                </div>
-                <div className="tab-pane container fade" id="menu2">
-                  <div className="specification">
-                    <p>Please add specifications here.</p>
+                    <div className="theme-text mr-2 text-start">Product Ratings: </div>
+                    <div className="reviews-counter text-start">
+                      <div className="rate">
+                        <input
+                          type="radio"
+                          id="star5"
+                          name="rate"
+                          value="5"
+                          checked
+                        />
+                        <label for="star5" title="text">
+                          5 stars
+                        </label>
+                        <input
+                          type="radio"
+                          id="star4"
+                          name="rate"
+                          value="4"
+                          checked
+                        />
+                        <label for="star4" title="text">
+                          4 stars
+                        </label>
+                        <input
+                          type="radio"
+                          id="star3"
+                          name="rate"
+                          value="3"
+                          checked
+                        />
+                        <label for="star3" title="text">
+                          3 stars
+                        </label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">
+                          2 stars
+                        </label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">
+                          1 star
+                        </label>
+                      </div>
+                      <span>3 Reviews</span>
+                    </div>
+                    <div class="my-3 text-start">
+                      <label for="" class="form-label text-start">Your Review</label>
+                      <textarea
+                        type="text"
+                        class="form-control"
+                        name=""
+                        id=""
+                        rows={5}
+                        aria-describedby="helpId"
+                        placeholder="Add your review"
+                      />
+                    </div>
+                    <div className="submitBtn">
+                      <button> Submit
+                      </button>
+                    </div>
+
                   </div>
                 </div>
               </div>
