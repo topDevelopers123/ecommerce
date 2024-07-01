@@ -29,7 +29,7 @@ function CategoryPage() {
                         <div className="col-12 d-flex justify-content-around category_mini_div">
 
                             {category?.map((maincategory, i) => (
-                                <div key={i} onClick={() => setSelectedCategory(maincategory._id)}  className="mt-3  text-center ">
+                                <div key={i} onClick={() => setSelectedCategory(maincategory._id)}  className="mt-3  text-center col-4">
                                     <div className="mens_cate ">
                                         
                                         <img

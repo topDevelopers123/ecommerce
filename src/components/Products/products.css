@@ -74,7 +74,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
+    margin: 0;
+    padding: 15px;
 }
 .dropdown-menu{
     width: 100% !important;

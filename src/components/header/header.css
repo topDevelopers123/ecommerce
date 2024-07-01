@@ -28,9 +28,13 @@ border-bottom-left-radius: 100px;
 
 
 .navbar_right_icon div i{
-  font-size: 25px;
+  font-size: 20px;
   color: #fff;
-
+  line-height: 1;
+}
+.navbar_right_icon div span{
+  font-size: 12px;
+  color: #fff;
 }
 
 .nav_right_div  button{
@@ -42,11 +46,13 @@ border-bottom-left-radius: 100px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   margin: 0;
+  background: #7ab2b2;
+  border-left: 2px solid #4d869c;
 }
 .nav_right_div button:hover{
   color: #fff;
-  background-color: #333;
-  border-color: #333;
+  background-color: z#7ab2b2;
+  border-color: #7ab2b2;
 }
 
 .navbar-expand-lg{
@@ -61,6 +67,9 @@ border-bottom-left-radius: 100px;
 .logo_div img {
   width: 100px;
 }
+.search_Bar input{
+  box-shadow: none;
+}
 
 .show_menu_div{
   background-color: #4d869c;
@@ -74,9 +83,9 @@ border-bottom-left-radius: 100px;
 
  .para_cart {
   position: absolute;
-  top: 12px;
-  right: -13px;
-  background-color: #f6931d;
+    top: 2px;
+      right: -10px;
+  background-color: #7AB2B2;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -145,6 +154,7 @@ border-bottom-left-radius: 100px;
 
 .sub_mega h4 {
   color: #7ab2b2;
+  cursor: pointer;
 }
 
 .sub_mega li {
@@ -188,7 +198,6 @@ border-bottom-left-radius: 100px;
 .search_icon{
   color: #fff;
   font-size: 25px;
-  
 }
 
 .diplay_none{
@@ -197,6 +206,9 @@ border-bottom-left-radius: 100px;
 
 .search_Bar input{
   transition: all 2s ease !important;
+}
+.search_Bar input:focus{
+  box-shadow: none;
 }
 .profile_main_box{
   width: 250px;
@@ -210,12 +222,11 @@ border-bottom-left-radius: 100px;
   right: 20px;
 }
 .serach_preiew{
-      position: absolute;
-        top: 78%;
-          width: 50%;
-          /* background: aliceblue; */
-          left: 20%;
-          max-height: 100px;
+     position: absolute;
+     top: 78%;
+     width: 50%;
+     left: 20%;
+     cursor: pointer;
 }
 
 .profile_main_box div p a{
@@ -230,6 +241,14 @@ border-bottom-left-radius: 100px;
 
 @media screen and (min-width: 992px) {
 .search_Bar{
+  display: flex !important;
+}
+.nav_right_div{
+  position: absolute;
+  width: 60%;
+  left: 20%;
+}
+.nav_icons{
   display: flex !important;
 }
 

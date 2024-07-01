@@ -121,7 +121,7 @@ function Products() {
 
                 <div className={flag ? "flex-direction-column col-12 d-flex flex-wrap" : "flex-direction-row col-12 d-flex flex-wrap"}>
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12 border mt-3">
-                    <button className="btn   dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Customer Rating
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -152,7 +152,7 @@ function Products() {
 
 
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12  border mt-3">
-                    <button className="btn   dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Offers
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -169,7 +169,7 @@ function Products() {
                   </div>
 
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12 border mt-3">
-                    <button className="btn   dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Discount
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -199,7 +199,7 @@ function Products() {
                   </div>
 
                   <div className="dropdown  col-lg-12 col-md-12 col-sm-12 col-12  border mt-3">
-                    <button className="btn   dropdown-toggle text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn dropdown-toggle border-0 text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Fabric
                     </button>
                     <ul className="dropdown-menu p-0">
