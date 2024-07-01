@@ -11,13 +11,11 @@ function NewPassword() {
     const { newPassword } = useAuthContext();
 
     const initialValues = {
-        email: "",
         newPassword: "",
         confirmPassword: ""
     };
 
     const validationSchema = yup.object({
-        email: yup.string().email("Invalid email address").required("Email is required"),
         newPassword: yup.string().min(6).max(16).required("New Password is required"),
         confirmPassword: yup.string().oneOf([yup.ref('newPassword'), null], "Passwords must match").required("Confirm Password is required")
     });
@@ -40,7 +38,7 @@ function NewPassword() {
                             <h2>Create New Password</h2>
 
                             <form onSubmit={handleSubmit}>
-                              
+
 
                                 <div className="mb-3">
                                     <label htmlFor="newPassword" className="form-label">
@@ -81,7 +79,7 @@ function NewPassword() {
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
                                         <Link to="/login">Submit</Link>
-                                       
+
                                     </button>
                                 </div>
                             </form>

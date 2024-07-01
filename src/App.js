@@ -1,11 +1,11 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import Home from './components/home/home';
 import About from './components/about/about';
 import ContactUs from './components/contact/ContactUs';
-
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import ProductDetails from './components/productDetails/productDetail';
@@ -17,7 +17,6 @@ import Wishlist from './components/wishlist/Wishlist'
 import Cart from './components/Cart/Cart';
 import Thankyou from './components/login/Thankyou';
 import TrackOrder from './components/trackOrder/TrackOrder';
-import { Toaster } from 'react-hot-toast';
 import OldAddress from './components/checkout/OldAddress';
 import Email_verify from './components/login/Email_verify';
 import Otp_verify from './components/login/Otp_verify';
@@ -27,14 +26,10 @@ import Change_password from './components/login/Change_password';
 
 
 function App() {
-
-
-
   return (
     <>
       <Toaster />
       <BrowserRouter>
-
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
