@@ -22,8 +22,6 @@ function ProductDetailsProvider({ children }) {
         }
     }
 
-
-
     useEffect(() => {
         getProductDetailsData();
     }, [])

@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
+import * as yup from 'yup';
 import { useFormik } from "formik";
 import { useAuthContext } from "../../Context/index.context";
 
@@ -14,11 +15,18 @@ function NewPassword() {
         confirmPassword: ""
     };
 
-    const { handleSubmit, handleChange, values } = useFormik({
-        initialValues: initialValues,
+    const validationSchema = yup.object({
+        email: yup.string().email("Invalid email address").required("Email is required"),
+        newPassword: yup.string().min(6).max(16).required("New Password is required"),
+        confirmPassword: yup.string().oneOf([yup.ref('newPassword'), null], "Passwords must match").required("Confirm Password is required")
+    });
+
+    const { handleSubmit, handleChange, values, errors, touched } = useFormik({
+        initialValues,
+        validationSchema,
         onSubmit: (values) => {
             newPassword(values);
-            console.log(values);
+            // console.log(values);
         }
     });
 
@@ -31,6 +39,23 @@ function NewPassword() {
                             <h2>Create New Password</h2>
 
                             <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="form-label">
+                                        Email *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        placeholder="Enter email"
+                                        className="form-control"
+                                        id="email"
+                                        name="email"
+                                        value={values.email}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.email && touched.email ? (
+                                        <div className="text-danger">{errors.email}</div>
+                                    ) : null}
+                                </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="newPassword" className="form-label">
@@ -45,6 +70,9 @@ function NewPassword() {
                                         value={values.newPassword}
                                         onChange={handleChange}
                                     />
+                                    {errors.newPassword && touched.newPassword ? (
+                                        <div className="text-danger">{errors.newPassword}</div>
+                                    ) : null}
                                 </div>
 
                                 <div className="mb-3">
@@ -60,6 +88,9 @@ function NewPassword() {
                                         value={values.confirmPassword}
                                         onChange={handleChange}
                                     />
+                                    {errors.confirmPassword && touched.confirmPassword ? (
+                                        <div className="text-danger">{errors.confirmPassword}</div>
+                                    ) : null}
                                 </div>
 
                                 <div className="d-flex align-items-center">
