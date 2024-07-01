@@ -8,6 +8,7 @@ function CategoryContextProvider({ children }) {
   const [category, setCategory] = useState(null)
   const [selectedCategory,setData] = useState(null)
 
+
   const getCategoryData = async () => {
     try {
       const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/category/category')

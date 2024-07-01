@@ -82,7 +82,7 @@ function TrendingProducts() {
                                           </p>
 
                                           {
-                                              (item?.ProductDetails[0]?.inStock <= 100 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : "")
+                                              (item?.ProductDetails[0]?.inStock <= 10 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : "")
                                           }
 
                                           <p className="pricing">
