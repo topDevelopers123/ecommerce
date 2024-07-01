@@ -25,7 +25,7 @@ function NewPassword() {
         validationSchema,
         onSubmit: (values) => {
             newPassword(values);
-            // console.log(values);
+            console.log(values);
         }
     });
 
