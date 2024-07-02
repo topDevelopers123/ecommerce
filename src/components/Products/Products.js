@@ -17,7 +17,7 @@ function Products() {
   const { productData } = useProductContext()
   const [allProductData, setAllProductData] = useState(productData)
 
-  const { selectedCategory } =useCategoryContext()
+  const { selectedCategory } = useCategoryContext()
   // console.log(param?.main)
 
   const main = searchParams.get("category")
@@ -29,34 +29,34 @@ function Products() {
   // console.log(allProductData);
 
 
-  useEffect(()=>{
-     let data = productData?.filter((item) => {
+  useEffect(() => {
+    let data = productData?.filter((item) => {
       return item?.category[0]?.category_name === main
 
-     })
-     
-  
-    
-     const newData = data?.filter((item)=>{
-       return  item.sub_category[0].sub_category_name === sub_category
-     }) 
+    })
+
+
+
+    const newData = data?.filter((item) => {
+      return item.sub_category[0].sub_category_name === sub_category
+    })
 
     const finalData = newData?.filter((item) => {
       return item.sub_inner_category[0].sub_inner_category_name === sub_inner_Category
-    }) 
+    })
 
-    
-    
+
+
     setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
- 
+
   }, [param, productData])
-  
+
   const navigate = useNavigate()
-  const showFilter = () => {  
+  const showFilter = () => {
     flag ? setFlag(false) : setFlag(true)
   }
- 
-  
+
+
 
   // console.log(productData)
   const productDetailsPage = () => {
@@ -199,7 +199,7 @@ function Products() {
 
               </div>
 
-         
+
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-end w-100">
@@ -209,15 +209,15 @@ function Products() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
-                {allProductData && allProductData.map((item) => 
+                {allProductData && allProductData.map((item) =>
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
-                 
+
                   <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} />
                     <h6 className="mt-2 ps-2">{item?.title}</h6>
-                    <p className="ps-2 py-0 my-0 desc">{item?.description.slice(0,30)}...</p>
+                    <p className="ps-2 py-0 my-0 desc">{item?.description.slice(0, 30)}...</p>
                     <div className="d-flex flex-column">
                       <div>
                         <p className="ps-2 fw-bold text-success my-0 py-0">{item?.delivery_status}</p>
@@ -226,7 +226,7 @@ function Products() {
                       <div className="d-flex">
                         <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.ProductDetails[0].sellingPrice} </p></del>
                         <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.ProductDetails[0].MRP}</p>
-                       
+
                       </div>
 
 
@@ -257,7 +257,7 @@ function Products() {
                 </div>)
 
 
-                ) 
+                )
                 }
 
                 {/*<div className="  container pagination_div d-flex justify-content-center   p-4  border">
