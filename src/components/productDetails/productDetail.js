@@ -21,20 +21,6 @@ import tp01 from "../home/img/trending/1.jpg";
 function ProductDetail() {
   const [qty, setQty] = useState(1)
 
-<<<<<<< HEAD
-  const addValue = () => {
-    if (qty < 5) {
-      setQty(qty + 1);
-    }
-  }
-
-  const removeValue = () => {
-    if (qty > 0) {
-      setQty(qty - 1);
-    }
-  }
-
-=======
 const addValue = ()=>{
    if (qty < 5) {
     
@@ -48,7 +34,6 @@ const removeValue =()=>{
     setQty(qty -1)
   }
 }
->>>>>>> bb09d27aa73cf21436bc6acfd188eae29a9fee92
 
   const { productDetailsData } = useProductDetailsContext()
   const { addToCart2 } = useCartContext()
@@ -267,12 +252,7 @@ const removeValue =()=>{
                             name="quantity"
                             value={qty}
                             className="qty"
-<<<<<<< HEAD
-                            max={1}
-                          />
-=======
                             onChange={(e) => setQty(e.target.value)}/>
->>>>>>> bb09d27aa73cf21436bc6acfd188eae29a9fee92
                           <div className="qtyplus" onClick={addValue}>+</div>
                         </form>
                       </div>
