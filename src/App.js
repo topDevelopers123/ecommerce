@@ -1,11 +1,9 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Home from './components/home/home';
 import About from './components/about/about';
 import ContactUs from './components/contact/ContactUs';
-
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import ProductDetails from './components/productDetails/productDetail';
@@ -25,11 +23,7 @@ import New_password from './components/login/New_password';
 import Change_password from './components/login/Change_password';
 
 
-
 function App() {
-
-
-
   return (
     <>
       <Toaster />

@@ -47,7 +47,6 @@ border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
   margin: 0;
   background: #7ab2b2;
-  border-left: 2px solid #4d869c;
 }
 .nav_right_div button:hover{
   color: #fff;
@@ -90,6 +89,9 @@ border-bottom-left-radius: 100px;
   width: 20px;
   height: 20px;
 }
+.manage_account p i{
+  font-size: 12px;
+}
 
 .para_cart  p{
   font-size: 12px !important;
@@ -114,6 +116,13 @@ border-bottom-left-radius: 100px;
   color: #eef7ff;
   scale: 1.2;
   cursor: pointer;
+}
+.btn-outline-primary{
+  border-color: #4d869c !important;
+}
+.btn-outline-primary:hover{
+  background-color: #4d869c !important;
+  color: #fff !important;
 }
 .mobile_serach_icon i {
   display: none;
@@ -236,7 +245,7 @@ border-bottom-left-radius: 100px;
 .profile_main_box div p a:hover{
   font-weight: bold;
   text-decoration: underline;
-  color: #555 !important;
+  color: #fff !important;
 }
 
 @media screen and (min-width: 992px) {
@@ -255,6 +264,12 @@ border-bottom-left-radius: 100px;
 }
 
 @media screen and (max-width: 992px) {
+  .profile_main_box div p a{
+    padding: 3px 7px !important;
+  }
+  .manage_account p{
+    line-height: 1;
+  }
   .li_div {
     display: none;
   }
@@ -296,7 +311,7 @@ border-bottom-left-radius: 100px;
   .search_btn{
     width: 45px !important;
     height: 45px !important;
-    border-radius: 0 ;
+    border-radius: 50% ;
     border-top-right-radius: 50% !important; 
     border-bottom-right-radius: 50% !important;
     margin-right: 10px;
@@ -353,7 +368,7 @@ border-bottom-left-radius: 100px;
     }
   .icons_div div .para_cart {
     right: -15px !important;
-    top: -5px;
+    top: 0px;
     font-size: 12px;
     width: 20px;
     height: 20px;
@@ -498,7 +513,7 @@ border-bottom-left-radius: 100px;
    
   }
   .icons_div div .para_cart {
-    top: -8px;
+    top: -25px;
     right: -7px;
     background-color: #f6931d;
     border-radius: 50%;
@@ -524,7 +539,15 @@ border-bottom-left-radius: 100px;
     
   }
   .navbar_right_icon div a{
-  padding-left: 10px !important;
+  padding-left: 0px !important;
+  text-align: center !important;
     
   }
+    .navbar_right_icon div span {
+      font-size: 10px;
+    }
+        .tp_area .card img {
+          height: 150px;
+          object-fit: cover;
+        }
 }

@@ -19,15 +19,20 @@ import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
-const [qty, setQty] = useState(1)
+  const [qty, setQty] = useState(1)
 
-const addValue = ()=>{
-  setQty(qty + 1)
-}
+  const addValue = () => {
+    if (qty < 5) {
+      setQty(qty + 1);
+    }
+  }
 
-const removeValue =()=>{
-  setQty(qty -1)
-}
+  const removeValue = () => {
+    if (qty > 0) {
+      setQty(qty - 1);
+    }
+  }
+
 
   const { productDetailsData } = useProductDetailsContext()
   // console.log(productDetailsData);
@@ -87,42 +92,23 @@ const removeValue =()=>{
               //     }).map((element,i) => (
 
               <div className="row details-snippet1">
-
-
-
                 <div className="col-md-7" >
-
                   <div className="row">
-
                     <div key="" className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
                       {filter ? filter[0]?.image.map((photo, i) => (
-
                         <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
                       )) : Prouctdetail?.image.map((photo, i) => (
-
                         <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
-
-
                     </div>
-
-
-
                     <div className="col-md-10 col-sm-10 order-1 order-sm-2">
                       <div className="product-image">
-
                         <img className="img-fluid" src={image ? image : Prouctdetail?.image[0]?.image_url} alt="product" />
-
                       </div>
                     </div>
                   </div>
                 </div >
 
-
-
-
                 <div className="col-md-5">
-
-
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
 
                   {/* <div className="theme-text mr-2">Product Ratings: </div>
@@ -176,13 +162,14 @@ const removeValue =()=>{
                     ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
                   </div>
 
-                  <div className="delivery">Free Delivery</div>
+                  <div className="delivery shadow">Free Delivery</div>
                   <div className="theme-text subtitle mb-3">Brief Description:</div>
                   <div className="brief-description">
                     {data?.description}
                   </div>
 
                   <hr />
+
                   <div>
                     <div className="subtitle my-3 theme-text">Colors:</div>
                     <div className="d-flex flex-row gap-2 p-2">
@@ -214,9 +201,10 @@ const removeValue =()=>{
 
                     </div>
                   </div>
+                  
                   <hr />
+                  
                   <div>
-
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
                       {filter?.map((item) => (
@@ -226,7 +214,9 @@ const removeValue =()=>{
                       ))}
                     </div>
                   </div>
+
                   <hr />
+                  
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
@@ -238,6 +228,7 @@ const removeValue =()=>{
                             name="quantity"
                             value={qty}
                             className="qty"
+                            max={1}
                           />
                           <div className="qtyplus" onClick={addValue}>+</div>
                         </form>
@@ -256,6 +247,7 @@ const removeValue =()=>{
                   </div>
 
                   <hr />
+                  
                   <div className="row">
                     <div className="d-flex">
                       <button className="btn btn-block addBtn" >
@@ -267,12 +259,7 @@ const removeValue =()=>{
                     </div>
                   </div>
                 </div>
-
-
               </div>
-
-
-
               // ))}
               //           </>
               //         ))
@@ -373,10 +360,9 @@ const removeValue =()=>{
                       />
                     </div>
                     <div className="submitBtn">
-                      <button> Submit
+                      <button> Post
                       </button>
                     </div>
-
                   </div>
                 </div>
               </div>

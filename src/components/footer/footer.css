@@ -31,3 +31,9 @@
     color: #7AB2B2;
 }
 
+@media screen and (max-width:768px) {
+    .main_box ul li {
+            line-height: 20px;
+        }
+}
+
