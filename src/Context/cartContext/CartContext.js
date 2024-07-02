@@ -18,7 +18,6 @@ function CartProvider({ children }) {
             setCartData(resp.data.data)
             setCartLength(resp.data.data.length)
            
-
         } catch (error) {
             console.log(error);
         }
@@ -27,6 +26,7 @@ function CartProvider({ children }) {
     const addToCart = async (product_id, productDetails) => {
        
         const data = { product_id, productDetails, quantity : 1}
+        
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -47,6 +47,31 @@ function CartProvider({ children }) {
             setDisable(false)
         }
     }
+
+
+    const addToCart2 = async (data) => {
+    
+        setDisable(true)
+        const toastId = toast.loading('Loading...');
+        try {
+
+            const resp = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/cart/add-cart', data, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            getCartData()
+
+        } catch (error) {
+            console.log(error)
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        } finally {
+            setDisable(false)
+        }
+    }
+
 
     const addToCartUpdate = async (id, quantity) => {
        
@@ -96,7 +121,7 @@ function CartProvider({ children }) {
     }, [])
 
     return (
-        <CartContext.Provider value={{ cartData, addToCart, addToCartUpdate, cartLength, deleteCartProduct }}>
+        <CartContext.Provider value={{ cartData, addToCart, addToCart2, addToCartUpdate, cartLength, deleteCartProduct }}>
             {children}
         </CartContext.Provider>
     )
