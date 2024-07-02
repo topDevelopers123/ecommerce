@@ -19,15 +19,15 @@ import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
-const [qty, setQty] = useState(1)
+  const [qty, setQty] = useState(1)
 
-const addValue = ()=>{
-  setQty(qty + 1)
-}
+  const addValue = () => {
+    setQty(qty + 1)
+  }
 
-const removeValue =()=>{
-  setQty(qty -1)
-}
+  const removeValue = () => {
+    setQty(qty - 1)
+  }
 
   const { productDetailsData } = useProductDetailsContext()
   // console.log(productDetailsData);
