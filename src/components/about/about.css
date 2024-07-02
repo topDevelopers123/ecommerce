@@ -29,13 +29,11 @@
 
 .about p {
     margin-top: 8px;
-    font-size: 35px;
+    font-size: 20px;
     color: #fff;
 }
 
-/* Image Gallery  */
-
-
+/* Image Gallery  */           
 .image-gallery {
     width: 100%;
     padding: 40px 0px;
@@ -148,12 +146,14 @@
     background-color: #fff;
     margin: 10px;
     padding: 20px;
-    height: 250px;
+    height: 260px;
 }
 
 /* Responsive */
-
 @media screen and (max-width: 567px) {
+    .donate-row{
+        height: auto;
+    }
     .charity_para {
             font-size: 20px;
         }

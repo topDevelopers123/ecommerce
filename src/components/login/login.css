@@ -19,6 +19,9 @@
     border: 0;
     border-left: 4px solid #4D869C;
 }
+ .login_form_sec form input:focus{
+    box-shadow: none;
+ }
 .login_form_sec form input::placeholder{
     font-size: 14px;
 }

@@ -22,7 +22,7 @@ function FeaturedProducts() {
                       className="owl-theme"
                       loop
                       margin={10}
-                      nav
+                      nav={false}
                       items={4}
                       dots={false}
                       responsive={{

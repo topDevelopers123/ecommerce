@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./products.css";
 import fea01 from "../home/img/1.jpg";
 import fea02 from "../home/img/2.webp";
@@ -9,83 +9,56 @@ import OwlCarousel from "react-owl-carousel";
 import { useCategoryContext, useProductContext } from "../../Context/index.context";
 
 function Products() {
+  let param = useLocation()
+  const searchParams = new URLSearchParams(param.search);
+
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
-  const { productData, searchdata }=useProductContext()
+  const { productData } = useProductContext()
+  const [allProductData, setAllProductData] = useState(productData)
+
   const { selectedCategory } =useCategoryContext()
+  // console.log(param?.main)
+
+  const main = searchParams.get("category")
+  const sub_category = searchParams.get("subcategory")
+  const sub_inner_Category = searchParams.get("sunInnercategory")
+  // console.log(main, sub_category, sub_inner_Category);
+  // console.log(main);
+  // console.log(productData);
+  // console.log(allProductData);
+
+
+  useEffect(()=>{
+     let data = productData?.filter((item) => {
+      return item?.category[0]?.category_name === main
+
+     })
+     
   
-  console.log(searchdata)
+    
+     const newData = data?.filter((item)=>{
+       return  item.sub_category[0].sub_category_name === sub_category
+     }) 
+
+    const finalData = newData?.filter((item) => {
+      return item.sub_inner_category[0].sub_inner_category_name === sub_inner_Category
+    }) 
+
+    
+    
+    setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
+ 
+  }, [param, productData])
   
   const navigate = useNavigate()
   const showFilter = () => {  
     flag ? setFlag(false) : setFlag(true)
   }
-  
+ 
   
 
-  const obj = [
-    {
-      product_image: "https://assets.ajio.com/medias/sys_master/root/20230623/1gyg/6494b4aed55b7d0c63a300ba/-473Wx593H-464366270-green-MODEL.jpg",
-      product_title: "Trending Suit For Women",
-      product_real_price: "1899",
-      product_discount_price: "1299",
-      product_decsription: "some quick example to text to build on",
-      discount: "10%",
-      stock: "5",
-      delivery_status: "Free Delivery"
-    },
-    {
-      product_image: "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1678720119_3019465.jpg?v=2",
-      product_title: "Stylish T-shirt For Men",
-      product_real_price: "2500",
-      product_discount_price: "1999",
-      product_decsription: "some quick example to text to build on",
-      discount: "15%",
-      stock: "3",
-      delivery_status: "Free Delivery"
-    },
-    {
-      product_image: "https://assets.ajio.com/medias/sys_master/root/20230718/DElg/64b6be4aeebac147fc7727a1/-473Wx593H-466368522-black-MODEL.jpg",
-      product_title: "Girl's Frog",
-      product_real_price: "1500",
-      product_discount_price: "1100",
-      product_decsription: "some quick example to text to build on",
-      discount: "20%",
-      stock: "10",
-      delivery_status: "Free Delivery"
-    },
-    {
-      product_image: "https://www.urbanprints.in/cdn/shop/files/IMG_8772_f2ed6e1b-6bb8-4684-bc0d-ea8341c1790c.webp?v=1709473084",
-      product_title: "Fahionable Shirt For Men",
-      product_real_price: "1639",
-      product_discount_price: "1439",
-      product_decsription: "some quick example to text to build on",
-      discount: "5%",
-      stock: "2",
-      delivery_status: "Free Delivery"
-    },
-    {
-      product_image: "https://sunasa.in/cdn/shop/products/IMG_20220130_114744_1500x.jpg?v=1696511459",
-      product_title: "Stylish Saree",
-      product_real_price: "3999",
-      product_discount_price: "3299",
-      product_decsription: "some quick example to text to build on",
-      discount: "7%",
-      stock: "6",
-      delivery_status: "Free Delivery"
-    },
-    {
-      product_image: "https://5.imimg.com/data5/SELLER/Default/2022/6/MX/SA/JD/151275676/mens-blue-plain-cotton-kurta-500x500.jpg",
-      product_title: "Men's Kurta",
-      product_real_price: "2199/-",
-      product_discount_price: "1999",
-      product_decsription: "some quick example to text to build on",
-      discount: "13%",
-      stock: "11",
-      delivery_status: "Free Delivery"
-    },
-  ]
-  console.log(productData)
+  // console.log(productData)
   const productDetailsPage = () => {
     navigate("/productdetails")
     window.scrollTo(0, 0);
@@ -121,7 +94,7 @@ function Products() {
 
                 <div className={flag ? "flex-direction-column col-12 d-flex flex-wrap" : "flex-direction-row col-12 d-flex flex-wrap"}>
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12 border mt-3">
-                    <button className="btn   dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Customer Rating
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -152,7 +125,7 @@ function Products() {
 
 
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12  border mt-3">
-                    <button className="btn   dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Offers
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -169,7 +142,7 @@ function Products() {
                   </div>
 
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12 border mt-3">
-                    <button className="btn   dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Discount
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -199,7 +172,7 @@ function Products() {
                   </div>
 
                   <div className="dropdown  col-lg-12 col-md-12 col-sm-12 col-12  border mt-3">
-                    <button className="btn   dropdown-toggle text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button className="btn dropdown-toggle border-0 text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Fabric
                     </button>
                     <ul className="dropdown-menu p-0">
@@ -238,34 +211,29 @@ function Products() {
               </div>
               
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
-                {productData?.map((item) => 
+                {allProductData && allProductData.map((item) => 
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
                  
                   <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
-                    <img src={item.product_image} alt={item.product_title} />
-                    <h6 className="mt-2 ps-2">{item.title}</h6>
-                    <p className="ps-2 py-0 my-0 desc">{item.description.slice(0,30)}...</p>
+                    <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} />
+                    <h6 className="mt-2 ps-2">{item?.title}</h6>
+                    <p className="ps-2 py-0 my-0 desc">{item?.description.slice(0,30)}...</p>
                     <div className="d-flex flex-column">
                       <div>
-                        <p className="ps-2 fw-bold text-success my-0 py-0">{item.delivery_status}</p>
-                        <p className="ps-2 fw-bold text-secondary my-0 py-0">ONLY {item?.ProductDetails?.inStock} LEFT </p>
+                        <p className="ps-2 fw-bold text-success my-0 py-0">{item?.delivery_status}</p>
+                        <p className="ps-2 fw-bold text-secondary my-0 py-0">{item?.ProductDetails[0]?.inStock <= 10 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : ""} </p>
                       </div>
                       <div className="d-flex">
-                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.product_real_price} </p></del>
-                        <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.product_discount_price}</p>
-                        <p className="ms-1
-                          
-                          
-                          
-                          
-                          fw-bold fs-7">{item.discount}OFF</p>
+                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.ProductDetails[0].sellingPrice} </p></del>
+                        <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.ProductDetails[0].MRP}</p>
+                       
                       </div>
 
 
 
                       <div className="discount_div d-flex justify-content-center align-items-center">
 
-                        <p className="mb-0 text-light fw-bold">3 % OFF</p>
+                        <p className="mb-0 text-light ">{((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100).toFixed()}% OFF</p>
                       </div>
 
                       <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
@@ -289,7 +257,8 @@ function Products() {
                 </div>)
 
 
-                )}
+                ) 
+                }
 
                 {/*<div className="  container pagination_div d-flex justify-content-center   p-4  border">
 <nav aria-label="Page navigation example  border border-dark d-flex justify-content-center align-items-center col-12">

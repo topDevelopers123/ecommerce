@@ -22,7 +22,7 @@ function Otp_verify() {
                                     <label htmlFor="exampleInputEmail1" className="form-label">
                                     </label>
                                     <input
-                                    
+                                      
                                         type="number"
                                         placeholder="Enter OTP here"
                                         className="form-control"
