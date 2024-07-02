@@ -19,22 +19,38 @@ import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [productDetail, setProductDetail] = useState({
+  
+    image: []
+  });
+
+  const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+    const newFile = files.slice(0,5)
+    console.log(newFile);
+    const newImages = newFile.map(file => ({
+      id: file.name + file.size, // Unique identifier based on file properties
+      url: URL.createObjectURL(file),
+      file: file
+    }));
+    setSelectedImages(prevImages => [...prevImages, ...newImages]);
+    setProductDetail(prevDetail => ({
+      ...prevDetail,
+      image: [...prevDetail.image, ...newImages.map(image => image.file)]
+    }));
+  };
+
+  const handleImageDelete = (id) => {
+    setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
+    setProductDetail(prevDetail => ({
+      ...prevDetail,
+      image: prevDetail.image.filter(image => image.name + image.size !== id)
+    }));
+  };
+
   const [qty, setQty] = useState(1)
 
-<<<<<<< HEAD
-  const addValue = () => {
-    if (qty < 5) {
-      setQty(qty + 1);
-    }
-  }
-
-  const removeValue = () => {
-    if (qty > 0) {
-      setQty(qty - 1);
-    }
-  }
-
-=======
 const addValue = ()=>{
    if (qty < 5) {
     
@@ -48,7 +64,6 @@ const removeValue =()=>{
     setQty(qty -1)
   }
 }
->>>>>>> bb09d27aa73cf21436bc6acfd188eae29a9fee92
 
   const { productDetailsData } = useProductDetailsContext()
   const { addToCart2 } = useCartContext()
@@ -247,7 +262,7 @@ const removeValue =()=>{
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
                       {filter?.map((item) => (
-                        <span className="px-2 py-1 border border-dark mx-1 " onClick={() => setSize(item._id)} >
+                        <span className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`}  onClick={() => setSize(item._id)} >
                           {item?.Size}
                         </span>
                       ))}
@@ -267,12 +282,7 @@ const removeValue =()=>{
                             name="quantity"
                             value={qty}
                             className="qty"
-<<<<<<< HEAD
-                            max={1}
-                          />
-=======
                             onChange={(e) => setQty(e.target.value)}/>
->>>>>>> bb09d27aa73cf21436bc6acfd188eae29a9fee92
                           <div className="qtyplus" onClick={addValue}>+</div>
                         </form>
                       </div>
@@ -392,6 +402,49 @@ const removeValue =()=>{
                       </div>
                       <span>3 Reviews</span>
                     </div>
+                    <div class="my-3 text-start">
+                      <label for="" class="form-label text-start">Add Title</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name=""
+                        id=""                      
+                        placeholder="Add Title"
+                      />
+                    </div>
+                    <div className="mb-3 text-start">
+                        <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
+                        <input
+                          id="image-upload"
+                          type="file"
+                          accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                          multiple // Allow multiple files
+                          onChange={handleImageChange}
+                        />
+                      </div>
+                      <div className="image-preview mt-4">
+                        {selectedImages.map((image, index) => (
+                          <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                            <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                            <button
+                              type="button"
+                              onClick={() => handleImageDelete(image.id)}
+                              style={{
+                                position: 'absolute',
+                                top: '5px',
+                                right: '5px',
+                                background: 'red',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '50%',
+                                cursor: 'pointer'
+                              }}
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     <div class="my-3 text-start">
                       <label for="" class="form-label text-start">Your Review</label>
                       <textarea

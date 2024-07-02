@@ -13,8 +13,8 @@ function TrendingProducts() {
     }
 
     const addtocartHandler = (product_id, productDetails_id) => {
-        console.log(product_id, productDetails_id);
-        addToCart(product_id, productDetails_id, addToCart.quantity)
+        
+        addToCart(product_id, productDetails_id)
     }
 
     const wishlistHandler = (item_Id, ite_Id) => {
@@ -64,7 +64,7 @@ function TrendingProducts() {
                                       <div className="card-body">
                                           <div className="add_icons">
                                               <div className="icons">
-                                                  <i className="bi bi-heart-fill" onClick={() => wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
+                                                  <i className={"bi bi-heart-fill"} onClick={() => wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
                                               </div>
                                               <div className="icons">
                                                   <i className="bi bi-share-fill"></i>
