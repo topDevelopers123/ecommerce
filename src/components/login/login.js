@@ -83,7 +83,7 @@ function Login() {
                       className="form-check-input p-0 border-0 "
                       id="exampleCheck1"
                     />
-                    <label className="form-check-label" for="exampleCheck1">
+                    <label className="form-check-label m-0" for="exampleCheck1">
                       Remember me
                     </label>
                   </div>

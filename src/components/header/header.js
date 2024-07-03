@@ -82,7 +82,7 @@ function Header() {
             
 
                 <div className=" d-flex  text-center position-relative align-items-center">
-                <Link to="/wishlist">
+                  <Link to="/wishlist" className="text-center">
                   {" "}
                   <i className="bi bi-suit-heart"></i>
                   <span>Wishlist</span>
@@ -93,7 +93,7 @@ function Header() {
               </div>
 
               <div className="d-flex  position-relative text-center  justify-content-center  align-items-center">
-                <Link to="/cart">
+                <Link to="/cart" className="text-center">
                    <i className="bi bi-cart3"></i>
                    <span>Bag</span>
                 </Link>
@@ -104,10 +104,10 @@ function Header() {
 
                 <div className="d-flex  position-relative  text-center justify-content-center   align-items-center" >
                 {flag2 ? 
-                <Link to="javascript:;" onClick={toggleFlag2}>
+                    <Link to="javascript:;" onClick={toggleFlag2} className="text-center">
                 <i className="bi bi-x-lg "></i>
                 </Link>
-                    : <Link to="javascript:;" onClick={toggleFlag2}>
+                    : <Link to="javascript:;" onClick={toggleFlag2} className="text-center">
                     <i className="bi bi-person-circle"></i>
                     <span>Profile</span>
                   </Link>
@@ -120,13 +120,19 @@ function Header() {
 
         </div>
       </nav>
-        <div className={`profile_main_box p-2 ${flag2 ? "d-block" : "d-none"}`}>
+        <div className={`profile_main_box p-3 shadow-lg ${flag2 ? "d-block" : "d-none"}`}>
 
           <h6>Welcome</h6>
-          <p>To access account and manage orders To access account and manage orders </p>
-          <div className="d-flex justify-content-around">
-            <p><Link to="/login" className="text-secondary">LOGIN</Link></p>
-            <p><Link to="/register" className="text-secondary">REGISTER</Link></p>
+          <p>To access account and manage orders.</p>
+          <div className="d-flex justify-content-around border-bottom">
+            <p><Link to="/login" className="text-secondary p-xs-0 btn rounded-0 btn-outline-primary">LOGIN</Link></p>
+            <p><Link to="/register" className="text-secondary p-xs-0 btn rounded-0 btn-outline-primary">REGISTER</Link></p>
+          </div>
+          <div className="manage_account py-2">
+            <Link to=""><p>Orders <i className="bi bi-chevron-right"></i></p></Link>
+            <Link to=""><p>Wishlist <i className="bi bi-chevron-right"></i></p></Link>
+            <Link to=""><p>Saved Addresses <i className="bi bi-chevron-right"></i></p></Link>
+            
           </div>
 
         </div>

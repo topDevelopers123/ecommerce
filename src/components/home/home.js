@@ -15,16 +15,14 @@ function Home() {
   return (
     <>
       <div>
-      <MainSlier />
-      <FeaturedProducts />
-      <NewArrivals />
-      <ShortBanners />
-      <TrendingProducts />
-      <Services />
+        <MainSlier />
+        <FeaturedProducts />
+        <NewArrivals />
+        <ShortBanners />
+        <TrendingProducts />
+        <Services />        
       </div>
-     
-    
-  </>
+    </>
   );
 
 }

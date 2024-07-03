@@ -13,8 +13,8 @@ function TrendingProducts() {
     }
 
     const addtocartHandler = (product_id, productDetails_id) => {
-        console.log(product_id, productDetails_id);
-        addToCart(product_id, productDetails_id, addToCart.quantity)
+        
+        addToCart(product_id, productDetails_id)
     }
 
     const wishlistHandler = (item_Id, ite_Id) => {
@@ -56,21 +56,15 @@ function TrendingProducts() {
                       <div className="row">
                           {productData?.map((item, i) => (
 
-                              <div className="col-lg-3 col-md-6 col-sm-12">
+                              <div className="col-lg-3 col-md-6 col-sm-6 col-6">
                                   <div className="card" >
-
-
                                       <>
-
-
                                           <img src={item?.ProductDetails[0]?.image[0]?.image_url} onClick={() => productDetailsPage(item._id)} className="tp_img " alt="..." />
                                       </>
-
-
                                       <div className="card-body">
                                           <div className="add_icons">
                                               <div className="icons">
-                                                  <i className="bi bi-heart-fill" onClick={() => wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
+                                                  <i className={"bi bi-heart-fill"} onClick={() => wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
                                               </div>
                                               <div className="icons">
                                                   <i className="bi bi-share-fill"></i>
@@ -86,12 +80,9 @@ function TrendingProducts() {
                                           }
 
                                           <p className="pricing">
-
-
                                               ₹{item.ProductDetails[0].sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item.ProductDetails[0].sellingPrice) / item.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
                                           </p>
                                           <div className="d-flex cart_n_buy">
-
                                               <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id)}>
                                                   Add to basket
                                               </button>
@@ -102,12 +93,7 @@ function TrendingProducts() {
                                       </div>
                                   </div>
                               </div>
-
-
                           ))}
-
-
-
                       </div>
                   </div>
               </div>

@@ -33,7 +33,7 @@ function CategoryPage() {
                         <div className="col-12 d-flex justify-content-around category_mini_div">
 
                             {category?.map((maincategory, i) => (
-                                <div key={i} onClick={(e) => MainCategorySearchHandler(e,maincategory.category_name)}  className="mt-3  text-center ">
+                                <div key={i} onClick={(e) => MainCategorySearchHandler(e,maincategory.category_name)}  className="mt-3  text-center col-4">
                                     
                                     <div className="mens_cate ">
                                         
@@ -41,7 +41,7 @@ function CategoryPage() {
                                             src={maincategory.image.image_url}
                                             alt=""
                                         />
-                                        <h6 className="mt-2 m-0">{maincategory.category_name}</h6>
+                                        <h6 className="mt-2 m-0 text-center">{maincategory.category_name}</h6>
                                     </div>
                                     <div className="sub_categeries  w-100 ">
                                             {maincategory?.Subcategory?.map((subcat, j) => (

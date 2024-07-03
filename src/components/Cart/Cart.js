@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import './Cart.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
     const { cartData, addToCartUpdate, deleteCartProduct } = useCartContext()
+    const navigate = useNavigate()
+    const productDetailsPage = (id) => {
+        navigate(`/productdetails/${id}`);
+        window.scrollTo(0, 0);
+    }
         
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity,0)
 
     // let sellingPrice = 0
     // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
-
+console.log(cartData);
 
     return (
 
@@ -35,7 +40,7 @@ function Cart() {
                     {cartData?.map((item,i)=>(
                         <>
                         
-                        <div className=' col-lg-2 col-md-5 col-sm-5 col-5 mt-3'>
+                            <div className=' col-lg-2 col-md-5 col-sm-5 col-5 mt-3' onClick={() => productDetailsPage(item?.product_id?._id)}>
                             
                                 {item?.productDetails?.image?.map((img,i)=>(
                                     <img src={i === 0 && img?.image_url } />

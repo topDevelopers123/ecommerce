@@ -1,14 +1,20 @@
 import React from 'react'
 import "./Wishlist.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCartContext, useWishlistContext } from '../../Context/index.context';
 
 
 function Wishlist() {
     const { wishlistData, deleteWishlistProduct } = useWishlistContext()
     const { addToCart } = useCartContext()
-    console.log(wishlistData)
+    const navigate = useNavigate()
+    const productDetailsPage = (id) => {
+        navigate(`/productdetails/${id}`);
+        window.scrollTo(0, 0);
+    }
 
+   
+    console.log(wishlistData);
 
     const addToCartHandler = (product_id, productDetails) => {
            const quantity = 1
@@ -38,7 +44,7 @@ function Wishlist() {
                         <div className='wish-items text-center d-flex flex-column w-100 '>
                             {wishlistData?.map((item,i)=>(
                                 <div className='d-flex flex-row w-100 border-bottom my-2'>
-                                <div key={i} className=' col-lg-2 col-md-5 col-sm-5 col-6 img-fluid'>
+                                    <div key={i} className=' col-lg-2 col-md-5 col-sm-5 col-6 img-fluid' onClick={()=>productDetailsPage(item?.product_id?._id)}>
                                     {item?.product_detail_id?.image?.map((img,i)=>(
 
                                         <img src={i === 0 && img?.image_url} />

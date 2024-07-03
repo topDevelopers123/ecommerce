@@ -1,8 +1,6 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-
 import Home from './components/home/home';
 import About from './components/about/about';
 import ContactUs from './components/contact/ContactUs';
@@ -22,7 +20,6 @@ import Email_verify from './components/login/Email_verify';
 import Otp_verify from './components/login/Otp_verify';
 import New_password from './components/login/New_password';
 import Change_password from './components/login/Change_password';
-
 
 
 function App() {
