@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useAsyncError, useParams } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -20,23 +20,35 @@ import tp01 from "../home/img/trending/1.jpg";
 import StarRatings from "react-star-ratings";
 
 function ProductDetail() {
+  const { productDetailsData, addReview, disable } = useProductDetailsContext()
+  const { id } = useParams()
+  const [qty, setQty] = useState(1)
+  const { addToCart2 } = useCartContext()
+  const { addToWishlist } = useWishlistContext()
+  const [image, setImage] = useState(null)
+  const [color, setColor] = useState("")
+  const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
-  const [productDetail, setProductDetail] = useState({
-  
+  const [reviewData, setReviewData] = useState({
+    title: "",
+    message: "",
+    rating: 0,
+    product_id: id,
     image: []
   });
 
+  
+
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
-    const newFile = files.slice(0,5)
-    console.log(newFile);
-    const newImages = newFile.map(file => ({
+    const newFiles = files.slice(0,3)
+    const newImages = newFiles.map(file => ({
       id: file.name + file.size, // Unique identifier based on file properties
       url: URL.createObjectURL(file),
       file: file
     }));
     setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    setProductDetail(prevDetail => ({
+    setReviewData(prevDetail => ({
       ...prevDetail,
       image: [...prevDetail.image, ...newImages.map(image => image.file)]
     }));
@@ -44,13 +56,39 @@ function ProductDetail() {
 
   const handleImageDelete = (id) => {
     setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
-    setProductDetail(prevDetail => ({
+    setReviewData(prevDetail => ({
       ...prevDetail,
       image: prevDetail.image.filter(image => image.name + image.size !== id)
     }));
   };
 
-  const [qty, setQty] = useState(1)
+  const submitHandler = async () => {
+    const formData = new FormData();
+    formData.append('product_id', reviewData.product_id);
+    formData.append('title', reviewData.title);
+    formData.append('message', reviewData.message);
+    formData.append('rating', reviewData.rating);
+   
+
+    // Append each image file to FormData
+    reviewData.image.forEach((file) => {
+      formData.append(`image`, file);
+    });
+
+    // Call API or dispatch action to add product details
+    try {
+      const result = await addReview(formData);
+      console.log(result);
+      // console.log(reviewData);
+      // Optionally handle success or navigate to another page
+    } catch (error) {
+      console.error('Error adding product details:', error);
+      // Handle error
+    }
+  };
+
+
+  
 
 
 
@@ -69,16 +107,11 @@ function ProductDetail() {
     }
   }
 
-  const { productDetailsData } = useProductDetailsContext()
-  const { addToCart2 } = useCartContext()
-  const { addToWishlist } = useWishlistContext()
-  // console.log(productDetailsData);
-  const [image, setImage] = useState(null)
-  const [color, setColor] = useState("")
-  const [size, setSize] = useState(null)
 
 
-  const { id } = useParams()
+
+  console.log(reviewData);
+  
 
 
 
@@ -126,6 +159,14 @@ function ProductDetail() {
     addToWishlist(wishDetails)
 
   }
+
+  const changeRating = (newRating) => {
+    setReviewData(prevState => ({
+      ...prevState,
+      rating: newRating
+    }));
+  };
+
 
   // console.log(wishDetails);
 
@@ -217,7 +258,7 @@ function ProductDetail() {
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
-                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
+                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}%</span>
                   </div>
 
                   <div className="delivery shadow">Free Delivery</div>
@@ -243,7 +284,7 @@ function ProductDetail() {
                                   })} */}
                             {(data?.ProductDetails?.map((photo) => (
                               <>
-                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id })  }} />}
                               </>
                             )))}
 
@@ -408,12 +449,11 @@ function ProductDetail() {
                     </div> */}
                     <div className="userRating text-start">
                       <StarRatings
-                      
-                        rating={2.8}
+                        rating={reviewData.rating}
                         starRatedColor="gold"
-                        // changeRating={this.changeRating}
+                        changeRating={changeRating}
                         numberOfStars={5}
-                        name='rating'
+                        name="rating"
                       />
                     </div>
                     <div class="my-3 text-start">
@@ -424,7 +464,7 @@ function ProductDetail() {
                         name=""
                         id=""                      
                         placeholder="Add Title"
-                      />
+                      onChange={(e)=>setReviewData({...reviewData, title:e.target.value})} />
                     </div>
                     <div className="mb-3 text-start">
                         <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
@@ -469,10 +509,11 @@ function ProductDetail() {
                         rows={5}
                         aria-describedby="helpId"
                         placeholder="Add your review"
+                        onChange={(e) => setReviewData({ ...reviewData, message: e.target.value })}
                       />
                     </div>
                     <div className="submitBtn">
-                      <button> Post
+                      <button onClick={submitHandler} disabled={disable} className={disable ? "bg-danger" : ""}> Post
                       </button>
                     </div>
                   </div>
