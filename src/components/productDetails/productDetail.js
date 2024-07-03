@@ -17,6 +17,7 @@ import "./productDetail.css";
 // import color1 from "./img/color1.webp";
 // import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
+import StarRatings from "react-star-ratings";
 
 function ProductDetail() {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -51,19 +52,22 @@ function ProductDetail() {
 
   const [qty, setQty] = useState(1)
 
-const addValue = ()=>{
-   if (qty < 5) {
-    
-     setQty(qty + 1)
-   }
-}
 
-const removeValue =()=>{
-  if (qty > 1) {
-    
-    setQty(qty -1)
+
+
+  const addValue = () => {
+    if (qty < 5) {
+
+      setQty(qty + 1)
+    }
   }
-}
+
+  const removeValue = () => {
+    if (qty > 1) {
+
+      setQty(qty - 1)
+    }
+  }
 
   const { productDetailsData } = useProductDetailsContext()
   const { addToCart2 } = useCartContext()
@@ -72,7 +76,7 @@ const removeValue =()=>{
   const [image, setImage] = useState(null)
   const [color, setColor] = useState("")
   const [size, setSize] = useState(null)
-  
+
 
   const { id } = useParams()
 
@@ -95,8 +99,8 @@ const removeValue =()=>{
   })
 
   const [wishDetails, setWishDetails] = useState({
-    product_id:"",
-    product_detail_id:""
+    product_id: "",
+    product_detail_id: ""
   })
 
   useEffect(() => {
@@ -104,9 +108,9 @@ const removeValue =()=>{
     setImage(filter ? filter[0]?.image[0]?.image_url : Prouctdetail?.image[0]?.image_url)
     setColor(Prouctdetail?.color)
     setSize(Prouctdetail?._id)
-    setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity:qty})
+    setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
-    
+
   }, [productDetailsData])
 
 
@@ -118,13 +122,13 @@ const removeValue =()=>{
     addToCart2(details)
   }
 
-  const wishListHandler = ()=>{
+  const wishListHandler = () => {
     addToWishlist(wishDetails)
-    
+
   }
 
-// console.log(wishDetails);
-  
+  // console.log(wishDetails);
+
   // console.log(data?._id, filter2?._id, qty);
 
   return (
@@ -164,7 +168,7 @@ const removeValue =()=>{
 
                 <div className="col-md-5">
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
-                        
+
                   {/* <div className="theme-text mr-2">Product Ratings: </div>
                       <div className="reviews-counter">
                         <div className="rate">
@@ -255,9 +259,9 @@ const removeValue =()=>{
 
                     </div>
                   </div>
-                  
+
                   <hr />
-                  
+
                   <div>
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
@@ -270,7 +274,7 @@ const removeValue =()=>{
                   </div>
 
                   <hr />
-                  
+
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
@@ -300,14 +304,14 @@ const removeValue =()=>{
                   </div>
 
                   <hr />
-                  
+
                   <div className="row">
                     <div className="d-flex">
                       <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(); setDetails({ ...details, product_id: data?._id, productDetails: filter2?._id, quantity: qty }) }}>
-                        
+
                         Add to basket
                       </button>
-                      
+
                       <button className="btn btn-block addBtn ms-3">
                         Buy Now
                       </button>
@@ -359,7 +363,7 @@ const removeValue =()=>{
                 <div className="tab-pane container fade" id="menu1">
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
-                    <div className="reviews-counter text-start">
+                    {/* <div className="reviews-counter text-start">
                       <div className="rate">
                         <input
                           type="radio"
@@ -401,6 +405,16 @@ const removeValue =()=>{
                         </label>
                       </div>
                       <span>3 Reviews</span>
+                    </div> */}
+                    <div className="userRating text-start">
+                      <StarRatings
+                      
+                        rating={2.8}
+                        starRatedColor="gold"
+                        // changeRating={this.changeRating}
+                        numberOfStars={5}
+                        name='rating'
+                      />
                     </div>
                     <div class="my-3 text-start">
                       <label for="" class="form-label text-start">Add Title</label>

@@ -270,6 +270,13 @@
     padding: 8px 10px;
     margin: 0;
 }
+.userRating{
+    font-size: 20px;
+}
+.star-ratings svg{
+    width: 25px !important;
+    height: 25px !important;
+}
 /* Mobile  */
 @media screen and (max-width: 567px){
     .details-snippet1 .mini-preview img {
