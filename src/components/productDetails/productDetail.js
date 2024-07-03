@@ -7,15 +7,15 @@ import { useCartContext, useProductContext, useProductDetailsContext, useWishlis
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
-import model from "./img/model.webp";
-import p01 from "./img/p1.webp";
-import p02 from "./img/p2.webp";
-import p03 from "./img/p3.webp";
-import p04 from "./img/p4.webp";
-import p05 from "./img/p5.webp";
-import p06 from "./img/p6.webp";
-import color1 from "./img/color1.webp";
-import color2 from "./img/color2.webp";
+// import model from "./img/model.webp";
+// import p01 from "./img/p1.webp";
+// import p02 from "./img/p2.webp";
+// import p03 from "./img/p3.webp";
+// import p04 from "./img/p4.webp";
+// import p05 from "./img/p5.webp";
+// import p06 from "./img/p6.webp";
+// import color1 from "./img/color1.webp";
+// import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 
 function ProductDetail() {
