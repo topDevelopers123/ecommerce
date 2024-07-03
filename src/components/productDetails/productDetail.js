@@ -52,19 +52,9 @@ function ProductDetail() {
 
   const [qty, setQty] = useState(1)
 
-const addValue = ()=>{
-   if (qty < 5) {
-    
-     setQty(qty + 1)
-   }
-}
 
-const removeValue =()=>{
-  if (qty > 1) {
-    
-    setQty(qty -1)
-  }
-}
+
+
   const addValue = () => {
     if (qty < 5) {
 

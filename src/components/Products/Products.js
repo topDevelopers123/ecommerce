@@ -41,11 +41,7 @@ function Products() {
      })
      
     
-    
-     const newData = data?.filter((item)=>{
-       return  item.sub_category[0].sub_category_name === sub_category
-     }) 
-    })
+  
 
 
 
@@ -61,8 +57,8 @@ function Products() {
 
     setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
 
-  [param, productData]
-},
+  },
+  [param, productData])
 
   const navigate = useNavigate()
   const showFilter = () => {
@@ -362,6 +358,6 @@ function Products() {
 
 
   );
-
+}
 
 export default Products;
