@@ -6,9 +6,12 @@ import fea02 from "../home/img/2.webp";
 import fea03 from "../home/img/3.jpg";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
-import { useCategoryContext, useProductContext } from "../../Context/index.context";
+import { useCartContext, useCategoryContext, useProductContext, useWishlistContext } from "../../Context/index.context";
 
 function Products() {
+  
+  const { addToCart } = useCartContext()
+  const { addToWishlist } = useWishlistContext()
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
 
@@ -16,6 +19,8 @@ function Products() {
   const [flag, setFlag] = useState(false)
   const { productData } = useProductContext()
   const [allProductData, setAllProductData] = useState(productData)
+ 
+  
 
   const { selectedCategory } = useCategoryContext()
   // console.log(param?.main)
@@ -26,14 +31,17 @@ function Products() {
   // console.log(main, sub_category, sub_inner_Category);
   // console.log(main);
   // console.log(productData);
-  // console.log(allProductData);
+ 
 
 
   useEffect(() => {
     let data = productData?.filter((item) => {
       return item?.category[0]?.category_name === main
 
-    })
+     })
+     
+    
+  
 
 
 
@@ -49,18 +57,31 @@ function Products() {
 
     setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
 
-  }, [param, productData])
+  },
+  [param, productData])
 
   const navigate = useNavigate()
   const showFilter = () => {
     flag ? setFlag(false) : setFlag(true)
   }
+ 
+  const addToCartHandler =(product_id, productDetailsId) => {
+    addToCart(product_id, productDetailsId)
+  }
+
+  const addToWishlistHandler =(product_id, product_detail_id)=>{
+    const data = {
+      product_id:product_id,
+      product_detail_id:product_detail_id
+    }
+    addToWishlist(data)
+  }
 
 
 
   // console.log(productData)
-  const productDetailsPage = () => {
-    navigate("/productdetails")
+  const productDetailsPage = (id) => {
+    navigate(`/productdetails/${id}`)
     window.scrollTo(0, 0);
   }
   return (
@@ -215,7 +236,7 @@ function Products() {
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
 
                   <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
-                    <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} />
+                    <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} onClick={() => productDetailsPage(item._id)}/>
                     <h6 className="mt-2 ps-2">{item?.title}</h6>
                     <p className="ps-2 py-0 my-0 desc">{item?.description.slice(0, 30)}...</p>
                     <div className="d-flex flex-column">
@@ -238,7 +259,7 @@ function Products() {
 
                       <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
                         <div className="">
-                          <button type="button">Add To Cart</button>
+                          <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id) }>Add To Cart</button>
                         </div>
 
                         <div className="px-2 d-flex align-items-center justify-content-between">
@@ -247,7 +268,7 @@ function Products() {
 
                           </div>
                           <div className="icons">
-                            <i className="bi bi-heart px-2 mx-1" title="Wishlist"></i>
+                            <i className="bi bi-heart px-2 mx-1" title="Wishlist" onClick={() => addToWishlistHandler(item?._id, item.ProductDetails[0]?._id)}></i>
                           </div>
                         </div>
 
