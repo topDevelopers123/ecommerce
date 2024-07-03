@@ -124,7 +124,7 @@ function OldAddress() {
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div className="group">
+                                    <div className="group submitBtn">
                                         <button>Confirm Order</button>
                                     </div>
                                 </div>
