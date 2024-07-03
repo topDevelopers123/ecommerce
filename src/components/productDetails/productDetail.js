@@ -7,15 +7,6 @@ import { useCartContext, useProductContext, useProductDetailsContext, useWishlis
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
-// import model from "./img/model.webp";
-// import p01 from "./img/p1.webp";
-// import p02 from "./img/p2.webp";
-// import p03 from "./img/p3.webp";
-// import p04 from "./img/p4.webp";
-// import p05 from "./img/p5.webp";
-// import p06 from "./img/p6.webp";
-// import color1 from "./img/color1.webp";
-// import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 import StarRatings from "react-star-ratings";
 
@@ -29,6 +20,11 @@ function ProductDetail() {
   const [color, setColor] = useState("")
   const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
+
+  let ratingAvg = 0;
+  let totalReview = 0;
+  const [error, setError] = useState("")
+
   const [reviewData, setReviewData] = useState({
     title: "",
     message: "",
@@ -36,6 +32,17 @@ function ProductDetail() {
     product_id: id,
     image: []
   });
+  
+  
+
+
+  const getReview = productDetailsData?.filter((item) => item?._id === id)[0];
+  
+  
+  getReview?.Review?.map((rev) => {
+      ratingAvg += rev?.rating
+      totalReview++
+})
 
   
 
@@ -43,7 +50,7 @@ function ProductDetail() {
     const files = Array.from(event.target.files);
     const newFiles = files.slice(0,3)
     const newImages = newFiles.map(file => ({
-      id: file.name + file.size, // Unique identifier based on file properties
+      id: file.name + file.size, 
       url: URL.createObjectURL(file),
       file: file
     }));
@@ -63,34 +70,31 @@ function ProductDetail() {
   };
 
   const submitHandler = async () => {
+    if (!reviewData.title || !reviewData.message || !reviewData.rating) {
+      setError("All Field are Mendatory (Title, Message, Rating)")
+      return
+    }
     const formData = new FormData();
     formData.append('product_id', reviewData.product_id);
     formData.append('title', reviewData.title);
     formData.append('message', reviewData.message);
     formData.append('rating', reviewData.rating);
    
-
-    // Append each image file to FormData
+    
     reviewData.image.forEach((file) => {
       formData.append(`image`, file);
     });
 
-    // Call API or dispatch action to add product details
+    
     try {
       const result = await addReview(formData);
-      console.log(result);
-      // console.log(reviewData);
-      // Optionally handle success or navigate to another page
+      if (result) {
+        setReviewData({...reviewData, title:"", message:"", rating:0})
+      }
     } catch (error) {
       console.error('Error adding product details:', error);
-      // Handle error
     }
   };
-
-
-  
-
-
 
 
   const addValue = () => {
@@ -106,13 +110,6 @@ function ProductDetail() {
       setQty(qty - 1)
     }
   }
-
-
-
-
-  console.log(reviewData);
-  
-
 
 
   const data = productDetailsData?.filter((item, i) => {
@@ -168,13 +165,11 @@ function ProductDetail() {
   };
 
 
-  // console.log(wishDetails);
-
-  // console.log(data?._id, filter2?._id, qty);
+  
 
   return (
     <div>
-      {/* Product details section start */}
+      
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
@@ -407,26 +402,51 @@ function ProductDetail() {
                     corporis temporibus ad?
                   </div>
                 </div>
-               
-                <div className="tab-pane container fade" id="reviews">
-                  <div className="customer_reviews text-start">
-                    <div className="ratings">
-                      <h2>4.2 <span><i class="bi bi-star-fill"></i></span></h2>
-                      <p>85466 Ratings & 56321 Reviews</p>
-                    </div>
-                    
-                    <div className="uploaded_images">
-                      <h5>Images
-                        
-                        
-                         uploaded by customers :</h5>
-                      <div className="d-flex">
-                      <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17795526/2024/4/3/5c4aabf3-9ec9-4084-af76-792230de2e681712117154423-Nap-Chief-Girls-Disney-Daisy-Duck-Clothing-Set-5271712117154-5.jpg" width={100} height={150} alt=""/>
-                      <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17795526/2024/4/3/5c4aabf3-9ec9-4084-af76-792230de2e681712117154423-Nap-Chief-Girls-Disney-Daisy-Duck-Clothing-Set-5271712117154-5.jpg" width={100} height={150} alt="" />
+              
+
+                  <div className="tab-pane container fade" id="reviews">
+                 
+                    <div className="customer_reviews text-start">
+                      <div className="ratings">
+                      <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i class="bi bi-star-fill" style={{color:"gold"}}></i></span></h2>
+                        <p> {totalReview} Reviews</p>
                       </div>
+                      
+                    {getReview?.Review?.map((rev) => (
+                      <div className="uploaded_images mt-4">
+                       
+                        {/* {console.log()} */}
+                        <h5>{rev?.title}</h5><span>{rev?.rating} <i class="bi bi-star-fill" style={{ color: "gold" }}></i></span>
+                        
+                        
+                        <p> {rev?.message}</p>
+                        <div className="d-flex">
+                          {rev?.image?.map((photo) => (
+
+                            <img src={photo?.image_url} width={100} height={150} alt="" />
+                          ))}
+
+                        </div>
+                      </div>
+                         ))}
                     </div>
+
+                    
                   </div>
-                </div>
+             
+
+                {/* {getReview?.Review?.map((rev) => (
+                  <>
+                  <p>{rev.title}</p>
+                  <h5>{rev.message}</h5>
+                  {rev?.image?.map((pic)=>(
+                    <img src={pic?.image_url} width={100} height={150} alt="" />
+                  ))}
+                  </>
+                ))} */}
+                
+              
+             
                 <div className="tab-pane container fade" id="addReview">
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
@@ -440,6 +460,7 @@ function ProductDetail() {
                         name="rating"
                       />
                     </div>
+                   
                     <div class="my-3 text-start">
                       <label for="" class="form-label text-start">Add Title</label>
                       <input
@@ -447,7 +468,7 @@ function ProductDetail() {
                         class="form-control"
                         name=""
                         id=""
-                        placeholder="Add Title"
+                        placeholder="Add Title" required 
                       onChange={(e)=>setReviewData({...reviewData, title:e.target.value})} />
                     </div>
                     <div className="mb-3 text-start">
@@ -457,7 +478,7 @@ function ProductDetail() {
                         type="file"
                         accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                         multiple // Allow multiple files
-                        onChange={handleImageChange}
+                        onChange={handleImageChange} 
                       />
                     </div>
                     <div className="image-preview mt-4">
@@ -491,13 +512,16 @@ function ProductDetail() {
                         name=""
                         id=""
                         rows={5}
+                        required
                         aria-describedby="helpId"
                         placeholder="Add your review"
                         onChange={(e) => setReviewData({ ...reviewData, message: e.target.value })}
                       />
                     </div>
+                    {error ? <p className="text-danger text-start mt-3">{error}</p> : ""}
                     <div className="submitBtn">
-                      <button onClick={submitHandler} disabled={disable} className={disable ? "bg-danger" : ""}> Post
+                    
+                      <button onClick={() => { setReviewData({ ...reviewData, product_id: id }) ; submitHandler()}} disabled={disable} className={disable ? "bg-danger" : ""}> Post
                       </button>
                     </div>
                   </div>
