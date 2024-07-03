@@ -405,7 +405,7 @@ function ProductDetail() {
               
 
                   <div className="tab-pane container fade" id="reviews">
-                 
+                  {getReview?.Review?.length >0 ? 
                     <div className="customer_reviews text-start">
                       <div className="ratings">
                       <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i class="bi bi-star-fill" style={{color:"gold"}}></i></span></h2>
@@ -430,7 +430,8 @@ function ProductDetail() {
                       </div>
                          ))}
                     </div>
-
+                  : <h3 style={{fontWeight:"400"}}>No Reviews Yet</h3>
+                        }
                     
                   </div>
              
