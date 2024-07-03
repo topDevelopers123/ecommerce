@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useAsyncError, useParams } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -7,36 +7,48 @@ import { useCartContext, useProductContext, useProductDetailsContext, useWishlis
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
-import model from "./img/model.webp";
-import p01 from "./img/p1.webp";
-import p02 from "./img/p2.webp";
-import p03 from "./img/p3.webp";
-import p04 from "./img/p4.webp";
-import p05 from "./img/p5.webp";
-import p06 from "./img/p6.webp";
-import color1 from "./img/color1.webp";
-import color2 from "./img/color2.webp";
+// import model from "./img/model.webp";
+// import p01 from "./img/p1.webp";
+// import p02 from "./img/p2.webp";
+// import p03 from "./img/p3.webp";
+// import p04 from "./img/p4.webp";
+// import p05 from "./img/p5.webp";
+// import p06 from "./img/p6.webp";
+// import color1 from "./img/color1.webp";
+// import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
 import StarRatings from "react-star-ratings";
 
 function ProductDetail() {
+  const { productDetailsData, addReview, disable } = useProductDetailsContext()
+  const { id } = useParams()
+  const [qty, setQty] = useState(1)
+  const { addToCart2 } = useCartContext()
+  const { addToWishlist } = useWishlistContext()
+  const [image, setImage] = useState(null)
+  const [color, setColor] = useState("")
+  const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
-  const [productDetail, setProductDetail] = useState({
-  
+  const [reviewData, setReviewData] = useState({
+    title: "",
+    message: "",
+    rating: 0,
+    product_id: id,
     image: []
   });
 
+  
+
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
-    const newFile = files.slice(0,5)
-    console.log(newFile);
-    const newImages = newFile.map(file => ({
+    const newFiles = files.slice(0,3)
+    const newImages = newFiles.map(file => ({
       id: file.name + file.size, // Unique identifier based on file properties
       url: URL.createObjectURL(file),
       file: file
     }));
     setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    setProductDetail(prevDetail => ({
+    setReviewData(prevDetail => ({
       ...prevDetail,
       image: [...prevDetail.image, ...newImages.map(image => image.file)]
     }));
@@ -44,13 +56,39 @@ function ProductDetail() {
 
   const handleImageDelete = (id) => {
     setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
-    setProductDetail(prevDetail => ({
+    setReviewData(prevDetail => ({
       ...prevDetail,
       image: prevDetail.image.filter(image => image.name + image.size !== id)
     }));
   };
 
-  const [qty, setQty] = useState(1)
+  const submitHandler = async () => {
+    const formData = new FormData();
+    formData.append('product_id', reviewData.product_id);
+    formData.append('title', reviewData.title);
+    formData.append('message', reviewData.message);
+    formData.append('rating', reviewData.rating);
+   
+
+    // Append each image file to FormData
+    reviewData.image.forEach((file) => {
+      formData.append(`image`, file);
+    });
+
+    // Call API or dispatch action to add product details
+    try {
+      const result = await addReview(formData);
+      console.log(result);
+      // console.log(reviewData);
+      // Optionally handle success or navigate to another page
+    } catch (error) {
+      console.error('Error adding product details:', error);
+      // Handle error
+    }
+  };
+
+
+  
 
 
 
@@ -69,16 +107,11 @@ function ProductDetail() {
     }
   }
 
-  const { productDetailsData } = useProductDetailsContext()
-  const { addToCart2 } = useCartContext()
-  const { addToWishlist } = useWishlistContext()
-  // console.log(productDetailsData);
-  const [image, setImage] = useState(null)
-  const [color, setColor] = useState("")
-  const [size, setSize] = useState(null)
 
 
-  const { id } = useParams()
+
+  console.log(reviewData);
+  
 
 
 
@@ -127,6 +160,14 @@ function ProductDetail() {
 
   }
 
+  const changeRating = (newRating) => {
+    setReviewData(prevState => ({
+      ...prevState,
+      rating: newRating
+    }));
+  };
+
+
   // console.log(wishDetails);
 
   // console.log(data?._id, filter2?._id, qty);
@@ -169,55 +210,11 @@ function ProductDetail() {
                 <div className="col-md-5">
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
 
-                  {/* <div className="theme-text mr-2">Product Ratings: </div>
-                      <div className="reviews-counter">
-                        <div className="rate">
-                          <input
-                            type="radio"
-                            id="star5"
-                            name="rate"
-                            value="5"
-                            checked
-                          />
-                          <label for="star5" title="text">
-                            5 stars
-                          </label>
-                          <input
-                            type="radio"
-                            id="star4"
-                            name="rate"
-                            value="4"
-                            checked
-                          />
-                          <label for="star4" title="text">
-                            4 stars
-                          </label>
-                          <input
-                            type="radio"
-                            id="star3"
-                            name="rate"
-                            value="3"
-                            checked
-                          />
-                          <label for="star3" title="text">
-                            3 stars
-                          </label>
-                          <input type="radio" id="star2" name="rate" value="2" />
-                          <label for="star2" title="text">
-                            2 stars
-                          </label>
-                          <input type="radio" id="star1" name="rate" value="1" />
-                          <label for="star1" title="text">
-                            1 star
-                          </label>
-                        </div>
-                        <span>3 Reviews</span>
-                      </div> */}
-
+               
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
-                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
+                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}%</span>
                   </div>
 
                   <div className="delivery shadow">Free Delivery</div>
@@ -241,9 +238,9 @@ function ProductDetail() {
                                       console.log(color)
                                     }
                                   })} */}
-                            {(data?.ProductDetails?.map((photo) => (
+                            {(data?.ProductDetails?.map((photo, i) => (
                               <>
-                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                                {photo?.image.length > 0 && <img key={i} src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id })  }} />}
                               </>
                             )))}
 
@@ -278,7 +275,7 @@ function ProductDetail() {
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
-                        <label for="size">Quantity</label>
+                        <label htmlFor="size">Quantity</label>
                         <form action="#" className="d-flex">
                           <div className="qtyminus" onClick={removeValue} >-</div>
                           <input
@@ -335,9 +332,15 @@ function ProductDetail() {
                     Description
                   </Link>
                 </li>
+               
                 <li className="nav-item">
-                  <Link className="nav-link" data-bs-toggle="tab" to="#menu1">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#reviews">
                     Reviews
+                  </Link>
+                </li>
+                <li className="nav-item" >
+                  <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
+                    Add Reviews
                   </Link>
                 </li>
               </ul>
@@ -348,131 +351,101 @@ function ProductDetail() {
                     Provident magni assumenda consectetur facere eius. Minus
                     reprehenderit placeat ullam vel ab eaque sequi impedit,
                     ipsum soluta temporibus fugit ipsa. Dolor libero modi
-                    molestiae dicta, vitae minus laborum error cum consequatur
-                    autem minima eveniet porro obcaecati quibusdam possimus eos,
-                    debitis sint magnam, explicabo accusantium aspernatur ipsa
-                    repellat tempore nihil. Cum placeat voluptate dignissimos
-                    dicta harum consectetur, nemo debitis tempore. Quod culpa
-                    perspiciatis unde natus. Modi expedita, ab repellendus
-                    reiciendis sed voluptate, culpa laborum ad, consectetur quas
-                    tempora quo? Quibusdam doloribus magnam maxime, accusamus
-                    officiis odit reiciendis labore laudantium. Molestiae
+                    molestiae dicta labore laudantium. Molestiae
                     corporis temporibus ad?
                   </div>
                 </div>
-                <div className="tab-pane container fade" id="menu1">
+               
+                <div className="tab-pane container fade" id="reviews">
+                  <div className="customer_reviews text-start">
+                    <div className="ratings">
+                      <h2>4.2 <span><i className="bi bi-star-fill"></i></span></h2>
+                      <p>85466 Ratings & 56321 Reviews</p>
+                    </div>
+                    
+                    <div className="uploaded_images">
+                      <h5>Images
+                        
+                        
+                         uploaded by customers :</h5>
+                      <div className="d-flex">
+                      <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17795526/2024/4/3/5c4aabf3-9ec9-4084-af76-792230de2e681712117154423-Nap-Chief-Girls-Disney-Daisy-Duck-Clothing-Set-5271712117154-5.jpg" width={100} height={150} alt=""/>
+                      <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17795526/2024/4/3/5c4aabf3-9ec9-4084-af76-792230de2e681712117154423-Nap-Chief-Girls-Disney-Daisy-Duck-Clothing-Set-5271712117154-5.jpg" width={100} height={150} alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="tab-pane container fade" id="addReview">
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
-                    {/* <div className="reviews-counter text-start">
-                      <div className="rate">
-                        <input
-                          type="radio"
-                          id="star5"
-                          name="rate"
-                          value="5"
-                          checked
-                        />
-                        <label for="star5" title="text">
-                          5 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="star4"
-                          name="rate"
-                          value="4"
-                          checked
-                        />
-                        <label for="star4" title="text">
-                          4 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="star3"
-                          name="rate"
-                          value="3"
-                          checked
-                        />
-                        <label for="star3" title="text">
-                          3 stars
-                        </label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="text">
-                          2 stars
-                        </label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="text">
-                          1 star
-                        </label>
-                      </div>
-                      <span>3 Reviews</span>
-                    </div> */}
+
                     <div className="userRating text-start">
                       <StarRatings
-                      
-                        rating={2.8}
+                        rating={reviewData.rating}
                         starRatedColor="gold"
-                        // changeRating={this.changeRating}
+                        changeRating={changeRating}
                         numberOfStars={5}
-                        name='rating'
+                        name="rating"
                       />
                     </div>
-                    <div class="my-3 text-start">
-                      <label for="" class="form-label text-start">Add Title</label>
+                    <div className="my-3 text-start">
+                      <label htmlFor="" className="form-label text-start">Add Title</label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name=""
-                        id=""                      
+                        id=""
                         placeholder="Add Title"
-                      />
+                      onChange={(e)=>setReviewData({...reviewData, title:e.target.value})} />
                     </div>
                     <div className="mb-3 text-start">
-                        <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
-                        <input
-                          id="image-upload"
-                          type="file"
-                          accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                          multiple // Allow multiple files
-                          onChange={handleImageChange}
-                        />
-                      </div>
-                      <div className="image-preview mt-4">
-                        {selectedImages.map((image, index) => (
-                          <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                            <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
-                            <button
-                              type="button"
-                              onClick={() => handleImageDelete(image.id)}
-                              style={{
-                                position: 'absolute',
-                                top: '5px',
-                                right: '5px',
-                                background: 'red',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '50%',
-                                cursor: 'pointer'
-                              }}
-                            >
-                              &times;
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    <div class="my-3 text-start">
-                      <label for="" class="form-label text-start">Your Review</label>
+                      <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
+                      <input
+                        id="image-upload"
+                        type="file"
+                        accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                        multiple // Allow multiple files
+                        onChange={handleImageChange}
+                      />
+                    </div>
+                    <div className="image-preview mt-4">
+                      {selectedImages.map((image, index) => (
+                        <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                          <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                          <button
+                            type="button"
+                            onClick={() => handleImageDelete(image.id)}
+                            style={{
+                              position: 'absolute',
+                              top: '5px',
+                              right: '5px',
+                              background: 'red',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '50%',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="my-3 text-start">
+                      <label htmlFor="" className="form-label text-start">Your Review</label>
                       <textarea
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name=""
                         id=""
                         rows={5}
                         aria-describedby="helpId"
                         placeholder="Add your review"
+                        onChange={(e) => setReviewData({ ...reviewData, message: e.target.value })}
                       />
                     </div>
                     <div className="submitBtn">
-                      <button> Post
+                      <button onClick={submitHandler} disabled={disable} className={disable ? "bg-danger" : ""}> Post
                       </button>
                     </div>
                   </div>

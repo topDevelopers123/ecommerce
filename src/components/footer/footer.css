@@ -30,7 +30,31 @@
 .main_box h6{
     color: #7AB2B2;
 }
-
+.privacy_policy{
+    padding: 40px 0px;
+}
+.privacy_policy  p {
+     line-height: 22px;
+     font-size: 12px;
+ }
+ .termsofuse{
+    padding: 40px 0px;
+ }
+ .termsofuse p {
+     line-height: 22px;
+     font-size: 12px;
+ }
+  .termsofuse ul li {
+      line-height: 22px;
+      font-size: 12px;
+  }
+.refundsCancellation{
+    padding: 40px 0px;
+}
+.refundsCancellation ol li, p{
+    line-height: 22px;
+        font-size: 12px;
+}
 @media screen and (max-width:768px) {
     .main_box ul li {
             line-height: 20px;

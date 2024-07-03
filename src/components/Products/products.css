@@ -48,10 +48,10 @@
 }
 
 .add_to_cart_div button{
-    padding: 3px 12px;
+    padding: 7px 10px;
     border: none;
     outline: none;
-    
+    font-size: 12px;
     background-color: #4D869C;
     color: #fff;
     transition: all 0.3s ease;
