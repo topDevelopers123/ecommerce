@@ -61,7 +61,8 @@ function Products() {
 
     setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
 
-  }, [param, productData])
+  [param, productData]
+},
 
   const navigate = useNavigate()
   const showFilter = () => {
@@ -361,6 +362,6 @@ function Products() {
 
 
   );
-}
+
 
 export default Products;
