@@ -376,9 +376,15 @@ function ProductDetail() {
                     Description
                   </Link>
                 </li>
+               
                 <li className="nav-item">
-                  <Link className="nav-link" data-bs-toggle="tab" to="#menu1">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#reviews">
                     Reviews
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
+                    Add Reviews
                   </Link>
                 </li>
               </ul>
@@ -401,52 +407,30 @@ function ProductDetail() {
                     corporis temporibus ad?
                   </div>
                 </div>
-                <div className="tab-pane container fade" id="menu1">
+               
+                <div className="tab-pane container fade" id="reviews">
+                  <div className="customer_reviews text-start">
+                    <div className="ratings">
+                      <h2>4.2 <span><i class="bi bi-star-fill"></i></span></h2>
+                      <p>85466 Ratings & 56321 Reviews</p>
+                    </div>
+                    
+                    <div className="uploaded_images">
+                      <h5>Images
+                        
+                        
+                         uploaded by customers :</h5>
+                      <div className="d-flex">
+                      <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17795526/2024/4/3/5c4aabf3-9ec9-4084-af76-792230de2e681712117154423-Nap-Chief-Girls-Disney-Daisy-Duck-Clothing-Set-5271712117154-5.jpg" width={100} height={150} alt=""/>
+                      <img src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17795526/2024/4/3/5c4aabf3-9ec9-4084-af76-792230de2e681712117154423-Nap-Chief-Girls-Disney-Daisy-Duck-Clothing-Set-5271712117154-5.jpg" width={100} height={150} alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="tab-pane container fade" id="addReview">
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
-                    {/* <div className="reviews-counter text-start">
-                      <div className="rate">
-                        <input
-                          type="radio"
-                          id="star5"
-                          name="rate"
-                          value="5"
-                          checked
-                        />
-                        <label for="star5" title="text">
-                          5 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="star4"
-                          name="rate"
-                          value="4"
-                          checked
-                        />
-                        <label for="star4" title="text">
-                          4 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="star3"
-                          name="rate"
-                          value="3"
-                          checked
-                        />
-                        <label for="star3" title="text">
-                          3 stars
-                        </label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="text">
-                          2 stars
-                        </label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="text">
-                          1 star
-                        </label>
-                      </div>
-                      <span>3 Reviews</span>
-                    </div> */}
+
                     <div className="userRating text-start">
                       <StarRatings
                         rating={reviewData.rating}
@@ -462,43 +446,43 @@ function ProductDetail() {
                         type="text"
                         class="form-control"
                         name=""
-                        id=""                      
+                        id=""
                         placeholder="Add Title"
                       onChange={(e)=>setReviewData({...reviewData, title:e.target.value})} />
                     </div>
                     <div className="mb-3 text-start">
-                        <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
-                        <input
-                          id="image-upload"
-                          type="file"
-                          accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                          multiple // Allow multiple files
-                          onChange={handleImageChange}
-                        />
-                      </div>
-                      <div className="image-preview mt-4">
-                        {selectedImages.map((image, index) => (
-                          <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                            <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
-                            <button
-                              type="button"
-                              onClick={() => handleImageDelete(image.id)}
-                              style={{
-                                position: 'absolute',
-                                top: '5px',
-                                right: '5px',
-                                background: 'red',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '50%',
-                                cursor: 'pointer'
-                              }}
-                            >
-                              &times;
-                            </button>
-                          </div>
-                        ))}
-                      </div>
+                      <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
+                      <input
+                        id="image-upload"
+                        type="file"
+                        accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                        multiple // Allow multiple files
+                        onChange={handleImageChange}
+                      />
+                    </div>
+                    <div className="image-preview mt-4">
+                      {selectedImages.map((image, index) => (
+                        <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                          <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                          <button
+                            type="button"
+                            onClick={() => handleImageDelete(image.id)}
+                            style={{
+                              position: 'absolute',
+                              top: '5px',
+                              right: '5px',
+                              background: 'red',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '50%',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                    </div>
                     <div class="my-3 text-start">
                       <label for="" class="form-label text-start">Your Review</label>
                       <textarea

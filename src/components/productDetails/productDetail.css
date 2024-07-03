@@ -10,6 +10,9 @@
 .details-snippet1 {
     color: #585656;
 }
+.uploaded_images img{
+    margin: 0px 8px;
+}
 
 /* Main text uses this styling and color */
 .details-snippet1 .theme-text {
