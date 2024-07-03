@@ -40,14 +40,14 @@ console.log(cartData);
                     {cartData?.map((item,i)=>(
                         <>
                         
-                            <div className=' col-lg-2 col-md-5 col-sm-5 col-5 mt-3' onClick={() => productDetailsPage(item?.product_id?._id)}>
+                            <div className=' col-lg-2 col-md-3 col-sm-5 col-5 mt-3' onClick={() => productDetailsPage(item?.product_id?._id)}>
                             
                                 {item?.productDetails?.image?.map((img,i)=>(
                                     <img src={i === 0 && img?.image_url } />
                                 ))}
                         </div>
 
-                            <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-7 col-sm-7 col-7 d-flex justify-content-between align-items-center '>
+                            <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-9 col-sm-7 col-7 d-flex justify-content-between align-items-center '>
                                 {/* {cartData?.map(())} */}
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>{item?.product_id?.title}</h6>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice}</h6>
