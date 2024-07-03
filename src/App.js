@@ -20,6 +20,7 @@ import Email_verify from './components/login/Email_verify';
 import Otp_verify from './components/login/Otp_verify';
 import New_password from './components/login/New_password';
 import Change_password from './components/login/Change_password';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
