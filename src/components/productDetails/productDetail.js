@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link,  useParams } from "react-router-dom";
+import { Link,  useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -20,6 +20,7 @@ function ProductDetail() {
   const [color, setColor] = useState("")
   const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
+  const navigate = useNavigate()
 
   let ratingAvg = 0;
   let totalReview = 0;
@@ -44,7 +45,10 @@ function ProductDetail() {
       totalReview++
 })
 
-  
+  const redirectHandler =() => {
+    navigate("/oldAddress")
+    window.scrollTo(0, 0);
+  }
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
@@ -253,7 +257,7 @@ function ProductDetail() {
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
-                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}%</span>
+                    ₹{filter2?.sellingPrice} &nbsp; <strike className="original-price">   ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}% OFF</span>
                   </div>
 
                   <div className="delivery shadow">Free Delivery</div>
@@ -348,7 +352,7 @@ function ProductDetail() {
                         Add to basket
                       </button>
 
-                      <button className="btn btn-block addBtn ms-3">
+                      <button className="btn btn-block addBtn ms-3" onClick={()=>redirectHandler()}>
                         Buy Now
                       </button>
                     </div>
