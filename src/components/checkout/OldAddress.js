@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './OldAddress.css';
 import './checkout.css'
-import { useUserAddressContext } from '../../Context/index.context';
+import { useCartContext, useUserAddressContext } from '../../Context/index.context';
 
 
 function OldAddress() {
     const [modalVisible, setModalVisible] = useState(false);
-    const { UserAddressData, addNewAddress, deleteAddress } = useUserAddressContext();
+    const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
+    const { cartData} = useCartContext()
+    const [updateAddress, setUpdateAddress] = useState([])
+    const [flag, setFlag] = useState(false)
+    const [radio, setRadio] = useState(null)
     const [data, setData] = useState({
         fullname: "",
         phone: "",
         phone2: "",
         country: "",
+        addressType:"",
         state: "",
         city: "",
         area: "",
@@ -19,8 +24,33 @@ function OldAddress() {
         pincode: ""
     })
 
+    console.log(cartData);
+    const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity, 0)
+
+    // console.log(updateAddress);
+
+    // const [updateData, setupdateData] = useState({
+    //     fullname: "",
+    //     phone: "",
+    //     phone2: "",
+    //     country: "",
+    //     addressType: "",
+    //     state: "",
+    //     city: "",
+    //     area: "",
+    //     house_no: "",
+    //     pincode: ""
+    // })
+
+    
+
+
+    // console.log(radio);
+
+
     const newAddress = () => {
-        setModalVisible((prev) => !prev);
+
+        setModalVisible(true);
     };
 
     const closeModal = () => {
@@ -28,9 +58,31 @@ function OldAddress() {
     };
 
     const handleSubmit = (event) => {
+        setFlag(false)
         event.preventDefault();
         setModalVisible(false);
     };
+
+    const editeAddress = (id)=>{
+        setFlag(true)
+       const get = UserAddressData?.filter((item)=>{
+            return item?._id === id
+        })
+        setUpdateAddress(get);
+        // console.log(get, id);
+    }
+
+    const updateAddressHandle = (id) => {
+        
+        // console.log(id);
+        // console.log(updateAddress?.id);
+        updateOldAddress(data, id);
+    }
+
+    const radioHandler =(e,value) => {
+        setData({...data, addressType:value})
+        
+    }
 
     return (
         <div>
@@ -46,18 +98,25 @@ function OldAddress() {
                             {UserAddressData?.map((item, i) => (
                                 <div className='p-1' key={i}>
                                     <div className="form-check">
-                                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" defaultChecked />
+                                        <div className='mb-1'>{item.fullname} <span class="ms-3 bg-secondary p-1 rounded">{item?.addressType}</span></div>
+                                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value={item?._id} defaultChecked={i === 0} onChange={(e)=>setRadio(e.target.value)}/>
+                                       
                                         <label className="form-check-label" htmlFor="exampleRadios1">
                                             <div className='preAdd gap-2'>
+                                                
                                                 <span> {item.house_no}</span>&nbsp;
                                                 <span>{item.area}</span>&nbsp;
                                                 <span>{item?.state}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
-                                                <span className='delAdd' onClick={() => deleteAddress(item._id)}>Delete Address</span>
+                                                <div className='mt-1'>{item?.phone}</div>
+                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state:item?.state, pincode:item?.pincode });editeAddress(item._id)}}}>Edit</span>
                                             </div>
                                         </label>
                                     </div>
-                                </div>))}
+                                    <hr />
+                                </div>
+                            ))}
+                                
 
                             <div className='p-2'>
                                 <button onClick={newAddress}><span className='addplus'>+</span> Add new Address</button>
@@ -71,39 +130,20 @@ function OldAddress() {
                                     <div className="group">
                                         <table>
                                             <tbody>
-                                                <tr>
-                                                    <td className="item-img">
-                                                        <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,b_rgb:f5f5f5/cf669aef-c9cd-443e-946f-54e1802a79f0/in-season-tr-13-workout-shoes-BDTlPf.png" alt="Men's Casual Shoes" />
-                                                    </td>
-                                                    <td className="item-details">
-                                                        <span className="item-title">Men's Casual Shoes</span>
-                                                        <span className="item-size">Size: UK 7</span>
-                                                        <span className="item-qty">Quantity: 1</span>
-                                                    </td>
-                                                    <td className="item-price">₹899.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="item-img">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjwFtmbw7YaM7hDruOLb77JOifKlGAn5NqaA&usqp=CAU" alt="Men's Woolen Jacket" />
-                                                    </td>
-                                                    <td className="item-details">
-                                                        <span className="item-title">Men's Woolen Jacket</span>
-                                                        <span className="item-size">Size: M</span>
-                                                        <span className="item-qty">Quantity: 1</span>
-                                                    </td>
-                                                    <td className="item-price">₹999.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="item-img">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO_yBcI2xSyryJ7hTEu0f6m6L5RsQOxBdbKw&usqp=CAU" alt="Men's Casual Trouser" />
-                                                    </td>
-                                                    <td className="item-details">
-                                                        <span className="item-title">Men's Casual Trouser</span>
-                                                        <span className="item-size">Size: M</span>
-                                                        <span className="item-qty">Quantity: 1</span>
-                                                    </td>
-                                                    <td className="item-price">₹1000.00</td>
-                                                </tr>
+                                                {cartData?.map((item)=>(
+                                                    <tr className=''>
+                                                        <td className="item-img">
+                                                            <img src={item?.productDetails?.image[0].image_url} />
+                                                        </td>
+                                                        <td className="item-details">
+                                                            <span className="item-title">{item?.product_id?.title}</span>
+                                                          
+                                                        </td>
+                                                        <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
+                                                    </tr>
+
+                                                ))}
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -112,7 +152,7 @@ function OldAddress() {
                                         <tbody>
                                             <tr>
                                                 <td className="item-qty">Subtotal</td>
-                                                <td className="item-price">₹2898.00</td>
+                                                <td className="item-price">₹{getTotel}</td>
                                             </tr>
                                             <tr>
                                                 <td className="item-qty">Shipping</td>
@@ -135,45 +175,105 @@ function OldAddress() {
                 </div>
             </div>
 
-            {modalVisible && (
+            {modalVisible &&(
                 <div className='container'>
-
+                    {flag ? 
                     <div className='newAdd modal'>
-                        <div className='modal-content'>
-                            <span className='close' onClick={closeModal}>&times;</span>
-                            <h2>Add New Address</h2>
-                            <form onSubmit={handleSubmit}>
-                                <label htmlFor='name'>Full Name *</label>
-                                <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name' name='name' placeholder='Full Name' required />
+                            {updateAddress?.map((item)=>(
+                                <div className='modal-content'>
+                                  
+                                    <span className='close' onClick={() => { closeModal(); setFlag(false) }}>&times;</span>
+                                    <h2>Add New Address</h2>
+                                    <form onSubmit={handleSubmit}>
+                                        <label htmlFor='name'>Full Name</label>
+                                        <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name' defaultValue={item ? item?.fullname : ""} name='name' placeholder='Full Name' required />
 
-                                <label htmlFor='street'>Phone Number *</label>
-                                <input onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' required />
+                                        <label htmlFor='street'>Phone Number *</label>
+                                        <input maxLength="10" onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street' defaultValue={item ? item?.phone : ""} name='street' placeholder='Enter Phone' required />
 
-                                <label htmlFor='street'>Alternate Phone Number </label>
-                                <input onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' />
+                                        <label htmlFor='street'>Alternate Phone Number </label>
+                                        <input maxLength="10" onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street' defaultValue={item ? item?.phone2 : ""} name='street' placeholder='Enter Phone' />
 
-                                <label htmlFor='street'>House No * </label>
-                                <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' required />
+                                        <label htmlFor='street'>House No * </label>
+                                        <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' defaultValue={item ? item?.house_no : ""} name='street' placeholder='Enter Address' required />
 
-                                <label htmlFor='street'>Address *</label>
-                                <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' required />
+                                        <label htmlFor='street'>Address *</label>
+                                        <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' defaultValue={item ? item?.area : ""} name='street' placeholder='Enter Address' required />
 
-                                <label htmlFor='city'>City *</label>
-                                <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' name='city' placeholder='Enter City' required />
 
-                                <label htmlFor='state'>State *</label>
-                                <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' name='state' placeholder='Enter State' required />
 
-                                <label htmlFor='state'>Country *</label>
-                                <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' name='state' placeholder='Enter Country' required />
+                                        <label htmlFor='city'>City *</label>
+                                        <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' defaultValue={item ? item?.city : ""} name='city' placeholder='Enter City' required />
 
-                                <label htmlFor='zip'>Zip Code *</label>
-                                <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' required />
+                                        <label htmlFor='state'>State *</label>
+                                        <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' defaultValue={item ? item?.state : ""} name='state' placeholder='Enter State' required />
 
-                                <button onClick={() => addNewAddress(data)} className='d-flex justify-content-center' type='submit'>Add New Address</button>
-                            </form>
-                        </div>
+                                        <label htmlFor='state'>Country *</label>
+                                        <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' defaultValue={item ? item?.country : ""} name='state' placeholder='Enter Country' required />
+
+                                        <label htmlFor='zip'>Zip Code *</label>
+                                        <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
+
+                                        
+                                        <div className='d-flex gap-2'>
+                                            <span className={data?.addressType === "Home" ? "bg-secondary" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
+                                            <span className={data?.addressType === "Work" ? "bg-secondary" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
+                                        </div>
+
+                                        <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
+
+                                    </form>
+                                </div>
+                            ))}
+                        
                     </div>
+                        : 
+                        <div className='newAdd modal'>
+                            <div className='modal-content'>
+                                <span className='close' onClick={() => { closeModal(); setFlag(false) }}>&times;</span>
+                                <h2>Add New Address</h2>
+                                <form onSubmit={handleSubmit}>
+                                    <label htmlFor='name'>Full Name</label>
+                                    <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name'  name='name' placeholder='Full Name' required />
+
+                                    <label htmlFor='street'>Phone Number *</label>
+                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street'  name='street' placeholder='Enter Phone' required />
+
+                                    <label htmlFor='street'>Alternate Phone Number </label>
+                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street'  name='street' placeholder='Enter Phone' />
+
+                                    <label htmlFor='street'>House No * </label>
+                                    <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' required />
+
+                                    <label htmlFor='street'>Address *</label>
+                                    <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street'  name='street' placeholder='Enter Address' required />
+
+
+
+                                    <label htmlFor='city'>City *</label>
+                                    <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' name='city' placeholder='Enter City' required />
+
+                                    <label htmlFor='state'>State *</label>
+                                    <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' name='state' placeholder='Enter State' required />
+
+                                    <label htmlFor='state'>Country *</label>
+                                    <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state'  name='state' placeholder='Enter Country' required />
+
+                                    <label htmlFor='zip'>Zip Code *</label>
+                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip'  name='zip' placeholder='Enter Zip Code' required />
+
+                                    <label htmlFor='street'>Work</label>
+                                    <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type'  required />
+                                    <label htmlFor='street'>Home</label>
+                                    <input onChange={(e) => setData({ ...data, addressType: e.target.value })}  type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' required />
+
+                                 <button onClick={() => { addNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
+                                  
+                                </form>
+                            </div>
+                        </div>
+
+}
                 </div>
             )}
         </div>

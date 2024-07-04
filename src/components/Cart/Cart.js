@@ -11,11 +11,16 @@ function Cart() {
         window.scrollTo(0, 0);
     }
         
+    const checkoutPage = () =>{
+        navigate(`/OldAddress`);
+        window.scrollTo(0, 0);
+
+    }
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity,0)
 
     // let sellingPrice = 0
     // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
-console.log(cartData);
+
 
     return (
 
@@ -104,7 +109,7 @@ console.log(cartData);
                                                 <div>You Pay</div>
                                                 <div>₹0.00</div>
                                             </div>
-                                            <button className='mt-5'>CHECKOUT</button>
+                                            <button className='mt-5' onClick={()=>checkoutPage()}>CHECKOUT</button>
                                             <button>CONTINUE SHOPPING</button>
 
                                         </div>

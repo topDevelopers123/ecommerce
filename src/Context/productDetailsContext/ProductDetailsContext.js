@@ -6,6 +6,7 @@ export const ProductDetailsContext = createContext();
 
 function ProductDetailsProvider({ children }) {
     const [productDetailsData, setProductDetailsData] = useState(null);
+    const [ReviewData, setReviewData] = useState(null)
     const [disable, setDisable] = useState(false)
     const token = localStorage.getItem("token")
 
@@ -24,6 +25,19 @@ function ProductDetailsProvider({ children }) {
         }
     }
 
+    const getReviewData = async () => {
+        try {
+            const resp = await axios.get('/review/get', {
+                headers: { 'Authorization': `Bearer ${token}` },
+            }
+            )
+            setReviewData(resp.data.data);
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
     const addReview = async (data) => {
         const toastId = toast.loading('Loading...');
@@ -36,7 +50,7 @@ function ProductDetailsProvider({ children }) {
             )
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            console.log(resp);
+        
 
 
         } catch (error) {
@@ -53,9 +67,11 @@ function ProductDetailsProvider({ children }) {
 
     useEffect(() => {
         getProductDetailsData();
+        getReviewData()
+
     }, [])
     return (
-        <ProductDetailsContext.Provider value={{ productDetailsData, addReview, disable }}>
+        <ProductDetailsContext.Provider value={{ productDetailsData, addReview, disable, ReviewData }}>
             {children}
         </ProductDetailsContext.Provider>
     )

@@ -14,7 +14,7 @@ function Wishlist() {
     }
 
    
-    console.log(wishlistData);
+
 
     const addToCartHandler = (product_id, productDetails) => {
            const quantity = 1
