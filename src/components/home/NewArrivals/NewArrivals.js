@@ -41,19 +41,19 @@ function ShopByCategory() {
                             }}
                         >
                             <div className="item">
-                                <Link to="/productdetails/:id"> <img src={sbc01} /></Link>
+                                <Link to="/productdetails/:id"> <img src={sbc01} alt='' /></Link>
                                 <h4>Men's Causal Wear</h4>
                             </div>
                             <div className="item">
-                                <img src={sbc02} />
+                                <img src={sbc02} alt='' />
                                 <h4>Men's Formal Wear</h4>
                             </div>
                             <div className="item">
-                                <img src={sbc03} />
+                                <img src={sbc03} alt=''/>
                                 <h4>Category 1</h4>
                             </div>
                             <div className="item">
-                                <img src={sbc04} />
+                                <img src={sbc04} alt='' />
                                 <h4>Category 1</h4>
                             </div>
                         </OwlCarousel>
@@ -79,19 +79,19 @@ function ShopByCategory() {
                             }}
                         >
                             <div className="item">
-                                <img src={sbc01} />
+                                <img src={sbc01} alt='' />
                                 <h4>Men's Causal Wear</h4>
                             </div>
                             <div className="item">
-                                <img src={sbc02} />
+                                <img src={sbc02} alt='' />
                                 <h4>Men's Formal Wear</h4>
                             </div>
                             <div className="item">
-                                <img src={sbc03} />
+                                <img src={sbc03} alt='' />
                                 <h4>Category 1</h4>
                             </div>
                             <div className="item">
-                                <img src={sbc04} />
+                                <img src={sbc04} alt=''/>
                                 <h4>Category 1</h4>
                             </div>
                         </OwlCarousel>

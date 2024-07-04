@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useAsyncError, useParams } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -7,35 +7,55 @@ import { useCartContext, useProductContext, useProductDetailsContext, useWishlis
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
-import model from "./img/model.webp";
-import p01 from "./img/p1.webp";
-import p02 from "./img/p2.webp";
-import p03 from "./img/p3.webp";
-import p04 from "./img/p4.webp";
-import p05 from "./img/p5.webp";
-import p06 from "./img/p6.webp";
-import color1 from "./img/color1.webp";
-import color2 from "./img/color2.webp";
 import tp01 from "../home/img/trending/1.jpg";
+import StarRatings from "react-star-ratings";
 
 function ProductDetail() {
+  const { productDetailsData, addReview, disable } = useProductDetailsContext()
+  const { id } = useParams()
+  const [qty, setQty] = useState(1)
+  const { addToCart2 } = useCartContext()
+  const { addToWishlist } = useWishlistContext()
+  const [image, setImage] = useState(null)
+  const [color, setColor] = useState("")
+  const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
-  const [productDetail, setProductDetail] = useState({
-  
+
+  let ratingAvg = 0;
+  let totalReview = 0;
+  const [error, setError] = useState("")
+
+  const [reviewData, setReviewData] = useState({
+    title: "",
+    message: "",
+    rating: 0,
+    product_id: id,
     image: []
   });
+  
+  
+
+
+  const getReview = productDetailsData?.filter((item) => item?._id === id)[0];
+  
+  
+  getReview?.Review?.map((rev) => {
+      ratingAvg += rev?.rating
+      totalReview++
+})
+
+  
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
-    const newFile = files.slice(0,5)
-    console.log(newFile);
-    const newImages = newFile.map(file => ({
-      id: file.name + file.size, // Unique identifier based on file properties
+    const newFiles = files.slice(0,3)
+    const newImages = newFiles.map(file => ({
+      id: file.name + file.size, 
       url: URL.createObjectURL(file),
       file: file
     }));
     setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    setProductDetail(prevDetail => ({
+    setReviewData(prevDetail => ({
       ...prevDetail,
       image: [...prevDetail.image, ...newImages.map(image => image.file)]
     }));
@@ -43,39 +63,53 @@ function ProductDetail() {
 
   const handleImageDelete = (id) => {
     setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
-    setProductDetail(prevDetail => ({
+    setReviewData(prevDetail => ({
       ...prevDetail,
       image: prevDetail.image.filter(image => image.name + image.size !== id)
     }));
   };
 
-  const [qty, setQty] = useState(1)
-
-const addValue = ()=>{
-   if (qty < 5) {
+  const submitHandler = async () => {
+    if (!reviewData.title || !reviewData.message || !reviewData.rating) {
+      setError("All Field are Mendatory (Title, Message, Rating)")
+      return
+    }
+    const formData = new FormData();
+    formData.append('product_id', reviewData.product_id);
+    formData.append('title', reviewData.title);
+    formData.append('message', reviewData.message);
+    formData.append('rating', reviewData.rating);
+   
     
-     setQty(qty + 1)
-   }
-}
+    reviewData.image.forEach((file) => {
+      formData.append(`image`, file);
+    });
 
-const removeValue =()=>{
-  if (qty > 1) {
     
-    setQty(qty -1)
+    try {
+      const result = await addReview(formData);
+      if (result) {
+        setReviewData({...reviewData, title:"", message:"", rating:0})
+      }
+    } catch (error) {
+      console.error('Error adding product details:', error);
+    }
+  };
+
+
+  const addValue = () => {
+    if (qty < 5) {
+
+      setQty(qty + 1)
+    }
   }
-}
 
-  const { productDetailsData } = useProductDetailsContext()
-  const { addToCart2 } = useCartContext()
-  const { addToWishlist } = useWishlistContext()
-  // console.log(productDetailsData);
-  const [image, setImage] = useState(null)
-  const [color, setColor] = useState("")
-  const [size, setSize] = useState(null)
-  
+  const removeValue = () => {
+    if (qty > 1) {
 
-  const { id } = useParams()
-
+      setQty(qty - 1)
+    }
+  }
 
 
   const data = productDetailsData?.filter((item, i) => {
@@ -95,8 +129,8 @@ const removeValue =()=>{
   })
 
   const [wishDetails, setWishDetails] = useState({
-    product_id:"",
-    product_detail_id:""
+    product_id: "",
+    product_detail_id: ""
   })
 
   useEffect(() => {
@@ -104,9 +138,9 @@ const removeValue =()=>{
     setImage(filter ? filter[0]?.image[0]?.image_url : Prouctdetail?.image[0]?.image_url)
     setColor(Prouctdetail?.color)
     setSize(Prouctdetail?._id)
-    setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity:qty})
+    setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
-    
+
   }, [productDetailsData])
 
 
@@ -118,18 +152,24 @@ const removeValue =()=>{
     addToCart2(details)
   }
 
-  const wishListHandler = ()=>{
+  const wishListHandler = () => {
     addToWishlist(wishDetails)
-    
+
   }
 
-// console.log(wishDetails);
+  const changeRating = (newRating) => {
+    setReviewData(prevState => ({
+      ...prevState,
+      rating: newRating
+    }));
+  };
+
+
   
-  // console.log(data?._id, filter2?._id, qty);
 
   return (
     <div>
-      {/* Product details section start */}
+      
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
@@ -164,7 +204,7 @@ const removeValue =()=>{
 
                 <div className="col-md-5">
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
-                        
+
                   {/* <div className="theme-text mr-2">Product Ratings: </div>
                       <div className="reviews-counter">
                         <div className="rate">
@@ -213,7 +253,7 @@ const removeValue =()=>{
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
-                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100).toFixed()}%</span>
+                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}%</span>
                   </div>
 
                   <div className="delivery shadow">Free Delivery</div>
@@ -239,7 +279,7 @@ const removeValue =()=>{
                                   })} */}
                             {(data?.ProductDetails?.map((photo) => (
                               <>
-                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id })  }} />}
                               </>
                             )))}
 
@@ -255,9 +295,9 @@ const removeValue =()=>{
 
                     </div>
                   </div>
-                  
+
                   <hr />
-                  
+
                   <div>
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
@@ -270,7 +310,7 @@ const removeValue =()=>{
                   </div>
 
                   <hr />
-                  
+
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
@@ -300,14 +340,14 @@ const removeValue =()=>{
                   </div>
 
                   <hr />
-                  
+
                   <div className="row">
                     <div className="d-flex">
                       <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(); setDetails({ ...details, product_id: data?._id, productDetails: filter2?._id, quantity: qty }) }}>
-                        
+
                         Add to basket
                       </button>
-                      
+
                       <button className="btn btn-block addBtn ms-3">
                         Buy Now
                       </button>
@@ -331,9 +371,15 @@ const removeValue =()=>{
                     Description
                   </Link>
                 </li>
+               
                 <li className="nav-item">
-                  <Link className="nav-link" data-bs-toggle="tab" to="#menu1">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#reviews">
                     Reviews
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
+                    Add Reviews
                   </Link>
                 </li>
               </ul>
@@ -356,95 +402,109 @@ const removeValue =()=>{
                     corporis temporibus ad?
                   </div>
                 </div>
-                <div className="tab-pane container fade" id="menu1">
+              
+
+                  <div className="tab-pane container fade" id="reviews">
+                  {getReview?.Review?.length >0 ? 
+                    <div className="customer_reviews text-start">
+                      <div className="ratings">
+                      <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i class="bi bi-star-fill" style={{color:"gold"}}></i></span></h2>
+                        <p> {totalReview} Reviews</p>
+                      </div>
+                      
+                    {getReview?.Review?.map((rev) => (
+                      <div className="uploaded_images mt-4">
+                       
+                        {/* {console.log()} */}
+                        <h5>{rev?.title}</h5><span>{rev?.rating} <i class="bi bi-star-fill" style={{ color: "gold" }}></i></span>
+                        
+                        
+                        <p> {rev?.message}</p>
+                        <div className="d-flex">
+                          {rev?.image?.map((photo) => (
+
+                            <img src={photo?.image_url} width={100} height={150} alt="" />
+                          ))}
+
+                        </div>
+                      </div>
+                         ))}
+                    </div>
+                  : <h3 style={{fontWeight:"400"}}>No Reviews Yet</h3>
+                        }
+                    
+                  </div>
+             
+
+                {/* {getReview?.Review?.map((rev) => (
+                  <>
+                  <p>{rev.title}</p>
+                  <h5>{rev.message}</h5>
+                  {rev?.image?.map((pic)=>(
+                    <img src={pic?.image_url} width={100} height={150} alt="" />
+                  ))}
+                  </>
+                ))} */}
+                
+              
+             
+                <div className="tab-pane container fade" id="addReview">
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
-                    <div className="reviews-counter text-start">
-                      <div className="rate">
-                        <input
-                          type="radio"
-                          id="star5"
-                          name="rate"
-                          value="5"
-                          checked
-                        />
-                        <label for="star5" title="text">
-                          5 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="star4"
-                          name="rate"
-                          value="4"
-                          checked
-                        />
-                        <label for="star4" title="text">
-                          4 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="star3"
-                          name="rate"
-                          value="3"
-                          checked
-                        />
-                        <label for="star3" title="text">
-                          3 stars
-                        </label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="text">
-                          2 stars
-                        </label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="text">
-                          1 star
-                        </label>
-                      </div>
-                      <span>3 Reviews</span>
+
+                    <div className="userRating text-start">
+                      <StarRatings
+                        rating={reviewData.rating}
+                        starRatedColor="gold"
+                        changeRating={changeRating}
+                        numberOfStars={5}
+                        name="rating"
+                      />
                     </div>
+                   
                     <div class="my-3 text-start">
                       <label for="" class="form-label text-start">Add Title</label>
                       <input
                         type="text"
                         class="form-control"
                         name=""
-                        id=""                      
-                        placeholder="Add Title"
-                      />
+                        id=""
+                        placeholder="Add Title" required 
+                      onChange={(e)=>setReviewData({...reviewData, title:e.target.value})} />
                     </div>
                     <div className="mb-3 text-start">
-                        <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
-                        <input
-                          id="image-upload"
-                          type="file"
-                          accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                          multiple // Allow multiple files
-                          onChange={handleImageChange}
-                        />
-                      </div>
-                      <div className="image-preview mt-4">
-                        {selectedImages.map((image, index) => (
-                          <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                            <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
-                            <button
-                              type="button"
-                              onClick={() => handleImageDelete(image.id)}
-                              style={{
-                                position: 'absolute',
-                                top: '5px',
-                                right: '5px',
-                                background: 'red',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '50%',
-                                cursor: 'pointer'
-                              }}
-                            >
-                              &times;
-                            </button>
-                          </div>
-                        ))}
-                      </div>
+                      <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
+                      <input
+                        id="image-upload"
+                        type="file"
+                        accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                        multiple // Allow multiple files
+                        onChange={handleImageChange} 
+                      />
+                    </div>
+                    <div className="image-preview mt-4">
+                      {selectedImages.map((image, index) => (
+                        <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                          <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                          <button
+                            type="button"
+                            onClick={() => handleImageDelete(image.id)}
+                            style={{
+                              position: 'absolute',
+                              top: '5px',
+                              right: '5px',
+                              background: 'red',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '50%',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                    </div>
                     <div class="my-3 text-start">
                       <label for="" class="form-label text-start">Your Review</label>
                       <textarea
@@ -453,12 +513,16 @@ const removeValue =()=>{
                         name=""
                         id=""
                         rows={5}
+                        required
                         aria-describedby="helpId"
                         placeholder="Add your review"
+                        onChange={(e) => setReviewData({ ...reviewData, message: e.target.value })}
                       />
                     </div>
+                    {error ? <p className="text-danger text-start mt-3">{error}</p> : ""}
                     <div className="submitBtn">
-                      <button> Post
+                    
+                      <button onClick={() => { setReviewData({ ...reviewData, product_id: id }) ; submitHandler()}} disabled={disable} className={disable ? "bg-danger" : ""}> Post
                       </button>
                     </div>
                   </div>
