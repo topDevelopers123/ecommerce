@@ -68,9 +68,6 @@ function Products() {
     addToWishlist(data)
   }
 
-
-
-  // console.log(productData)
   const productDetailsPage = (id) => {
     navigate(`/productdetails/${id}`)
     window.scrollTo(0, 0);
