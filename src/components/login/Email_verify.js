@@ -5,6 +5,7 @@ import "./login.css";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuthContext } from "../../Context/index.context";
+import { Link } from "react-router-dom";
 
 function EmailVerify() {
     const { emailVerify } = useAuthContext();
@@ -60,7 +61,8 @@ function EmailVerify() {
 
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        Verify Email
+                                        <Link to="/otpVerify">Verify Email</Link>
+                                        
                                     </button>
                                 </div>
                             </form>

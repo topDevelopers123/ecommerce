@@ -87,7 +87,7 @@ function Login() {
                       Remember me
                     </label>
                   </div>
-                  <p><Link to="#">Forget your password ?</Link></p></div>
+                  <p><Link to="/emailVerify">Forget your password ?</Link></p></div>
                 <div className="d-flex align-items-center login_register_box">
                   <button type="submit" className="btn btn-primary login" >
 
@@ -98,7 +98,6 @@ function Login() {
                       Register
                     </Link>
                   </button>
-
 
                 </div>
               </form>
