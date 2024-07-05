@@ -21,6 +21,7 @@ function Wishlist() {
         addToCart(product_id, productDetails, quantity)
     }
 
+
     return (
         <div>
 

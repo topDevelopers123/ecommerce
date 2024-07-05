@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './OldAddress.css';
 import './checkout.css'
 import { useCartContext, useUserAddressContext } from '../../Context/index.context';
 
 
 function OldAddress() {
+
+
     const [modalVisible, setModalVisible] = useState(false);
     const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
     const { cartData} = useCartContext()
