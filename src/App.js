@@ -23,6 +23,7 @@ import Change_password from './components/login/Change_password';
 import PrivacyPolicy from './components/footer/PrivacyPolicy';
 import TermsOfUse from './components/footer/TermsOfUse';
 import RefundsCancellation from './components/footer/RefundsCancellation';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
