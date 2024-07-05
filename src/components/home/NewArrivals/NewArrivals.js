@@ -57,10 +57,11 @@ function ShopByCategory() {
                             }}
                         >
 
-                            {allProductData && allProductData?.map((item, i) =>
+                            {productData?.map((item, i) =>
                                 <div key={i} className="item" >
 
                                     <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} onClick={() => ArrivalProductNavigate(item?._id)} />
+                                    {console.log(item)}
                                     <h4>Men's Causal Wear</h4>
                                 </div>
                             )}
