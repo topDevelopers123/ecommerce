@@ -7,6 +7,7 @@ export const CartContext = createContext();
 function CartProvider({ children }) {
     const [cartData, setCartData] = useState(null);
     const [cartLength, setCartLength] = useState(0)
+    const [localCharges, setLocalCharges] = useState(null)
     const [disable, setDisable] = useState(false)
     const token = localStorage.getItem("token")
 
@@ -121,7 +122,7 @@ function CartProvider({ children }) {
     }, [])
 
     return (
-        <CartContext.Provider value={{ cartData, addToCart, addToCart2, addToCartUpdate, cartLength, deleteCartProduct }}>
+        <CartContext.Provider value={{ cartData, addToCart, addToCart2, addToCartUpdate, cartLength, deleteCartProduct, setLocalCharges, localCharges }}>
             {children}
         </CartContext.Provider>
     )
