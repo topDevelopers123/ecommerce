@@ -44,7 +44,7 @@ function ProductDetail() {
     ratingAvg += rev?.rating
     totalReview++
   })
-
+  
 
   const redirectHandler = () => {
     navigate("/oldAddress")
