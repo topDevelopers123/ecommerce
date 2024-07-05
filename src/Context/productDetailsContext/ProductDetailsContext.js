@@ -18,7 +18,7 @@ function ProductDetailsProvider({ children }) {
             }
             )
             setProductDetailsData(resp.data.data);
-          
+
 
         } catch (error) {
             console.log(error);
@@ -38,19 +38,19 @@ function ProductDetailsProvider({ children }) {
             console.log(error);
         }
     }
-    
+
     const addReview = async (data) => {
         const toastId = toast.loading('Loading...');
         setDisable(true)
         // console.log(data);
         try {
-            const resp = await axios.post('/review/add',data ,{
+            const resp = await axios.post('/review/add', data, {
                 headers: { 'Authorization': `Bearer ${token}` },
             }
             )
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-        
+
 
 
         } catch (error) {

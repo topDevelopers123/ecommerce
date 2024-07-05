@@ -7,7 +7,11 @@ export const AuthContext = createContext();
 function AuthContextProvider({ children }) {
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"));
 
-    // Register 
+    if (authorizeToken) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${authorizeToken}`;
+    }
+
+    // Register
     const register = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
@@ -22,7 +26,7 @@ function AuthContextProvider({ children }) {
         }
     };
 
-    // Login 
+    // Login
     const login = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
@@ -37,7 +41,7 @@ function AuthContextProvider({ children }) {
         }
     };
 
-    // Email Verify 
+    // Email Verify
     const emailVerify = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
@@ -50,7 +54,7 @@ function AuthContextProvider({ children }) {
         }
     };
 
-    // OTP Verify 
+    // OTP Verify
     const otpVerify = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
@@ -63,7 +67,7 @@ function AuthContextProvider({ children }) {
         }
     };
 
-    // New Password 
+    // New Password
     const newPassword = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
@@ -76,16 +80,14 @@ function AuthContextProvider({ children }) {
         }
     };
 
-    // Change Password 
+    // Change Password
     const changePassword = async (data) => {
-
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/password", data);
             localStorage.setItem("token", resp.data.token);
             setAuthorizeToken(resp.data.token);
-            console.log(resp)
-
+         
             toast.success(resp.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");

@@ -35,7 +35,7 @@
     background-size: 200% auto;
     color: #fff;
     background-clip: text;
-    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: textclip 4s linear infinite;
@@ -57,6 +57,7 @@
     height: 300px;
     object-fit: cover;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .featured_products .owl-theme .owl-nav {
@@ -88,6 +89,7 @@
     object-fit: cover;
     width: 260px;
     transition: transform 0.2s linear;
+    cursor: pointer;
 }
 
 .new_arrivals .owl-carousel .owl-item img:hover {

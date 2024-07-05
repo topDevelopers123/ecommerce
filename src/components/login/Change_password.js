@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./login.css";
+import * as yup from 'yup';
 import { useFormik } from "formik";
 import { useAuthContext } from "../../Context/index.context";
 
 function ChangePassword() {
     const { changePassword } = useAuthContext();
-
 
     const initialValues = {
         oldpassword: "",
@@ -16,10 +15,18 @@ function ChangePassword() {
         confirmPassword: ""
     };
 
-    const { handleSubmit, handleChange, values } = useFormik({
-        initialValues: initialValues,
-        onSubmit: (value) => {
-            changePassword(value);
+    const validationSchema = yup.object({
+        oldpassword: yup.string().min(6).max(16).required("old Password is Required"),
+        newPassword: yup.string().min(6,).max(16,).required("new Password is Required"),
+        confirmPassword: yup.string().oneOf([yup.ref('newPassword'), null], "passwords must match").required("confirm Password is Required")
+    });
+
+    const { values, handleSubmit, handleChange, errors, touched } = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit: (values) => {
+            changePassword(values);
+            // console.log(values)
         },
     });
 
@@ -45,6 +52,9 @@ function ChangePassword() {
                                         value={values.oldpassword}
                                         onChange={handleChange}
                                     />
+                                    {errors.oldpassword && touched.oldpassword ? (
+                                        <div className="text-danger">{errors.oldpassword}</div>
+                                    ) : null}
                                 </div>
 
                                 <div className="mb-3">
@@ -60,6 +70,9 @@ function ChangePassword() {
                                         value={values.newPassword}
                                         onChange={handleChange}
                                     />
+                                    {errors.newPassword && touched.newPassword ? (
+                                        <div className="text-danger">{errors.newPassword}</div>
+                                    ) : null}
                                 </div>
 
                                 <div className="mb-3">
@@ -75,6 +88,9 @@ function ChangePassword() {
                                         value={values.confirmPassword}
                                         onChange={handleChange}
                                     />
+                                    {errors.confirmPassword && touched.confirmPassword ? (
+                                        <div className="text-danger">{errors.confirmPassword}</div>
+                                    ) : null}
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">

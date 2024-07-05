@@ -33,17 +33,18 @@ function ProductDetail() {
     product_id: id,
     image: []
   });
-  
-  
+
+
 
 
   const getReview = productDetailsData?.filter((item) => item?._id === id)[0];
-  
-  
+
+
   getReview?.Review?.map((rev) => {
-      ratingAvg += rev?.rating
-      totalReview++
-})
+    ratingAvg += rev?.rating
+    totalReview++
+  })
+
 
   const redirectHandler =() => {
     navigate("/oldAddress")
@@ -52,9 +53,9 @@ function ProductDetail() {
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
-    const newFiles = files.slice(0,3)
+    const newFiles = files.slice(0, 3)
     const newImages = newFiles.map(file => ({
-      id: file.name + file.size, 
+      id: file.name + file.size,
       url: URL.createObjectURL(file),
       file: file
     }));
@@ -83,17 +84,17 @@ function ProductDetail() {
     formData.append('title', reviewData.title);
     formData.append('message', reviewData.message);
     formData.append('rating', reviewData.rating);
-   
-    
+
+
     reviewData.image.forEach((file) => {
       formData.append(`image`, file);
     });
 
-    
+
     try {
       const result = await addReview(formData);
       if (result) {
-        setReviewData({...reviewData, title:"", message:"", rating:0})
+        setReviewData({ ...reviewData, title: "", message: "", rating: 0 })
       }
     } catch (error) {
       console.error('Error adding product details:', error);
@@ -169,11 +170,11 @@ function ProductDetail() {
   };
 
 
-  
+
 
   return (
     <div>
-      
+
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
@@ -239,6 +240,7 @@ function ProductDetail() {
                                   })} */}
                             {(data?.ProductDetails?.map((photo, i) => (
                               <>
+                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
                                 {photo?.image.length > 0 && <img key={i} src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id })  }} />}
                               </>
                             )))}
@@ -262,7 +264,7 @@ function ProductDetail() {
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
                       {filter?.map((item) => (
-                        <span className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`}  onClick={() => setSize(item._id)} >
+                        <span className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`} onClick={() => setSize(item._id)} >
                           {item?.Size}
                         </span>
                       ))}
@@ -282,7 +284,7 @@ function ProductDetail() {
                             name="quantity"
                             value={qty}
                             className="qty"
-                            onChange={(e) => setQty(e.target.value)}/>
+                            onChange={(e) => setQty(e.target.value)} />
                           <div className="qtyplus" onClick={addValue}>+</div>
                         </form>
                       </div>
@@ -331,7 +333,7 @@ function ProductDetail() {
                     Description
                   </Link>
                 </li>
-               
+
                 <li className="nav-item">
                   <Link className="nav-link" data-bs-toggle="tab" to="#reviews">
                     Reviews
@@ -354,39 +356,39 @@ function ProductDetail() {
                     corporis temporibus ad?
                   </div>
                 </div>
-              
 
-                  <div className="tab-pane container fade" id="reviews">
-                  {getReview?.Review?.length >0 ? 
+
+                <div className="tab-pane container fade" id="reviews">
+                  {getReview?.Review?.length > 0 ?
                     <div className="customer_reviews text-start">
                       <div className="ratings">
-                      <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i class="bi bi-star-fill" style={{color:"gold"}}></i></span></h2>
+                        <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i class="bi bi-star-fill" style={{ color: "gold" }}></i></span></h2>
                         <p> {totalReview} Reviews</p>
                       </div>
-                      
-                    {getReview?.Review?.map((rev) => (
-                      <div className="uploaded_images mt-4">
-                       
-                        {/* {console.log()} */}
-                        <h5>{rev?.title}</h5><span>{rev?.rating} <i class="bi bi-star-fill" style={{ color: "gold" }}></i></span>
-                        
-                        
-                        <p> {rev?.message}</p>
-                        <div className="d-flex">
-                          {rev?.image?.map((photo) => (
 
-                            <img src={photo?.image_url} width={100} height={150} alt="" />
-                          ))}
+                      {getReview?.Review?.map((rev) => (
+                        <div className="uploaded_images mt-4">
 
+                          {/* {console.log()} */}
+                          <h5>{rev?.title}</h5><span>{rev?.rating} <i class="bi bi-star-fill" style={{ color: "gold" }}></i></span>
+
+
+                          <p> {rev?.message}</p>
+                          <div className="d-flex">
+                            {rev?.image?.map((photo) => (
+
+                              <img src={photo?.image_url} width={100} height={150} alt="" />
+                            ))}
+
+                          </div>
                         </div>
-                      </div>
-                         ))}
+                      ))}
                     </div>
-                  : <h3 style={{fontWeight:"400"}}>No Reviews Yet</h3>
-                        }
-                    
-                  </div>
-             
+                    : <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
+                  }
+
+                </div>
+
 
                 {/* {getReview?.Review?.map((rev) => (
                   <>
@@ -397,9 +399,9 @@ function ProductDetail() {
                   ))}
                   </>
                 ))} */}
-                
-              
-             
+
+
+
                 <div className="tab-pane container fade" id="addReview">
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
@@ -420,8 +422,8 @@ function ProductDetail() {
                         className="form-control"
                         name=""
                         id=""
-                        placeholder="Add Title" required 
-                      onChange={(e)=>setReviewData({...reviewData, title:e.target.value})} />
+                        placeholder="Add Title" required
+                        onChange={(e) => setReviewData({ ...reviewData, title: e.target.value })} />
                     </div>
                     <div className="mb-3 text-start">
                       <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
@@ -430,7 +432,7 @@ function ProductDetail() {
                         type="file"
                         accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                         multiple // Allow multiple files
-                        onChange={handleImageChange} 
+                        onChange={handleImageChange}
                       />
                     </div>
                     <div className="image-preview mt-4">
@@ -472,8 +474,8 @@ function ProductDetail() {
                     </div>
                     {error ? <p className="text-danger text-start mt-3">{error}</p> : ""}
                     <div className="submitBtn">
-                    
-                      <button onClick={() => { setReviewData({ ...reviewData, product_id: id }) ; submitHandler()}} disabled={disable} className={disable ? "bg-danger" : ""}> Post
+
+                      <button onClick={() => { setReviewData({ ...reviewData, product_id: id }); submitHandler() }} disabled={disable} className={disable ? "bg-danger" : ""}> Post
                       </button>
                     </div>
                   </div>
