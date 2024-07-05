@@ -14,12 +14,12 @@ import { useNavigate } from 'react-router-dom';
 function ShopByCategory() {
     const { productData } = useProductContext();
     console.log(productData)
+
     const [allProductData, setAllProductData] = useState(productData)
     const navigate = useNavigate()
 
-
-    const productDetailsPage = (id) => {
-        navigate(`/productdetails/${id}`)
+    const ArrivalProductNavigate = (id) => {
+        navigate(`/ArrivalProductNavigate/${id}`)
         window.scrollTo(0, 0);
     }
 
@@ -60,7 +60,7 @@ function ShopByCategory() {
                             {allProductData && allProductData?.map((item, i) =>
                                 <div key={i} className="item" >
 
-                                    <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
+                                    <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} onClick={() => ArrivalProductNavigate(item?._id)} />
                                     <h4>Men's Causal Wear</h4>
                                 </div>
                             )}
