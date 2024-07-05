@@ -80,6 +80,7 @@
   width: 5rem;
   height: 5rem;
   border-radius: 10px;
+  margin: 5px 0px;
 }
 
 .checkout_total_box .item-details {
@@ -90,6 +91,7 @@
 
 .checkout_total_box .item-details .item-title {
   color: #000;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 
@@ -151,10 +153,8 @@
 
 .select-txt {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
   word-wrap: break-word;
-  height: 60px;
-  text-align: left;
   padding-left: 15px;
   font-size: 12pt;
 }

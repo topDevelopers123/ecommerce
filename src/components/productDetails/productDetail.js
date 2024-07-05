@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link,  useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -44,9 +44,9 @@ function ProductDetail() {
     ratingAvg += rev?.rating
     totalReview++
   })
+  
 
-
-  const redirectHandler =() => {
+  const redirectHandler = () => {
     navigate("/oldAddress")
     window.scrollTo(0, 0);
   }
@@ -210,7 +210,7 @@ function ProductDetail() {
                 <div className="col-md-5">
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
 
-               
+
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
@@ -241,7 +241,7 @@ function ProductDetail() {
                             {(data?.ProductDetails?.map((photo, i) => (
                               <>
                                 {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
-                                {photo?.image.length > 0 && <img key={i} src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id })  }} />}
+                                {photo?.image.length > 0 && <img key={i} src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
                               </>
                             )))}
 
@@ -310,7 +310,7 @@ function ProductDetail() {
                         Add to basket
                       </button>
 
-                      <button className="btn btn-block addBtn ms-3" onClick={()=>redirectHandler()}>
+                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler()}>
                         Buy Now
                       </button>
                     </div>
