@@ -11,7 +11,9 @@
     height: 50px;
     top: 35%;
 }
-
+.mens_cate{
+    margin: 0px 50px;
+}
 .bdr {
     width: 8%;
     height: 4px;
@@ -332,19 +334,18 @@
 
 .tp_area .card-body {
     background: #EEF7FF;
-    height: 210px;
+    height: 180px;
     position: relative;
 }
 
 .tp_area .cart_n_buy {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
 }
 
 .card-body button {
-    margin: 0;
     font-size: 12px;
-    padding: 8px 10px;
+    width: 100%;
 }
 
 .shop-services.home {

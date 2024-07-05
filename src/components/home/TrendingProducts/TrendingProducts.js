@@ -82,13 +82,11 @@ function TrendingProducts() {
                                           <p className="pricing">
                                               ₹{item.ProductDetails[0].sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item.ProductDetails[0].sellingPrice) / item.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
                                           </p>
-                                          <div className="d-flex cart_n_buy">
+                                          <div className="cart_n_buy">
                                               <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id)}>
                                                   Add to basket
                                               </button>
-                                              <button className="btn btn-block addBtn ms-2">
-                                                  Buy Now
-                                              </button>
+                                            
                                           </div>
                                       </div>
                                   </div>
