@@ -16,7 +16,6 @@ import { useCartContext, useUserAddressContext, useOrderContext } from '../../Co
 function OldAddress() {
 
 
-    const [modalVisible, setModalVisible] = useState(false);
     const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
     const { cartData, setLocalCharges, localCharges } = useCartContext()
     const { addOrder } = useOrderContext()
