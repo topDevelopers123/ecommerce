@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link,  useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
@@ -20,6 +20,7 @@ function ProductDetail() {
   const [color, setColor] = useState("")
   const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
+  const navigate = useNavigate()
 
   let ratingAvg = 0;
   let totalReview = 0;
@@ -45,6 +46,10 @@ function ProductDetail() {
   })
 
 
+  const redirectHandler =() => {
+    navigate("/oldAddress")
+    window.scrollTo(0, 0);
+  }
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
@@ -205,55 +210,11 @@ function ProductDetail() {
                 <div className="col-md-5">
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
 
-                  {/* <div className="theme-text mr-2">Product Ratings: </div>
-                      <div className="reviews-counter">
-                        <div className="rate">
-                          <input
-                            type="radio"
-                            id="star5"
-                            name="rate"
-                            value="5"
-                            checked
-                          />
-                          <label for="star5" title="text">
-                            5 stars
-                          </label>
-                          <input
-                            type="radio"
-                            id="star4"
-                            name="rate"
-                            value="4"
-                            checked
-                          />
-                          <label for="star4" title="text">
-                            4 stars
-                          </label>
-                          <input
-                            type="radio"
-                            id="star3"
-                            name="rate"
-                            value="3"
-                            checked
-                          />
-                          <label for="star3" title="text">
-                            3 stars
-                          </label>
-                          <input type="radio" id="star2" name="rate" value="2" />
-                          <label for="star2" title="text">
-                            2 stars
-                          </label>
-                          <input type="radio" id="star1" name="rate" value="1" />
-                          <label for="star1" title="text">
-                            1 star
-                          </label>
-                        </div>
-                        <span>3 Reviews</span>
-                      </div> */}
-
+               
                   <div><h3>{data?.title}</h3></div>
 
                   <div className="price my-2">
-                    ₹{filter2?.sellingPrice}<strike className="original-price">  ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}%</span>
+                    ₹{filter2?.sellingPrice} &nbsp; <strike className="original-price">   ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}% OFF</span>
                   </div>
 
                   <div className="delivery shadow">Free Delivery</div>
@@ -277,9 +238,10 @@ function ProductDetail() {
                                       console.log(color)
                                     }
                                   })} */}
-                            {(data?.ProductDetails?.map((photo) => (
+                            {(data?.ProductDetails?.map((photo, i) => (
                               <>
                                 {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                                {photo?.image.length > 0 && <img key={i} src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id })  }} />}
                               </>
                             )))}
 
@@ -314,7 +276,7 @@ function ProductDetail() {
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
-                        <label for="size">Quantity</label>
+                        <label htmlFor="size">Quantity</label>
                         <form action="#" className="d-flex">
                           <div className="qtyminus" onClick={removeValue} >-</div>
                           <input
@@ -348,7 +310,7 @@ function ProductDetail() {
                         Add to basket
                       </button>
 
-                      <button className="btn btn-block addBtn ms-3">
+                      <button className="btn btn-block addBtn ms-3" onClick={()=>redirectHandler()}>
                         Buy Now
                       </button>
                     </div>
@@ -377,7 +339,7 @@ function ProductDetail() {
                     Reviews
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" >
                   <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
                     Add Reviews
                   </Link>
@@ -390,15 +352,7 @@ function ProductDetail() {
                     Provident magni assumenda consectetur facere eius. Minus
                     reprehenderit placeat ullam vel ab eaque sequi impedit,
                     ipsum soluta temporibus fugit ipsa. Dolor libero modi
-                    molestiae dicta, vitae minus laborum error cum consequatur
-                    autem minima eveniet porro obcaecati quibusdam possimus eos,
-                    debitis sint magnam, explicabo accusantium aspernatur ipsa
-                    repellat tempore nihil. Cum placeat voluptate dignissimos
-                    dicta harum consectetur, nemo debitis tempore. Quod culpa
-                    perspiciatis unde natus. Modi expedita, ab repellendus
-                    reiciendis sed voluptate, culpa laborum ad, consectetur quas
-                    tempora quo? Quibusdam doloribus magnam maxime, accusamus
-                    officiis odit reiciendis labore laudantium. Molestiae
+                    molestiae dicta labore laudantium. Molestiae
                     corporis temporibus ad?
                   </div>
                 </div>
@@ -461,12 +415,11 @@ function ProductDetail() {
                         name="rating"
                       />
                     </div>
-
-                    <div class="my-3 text-start">
-                      <label for="" class="form-label text-start">Add Title</label>
+                    <div className="my-3 text-start">
+                      <label htmlFor="" className="form-label text-start">Add Title</label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name=""
                         id=""
                         placeholder="Add Title" required
@@ -505,11 +458,11 @@ function ProductDetail() {
                         </div>
                       ))}
                     </div>
-                    <div class="my-3 text-start">
-                      <label for="" class="form-label text-start">Your Review</label>
+                    <div className="my-3 text-start">
+                      <label htmlFor="" className="form-label text-start">Your Review</label>
                       <textarea
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         name=""
                         id=""
                         rows={5}

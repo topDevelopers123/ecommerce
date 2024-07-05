@@ -59,7 +59,7 @@ function TrendingProducts() {
                               <div className="col-lg-3 col-md-6 col-sm-6 col-6">
                                   <div className="card" >
                                       <>
-                                          <img src={item?.ProductDetails[0]?.image[0]?.image_url} onClick={() => productDetailsPage(item._id)} className="tp_img " alt="..." />
+                                          <img key={i} src={item?.ProductDetails[0]?.image[0]?.image_url} onClick={() => productDetailsPage(item._id)} className="tp_img " alt="..." />
                                       </>
                                       <div className="card-body">
                                           <div className="add_icons">

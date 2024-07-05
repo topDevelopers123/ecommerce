@@ -23,11 +23,13 @@ function UserAddressProvider({ children }) {
         }
     }
     const addNewAddress = async (data) => {
+        const toastId = toast.loading('Loading...');
         try {
             const res = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/add', data, {
                 headers: { 'Authorization': token, },
             })
             getUserAddressData()
+            toast.dismiss(toastId);
             toast.success(res.data.message)
 
         } catch (error) {
@@ -37,11 +39,13 @@ function UserAddressProvider({ children }) {
         }
     }
     const deleteAddress = async (id) => {
+        const toastId = toast.loading('Loading...');
         try {
             const res = await axios.delete(`https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/delete/${id}`, {
                 headers: { 'Authorization': token, },
             })
             getUserAddressData()
+            toast.dismiss(toastId);
             toast.success(res.data.message)
 
         } catch (error) {
@@ -51,12 +55,31 @@ function UserAddressProvider({ children }) {
         }
     }
 
+    const updateOldAddress = async (data, id) => {
+        const toastId = toast.loading('Loading...');
+        try {
+            const res = await axios.put(`/user-address/update/${id}`, data, {
+                headers: { 'Authorization': token, },
+            })
+            getUserAddressData()
+            toast.dismiss(toastId);
+            toast.success(res.data.message)
+
+        } catch (error) {
+            console.log(error)
+            toast.error(error?.response?.data?.message)
+
+        }
+    }
+
+    
+
     useEffect(() => {
         if (token) getUserAddressData()
     }, [])
 
     return (
-        <UserAddressContext.Provider value={{ UserAddressData, addNewAddress, deleteAddress }}>
+        <UserAddressContext.Provider value={{ UserAddressData, addNewAddress, deleteAddress, updateOldAddress }}>
             {children}
         </UserAddressContext.Provider >
     )
