@@ -64,7 +64,8 @@ function ShopByCategory() {
                                     <h4>Men's Causal Wear</h4>
                                 </div>
                             )}
-                            <div className="item">
+
+                            {/* <div className="item">
                                 <img src={sbc02} alt='' />
                                 <h4>Men's Formal Wear</h4>
                             </div>
@@ -75,7 +76,7 @@ function ShopByCategory() {
                             <div className="item">
                                 <img src={sbc04} alt='' />
                                 <h4>Category 1</h4>
-                            </div>
+                            </div> */}
 
                         </OwlCarousel>
                         <OwlCarousel
