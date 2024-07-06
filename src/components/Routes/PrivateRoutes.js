@@ -24,6 +24,10 @@ export const PrivateRoutes = [
     {
         path: "/OldAddress",
         element: <OldAddress />
+    },
+    {
+        path: "/OldAddress/:product_id/:id",
+        element: <OldAddress />
     }
     ,
     {
