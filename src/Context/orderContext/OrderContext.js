@@ -22,7 +22,7 @@ function OrderContextProvider({ children }) {
     // }
 
     const addOrder = async (data) => {
-        console.log(data);
+        
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -44,9 +44,33 @@ function OrderContextProvider({ children }) {
         }
     }
 
+    const addSingleOrder = async (data) => {
+
+        setDisable(true)
+        const toastId = toast.loading('Loading...');
+        try {
+
+            const resp = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/order/buynow', data, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+
+
+        } catch (error) {
+            console.log(error)
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        } finally {
+            setDisable(false)
+        }
+    }
+
+
 
     return (
-        <OrderContext.Provider value={{ addOrder }}>
+        <OrderContext.Provider value={{ addOrder, addSingleOrder }}>
             {children}
         </OrderContext.Provider>
     )

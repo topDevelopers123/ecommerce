@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './OldAddress.css';
 import './checkout.css'
 import cod from "./img/cod.png";
@@ -9,7 +9,9 @@ import {
     StateSelect,
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
-import { useCartContext, useUserAddressContext, useOrderContext } from '../../Context/index.context';
+import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext } from '../../Context/index.context';
+import { useParams } from 'react-router-dom';
+import ProductDetail from '../productDetails/productDetail';
 
 
 
@@ -18,10 +20,13 @@ function OldAddress() {
 
     const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
     const { cartData, setLocalCharges, localCharges } = useCartContext()
-    const { addOrder } = useOrderContext()
+    const { addOrder, addSingleOrder } = useOrderContext()
     const [modalVisible, setModalVisible] = useState(false);
     const [stateid, setstateid] = useState(0);
     const [countryid, setCountryid] = useState(0);
+    const { productDetailsData} = useProductDetailsContext()
+    const { product_id, id } = useParams()
+   
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
     const [charges,setCharges]= useState(0)
@@ -44,11 +49,24 @@ function OldAddress() {
     const [finalData, setFinalData] = useState({
         cartId:[],
         address_id:"",
-        payment_type:"cash",
+        payment_type:"COD",
         payment_status:"pending",
         status:"pending"
     })
     
+
+    const [singleProductData, setSingleProductData] = useState({
+        product_id: "",
+        product_detail_id: "",
+        user_id: "",
+        charges: "",
+        payment_type: "cash",
+        address_id: "",
+        payment_status: "pending",
+        status: "pending"
+    })
+    
+
     let n = 0;
     let total = 0;
     cartData?.map((item) => (
@@ -72,16 +90,36 @@ function OldAddress() {
 
     const selectedData = UserAddressData?.filter((item)=>(
         item?._id === radio
-    ))
+    ))[0]
 
-    let x = cartData?.map((item) => selectedData[0]?.state === "Delhi" ? item?.product_id.zonal_charges : item?.product_id.national_charges)
+    
+
+    let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
     let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index] }))
+
+   
+
+    const addressFilter = UserAddressData?.filter((item)=>{
+        return item?._id === selectedData?._id
+    })[0]
+    
+    
+    const product_id_filter = productDetailsData?.filter((item) => {
+        return item._id === product_id
+    })[0]
+
+    const product_detail_Filter = product_id_filter?.ProductDetails?.filter((item) => {
+        return item?._id === id
+    })[0]
+
+
+    let charges_s = selectedData?.state === "Delhi" ? product_id_filter?.zonal_charges : product_id_filter?.national_charges
+    
 
     useEffect(() => {
        
-
-        
         setFinalData({ ...finalData, cartId:cartId, address_id: radio })
+        setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
   
     }, [cartData, radio])
 
@@ -134,6 +172,17 @@ function OldAddress() {
         
     }
 
+  
+ 
+    
+
+    const singleProductOrder =()=>{
+
+        addSingleOrder(singleProductData);
+       
+    }
+ 
+    
     return (
         <div>
             <div className='p-5'>
@@ -174,100 +223,204 @@ function OldAddress() {
                             </div>
                         </div>
 
-
+                       
                         <div className="col-lg-4 col-md-5 col-12">
                             <div className="checkout_total_box">
                                 <div className="wrapper">
+                                        {id ? 
+                                        <>
+                                            
                                     <div className="group">
                                         <table>
                                             <tbody>
-                                                {cartData?.map((item)=>(
+                                               
                                                     <tr className=''>
                                                         <td className="item-img">
-                                                            <img src={item?.productDetails?.image[0].image_url} />
+                                                            <img src={product_detail_Filter?.image[0]?.image_url} />
                                                         </td>
                                                         <td className="item-details">
-                                                            <span className="item-title">{item?.product_id?.title}</span>
+                                                            <span className="item-title">{product_id_filter?.title}</span>
                                                           
                                                         </td>
                                                         <td className="item-details">
-                                                            <span className="item-qty">Quantity : {item?.quantity}</span>
+                                                            <span className="item-qty">Quantity : {product_detail_Filter?.selling_quantity}</span>
                                                          
 
                                                         </td>
-                                                        <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
+                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
                                                     </tr>
 
-                                                ))}
+                                       
                                                 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className="divider"></div>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className="item-qty">Subtotal</td>
-                                                <td className="item-price">₹{getTotel}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="item-qty">Shipping</td>
-                                                <td className="item-price">₹{localCharges}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="item-qty">Total</td>
-                                                <td className="item-price">₹{total}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className="divider"></div>
 
-                                    <div className="payment_mode">
-                                        <section>
-                                            <h5 className="payment-title">Choose your payment method</h5>
-                                            <form action="" method="post">
-                                                <div className="pymt-radio">
-                                                    <div className="row-payment-method payment-row">
-                                                        <div className="select-icon">
-                                                            <input type="radio" id="radio1" name="radios" value="online" onChange={(e)=>setFinalData({...finalData, payment_type:e.target.value})}/>
-                                                            <label htmlFor="radio1"></label>
-                                                        </div>
-                                                        <div className="select-txt">
-                                                            <p className="pymt-type-name">Online Payment</p>
+                                            <div className="divider"></div>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="item-qty">Subtotal</td>
+                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="item-qty">Shipping</td>
+                                                        <td className="item-price">₹{singleProductData?.charges}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="item-qty">Total</td>
+                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice + singleProductData?.charges}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
 
-                                                        </div>
-                                                        <div className="select-logo">
-                                                            <img src={online} alt="Online" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="pymt-radio">
-                                                    <div className="row-payment-method payment-row-last">
-                                                        <div className="select-icon hr">
-                                                            <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
-                                                            <label htmlFor="radio2"></label>
-                                                        </div>
-                                                        <div className="select-txt hr">
-                                                            <p className="pymt-type-name">Cash on Delivery</p>
+                                            <div className="divider"></div>
 
-                                                        </div>
-                                                        <div className="select-logo">
-                                                            <div className="select-logo-sub logo-spacer">
-                                                                <img src={cod} alt="COD" />
+                                            <div className="payment_mode">
+                                                <section>
+                                                    <h5 className="payment-title">Choose your payment method</h5>
+                                                    <form action="" method="post">
+                                                        <div className="pymt-radio">
+                                                            <div className="row-payment-method payment-row">
+                                                                <div className="select-icon">
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
+                                                                    <label htmlFor="radio1"></label>
+                                                                </div>
+                                                                <div className="select-txt">
+                                                                    <p className="pymt-type-name">Online Payment</p>
+
+                                                                </div>
+                                                                <div className="select-logo">
+                                                                    <img src={online} alt="Online" />
+                                                                </div>
                                                             </div>
-
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        <div className="pymt-radio">
+                                                            <div className="row-payment-method payment-row-last">
+                                                                <div className="select-icon hr">
+                                                                    <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
+                                                                    <label htmlFor="radio2"></label>
+                                                                </div>
+                                                                <div className="select-txt hr">
+                                                                    <p className="pymt-type-name">Cash on Delivery</p>
+
+                                                                </div>
+                                                                <div className="select-logo">
+                                                                    <div className="select-logo-sub logo-spacer">
+                                                                        <img src={cod} alt="COD" />
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
 
-                                            </form>
-                                        </section>
-                                    </div>
-                                    <div className="group submitBtn">
-                                        <button onClick={checkOut}>Confirm Order</button>
-                                        
-                                    </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+                                            <div className="group submitBtn">
+                                                <button onClick={()=>singleProductOrder()}>Confirm Order</button>
+
+                                            </div>
+
+
+                                    </>
+                                        :<>
+                                            
+                                             <div className="group">
+                                            <table>
+                                                <tbody>
+                                                    {cartData?.map((item) => (
+                                                        <tr className=''>
+                                                            <td className="item-img">
+                                                                <img src={item?.productDetails?.image[0].image_url} />
+                                                            </td>
+                                                            <td className="item-details">
+                                                                <span className="item-title">{item?.product_id?.title}</span>
+
+                                                            </td>
+                                                            <td className="item-details">
+                                                                <span className="item-qty">Quantity : {item?.quantity}</span>
+
+
+                                                            </td>
+                                                            <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
+                                                        </tr>
+
+                                                    ))}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                            <div className="divider"></div>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="item-qty">Subtotal</td>
+                                                        <td className="item-price">₹{getTotel}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="item-qty">Shipping</td>
+                                                        <td className="item-price">₹{localCharges}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="item-qty">Total</td>
+                                                        <td className="item-price">₹{total}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <div className="divider"></div>
+
+                                            <div className="payment_mode">
+                                                <section>
+                                                    <h5 className="payment-title">Choose your payment method</h5>
+                                                    <form action="" method="post">
+                                                        <div className="pymt-radio">
+                                                            <div className="row-payment-method payment-row">
+                                                                <div className="select-icon">
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
+                                                                    <label htmlFor="radio1"></label>
+                                                                </div>
+                                                                <div className="select-txt">
+                                                                    <p className="pymt-type-name">Online Payment</p>
+
+                                                                </div>
+                                                                <div className="select-logo">
+                                                                    <img src={online} alt="Online" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="pymt-radio">
+                                                            <div className="row-payment-method payment-row-last">
+                                                                <div className="select-icon hr">
+                                                                    <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
+                                                                    <label htmlFor="radio2"></label>
+                                                                </div>
+                                                                <div className="select-txt hr">
+                                                                    <p className="pymt-type-name">Cash on Delivery</p>
+
+                                                                </div>
+                                                                <div className="select-logo">
+                                                                    <div className="select-logo-sub logo-spacer">
+                                                                        <img src={cod} alt="COD" />
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </form>
+                                                </section>
+                                            </div>
+                                            <div className="group submitBtn">
+                                                <button onClick={checkOut}>Confirm Order</button>
+
+                                            </div>
+                                             </>}
+                                    
+                                    
                                 </div>
                                 
                             </div>

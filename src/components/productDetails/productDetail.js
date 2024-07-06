@@ -46,8 +46,9 @@ function ProductDetail() {
   })
   
 
-  const redirectHandler = () => {
-    navigate("/oldAddress")
+  const redirectHandler = (product_id, id) => {
+    
+    navigate(`/oldAddress/${product_id}/${id}`)
     window.scrollTo(0, 0);
   }
 
@@ -241,7 +242,7 @@ function ProductDetail() {
                             {(data?.ProductDetails?.map((photo, i) => (
                               <>
                                 {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
-                                {photo?.image.length > 0 && <img key={i} src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                               
                               </>
                             )))}
 
@@ -310,9 +311,11 @@ function ProductDetail() {
                         Add to basket
                       </button>
 
-                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler()}>
+                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id,filter2?._id)}>
                         Buy Now
                       </button>
+                     
+                      
                     </div>
                   </div>
                 </div>

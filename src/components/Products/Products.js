@@ -1,36 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 import "./products.css";
 import fea01 from "../home/img/1.jpg";
 import fea02 from "../home/img/2.webp";
 import fea03 from "../home/img/3.jpg";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
-import { useCartContext, useCategoryContext, useProductContext, useWishlistContext } from "../../Context/index.context";
+import { useCartContext, useCategoryContext, useProductContext, useProductDetailsContext, useWishlistContext } from "../../Context/index.context";
 
 function Products() {
 
   const { addToCart } = useCartContext()
   const { addToWishlist } = useWishlistContext()
+  const { productDetailsData } = useProductDetailsContext()
+  const { selectedCategory } = useCategoryContext()
+  const { productData } = useProductContext()
+  const [allProductData, setAllProductData] = useState(productData)
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
 
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
-  const { productData } = useProductContext()
-  const [allProductData, setAllProductData] = useState(productData)
+ const [toggle, setToggle] = useState({
+  first:{
+    checked:false,
+    value:""
+  },
+   second: {
+     checked: false,
+     value: ""
+   },
+   third: {
+     checked: false,
+     value: ""
+   },
+   four: {
+     checked: false,
+     value: ""
+   },
+   five: {
+     checked: false,
+     value: ""
+   }
+ })
 
+  const getReview = productDetailsData?.filter((item) => item?.Review?.length > 0);
+    console.log(getReview);
 
-
-  const { selectedCategory } = useCategoryContext()
-  // console.log(param?.main)
 
   const main = searchParams.get("category")
   const sub_category = searchParams.get("subcategory")
   const sub_inner_Category = searchParams.get("sunInnercategory")
-  // console.log(main, sub_category, sub_inner_Category);
-  // console.log(main);
-  // console.log(productData);
+ 
 
   useEffect(() => {
     let data = productData?.filter((item) => {
@@ -52,6 +74,7 @@ function Products() {
     [param, productData])
 
   const navigate = useNavigate()
+
   const showFilter = () => {
     flag ? setFlag(false) : setFlag(true)
   }
@@ -108,21 +131,28 @@ function Products() {
                     </button>
                     <ul className="dropdown-menu p-0">
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
-                        <li><Link className="dropdown-item" to="#">4★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" value="5" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, five: { checked: e.target.checked, value: e.target.value } })} />
+                        <li><Link className="dropdown-item" to="#">5★ & above</Link></li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">3★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li><Link className="dropdown-item" to="#">4★ & above</Link></li>
                       </div>
 
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">2★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li><Link className="dropdown-item" to="#">3★ & above</Link></li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">1★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" value="2" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
+                          , second: { checked: e.target.checked, value: e.target.value }
+})} /><li><Link className="dropdown-item" to="#">2★ & above</Link></li>
+                      </div>
+
+                      <div className="d-flex">
+                        <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
+                          , first:{checked:e.target.checked, value:e.target.value}})}/><li><Link className="dropdown-item" to="#">1★ & above</Link></li>
                       </div>
 
 
