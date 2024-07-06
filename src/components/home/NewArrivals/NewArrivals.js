@@ -15,19 +15,22 @@ function ShopByCategory() {
         window.scrollTo(0, 0);
     };
 
-    const [firstFourProducts, setFirstFourProducts] = useState([]);
-    const [lastFourProducts, setLastFourProducts] = useState([]);
+    const [firstFourProducts, setFirstFourProducts] = useState(productData?.slice(0, 4));
+    const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
 
     useEffect(() => {
         if (productData && productData.length > 0) {
-            setFirstFourProducts(productData.slice(0, 4));
-            setLastFourProducts(productData.slice(-4));
+            setFirstFourProducts(productData?.slice(0, 4));
+            setLastFourProducts(productData?.slice(-4));
+        }
+        else {
+            setFirstFourProducts([]);
+            setLastFourProducts([]);
         }
     }, [productData]);
 
     return (
         <div>
-            {/* New Arrivals start */}
             <section className="new_arrivals">
                 <div className="container">
                     <div className="head_title">
@@ -40,24 +43,24 @@ function ShopByCategory() {
                             className="owl-theme"
                             loop
                             margin={10}
-                            nav={false} // Hide navigation arrows
-                            dots={false} // Hide dots
+                            nav={false}
+                            dots={false}
                             autoplay
                             autoplayTimeout={5000}
-                            items={4} // Number of items to display
+                            items={4}
                             responsive={{
                                 0: {
-                                    items: 3, // 3 items in mobile view
+                                    items: 3,
                                 },
                                 768: {
-                                    items: 4, // 4 items in tablet view
+                                    items: 4,
                                 },
                                 1200: {
-                                    items: 4, // 4 items in desktop view
+                                    items: 4,
                                 },
                             }}
                         >
-                            {firstFourProducts.map((item, i) => (
+                            {firstFourProducts?.map((item, i) => (
                                 <div key={i} className="item">
                                     <img
                                         src={item?.ProductDetails[0]?.image[0]?.image_url}
@@ -74,24 +77,24 @@ function ShopByCategory() {
                             className="owl-theme"
                             loop
                             margin={10}
-                            nav={false} // Hide navigation arrows
-                            dots={false} // Hide dots
+                            nav={false}
+                            dots={false}
                             autoplay
                             autoplayTimeout={5000}
-                            items={4} // Number of items to display
+                            items={4}
                             responsive={{
                                 0: {
-                                    items: 3, // 3 items in mobile view
+                                    items: 3,
                                 },
                                 768: {
-                                    items: 4, // 4 items in tablet view
+                                    items: 4,
                                 },
                                 1200: {
-                                    items: 4, // 4 items in desktop view
+                                    items: 4,
                                 },
                             }}
                         >
-                            {lastFourProducts.map((item, i) => (
+                            {lastFourProducts?.map((item, i) => (
                                 <div key={i} className="item">
                                     <img
                                         src={item?.ProductDetails[0]?.image[0]?.image_url}
@@ -107,7 +110,6 @@ function ShopByCategory() {
                     </div>
                 </div>
             </section>
-            {/* New Arrivals end */}
         </div>
     );
 }
