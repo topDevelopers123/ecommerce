@@ -6,9 +6,9 @@ import ContactUs from "../contact/ContactUs"
 import Register from "../register/register"
 import PrivacyPolicy from "../footer/PrivacyPolicy"
 import TermsAndConditions from "../footer/TermsAndConditions"
-import RefundsCancellation from "../footer/RefundsCancellation"
 import Email_verify from "../login/Email_verify"
 import Change_password from "../login/Change_password"
+import ReturnCancellation from "../footer/ReturnCancellation";
 
 
 export const PublicRoute = [
@@ -54,8 +54,8 @@ export const PublicRoute = [
     }
     ,
     {
-        path: "/RefundsCancellation",
-        element: <RefundsCancellation />
+        path: "/ReturnCancellation",
+        element: <ReturnCancellation />
     }
     ,
 

@@ -104,10 +104,10 @@ function Header() {
 
                 <div className="d-flex  position-relative  text-center justify-content-center   align-items-center" >
                 {flag2 ? 
-                    <Link to="javascript:;" onClick={toggleFlag2} className="text-center">
+                    <Link to="#" onClick={toggleFlag2} className="text-center">
                 <i className="bi bi-x-lg "></i>
                 </Link>
-                    : <Link to="javascript:;" onClick={toggleFlag2} className="text-center">
+                    : <Link to="#" onClick={toggleFlag2} className="text-center">
                     <i className="bi bi-person-circle"></i>
                     <span>Profile</span>
                   </Link>
