@@ -2,11 +2,18 @@ import React from 'react'
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import fea01 from "../img/1.jpg";
-import fea02 from "../img/2.webp";
-import fea03 from "../img/3.jpg";
+import { useProductContext } from '../../../Context/index.context';
+import { useNavigate } from 'react-router-dom';
 
 function FeaturedProducts() {
+    const { productData } = useProductContext();
+    const navigate = useNavigate();
+
+    const productDetailsPage = (id) => {
+        navigate(`/productdetails/${id}`);
+        window.scrollTo(0, 0);
+    };
+
     return (
         <div>
             {/* Featured products start */}
@@ -27,25 +34,26 @@ function FeaturedProducts() {
                         dots={false}
                         responsive={{
                             0: {
-                                items: 4, // 1 item in mobile view
+                                items: 4,
                             },
                             768: {
-                                items: 3, // 3 items in tablet view
+                                items: 3,
                             },
                             1200: {
-                                items: 4, // 4 items in desktop view
+                                items: 4,
                             },
                         }}
                     >
-                        <div className="item">
-                            <img src={fea01} alt="Featured Product 1" />
-                        </div>
-                        <div className="item">
-                            <img src={fea02} alt="Featured Product 2" />
-                        </div>
-                        <div className="item">
-                            <img src={fea03} alt="Featured Product 3" />
-                        </div>
+
+                        {productData?.map((item, i) => (
+                            <div key={i} className="item">
+                                <img
+                                    src={item?.ProductDetails[0]?.image[0]?.image_url}
+                                    alt={item?.product_title}
+                                    onClick={() => productDetailsPage(item?._id)}
+                                />
+                            </div>
+                        ))}
                     </OwlCarousel>
                 </div>
             </section>
