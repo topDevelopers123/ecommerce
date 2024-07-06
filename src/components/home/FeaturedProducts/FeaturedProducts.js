@@ -1,4 +1,5 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -8,15 +9,29 @@ import { useNavigate } from 'react-router-dom';
 function FeaturedProducts() {
     const { productData } = useProductContext();
     const navigate = useNavigate();
+    const [shuffledProducts, setShuffledProducts] = useState(productData);
 
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     };
 
+    useEffect(() => {
+        if (productData) {
+            setShuffledProducts(shuffleArray([...productData]));
+        }
+    }, [productData]);
+
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
+
     return (
         <div>
-            {/* Featured products start */}
             <section className="featured_products">
                 <div className="container">
                     <div className="head_title">
@@ -44,8 +59,7 @@ function FeaturedProducts() {
                             },
                         }}
                     >
-
-                        {productData?.map((item, i) => (
+                        {shuffledProducts?.map((item, i) => (
                             <div key={i} className="item">
                                 <img
                                     src={item?.ProductDetails[0]?.image[0]?.image_url}
@@ -57,9 +71,8 @@ function FeaturedProducts() {
                     </OwlCarousel>
                 </div>
             </section>
-            {/* Featured products end  */}
         </div>
     )
 }
 
-export default FeaturedProducts
+export default FeaturedProducts;

@@ -1,6 +1,7 @@
-.tracking_order_pg{
+.tracking_order_pg {
     padding: 30px 0px;
 }
+
 .tracking_order_pg .card {
     position: relative;
     display: -webkit-box;
@@ -17,7 +18,8 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.07);
     padding: 20px;
-    border-radius: 20px;}
+    border-radius: 20px;
+}
 
 .tracking_order_pg .card-header:first-child {
     border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
@@ -115,20 +117,22 @@
 }
 
 /* Mobile  */
-@media screen and (max-width: 578px){
-.tracking_order_pg .track .step {
+@media screen and (max-width: 578px) {
+    .tracking_order_pg .track .step {
         margin-top: -12px;
     }
-.tracking_order_pg .track .step::before {
-    top: 12px;
-}
-.tracking_order_pg .track .icon {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-}
 
- .tracking_order_pg .track .text {                                  
-     font-size: 10px;
- }
+    .tracking_order_pg .track .step::before {
+        top: 12px;
+    }
+
+    .tracking_order_pg .track .icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .tracking_order_pg .track .text {
+        font-size: 10px;
+    }
 }
