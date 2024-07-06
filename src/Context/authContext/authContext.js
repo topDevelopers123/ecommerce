@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -96,11 +96,14 @@ function AuthContextProvider({ children }) {
         }
     };
 
+
+
     return (
         <AuthContext.Provider value={{ register, login, emailVerify, otpVerify, newPassword, changePassword, authorizeToken }}>
             {children}
         </AuthContext.Provider>
     );
 }
+
 
 export default AuthContextProvider;

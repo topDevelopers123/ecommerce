@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Cart.css'
-import { Link, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
+   
     const { cartData, addToCartUpdate, deleteCartProduct } = useCartContext()
     const navigate = useNavigate()
     const productDetailsPage = (id) => {
@@ -20,6 +21,9 @@ function Cart() {
 
     // let sellingPrice = 0
     // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
+
+
+
 
 
     return (

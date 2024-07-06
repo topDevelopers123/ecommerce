@@ -1,16 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './OldAddress.css';
 import './checkout.css'
-import { useCartContext, useUserAddressContext } from '../../Context/index.context';
+import cod from "./img/cod.png";
+import online from "./img/online.png";
+import {
+    CitySelect,
+    CountrySelect,
+    StateSelect,
+} from "react-country-state-city";
+import "react-country-state-city/dist/react-country-state-city.css";
+import { useCartContext, useUserAddressContext, useOrderContext } from '../../Context/index.context';
+
 
 
 function OldAddress() {
-    const [modalVisible, setModalVisible] = useState(false);
+
+
     const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
-    const { cartData} = useCartContext()
+    const { cartData, setLocalCharges, localCharges } = useCartContext()
+    const { addOrder } = useOrderContext()
+    const [modalVisible, setModalVisible] = useState(false);
+    const [stateid, setstateid] = useState(0);
+    const [countryid, setCountryid] = useState(0);
+    // const [zonal_charges, setZonal_charges] = useState(null)
+    // const [national_charges, setNational_charges] = useState(null)
+    const [charges,setCharges]= useState(0)
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
-    const [radio, setRadio] = useState(null)
+    const [radio, setRadio] = useState()
     const [data, setData] = useState({
         fullname: "",
         phone: "",
@@ -24,29 +41,62 @@ function OldAddress() {
         pincode: ""
     })
 
-    console.log(cartData);
+    const [finalData, setFinalData] = useState({
+        cartId:[],
+        address_id:"",
+        payment_type:"cash",
+        payment_status:"pending",
+        status:"pending"
+    })
+    
+    let n = 0;
+    let total = 0;
+    cartData?.map((item) => (
+
+        n += item?.product_id?.zonal_charges
+
+    ));
+
+
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity, 0)
-
-    // console.log(updateAddress);
-
-    // const [updateData, setupdateData] = useState({
-    //     fullname: "",
-    //     phone: "",
-    //     phone2: "",
-    //     country: "",
-    //     addressType: "",
-    //     state: "",
-    //     city: "",
-    //     area: "",
-    //     house_no: "",
-    //     pincode: ""
-    // })
-
+     
     
 
+    
+    
+    useEffect(()=>{
+        setRadio(UserAddressData?.map((item) => item?._id)[0])
+        setLocalCharges(n)
+       
+    }, [UserAddressData])
 
-    // console.log(radio);
+    const selectedData = UserAddressData?.filter((item)=>(
+        item?._id === radio
+    ))
 
+    let x = cartData?.map((item) => selectedData[0]?.state === "Delhi" ? item?.product_id.zonal_charges : item?.product_id.national_charges)
+    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index] }))
+
+    useEffect(() => {
+       
+
+        
+        setFinalData({ ...finalData, cartId:cartId, address_id: radio })
+  
+    }, [cartData, radio])
+
+    const checkOut = () => {
+      
+        addOrder(finalData)
+       
+       
+    }
+       
+    total = getTotel + localCharges  
+
+    // if (stateName) {
+       
+    // }
 
     const newAddress = () => {
 
@@ -93,12 +143,13 @@ function OldAddress() {
                         <div className='newAdd col-lg-8 col-md-7 p-3'>
                             <div>
                                 <h6>Your Addresses</h6>
+                           
                             </div>
-
+                            
                             {UserAddressData?.map((item, i) => (
                                 <div className='p-1' key={i}>
                                     <div className="form-check">
-                                        <div className='mb-1'>{item.fullname} <span class="ms-3 bg-secondary p-1 rounded">{item?.addressType}</span></div>
+                                        <div className='mb-1'>{item.fullname} <span class="ms-3 bg-secondary px-3 rounded rounded-pill text-white ">{item?.addressType}</span></div>
                                         <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value={item?._id} defaultChecked={i === 0} onChange={(e)=>setRadio(e.target.value)}/>
                                        
                                         <label className="form-check-label" htmlFor="exampleRadios1">
@@ -106,7 +157,7 @@ function OldAddress() {
                                                 
                                                 <span> {item.house_no}</span>&nbsp;
                                                 <span>{item.area}</span>&nbsp;
-                                                <span>{item?.state}</span>&nbsp;
+                                                <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
                                                 <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state:item?.state, pincode:item?.pincode });editeAddress(item._id)}}}>Edit</span>
@@ -139,6 +190,11 @@ function OldAddress() {
                                                             <span className="item-title">{item?.product_id?.title}</span>
                                                           
                                                         </td>
+                                                        <td className="item-details">
+                                                            <span className="item-qty">Quantity : {item?.quantity}</span>
+                                                         
+
+                                                        </td>
                                                         <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
                                                     </tr>
 
@@ -156,19 +212,67 @@ function OldAddress() {
                                             </tr>
                                             <tr>
                                                 <td className="item-qty">Shipping</td>
-                                                <td className="item-price">₹102.00</td>
+                                                <td className="item-price">₹{localCharges}</td>
                                             </tr>
                                             <tr>
                                                 <td className="item-qty">Total</td>
-                                                <td className="item-price">₹3000.00</td>
+                                                <td className="item-price">₹{total}</td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div className="divider"></div>
+
+                                    <div className="payment_mode">
+                                        <section>
+                                            <h5 className="payment-title">Choose your payment method</h5>
+                                            <form action="" method="post">
+                                                <div className="pymt-radio">
+                                                    <div className="row-payment-method payment-row">
+                                                        <div className="select-icon">
+                                                            <input type="radio" id="radio1" name="radios" value="online" onChange={(e)=>setFinalData({...finalData, payment_type:e.target.value})}/>
+                                                            <label htmlFor="radio1"></label>
+                                                        </div>
+                                                        <div className="select-txt">
+                                                            <p className="pymt-type-name">Online Payment</p>
+
+                                                        </div>
+                                                        <div className="select-logo">
+                                                            <img src={online} alt="Online" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="pymt-radio">
+                                                    <div className="row-payment-method payment-row-last">
+                                                        <div className="select-icon hr">
+                                                            <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
+                                                            <label htmlFor="radio2"></label>
+                                                        </div>
+                                                        <div className="select-txt hr">
+                                                            <p className="pymt-type-name">Cash on Delivery</p>
+
+                                                        </div>
+                                                        <div className="select-logo">
+                                                            <div className="select-logo-sub logo-spacer">
+                                                                <img src={cod} alt="COD" />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
+                                        </section>
+                                    </div>
                                     <div className="group submitBtn">
-                                        <button>Confirm Order</button>
+                                        <button onClick={checkOut}>Confirm Order</button>
+                                        
                                     </div>
                                 </div>
+                                
                             </div>
+
+                            
                         </div>
 
                     </div>
@@ -201,22 +305,49 @@ function OldAddress() {
                                         <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' defaultValue={item ? item?.area : ""} name='street' placeholder='Enter Address' required />
 
 
-
+{/* 
                                         <label htmlFor='city'>City *</label>
-                                        <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' defaultValue={item ? item?.city : ""} name='city' placeholder='Enter City' required />
+                                        <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' defaultValue={item ? item?.city : ""} name='city' placeholder='Enter City' required /> */}
 
-                                        <label htmlFor='state'>State *</label>
-                                        <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' defaultValue={item ? item?.state : ""} name='state' placeholder='Enter State' required />
+                                       
+                                        {/* <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' defaultValue={item ? item?.state : ""} name='state' placeholder='Enter State' required /> */}
 
                                         <label htmlFor='state'>Country *</label>
-                                        <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' defaultValue={item ? item?.country : ""} name='state' placeholder='Enter Country' required />
+                                        <CountrySelect
+                                            onChange={(e) => {
+                                                setData({ ...data, country: e.name }); setCountryid(e.id);
+                                            }
+                                            }
+                                            placeHolder="Select Country"
+                                        />
+
+                                        <label htmlFor='state'>State *</label>
+                                        <StateSelect
+                                            countryid={countryid}
+                                            onChange={(e) => {
+                                                setData({ ...data, state: e.name }); setstateid(e.id)
+                                            }}
+                                            placeHolder="Select State"
+                                        />
+
+                                        <label htmlFor='city'>City *</label>
+                                        <CitySelect
+                                            countryid={countryid}
+                                            stateid={stateid}
+                                            onChange={(e) => {
+                                                setData({ ...data, city: e.name })
+                                            }}
+                                            placeHolder="Select City"
+                                        />
+                                    
+                                        {/* <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' defaultValue={item ? item?.country : ""} name='state' placeholder='Enter Country' required /> */}
 
                                         <label htmlFor='zip'>Zip Code *</label>
                                         <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
 
                                         
                                         <div className='d-flex gap-2'>
-                                            <span className={data?.addressType === "Home" ? "bg-secondary" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
+                                            <span className={data?.addressType === "Home" ? "bg-secondary " : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
                                             <span className={data?.addressType === "Work" ? "bg-secondary" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
 
@@ -231,7 +362,7 @@ function OldAddress() {
                         <div className='newAdd modal'>
                             <div className='modal-content'>
                                 <span className='close' onClick={() => { closeModal(); setFlag(false) }}>&times;</span>
-                                <h2>Add New Address</h2>
+                                <h2>Update Address</h2>
                                 <form onSubmit={handleSubmit}>
                                     <label htmlFor='name'>Full Name</label>
                                     <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name'  name='name' placeholder='Full Name' required />
@@ -250,14 +381,40 @@ function OldAddress() {
 
 
 
-                                    <label htmlFor='city'>City *</label>
-                                    <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' name='city' placeholder='Enter City' required />
-
-                                    <label htmlFor='state'>State *</label>
-                                    <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' name='state' placeholder='Enter State' required />
+                                   
+                                   
 
                                     <label htmlFor='state'>Country *</label>
-                                    <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state'  name='state' placeholder='Enter Country' required />
+                                    <CountrySelect
+                                        onChange={(e) => {
+                                            setData({ ...data, country: e.name }); setCountryid(e.id); 
+                                        }
+                                        }
+                                        placeHolder="Select Country"
+                                    />
+
+
+                                    <label htmlFor='state'>State *</label>
+                                    <StateSelect
+                                        countryid={countryid}
+                                        onChange={(e) => {
+                                            setData({ ...data, state: e.name }); setstateid(e.id)
+                                        }}
+                                        placeHolder="Select State"
+                                    />
+                                    
+                                    <label htmlFor='city'>City *</label>
+                                    <CitySelect
+                                        countryid={countryid}
+                                        stateid={stateid}
+                                        onChange={(e) => {
+                                            setData({ ...data, city: e.name })
+                                        }}
+                                        placeHolder="Select City"
+                                    />
+
+                                    
+                                
 
                                     <label htmlFor='zip'>Zip Code *</label>
                                     <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip'  name='zip' placeholder='Enter Zip Code' required />
