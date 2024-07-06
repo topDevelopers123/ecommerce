@@ -45,9 +45,15 @@ function Products() {
    }
  })
 
-  const getReview = productDetailsData?.filter((item) => item?.Review?.length > 0);
-    console.log(getReview);
+ let ratingAvg = 0;
 
+  const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r)=>i+r.rating,0) / item?.Review?.length) >= 2);
+
+  console.log(getReview);
+    // console.log(getReview);
+
+ 
+  console.log(ratingAvg);
 
   const main = searchParams.get("category")
   const sub_category = searchParams.get("subcategory")
