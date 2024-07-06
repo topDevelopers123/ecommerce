@@ -49,11 +49,11 @@ function Products() {
 
   const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r)=>i+r.rating,0) / item?.Review?.length) <= 4);
 
-  console.log(getReview);
+  // console.log(getReview);
     // console.log(getReview);
 
  
-  console.log(ratingAvg);
+  // console.log(ratingAvg);
 
   const main = searchParams.get("category")
   const sub_category = searchParams.get("subcategory")
