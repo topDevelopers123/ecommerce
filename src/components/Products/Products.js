@@ -47,7 +47,7 @@ function Products() {
 
  let ratingAvg = 0;
 
-  const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r)=>i+r.rating,0) / item?.Review?.length) >= 2);
+  const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r)=>i+r.rating,0) / item?.Review?.length) <= 4);
 
   console.log(getReview);
     // console.log(getReview);
