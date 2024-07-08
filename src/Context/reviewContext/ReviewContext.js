@@ -1,16 +1,17 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useAuthContext } from "../index.context";
 
 export const ReviewContext = createContext()
 
 function ReviewContextProider({ children }) {
+    const { authorizeToken, API } = useAuthContext()
     const [reviewData, setReviewData] = useState(null);
-    const token = localStorage.getItem('token');
 
     const postReviewData = async () => {
         try {
-            const res = await axios.post('/review/add', {
-                headers: { 'Authorization': `Bearer ${token}` },
+            const res = await axios.post(`${API}/review/add`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` },
             })
             setReviewData(res.data.data)
 
@@ -19,8 +20,11 @@ function ReviewContextProider({ children }) {
         }
     }
     useEffect(() => {
-        postReviewData()
-    }, [])
+        if (authorizeToken){
+            
+            postReviewData()
+        }
+    }, [authorizeToken])
 
     return (
         <ReviewContext.Provider value={{ reviewData }}>

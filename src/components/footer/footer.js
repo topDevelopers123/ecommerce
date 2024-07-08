@@ -25,7 +25,7 @@ function footer() {
                     <Link to="/about"><li className='text-light'>About Us</li></Link>
                     <Link to="/PrivacyPolicy"><li className='text-light'>Privacy Policy</li></Link>
                     <Link to="/TermsAndConditions"><li className='text-light'>Terms & Conditions</li></Link>
-                    <Link to="/RefundsCancellation"><li className='text-light'>Refunds & Cancellation</li></Link>
+                    <Link to="/ReturnCancellation"><li className='text-light'>Refunds & Cancellation</li></Link>
                     <Link to="/contact"><li className='text-light'>Contact Us</li></Link>
                   </ul>
                 </div>
@@ -45,8 +45,8 @@ function footer() {
                   <h6>Get In Touch</h6>
                   <ul className="p-0">
                     <p className='text-light'>355, 3rd Floor, Aggarwal Millennium Tower-1, Netaji Subhas Place, Pitam Pura, New Delhi - 110 034</p>
-                    <li className='text-light'>mayavifashion@gmail.com</li>
-                    <li className='text-light'>9262852851</li>
+                    <Link to="mailto:mayavifashion@gmail.com"><li className='text-light'>mayavifashion@gmail.com</li></Link>
+                    {/* <li className='text-light'>9262852851</li> */}
                   </ul>
                 </div>
                 

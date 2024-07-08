@@ -335,7 +335,7 @@ border-bottom-left-radius: 100px;
   .search_btn{
     width: 45px !important;
     height: 45px !important;
-    border-radius: 50% ;
+    border-radius: 0% ;
     border-top-right-radius: 50% !important; 
     border-bottom-right-radius: 50% !important;
     margin-right: 10px;

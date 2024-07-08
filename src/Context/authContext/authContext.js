@@ -1,21 +1,20 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
+    const [orderDetail, setOrderDetail] =  useState(null)
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"));
-
-    if (authorizeToken) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${authorizeToken}`;
-    }
+    const API = process.env.REACT_APP_API
+    console.log(API);
 
     // Register
     const register = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/create", data);
+            const resp = await axios.post(`${API}/user/create`, data);
             localStorage.setItem("token", resp.data.token);
             setAuthorizeToken(resp.data.token);
             toast.success(resp.data.message);
@@ -30,10 +29,11 @@ function AuthContextProvider({ children }) {
     const login = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/login", data);
+            const resp = await axios.post(`${API}/user/login`, data);
             localStorage.setItem("token", resp.data.token);
             setAuthorizeToken(resp.data.token);
             toast.success(resp.data.message);
+            window.location.href = "/";
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
         } finally {
@@ -45,7 +45,7 @@ function AuthContextProvider({ children }) {
     const emailVerify = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/send-otp", data);
+            const resp = await axios.post(`${API}/user/send-otp`, data);
             toast.success(resp.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
@@ -58,7 +58,7 @@ function AuthContextProvider({ children }) {
     const otpVerify = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/verify-otp", { check_otp: Number(data) });
+            const resp = await axios.post(`${API}/user/verify-otp`, { check_otp: Number(data) });
             toast.success(resp.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
@@ -71,7 +71,7 @@ function AuthContextProvider({ children }) {
     const newPassword = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/new-password", data);
+            const resp = await axios.post(`${API}/user/new-password`, data);
             toast.success(resp.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
@@ -84,7 +84,7 @@ function AuthContextProvider({ children }) {
     const changePassword = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("https://e-commerce-backend-4tmn.onrender.com/api/v1/user/password", data);
+            const resp = await axios.post(`${API}/user/password`, data);
             localStorage.setItem("token", resp.data.token);
             setAuthorizeToken(resp.data.token);
          
@@ -96,10 +96,10 @@ function AuthContextProvider({ children }) {
         }
     };
 
-
+  
 
     return (
-        <AuthContext.Provider value={{ register, login, emailVerify, otpVerify, newPassword, changePassword, authorizeToken }}>
+        <AuthContext.Provider value={{ register, login, emailVerify, otpVerify, newPassword, changePassword, authorizeToken, API }}>
             {children}
         </AuthContext.Provider>
     );

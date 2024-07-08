@@ -98,8 +98,8 @@ function Cart() {
                                 <div className='col-lg-12 col-md-12 col-sm-12 col-12 d-flex flex-wrap'>
 
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-12 add_to_cart_mini_div'>
-                                        <input type='text' placeholder='Enter Your Coupon' />
-                                        <button>APPLY</button>
+                                        {/* <input type='text' placeholder='Enter Your Coupon' />
+                                        <button>APPLY</button> */}
                                     </div>
 
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-12 cart_subtotal_div d-flex justify-content-end'>

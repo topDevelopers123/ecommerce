@@ -18,14 +18,12 @@
     padding-inline: 30px;
     color: #fff;
     font-weight: 600;
-    box-shadow: 0px 0px 5px #00000012;
-
+    box-shadow: 0px 0px 5px #0012;
 }
 
 .add_to_cart_mini_div button:hover {
     background-color: #416b7c;
 }
-
 
 .cart_subtotal_div div p {
     font-size: 15px;
@@ -66,20 +64,12 @@
         margin-top: 40px;
     }
 
-    /* .wish-text-2 div button,
-    .wish-text-2 div div {
-        padding: 5px;
-        width: 50%;
-        font-size: 12px;
-        text-align: center;
-    } */
-
     .quentity button {
         width: 10px !important;
         font-size: 25px !important;
         margin-top: 10px !important;
     }
-          
+
 
     .wish-items-4 {
         align-items: start !important;
@@ -99,9 +89,11 @@
         /* background-color: #CDE8E5;
         border-radius: 8px; */
     }
-    .wish-text-2{
+
+    .wish-text-2 {
         flex-direction: column;
     }
+
     .wish-text-2 div button {
         width: 50px !important;
         height: 40px !important;
@@ -111,10 +103,12 @@
         align-items: center;
         margin-left: 0px !important;
     }
-    .wish-text-2 div{
+
+    .wish-text-2 div {
         margin-left: 20px !important;
-    } 
-    .wish-text-2 .quentity div{
+    }
+
+    .wish-text-2 .quentity div {
         font-size: 20px;
         display: flex;
         justify-content: center;
@@ -141,16 +135,10 @@
         margin-top: 10px !important;
 
     }
-     .wish-text-2 div{
-         margin-left: 20px !important;
-     }
- 
-    /* .wish-items i {
-        padding: 12px;
-        color: red;
-        background-color: #CDE8E5;
-        border-radius: 8px;
-    } */
+
+    .wish-text-2 div {
+        margin-left: 20px !important;
+    }
 
     .card_div {
         padding: 0 !important;
@@ -159,10 +147,6 @@
 
 @media screen and (max-width: 468px) {
 
-    .wish-items-4 div img {
-        height: 200px !important;
-    }
-
     .wish-text-2 h6,
     a {
         font-size: 15px !important;
@@ -170,13 +154,6 @@
 
     .quentity {
         margin-left: 0px !important;
-    }
-
-    .quentity div {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 20px !important;
-        margin-top: 5px !important;
     }
 
     .add_to_cart_mini_div input {
@@ -190,7 +167,8 @@
     }
 
     .cart_subtotal_div div button {
-        width: 81vw !important;
+        width: 70vw !important;
+        margin: 0;
     }
 
     .wish-items-4 {
@@ -199,11 +177,11 @@
     }
 
     .wish-items i {
-       padding: 8px;
-       color: red;
-       background-color: #CDE8E5;
-       border-radius: 15%;
-       font-size: 15px;
+        padding: 8px;
+        color: red;
+        background-color: #CDE8E5;
+        border-radius: 15%;
+        font-size: 15px;
     }
 
     .wish-text-2 div button {
@@ -213,8 +191,9 @@
         justify-content: center;
         align-items: center;
     }
-    .wish-text-2 h6{
-        margin-top:10px !important;
+
+    .wish-text-2 h6 {
+        margin-top: 10px !important;
     }
 
 }

@@ -27,6 +27,8 @@
     font-size: 14px;
 }
 
+
+
 .main_box h6{
     color: #7AB2B2;
 }
@@ -48,10 +50,10 @@
       line-height: 22px;
       font-size: 12px;
   }
-.refundsCancellation{
+.returnCancellation{
     padding: 40px 0px;
 }
-.refundsCancellation ol li, p{
+.returnCancellation p{
     line-height: 22px;
         font-size: 12px;
 }

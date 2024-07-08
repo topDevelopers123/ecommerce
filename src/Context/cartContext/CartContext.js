@@ -1,10 +1,12 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { createContext, useEffect, useState } from "react";
-
+import { useAuthContext } from "../index.context";
 export const CartContext = createContext();
 
+
 function CartProvider({ children }) {
+    const { authorizeToken, API } = useAuthContext()
     const [cartData, setCartData] = useState(null);
     const [cartLength, setCartLength] = useState(0)
     const [localCharges, setLocalCharges] = useState(null)
@@ -13,8 +15,8 @@ function CartProvider({ children }) {
 
     const getCartData = async () => {
         try {
-            const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/cart/get', {
-                headers: { 'Authorization': `Bearer ${token}` },
+            const resp = await axios.get(`${API}/cart/get`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` },
             })
             setCartData(resp.data.data)
             setCartLength(resp.data.data.length)
@@ -33,8 +35,8 @@ function CartProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             
-            const resp = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/cart/add-cart', data, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const resp = await axios.post(`${API}/cart/add-cart`, data, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
           
             toast.dismiss(toastId);
@@ -57,8 +59,8 @@ function CartProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
 
-            const resp = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/cart/add-cart', data, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const resp = await axios.post(`${API}/cart/add-cart`, data, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
 
             toast.dismiss(toastId);
@@ -79,8 +81,8 @@ function CartProvider({ children }) {
        
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.put(`/cart/add-quantity/${id}`, {quantity}, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const resp = await axios.put(`${API}/cart/add-quantity/${id}`, {quantity}, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -98,8 +100,8 @@ function CartProvider({ children }) {
     const deleteCartProduct = async(id) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.delete(`/cart/remove-cart/${id}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const resp = await axios.delete(`${API}/cart/remove-cart/${id}`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -119,8 +121,10 @@ function CartProvider({ children }) {
     
 
     useEffect(() => {
-        getCartData()
-    }, [])
+        if (authorizeToken){
+            getCartData()
+        }
+    }, [authorizeToken])
 
     return (
         <CartContext.Provider value={{ cartData, addToCart, addToCart2, addToCartUpdate, cartLength, deleteCartProduct, setLocalCharges, localCharges }}>

@@ -1,23 +1,25 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { createContext, useEffect, useState } from "react";
+import { useAuthContext } from "../index.context";
 
 export const ProductDetailsContext = createContext();
 
 function ProductDetailsProvider({ children }) {
-    const [productDetailsData, setProductDetailsData] = useState(null);
+    const { authorizeToken, API } = useAuthContext()
+    const [productDetailsData, setProductDetailsData] = useState([]);
     const [ReviewData, setReviewData] = useState(null)
     const [disable, setDisable] = useState(false)
-    const token = localStorage.getItem("token")
 
 
     const getProductDetailsData = async () => {
         try {
-            const resp = await axios.get('/product/get', {
-                headers: { 'Authorization': `Bearer ${token}` },
+            const resp = await axios.get(`${API}/product/get`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` },
             }
             )
             setProductDetailsData(resp.data.data);
+      
 
 
         } catch (error) {
@@ -27,8 +29,8 @@ function ProductDetailsProvider({ children }) {
 
     const getReviewData = async () => {
         try {
-            const resp = await axios.get('/review/get', {
-                headers: { 'Authorization': `Bearer ${token}` },
+            const resp = await axios.get(`${API}/review/get`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` },
             }
             )
             setReviewData(resp.data.data);
@@ -44,8 +46,8 @@ function ProductDetailsProvider({ children }) {
         setDisable(true)
         // console.log(data);
         try {
-            const resp = await axios.post('/review/add', data, {
-                headers: { 'Authorization': `Bearer ${token}` },
+            const resp = await axios.post(`${API}/review/add`, data, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` },
             }
             )
             toast.dismiss(toastId);
@@ -67,9 +69,11 @@ function ProductDetailsProvider({ children }) {
 
     useEffect(() => {
         getProductDetailsData();
-        getReviewData()
+        if (authorizeToken){            
+            getReviewData()
+        }
 
-    }, [])
+    }, [authorizeToken])
     return (
         <ProductDetailsContext.Provider value={{ productDetailsData, addReview, disable, ReviewData }}>
             {children}

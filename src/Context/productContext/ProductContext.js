@@ -1,16 +1,18 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useAuthContext } from "../index.context";
 
 export const ProductContext = createContext();
 
 function ProductProvider({ children }) {
+    const {API} = useAuthContext()
 
     const [productData, setProductData] = useState(null);
 
 
     const getProductData = async () => {
         try {
-            const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/product/get',
+            const resp = await axios.get(`${API}/product/get`,
             )
             setProductData(resp?.data?.data);
             

@@ -6,6 +6,7 @@ import { PublicRoute } from './PublicRoutes'
 import { PrivateRoutes } from './PrivateRoutes'
 import NotFound from '../NotFound'
 import { useAuthContext } from '../../Context/index.context'
+import Thankyou from '../login/Thankyou'
 
 function MainRoutes() {
  
@@ -27,6 +28,7 @@ const {authorizeToken} = useAuthContext()
              }
         </Route>
           <Route path='*' element={<NotFound />} />
+         <Route path='/thankyou' element={<Thankyou />} />
        
       </Routes>
   )

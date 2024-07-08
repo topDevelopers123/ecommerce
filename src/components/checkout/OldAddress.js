@@ -9,6 +9,9 @@ import {
     StateSelect,
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
+
+
+import toast from 'react-hot-toast';
 import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext } from '../../Context/index.context';
 import { useLocation, useParams } from 'react-router-dom';
 import ProductDetail from '../productDetails/productDetail';
@@ -17,14 +20,13 @@ import ProductDetail from '../productDetails/productDetail';
 
 function OldAddress() {
 
-
     const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
     const { cartData, setLocalCharges, localCharges } = useCartContext()
     const { addOrder, addSingleOrder } = useOrderContext()
     const [modalVisible, setModalVisible] = useState(false);
     const [stateid, setstateid] = useState(0);
     const [countryid, setCountryid] = useState(0);
-    const { productDetailsData} = useProductDetailsContext()
+    const { productDetailsData } = useProductDetailsContext()
     const { product_id, id } = useParams()
     const { search } = useLocation()
     const urlParams = new URLSearchParams(search);
@@ -33,7 +35,7 @@ function OldAddress() {
   
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
-    const [charges,setCharges]= useState(0)
+    const [charges, setCharges] = useState(0)
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
     const [radio, setRadio] = useState()
@@ -42,7 +44,7 @@ function OldAddress() {
         phone: "",
         phone2: "",
         country: "",
-        addressType:"",
+        addressType: "",
         state: "",
         city: "",
         area: "",
@@ -51,13 +53,13 @@ function OldAddress() {
     })
 
     const [finalData, setFinalData] = useState({
-        cartId:[],
-        address_id:"",
-        payment_type:"COD",
-        payment_status:"pending",
-        status:"pending"
+        cartId: [],
+        address_id: "",
+        payment_type: "COD",
+        payment_status: "pending",
+        status: "pending"
     })
-    
+
 
     const [singleProductData, setSingleProductData] = useState({
         product_id: "",
@@ -71,7 +73,7 @@ function OldAddress() {
         image:imageUrl,
         quantity:qty
     })
-    
+
 
     let n = 0;
     let total = 0;
@@ -81,35 +83,30 @@ function OldAddress() {
 
     ));
 
-
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity, 0)
-     
-    
 
-    
-    
-    useEffect(()=>{
+    useEffect(() => {
         setRadio(UserAddressData?.map((item) => item?._id)[0])
         setLocalCharges(n)
-       
+
     }, [UserAddressData])
 
-    const selectedData = UserAddressData?.filter((item)=>(
+    const selectedData = UserAddressData?.filter((item) => (
         item?._id === radio
     ))[0]
 
-    
+
 
     let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
     let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index], image: i?.image, quantity:i?.quantity}))
 
-   console.log(cartData);
 
-    const addressFilter = UserAddressData?.filter((item)=>{
+
+    const addressFilter = UserAddressData?.filter((item) => {
         return item?._id === selectedData?._id
     })[0]
-    
-    
+
+
     const product_id_filter = productDetailsData?.filter((item) => {
         return item._id === product_id
     })[0]
@@ -120,27 +117,23 @@ function OldAddress() {
 
 
     let charges_s = selectedData?.state === "Delhi" ? product_id_filter?.zonal_charges : product_id_filter?.national_charges
-    
+
 
     useEffect(() => {
-       
-        setFinalData({ ...finalData, cartId:cartId, address_id: radio })
+
+        setFinalData({ ...finalData, cartId: cartId, address_id: radio })
         setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
-  
+
     }, [cartData, radio])
 
     const checkOut = () => {
-      
-        addOrder(finalData)
-       
-       
-    }
-       
-    total = getTotel + localCharges  
 
-    // if (stateName) {
-       
-    // }
+        addOrder(finalData)
+
+
+    }
+
+    total = getTotel + localCharges
 
     const newAddress = () => {
 
@@ -151,15 +144,15 @@ function OldAddress() {
         setModalVisible(false);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmitData = (event) => {
         setFlag(false)
         event.preventDefault();
         setModalVisible(false);
     };
 
-    const editeAddress = (id)=>{
+    const editeAddress = (id) => {
         setFlag(true)
-       const get = UserAddressData?.filter((item)=>{
+        const get = UserAddressData?.filter((item) => {
             return item?._id === id
         })
         setUpdateAddress(get);
@@ -167,28 +160,61 @@ function OldAddress() {
     }
 
     const updateAddressHandle = (id) => {
-        
+
         // console.log(id);
         // console.log(updateAddress?.id);
         updateOldAddress(data, id);
     }
 
-    const radioHandler =(e,value) => {
-        setData({...data, addressType:value})
-        
+    const radioHandler = (e, value) => {
+        setData({ ...data, addressType: value })
+
     }
 
-  
- 
-    
+    const createNewAddress = (val) => {
+        if (val.fullname.trim() === "") {
+            toast.error("Full name is required")
+        }
+        else if (val.phone.trim() === "") {
+            toast.error("Phone Number is required")
+        }
+        else if (val.country.trim() === "") {
+            toast.error("Country is required")
+        }
+        else if (val.addressType.trim() === "") {
+            toast.error("Address Type is required")
+        }
+        else if (val.state.trim() === "") {
+            toast.error("State is required")
+        }
+        else if (val.city.trim() === "") {
+            toast.error("City is required")
+        }
+        else if (val.area.trim() === "") {
+            toast.error("Area is required")
+        }
+        else if (val.house_no.trim() === "") {
+            toast.error("House No is required")
+        }
+        else if (val.pincode.trim() === "") {
+            toast.error("Pincode is required")
+        }
+        else {
+            addNewAddress(val)
+        }
+    }
 
-    const singleProductOrder =()=>{
+
+
+
+
+    const singleProductOrder = () => {
 
         addSingleOrder(singleProductData);
-       
+
     }
- 
-    
+
+
     return (
         <div>
             <div className='p-5'>
@@ -198,42 +224,42 @@ function OldAddress() {
                         <div className='newAdd col-lg-8 col-md-7 p-3'>
                             <div>
                                 <h6>Your Addresses</h6>
-                           
+
                             </div>
-                            
+
                             {UserAddressData?.map((item, i) => (
                                 <div className='p-1' key={i}>
                                     <div className="form-check">
-                                        <div className='mb-1'>{item.fullname} <span class="ms-3 bg-secondary px-3 rounded rounded-pill text-white ">{item?.addressType}</span></div>
-                                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value={item?._id} defaultChecked={i === 0} onChange={(e)=>setRadio(e.target.value)}/>
-                                       
+                                        <div className='mb-1'>{item.fullname} <span className="ms-3 bg-secondary px-3 rounded rounded-pill text-white ">{item?.addressType}</span></div>
+                                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value={item?._id} defaultChecked={i === 0} onChange={(e) => setRadio(e.target.value)} />
+
                                         <label className="form-check-label" htmlFor="exampleRadios1">
                                             <div className='preAdd gap-2'>
-                                                
+
                                                 <span> {item.house_no}</span>&nbsp;
                                                 <span>{item.area}</span>&nbsp;
                                                 <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
-                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state:item?.state, pincode:item?.pincode });editeAddress(item._id)}}}>Edit</span>
+                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}>Edit</span>
                                             </div>
                                         </label>
                                     </div>
                                     <hr />
                                 </div>
                             ))}
-                                
+
 
                             <div className='p-2'>
                                 <button onClick={newAddress}><span className='addplus'>+</span> Add new Address</button>
                             </div>
                         </div>
 
-                       
+
                         <div className="col-lg-4 col-md-5 col-12">
                             <div className="checkout_total_box">
                                 <div className="wrapper">
-                                        {id ? 
+                                    {id ?
                                         <>
                                             
                                     <div className="group">
@@ -251,17 +277,17 @@ function OldAddress() {
                                                         </td>
                                                         <td className="item-details">
                                                             <span className="item-qty">Quantity : {qty}</span>
-                                                         
-
-                                                        </td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr> 
 
                                        
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                               
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
                                             <div className="divider"></div>
                                             <table>
@@ -312,7 +338,7 @@ function OldAddress() {
                                                                     <p className="pymt-type-name">Cash on Delivery</p>
 
                                                                 </div>
-                                                                <div className="select-logo">
+                                                                <div className="select-logo">   
                                                                     <div className="select-logo-sub logo-spacer">
                                                                         <img src={cod} alt="COD" />
                                                                     </div>
@@ -326,39 +352,41 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={()=>singleProductOrder()}>Confirm Order</button>
+                                                <button onClick={() => singleProductOrder(
+                                                    window.location.href = "/thankyou"
+                                                )}>Confirm Order</button>
 
                                             </div>
 
 
-                                    </>
-                                        :<>
-                                            
-                                             <div className="group">
-                                            <table>
-                                                <tbody>
-                                                    {cartData?.map((item) => (
-                                                        <tr className=''>
-                                                            <td className="item-img">
-                                                                <img src={item?.productDetails?.image[0].image_url} />
-                                                            </td>
-                                                            <td className="item-details">
-                                                                <span className="item-title">{item?.product_id?.title}</span>
+                                        </>
+                                        : <>
 
-                                                            </td>
-                                                            <td className="item-details">
-                                                                <span className="item-qty">Quantity : {item?.quantity}</span>
+                                            <div className="group">
+                                                <table>
+                                                    <tbody>
+                                                        {cartData?.map((item) => (
+                                                            <tr className=''>
+                                                                <td className="item-img">
+                                                                    <img src={item?.productDetails?.image[0].image_url} />
+                                                                </td>
+                                                                <td className="item-details">
+                                                                    <span className="item-title">{item?.product_id?.title}</span>
+
+                                                                </td>
+                                                                <td className="item-details">
+                                                                    <span className="item-qty">Quantity : {item?.quantity}</span>
 
 
-                                                            </td>
-                                                            <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
-                                                        </tr>
+                                                                </td>
+                                                                <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
+                                                            </tr>
 
-                                                    ))}
+                                                        ))}
 
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div className="divider"></div>
                                             <table>
                                                 <tbody>
@@ -425,30 +453,30 @@ function OldAddress() {
                                                 <button onClick={checkOut}>Confirm Order</button>
 
                                             </div>
-                                             </>}
-                                    
-                                    
+                                        </>}
+
+
                                 </div>
-                                
+
                             </div>
 
-                            
+
                         </div>
 
                     </div>
                 </div>
             </div>
 
-            {modalVisible &&(
+            {modalVisible && (
                 <div className='container'>
-                    {flag ? 
-                    <div className='newAdd modal'>
-                            {updateAddress?.map((item)=>(
-                                <div className='modal-content'>
-                                  
+                    {flag ?
+                        <div className='newAdd modal'>
+                            {updateAddress?.map((item, i) => (
+                                <div className='modal-content' key={i}>
+
                                     <span className='close' onClick={() => { closeModal(); setFlag(false) }}>&times;</span>
-                                    <h2>Add New Address</h2>
-                                    <form onSubmit={handleSubmit}>
+                                    <h2>Update Address</h2>
+                                    <form onSubmit={handleSubmitData}>
                                         <label htmlFor='name'>Full Name</label>
                                         <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name' defaultValue={item ? item?.fullname : ""} name='name' placeholder='Full Name' required />
 
@@ -465,11 +493,11 @@ function OldAddress() {
                                         <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' defaultValue={item ? item?.area : ""} name='street' placeholder='Enter Address' required />
 
 
-{/* 
+                                        {/* 
                                         <label htmlFor='city'>City *</label>
                                         <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' defaultValue={item ? item?.city : ""} name='city' placeholder='Enter City' required /> */}
 
-                                       
+
                                         {/* <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' defaultValue={item ? item?.state : ""} name='state' placeholder='Enter State' required /> */}
 
                                         <label htmlFor='state'>Country *</label>
@@ -499,16 +527,16 @@ function OldAddress() {
                                             }}
                                             placeHolder="Select City"
                                         />
-                                    
+
                                         {/* <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' defaultValue={item ? item?.country : ""} name='state' placeholder='Enter Country' required /> */}
 
                                         <label htmlFor='zip'>Zip Code *</label>
                                         <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
 
-                                        
+
                                         <div className='d-flex gap-2'>
-                                            <span className={data?.addressType === "Home" ? "bg-secondary " : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
-                                            <span className={data?.addressType === "Work" ? "bg-secondary" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
+                                            <span className={data?.addressType === "Home" ? "bg-secondary text-white px-3  rounded-pill" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
+                                            <span className={data?.addressType === "Work" ? "bg-secondary text-white px-3 rounded-pill" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
 
                                         <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
@@ -516,38 +544,33 @@ function OldAddress() {
                                     </form>
                                 </div>
                             ))}
-                        
-                    </div>
-                        : 
+
+                        </div>
+                        :
                         <div className='newAdd modal'>
                             <div className='modal-content'>
                                 <span className='close' onClick={() => { closeModal(); setFlag(false) }}>&times;</span>
-                                <h2>Update Address</h2>
-                                <form onSubmit={handleSubmit}>
+                                <h2>Add New Address</h2>
+                                <form onSubmit={handleSubmitData}>
                                     <label htmlFor='name'>Full Name</label>
-                                    <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name'  name='name' placeholder='Full Name' required />
+                                    <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name' name='name' placeholder='Full Name' />
 
                                     <label htmlFor='street'>Phone Number *</label>
-                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street'  name='street' placeholder='Enter Phone' required />
+                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' />
 
                                     <label htmlFor='street'>Alternate Phone Number </label>
-                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street'  name='street' placeholder='Enter Phone' />
+                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' />
 
                                     <label htmlFor='street'>House No * </label>
-                                    <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' required />
+                                    <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' />
 
                                     <label htmlFor='street'>Address *</label>
-                                    <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street'  name='street' placeholder='Enter Address' required />
-
-
-
-                                   
-                                   
+                                    <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' />
 
                                     <label htmlFor='state'>Country *</label>
                                     <CountrySelect
                                         onChange={(e) => {
-                                            setData({ ...data, country: e.name }); setCountryid(e.id); 
+                                            setData({ ...data, country: e.name }); setCountryid(e.id);
                                         }
                                         }
                                         placeHolder="Select Country"
@@ -562,7 +585,7 @@ function OldAddress() {
                                         }}
                                         placeHolder="Select State"
                                     />
-                                    
+
                                     <label htmlFor='city'>City *</label>
                                     <CitySelect
                                         countryid={countryid}
@@ -573,24 +596,24 @@ function OldAddress() {
                                         placeHolder="Select City"
                                     />
 
-                                    
-                                
-
                                     <label htmlFor='zip'>Zip Code *</label>
-                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip'  name='zip' placeholder='Enter Zip Code' required />
-
+                                    <input  onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code'  />
+                                        <div className='d-flex align-items-baseline justify-content-start'>
                                     <label htmlFor='street'>Work</label>
-                                    <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type'  required />
+                                        <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' style={{ width: "30%" }} />
+                                    </div>
+                                    <div className='d-flex align-items-baseline justify-content-start'>
                                     <label htmlFor='street'>Home</label>
-                                    <input onChange={(e) => setData({ ...data, addressType: e.target.value })}  type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' required />
+                                        <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' style={{ width: "30%" }} />
+                                    </div>
 
-                                 <button onClick={() => { addNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
-                                  
+                                    <button onClick={() => { createNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
+
                                 </form>
                             </div>
                         </div>
 
-}
+                    }
                 </div>
             )}
         </div>

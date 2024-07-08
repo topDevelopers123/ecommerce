@@ -1,19 +1,20 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../index.context";
 
 
 export const UserAddressContext = createContext();
 
 function UserAddressProvider({ children }) {
+    const { authorizeToken, API } = useAuthContext()
     const [UserAddressData, setUserAddressData] = useState(null);
-    const token = localStorage.getItem("token")
-
+   
 
     const getUserAddressData = async () => {
         try {
-            const res = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/get', {
-                headers: { 'Authorization': token, },
+            const res = await axios.get(`${API}/user-address/get`, {
+                headers: { 'Authorization': authorizeToken, },
             })
             setUserAddressData(res?.data?.data)
 
@@ -25,8 +26,8 @@ function UserAddressProvider({ children }) {
     const addNewAddress = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const res = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/add', data, {
-                headers: { 'Authorization': token, },
+            const res = await axios.post(`${API}/user-address/add`, data, {
+                headers: { 'Authorization': authorizeToken, },
             })
             getUserAddressData()
             toast.dismiss(toastId);
@@ -34,6 +35,7 @@ function UserAddressProvider({ children }) {
 
         } catch (error) {
             console.log(error)
+            toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
 
         }
@@ -41,8 +43,8 @@ function UserAddressProvider({ children }) {
     const deleteAddress = async (id) => {
         const toastId = toast.loading('Loading...');
         try {
-            const res = await axios.delete(`https://e-commerce-backend-4tmn.onrender.com/api/v1/user-address/delete/${id}`, {
-                headers: { 'Authorization': token, },
+            const res = await axios.delete(`${API}/user-address/delete/${id}`, {
+                headers: { 'Authorization': authorizeToken, },
             })
             getUserAddressData()
             toast.dismiss(toastId);
@@ -58,8 +60,8 @@ function UserAddressProvider({ children }) {
     const updateOldAddress = async (data, id) => {
         const toastId = toast.loading('Loading...');
         try {
-            const res = await axios.put(`/user-address/update/${id}`, data, {
-                headers: { 'Authorization': token, },
+            const res = await axios.put(`${API}/user-address/update/${id}`, data, {
+                headers: { 'Authorization': authorizeToken, },
             })
             getUserAddressData()
             toast.dismiss(toastId);
@@ -72,11 +74,11 @@ function UserAddressProvider({ children }) {
         }
     }
 
-    
+
 
     useEffect(() => {
-        if (token) getUserAddressData()
-    }, [])
+        if (authorizeToken) getUserAddressData()
+    }, [authorizeToken])
 
     return (
         <UserAddressContext.Provider value={{ UserAddressData, addNewAddress, deleteAddress, updateOldAddress }}>
