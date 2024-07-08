@@ -12,9 +12,9 @@ function TrendingProducts() {
         window.scrollTo(0, 0);
     }
 
-    const addtocartHandler = (product_id, productDetails_id) => {
+    const addtocartHandler = (product_id, productDetails_id, image) => {
         
-        addToCart(product_id, productDetails_id)
+        addToCart(product_id, productDetails_id, image)
     }
 
     const wishlistHandler = (item_Id, ite_Id) => {
@@ -83,7 +83,7 @@ function TrendingProducts() {
                                               ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
                                           </p>
                                           <div className="cart_n_buy">
-                                              <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id)}>
+                                              <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id, item?.ProductDetails[0]?.image[0]?.image_url )}>
                                                   Add to basket
                                               </button>
                                             

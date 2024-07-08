@@ -24,9 +24,10 @@ function CartProvider({ children }) {
         }
     }
 
-    const addToCart = async (product_id, productDetails) => {
+    const addToCart = async (product_id, productDetails, image) => {
        
-        const data = { product_id, productDetails, quantity : 1}
+        const data = { product_id, productDetails, quantity : 1, image:image}
+        console.log(data);
         
         setDisable(true)
         const toastId = toast.loading('Loading...');

@@ -10,7 +10,7 @@ import {
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext } from '../../Context/index.context';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import ProductDetail from '../productDetails/productDetail';
 
 
@@ -26,7 +26,11 @@ function OldAddress() {
     const [countryid, setCountryid] = useState(0);
     const { productDetailsData} = useProductDetailsContext()
     const { product_id, id } = useParams()
-   
+    const { search } = useLocation()
+    const urlParams = new URLSearchParams(search);
+    const imageUrl = urlParams.get('image')
+    const qty = urlParams.get('qty')
+  
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
     const [charges,setCharges]= useState(0)
@@ -60,10 +64,12 @@ function OldAddress() {
         product_detail_id: "",
         user_id: "",
         charges: "",
-        payment_type: "cash",
+        payment_type: "COD",
         address_id: "",
         payment_status: "pending",
-        status: "pending"
+        status: "pending",
+        image:imageUrl,
+        quantity:qty
     })
     
 
@@ -95,9 +101,9 @@ function OldAddress() {
     
 
     let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
-    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index] }))
+    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index], image: i?.image, quantity:i?.quantity}))
 
-   
+   console.log(cartData);
 
     const addressFilter = UserAddressData?.filter((item)=>{
         return item?._id === selectedData?._id
@@ -236,14 +242,15 @@ function OldAddress() {
                                                
                                                     <tr className=''>
                                                         <td className="item-img">
-                                                            <img src={product_detail_Filter?.image[0]?.image_url} />
+                                                            <img src={imageUrl} />
                                                         </td>
+                                                       
                                                         <td className="item-details">
                                                             <span className="item-title">{product_id_filter?.title}</span>
                                                           
                                                         </td>
                                                         <td className="item-details">
-                                                            <span className="item-qty">Quantity : {product_detail_Filter?.selling_quantity}</span>
+                                                            <span className="item-qty">Quantity : {qty}</span>
                                                          
 
                                                         </td>
@@ -261,7 +268,7 @@ function OldAddress() {
                                                 <tbody>
                                                     <tr>
                                                         <td className="item-qty">Subtotal</td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
+                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice * qty}</td>
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Shipping</td>
@@ -269,7 +276,7 @@ function OldAddress() {
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Total</td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice + singleProductData?.charges}</td>
+                                                        <td className="item-price">₹{(product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

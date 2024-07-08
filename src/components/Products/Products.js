@@ -45,20 +45,36 @@ function Products() {
    }
  })
 
- let ratingAvg = 0;
-
-  const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r)=>i+r.rating,0) / item?.Review?.length) <= 4);
-
-  // console.log(getReview);
-    // console.log(getReview);
+  const [discountToggle, setDiscountToggle] = useState({
+    first: {
+      checked: false,
+      value: ""
+    },
+    second: {
+      checked: false,
+      value: ""
+    },
+    third: {
+      checked: false,
+      value: ""
+    },
+    four: {
+      checked: false,
+      value: ""
+    },
+    five: {
+      checked: false,
+      value: ""
+    }
+  })
 
  
-  // console.log(ratingAvg);
 
   const main = searchParams.get("category")
   const sub_category = searchParams.get("subcategory")
   const sub_inner_Category = searchParams.get("sunInnercategory")
- 
+
+
 
   useEffect(() => {
     let data = productData?.filter((item) => {
@@ -79,6 +95,48 @@ function Products() {
   },
     [param, productData])
 
+
+  useEffect(()=>{
+    const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r) => i + r.rating, 0) / item?.Review?.length) <= ((toggle?.five?.checked ? toggle?.five?.value : 0) || (toggle?.four?.checked ? toggle?.four?.value : 0) || (toggle?.third?.checked ? toggle?.third?.value : 0) || (toggle?.second?.checked ? toggle?.second?.value : 0) || (toggle?.first?.checked ? toggle?.first?.value : 0)))?.filter((cat) => cat?.category[0]?.category_name === main);
+
+    setAllProductData(toggle?.five?.checked || toggle?.four?.checked || toggle?.third?.checked || toggle?.second?.checked || toggle?.first?.checked === true || getReview?.length > 0 ? getReview : productData?.filter((cat) => cat?.category[0]?.category_name === main))
+  },[toggle])
+
+    useEffect(()=>{
+      const discountFilter = productData?.filter((item) => {
+       
+        return (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)?.toFixed(1)) <= ((discountToggle?.five?.checked ? discountToggle?.five?.value : 0) || (discountToggle?.four?.checked ? discountToggle?.four?.value : 0) || (discountToggle?.third?.checked ? discountToggle?.third?.value : 0) || (discountToggle?.second?.checked ? discountToggle?.second?.value : 0) || (discountToggle?.first?.checked ? discountToggle?.first?.value : 0))
+       
+      })?.filter((cate)=> cate?.category[0]?.category_name === main);
+      
+ 
+      setAllProductData(discountToggle?.five?.checked || discountToggle?.four?.checked || discountToggle?.third?.checked || discountToggle?.second?.checked || discountToggle?.first?.checked === true || discountFilter?.length > 0 ? discountFilter : productData?.filter((cat) => cat?.category[0]?.category_name === main)  )
+    }, [discountToggle])
+
+
+    const priceFilterHandler = () => {
+      const priceFilter = productData?.filter((item)=>{
+        return item?.ProductDetails[0]?.sellingPrice <= range
+      }).filter((cat) => cat?.category[0]?.category_name === main);
+
+      const bySubCategory = priceFilter?.filter((item) => {
+        return item?.ProductDetails[0]?.sellingPrice <= range
+      }).filter((cat) => cat?.sub_category[0]?.sub_category_name === sub_category);
+
+     
+      const bySubInnerCategory = bySubCategory?.filter((item) => {
+        return item?.ProductDetails[0]?.sellingPrice <= range
+      }).filter((cat) => cat?.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category);
+      
+      
+      setAllProductData(bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory, bySubCategory?.length > 0 ? bySubCategory : priceFilter)
+      // alert(range)
+      console.log(allProductData);
+    }
+
+
+
+ 
   const navigate = useNavigate()
 
   const showFilter = () => {
@@ -120,7 +178,7 @@ function Products() {
                     <p>
                       Range : {range > 100 ? "0-" : ""} {range}
                     </p>
-                    <button className="btn go_btn  fw-bold text-light  ">
+                    <button className="btn go_btn  fw-bold text-light  " onClick={()=>priceFilterHandler()}>
                       FILTER
                     </button>
                   </div>
@@ -138,27 +196,28 @@ function Products() {
                     <ul className="dropdown-menu p-0">
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="5" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, five: { checked: e.target.checked, value: e.target.value } })} />
-                        <li><Link className="dropdown-item" to="#">5★ & above</Link></li>
+                        <li className="dropdown-item">5★ & above</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li><Link className="dropdown-item" to="#">4★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">4★ & above</li>
                       </div>
 
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li><Link className="dropdown-item" to="#">3★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">3★ & above</li>
                       </div>
 
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="2" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
                           , second: { checked: e.target.checked, value: e.target.value }
-})} /><li><Link className="dropdown-item" to="#">2★ & above</Link></li>
+                        })} /><li className="dropdown-item">2★ & above</li>
                       </div>
 
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
-                          , first:{checked:e.target.checked, value:e.target.value}})}/><li><Link className="dropdown-item" to="#">1★ & above</Link></li>
+                          , first: { checked: e.target.checked, value: e.target.value }
+                        })} /><li className="dropdown-item">1★ & above</li>
                       </div>
 
 
@@ -169,22 +228,6 @@ function Products() {
                   </div>
 
 
-                  <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12  border mt-3">
-                    <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Offers
-                    </button>
-                    <ul className="dropdown-menu p-0">
-                      <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">No Cost EMI</Link></li>
-                      </div>
-
-                      <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">Special Price</Link></li>
-                      </div>
-
-
-                    </ul>
-                  </div>
 
                   <div className="dropdown col-lg-12 col-md-12 col-sm-12 col-12 border mt-3">
                     <button className="btn   dropdown-toggle border-0 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -192,54 +235,46 @@ function Products() {
                     </button>
                     <ul className="dropdown-menu p-0">
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">50% or more</Link></li>
+                        <input className="form-check-input" type="checkbox" value="50" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
+                          ...discountToggle
+                          , five: { checked: e.target.checked, value: e.target.value }
+                        })} /><li className="dropdown-item">50% or more</li>
                       </div>
 
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">40% or more</Link></li>
+                        <input className="form-check-input" type="checkbox" value="40" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
+                          ...discountToggle
+                          , four: { checked: e.target.checked, value: e.target.value }
+                        })} /><li className="dropdown-item">40% or more</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">30% or more</Link></li>
+                        <input className="form-check-input" type="checkbox" value="30" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
+                          ...discountToggle
+                          , third: { checked: e.target.checked, value: e.target.value }
+                        })} /><li className="dropdown-item">30% or more</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">20% or more</Link></li>
+                        <input className="form-check-input" type="checkbox" value="20" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
+                          ...discountToggle
+                          , second: { checked: e.target.checked, value: e.target.value }
+                        })}  /><li className="dropdown-item">20% or more</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">10% or more</Link></li>
+                        <input className="form-check-input" type="checkbox" value="10" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
+                          ...discountToggle
+                          , first: { checked: e.target.checked, value: e.target.value }
+                        })} /><li className="dropdown-item">10% or more</li>
                       </div>
 
 
                     </ul>
                   </div>
 
-                  <div className="dropdown  col-lg-12 col-md-12 col-sm-12 col-12  border mt-3">
-                    <button className="btn dropdown-toggle border-0 text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Fabric
-                    </button>
-                    <ul className="dropdown-menu p-0">
-
-                      <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">Linen Blend</Link></li>
-                      </div>
-
-                      <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">Polyester</Link></li>
-                      </div>
-
-                      <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">Nylon</Link></li>
-                      </div>
-
-                      <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">Linen Blend</Link></li>
-                      </div>
-
-                    </ul>
-                  </div>
+                  
                 </div>
 
               </div>
@@ -256,29 +291,30 @@ function Products() {
               </div>
 
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
-                {allProductData && allProductData.map((item) =>
+                {allProductData?.length > 0 ? allProductData.map((item) =>
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
 
                   <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
-                    <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
+                    <img src={item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item)=>item?.ProductDetails[0]?.image[0]?.image_url) } alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
                     <h6 className="mt-2 ps-2">{item?.title}</h6>
-                    <p className="ps-2 py-0 my-0 desc">{item?.description.slice(0, 30)}...</p>
+                    <p className="ps-2 py-0 my-0 desc">{item?.description?.slice(0, 30)}...</p>
                     <div className="d-flex flex-column">
                       <div>
                         <p className="ps-2 fw-bold text-success my-0 py-0">{item?.delivery_status}</p>
-                        <p className="ps-2 fw-bold text-secondary my-0 py-0">{item?.ProductDetails[0]?.inStock <= 10 ? <p className="m-0" > InStock : {item.ProductDetails[0]?.inStock} Left</p> : ""} </p>
+                        <p className="ps-2 fw-bold text-secondary my-0 py-0">{item?.ProductDetails ? item?.ProductDetails[0].inStock < 10 ? `InStock: ${item?.ProductDetails[0]?.inStock} Left` : "" : productData?.map((ite) => ite?.ProductDetails[0]?.inStock)}</p>
                       </div>
                       <div className="d-flex">
-                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.ProductDetails[0].sellingPrice} </p></del>
-                        <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.ProductDetails[0].MRP}</p>
+                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.MRP : productData?.map((ite)=>ite?.ProductDetails[0]?.MRP)} </p></del>
+                        <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.sellingPrice : productData?.map((ite) => ite?.ProductDetails[0]?.sellingPrice)}</p>
 
                       </div>
 
-
+                      {/* {console.log(item?.ProductDetails[0]?.sellingPrice)} */}
+                      {/* {console.log((((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP) * 100).toFixed())} */}
 
                       <div className="discount_div d-flex justify-content-center align-items-center">
 
-                        <p className="mb-0 text-light ">{((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100).toFixed()}% OFF</p>
+                        <p className="mb-0 text-light ">{(item?.ProductDetails ? (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP) * 100).toFixed() : (productData?.map((ite) => (ite?.ProductDetails[0]?.MRP - ite?.ProductDetails[0]?.sellingPrice / productData?.map((ite) => ite?.ProductDetails[0]?.MRP) * 100).toFixed())))}% OFF</p>
                       </div>
 
                       <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
@@ -303,6 +339,7 @@ function Products() {
 
 
                 )
+                : <h2 className="w-100 text-center d-flex align-items-center justify-content-center">No Products Avalaible</h2>
                 }
 
                 {/*<div className="  container pagination_div d-flex justify-content-center   p-4  border">
