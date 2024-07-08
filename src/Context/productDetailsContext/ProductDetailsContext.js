@@ -19,7 +19,6 @@ function ProductDetailsProvider({ children }) {
             }
             )
             setProductDetailsData(resp.data.data);
-            console.log(resp.data.data)
 
 
         } catch (error) {

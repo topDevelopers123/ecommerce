@@ -8,7 +8,7 @@ function AuthContextProvider({ children }) {
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"));
 
     const API = process.env.REACT_APP_API
-    console.log(API);
+    // console.log(API);
 
     // Register
     const register = async (data) => {
@@ -34,6 +34,7 @@ function AuthContextProvider({ children }) {
             setAuthorizeToken(resp.data.token);
             toast.success(resp.data.message);
             window.location.href = "/";
+
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
         } finally {

@@ -1,67 +1,131 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ContactUs.css";
+import { useContactUsContext } from "../../Context/index.context";
 
 function ContactUs() {
+  const { postContactForm } = useContactUsContext();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    sub: '',
+    phone: '',
+    text: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      email: '',
+      sub: '',
+      phone: '',
+      text: ''
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await postContactForm(formData);
+    resetForm();
+  };
+
   return (
     <div>
-      <div className=" container">
+      <div className="container">
         <div className="contact-div">
           <div className="row">
             <div className="col-lg-8 col-md-6">
               <div className="contact-form-div">
-                <div className="contact-form">
+                <form className="contact-form" onSubmit={handleSubmit}>
                   <h6>Get in touch</h6>
-                  <h3>
-                    Write Us A Message <span> [You Need To Login First]</span>
-                  </h3>
+                  <h3>Write Us A Message</h3>
                   <div className="row">
-                    <div className="col-lg-6 col-md-12 ">
-                      <label id="Your Name">
+                    <div className="col-lg-6 col-md-12">
+                      <label htmlFor="name">
                         Your Name <span>*</span>
                       </label>
                       <br />
-                      <input type="text" placeholder="Your Name" />
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                      />
                       <br />
 
-                      <label id="Your Name">
-                        Your Email<span>*</span>
+                      <label htmlFor="email">
+                        Your Email <span>*</span>
                       </label>
                       <br />
-                      <input type="text" placeholder="Your Email" />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
 
                     <div className="col-lg-6 col-md-12">
-                      <label id="Your Name">
-                        Your Subject<span>*</span>
+                      <label htmlFor="sub">
+                        Your Subject <span>*</span>
                       </label>
                       <br />
-                      <input type="text" placeholder="Your Subject" />
+                      <input
+                        type="text"
+                        name="sub"
+                        placeholder="Your Subject"
+                        value={formData.sub}
+                        onChange={handleChange}
+                        required
+                      />
                       <br />
 
-                      <label id="Your Name">
-                        Your Phone<span>*</span>
+                      <label htmlFor="phone">
+                        Your Phone <span>*</span>
                       </label>
                       <br />
-                      <input type="text" placeholder="Your Phone" />
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Your Phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                   </div>
-                  <label>
-                    Your Message<span>*</span>
+                  <label htmlFor="text">
+                    Your Message <span>*</span>
                   </label>
                   <br />
-                  <textarea type='text' placeholder='Your Message' />
+                  <textarea
+                    name="text"
+                    placeholder="Your Message"
+                    value={formData.text}
+                    onChange={handleChange}
+                    required
+                  />
                   <br />
-                  <button>Send Message</button>
-                </div>
+                  <button type="submit">Send Message</button>
+                </form>
               </div>
             </div>
 
-            <div className="col-lg-4 col-md-6 ">
+            <div className="col-lg-4 col-md-6">
               <div className="contact-form-div">
                 <div className="contact-location">
                   <div className="contact-icon">
-                    <i className="bi bi-telephone "></i>
+                    <i className="bi bi-telephone"></i>
                     <h4>Call us Now :</h4>
                     <Link to="tel:9262852851">9262852851</Link>
                     <br />
