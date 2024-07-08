@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
+    const [orderDetail, setOrderDetail] =  useState(null)
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"));
-
     const API = process.env.REACT_APP_API
     // console.log(API);
 
@@ -97,7 +97,7 @@ function AuthContextProvider({ children }) {
         }
     };
 
-
+  
 
     return (
         <AuthContext.Provider value={{ register, login, emailVerify, otpVerify, newPassword, changePassword, authorizeToken, API }}>

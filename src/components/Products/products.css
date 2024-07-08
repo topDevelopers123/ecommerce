@@ -25,6 +25,12 @@
     height: 280px;
     object-fit: cover;
 }
+.poducts_filter_main_div .card_mini_div p{
+        white-space: nowrap;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+}
 
 .discount_div{
     background-color: #4D869C;
@@ -84,6 +90,7 @@
 .card_mini_div{
     transition: all 0.3s ease;
     border-radius: 5px;
+        height: 410px;
 }
 
 .card_mini_div h6{

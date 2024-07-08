@@ -11,7 +11,6 @@ function WishlistProvider({ children }) {
     const [wishlistData, setWishlistData] = useState(null);
     const [wishlistLength, setWishlistLength] = useState(0)
 
-
     const getWishlistData = async () => {
         try {
             const resp = await axios.get(`${API}/wishlist/get`, {
@@ -26,7 +25,6 @@ function WishlistProvider({ children }) {
     }
 
     const addToWishlist = async (data) => {
-       
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`${API}/wishlist/add`, data, {
@@ -35,17 +33,12 @@ function WishlistProvider({ children }) {
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             getWishlistData()
-
-        
-
         } catch (error) {
             console.log(error);
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
     }
-
-   
 
     const deleteWishlistProduct = async(id) => {
         const toastId = toast.loading('Loading...');
@@ -56,9 +49,6 @@ function WishlistProvider({ children }) {
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             getWishlistData()
-
-
-
         } catch (error) {
             console.log(error);
             toast.dismiss(toastId);
@@ -69,7 +59,6 @@ function WishlistProvider({ children }) {
 
     useEffect(() => {
         if (authorizeToken){
-            
             getWishlistData()
         }
     }, [authorizeToken])

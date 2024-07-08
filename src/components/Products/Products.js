@@ -22,43 +22,43 @@ function Products() {
 
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
- const [toggle, setToggle] = useState({
-  first:{
-    checked:false,
-    value:""
-  },
-   second: {
-     checked: false,
-     value: ""
-   },
-   third: {
-     checked: false,
-     value: ""
-   },
-   four: {
-     checked: false,
-     value: ""
-   },
-   five: {
-     checked: false,
-     value: ""
-   }
- })
+  const [toggle, setToggle] = useState({
+    first: {
+      checked: false,
+      value: ""
+    },
+    second: {
+      checked: false,
+      value: ""
+    },
+    third: {
+      checked: false,
+      value: ""
+    },
+    four: {
+      checked: false,
+      value: ""
+    },
+    five: {
+      checked: false,
+      value: ""
+    }
+  })
 
- let ratingAvg = 0;
+  let ratingAvg = 0;
 
-  const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r)=>i+r.rating,0) / item?.Review?.length) <= 4);
+  const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r) => i + r.rating, 0) / item?.Review?.length) <= 4);
 
   // console.log(getReview);
-    // console.log(getReview);
+  // console.log(getReview);
 
- 
+
   // console.log(ratingAvg);
 
   const main = searchParams.get("category")
   const sub_category = searchParams.get("subcategory")
   const sub_inner_Category = searchParams.get("sunInnercategory")
- 
+
 
   useEffect(() => {
     let data = productData?.filter((item) => {
@@ -145,26 +145,23 @@ function Products() {
                         <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li><Link className="dropdown-item" to="#">4★ & above</Link></li>
                       </div>
 
-
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li><Link className="dropdown-item" to="#">3★ & above</Link></li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="2" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
+                        <input className="form-check-input" type="checkbox" value="2" id="flexCheckIndeterminate" onChange={(e) => setToggle({
+                          ...toggle
                           , second: { checked: e.target.checked, value: e.target.value }
-})} /><li><Link className="dropdown-item" to="#">2★ & above</Link></li>
+                        })} /><li><Link className="dropdown-item" to="#">2★ & above</Link></li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
-                          , first:{checked:e.target.checked, value:e.target.value}})}/><li><Link className="dropdown-item" to="#">1★ & above</Link></li>
+                        <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({
+                          ...toggle
+                          , first: { checked: e.target.checked, value: e.target.value }
+                        })} /><li><Link className="dropdown-item" to="#">1★ & above</Link></li>
                       </div>
-
-
-
-
-
                     </ul>
                   </div>
 
@@ -177,12 +174,9 @@ function Products() {
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">No Cost EMI</Link></li>
                       </div>
-
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">Special Price</Link></li>
                       </div>
-
-
                     </ul>
                   </div>
 
@@ -194,25 +188,18 @@ function Products() {
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">50% or more</Link></li>
                       </div>
-
-
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">40% or more</Link></li>
                       </div>
-
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">30% or more</Link></li>
                       </div>
-
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">20% or more</Link></li>
                       </div>
-
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" /><li><Link className="dropdown-item" to="#">10% or more</Link></li>
                       </div>
-
-
                     </ul>
                   </div>
 
@@ -258,11 +245,10 @@ function Products() {
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
                 {allProductData && allProductData.map((item) =>
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
-
                   <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
                     <h6 className="mt-2 ps-2">{item?.title}</h6>
-                    <p className="ps-2 py-0 my-0 desc">{item?.description.slice(0, 30)}...</p>
+                    <p className="ps-2 py-0 my-0 desc">{item?.description}</p>
                     <div className="d-flex flex-column">
                       <div>
                         <p className="ps-2 fw-bold text-success my-0 py-0">{item?.delivery_status}</p>
@@ -271,13 +257,9 @@ function Products() {
                       <div className="d-flex">
                         <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item.ProductDetails[0].sellingPrice} </p></del>
                         <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item.ProductDetails[0].MRP}</p>
-
                       </div>
 
-
-
                       <div className="discount_div d-flex justify-content-center align-items-center">
-
                         <p className="mb-0 text-light ">{((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100).toFixed()}% OFF</p>
                       </div>
 
@@ -289,7 +271,6 @@ function Products() {
                         <div className="px-2 d-flex align-items-center justify-content-between">
                           <div className="icons">
                             <i className="bi bi-share px-2 mx-1" title="Share"></i>
-
                           </div>
                           <div className="icons">
                             <i className="bi bi-heart px-2 mx-1" title="Wishlist" onClick={() => addToWishlistHandler(item?._id, item.ProductDetails[0]?._id)}></i>
@@ -300,8 +281,6 @@ function Products() {
                     </div>
                   </div>
                 </div>)
-
-
                 )
                 }
 
@@ -324,8 +303,6 @@ function Products() {
 
 
               </div>
-
-
             </div>
           </div>
         </div>
@@ -375,11 +352,7 @@ function Products() {
         </div>
       </section>
 
-
     </div>
-
-
-
 
   );
 }

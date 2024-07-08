@@ -19,6 +19,7 @@ function ProductDetailsProvider({ children }) {
             }
             )
             setProductDetailsData(resp.data.data);
+      
 
 
         } catch (error) {

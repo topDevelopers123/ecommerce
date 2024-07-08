@@ -1,30 +1,17 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { createContext,  useState } from "react";
+import { createContext,  useEffect,  useState } from "react";
 import { useAuthContext } from "../index.context";
 
 export const OrderContext = createContext();
 
-
-
 function OrderContextProvider({ children }) {
     const { API, authorizeToken } = useAuthContext()
     const [disable, setDisable] = useState(false)
+    const [orderDetail, setOrderDetail] = useState(null)
     const token = localStorage.getItem("token")
 
-    // const getCartData = async () => {
-    //     try {
-    //         const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/cart/get', {
-    //             headers: { 'Authorization': `Bearer ${token}` },
-    //         })
-    //         setCartData(resp.data.data)
-    //         setCartLength(resp.data.data.length)
-
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
+    // console.log(authorizeToken)    
     const addOrder = async (data) => {
         
         setDisable(true)
@@ -55,7 +42,7 @@ function OrderContextProvider({ children }) {
         try {
 
             const resp = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/order/buynow', data, {
-                headers: { 'Authorization': `Bearer ${token}` }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
 
             toast.dismiss(toastId);
@@ -70,11 +57,29 @@ function OrderContextProvider({ children }) {
             setDisable(false)
         }
     }
+    const getOrder = async () => {
+        try {
+            const res = await axios.get(`${API}/user/get-order`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
+            } )
+            // console.log(res?.data.data[0])
+            setOrderDetail(res?.data.data[0])
+           
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
+
+
+    useEffect(()=>{
+        getOrder()
+    }, [])
+                                               
 
 
     return (
-        <OrderContext.Provider value={{ addOrder, addSingleOrder }}>
+        <OrderContext.Provider value={{ addOrder, addSingleOrder, getOrder, orderDetail }}>
             {children}
         </OrderContext.Provider>
     )

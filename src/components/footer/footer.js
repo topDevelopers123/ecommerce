@@ -45,8 +45,8 @@ function footer() {
                   <h6>Get In Touch</h6>
                   <ul className="p-0">
                     <p className='text-light'>355, 3rd Floor, Aggarwal Millennium Tower-1, Netaji Subhas Place, Pitam Pura, New Delhi - 110 034</p>
-                    <li className='text-light'>mayavifashion@gmail.com</li>
-                    <li className='text-light'>9262852851</li>
+                    <Link to="mailto:mayavifashion@gmail.com"><li className='text-light'>mayavifashion@gmail.com</li></Link>
+                    {/* <li className='text-light'>9262852851</li> */}
                   </ul>
                 </div>
                 

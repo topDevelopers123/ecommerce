@@ -26,9 +26,9 @@ function OldAddress() {
     const [modalVisible, setModalVisible] = useState(false);
     const [stateid, setstateid] = useState(0);
     const [countryid, setCountryid] = useState(0);
-    const { productDetailsData} = useProductDetailsContext()
+    const { productDetailsData } = useProductDetailsContext()
     const { product_id, id } = useParams()
-   
+
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
     const [charges, setCharges] = useState(0)
@@ -49,13 +49,13 @@ function OldAddress() {
     })
 
     const [finalData, setFinalData] = useState({
-        cartId:[],
-        address_id:"",
-        payment_type:"COD",
-        payment_status:"pending",
-        status:"pending"
+        cartId: [],
+        address_id: "",
+        payment_type: "COD",
+        payment_status: "pending",
+        status: "pending"
     })
-    
+
 
     const [singleProductData, setSingleProductData] = useState({
         product_id: "",
@@ -67,7 +67,7 @@ function OldAddress() {
         payment_status: "pending",
         status: "pending"
     })
-    
+
 
     let n = 0;
     let total = 0;
@@ -89,18 +89,18 @@ function OldAddress() {
         item?._id === radio
     ))[0]
 
-    
+
 
     let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
     let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index] }))
 
-   
 
-    const addressFilter = UserAddressData?.filter((item)=>{
+
+    const addressFilter = UserAddressData?.filter((item) => {
         return item?._id === selectedData?._id
     })[0]
-    
-    
+
+
     const product_id_filter = productDetailsData?.filter((item) => {
         return item._id === product_id
     })[0]
@@ -111,13 +111,13 @@ function OldAddress() {
 
 
     let charges_s = selectedData?.state === "Delhi" ? product_id_filter?.zonal_charges : product_id_filter?.national_charges
-    
+
 
     useEffect(() => {
-       
-        setFinalData({ ...finalData, cartId:cartId, address_id: radio })
+
+        setFinalData({ ...finalData, cartId: cartId, address_id: radio })
         setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
-  
+
     }, [cartData, radio])
 
     const checkOut = () => {
@@ -164,12 +164,12 @@ function OldAddress() {
         setData({ ...data, addressType: value })
 
     }
-  
+
     const createNewAddress = (val) => {
         if (val.fullname.trim() === "") {
             toast.error("Full name is required")
         }
-        else if (val.phone.trim() === ""){
+        else if (val.phone.trim() === "") {
             toast.error("Phone Number is required")
         }
         else if (val.country.trim() === "") {
@@ -193,22 +193,22 @@ function OldAddress() {
         else if (val.pincode.trim() === "") {
             toast.error("Pincode is required")
         }
-         else {
+        else {
             addNewAddress(val)
         }
     }
 
-  
- 
-    
 
-    const singleProductOrder =()=>{
+
+
+
+    const singleProductOrder = () => {
 
         addSingleOrder(singleProductData);
-       
+
     }
- 
-    
+
+
     return (
         <div>
             <div className='p-5'>
@@ -249,38 +249,38 @@ function OldAddress() {
                             </div>
                         </div>
 
-                       
+
                         <div className="col-lg-4 col-md-5 col-12">
                             <div className="checkout_total_box">
                                 <div className="wrapper">
-                                        {id ? 
+                                    {id ?
                                         <>
-                                            
-                                    <div className="group">
-                                        <table>
-                                            <tbody>
-                                               
-                                                    <tr className=''>
-                                                        <td className="item-img">
-                                                            <img src={product_detail_Filter?.image[0]?.image_url} />
-                                                        </td>
-                                                        <td className="item-details">
-                                                            <span className="item-title">{product_id_filter?.title}</span>
-                                                          
-                                                        </td>
-                                                        <td className="item-details">
-                                                            <span className="item-qty">Quantity : {product_detail_Filter?.selling_quantity}</span>
-                                                         
 
-                                                        </td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
-                                                    </tr>
+                                            <div className="group">
+                                                <table>
+                                                    <tbody>
 
-                                       
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                        <tr className=''>
+                                                            <td className="item-img">
+                                                                <img src={product_detail_Filter?.image[0]?.image_url} />
+                                                            </td>
+                                                            <td className="item-details">
+                                                                <span className="item-title">{product_id_filter?.title}</span>
+
+                                                            </td>
+                                                            <td className="item-details">
+                                                                <span className="item-qty">Quantity : {product_detail_Filter?.selling_quantity}</span>
+
+
+                                                            </td>
+                                                            <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
+                                                        </tr>
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
                                             <div className="divider"></div>
                                             <table>
@@ -331,7 +331,7 @@ function OldAddress() {
                                                                     <p className="pymt-type-name">Cash on Delivery</p>
 
                                                                 </div>
-                                                                <div className="select-logo">
+                                                                <div className="select-logo">   
                                                                     <div className="select-logo-sub logo-spacer">
                                                                         <img src={cod} alt="COD" />
                                                                     </div>
@@ -345,39 +345,41 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={()=>singleProductOrder()}>Confirm Order</button>
+                                                <button onClick={() => singleProductOrder(
+                                                    window.location.href = "/thankyou"
+                                                )}>Confirm Order</button>
 
                                             </div>
 
 
-                                    </>
-                                        :<>
-                                            
-                                             <div className="group">
-                                            <table>
-                                                <tbody>
-                                                    {cartData?.map((item) => (
-                                                        <tr className=''>
-                                                            <td className="item-img">
-                                                                <img src={item?.productDetails?.image[0].image_url} />
-                                                            </td>
-                                                            <td className="item-details">
-                                                                <span className="item-title">{item?.product_id?.title}</span>
+                                        </>
+                                        : <>
 
-                                                            </td>
-                                                            <td className="item-details">
-                                                                <span className="item-qty">Quantity : {item?.quantity}</span>
+                                            <div className="group">
+                                                <table>
+                                                    <tbody>
+                                                        {cartData?.map((item) => (
+                                                            <tr className=''>
+                                                                <td className="item-img">
+                                                                    <img src={item?.productDetails?.image[0].image_url} />
+                                                                </td>
+                                                                <td className="item-details">
+                                                                    <span className="item-title">{item?.product_id?.title}</span>
+
+                                                                </td>
+                                                                <td className="item-details">
+                                                                    <span className="item-qty">Quantity : {item?.quantity}</span>
 
 
-                                                            </td>
-                                                            <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
-                                                        </tr>
+                                                                </td>
+                                                                <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
+                                                            </tr>
 
-                                                    ))}
+                                                        ))}
 
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div className="divider"></div>
                                             <table>
                                                 <tbody>
@@ -444,9 +446,9 @@ function OldAddress() {
                                                 <button onClick={checkOut}>Confirm Order</button>
 
                                             </div>
-                                             </>}
-                                    
-                                    
+                                        </>}
+
+
                                 </div>
 
                             </div>
@@ -526,8 +528,8 @@ function OldAddress() {
 
 
                                         <div className='d-flex gap-2'>
-                                            <span className={data?.addressType === "Home" ? "bg-secondary " : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
-                                            <span className={data?.addressType === "Work" ? "bg-secondary" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
+                                            <span className={data?.addressType === "Home" ? "bg-secondary text-white px-3  rounded-pill" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
+                                            <span className={data?.addressType === "Work" ? "bg-secondary text-white px-3 rounded-pill" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
 
                                         <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
@@ -588,12 +590,15 @@ function OldAddress() {
                                     />
 
                                     <label htmlFor='zip'>Zip Code *</label>
-                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' />
-
+                                    <input  onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code'  />
+                                        <div className='d-flex align-items-baseline justify-content-start'>
                                     <label htmlFor='street'>Work</label>
-                                    <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' />
+                                        <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' style={{ width: "30%" }} />
+                                    </div>
+                                    <div className='d-flex align-items-baseline justify-content-start'>
                                     <label htmlFor='street'>Home</label>
-                                    <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' />
+                                        <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' style={{ width: "30%" }} />
+                                    </div>
 
                                     <button onClick={() => { createNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
 
