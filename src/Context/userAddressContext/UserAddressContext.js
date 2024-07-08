@@ -74,7 +74,7 @@ function UserAddressProvider({ children }) {
         }
     }
 
-    
+
 
     useEffect(() => {
         if (authorizeToken) getUserAddressData()
