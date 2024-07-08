@@ -1,17 +1,19 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useAuthContext } from "../index.context";
 
 
 export const categoryContext = createContext()
 
 function CategoryContextProvider({ children }) {
+  const {API} = useAuthContext()
   const [category, setCategory] = useState(null)
   const [selectedCategory,setData] = useState(null)
 
 
   const getCategoryData = async () => {
     try {
-      const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/category/category')
+      const resp = await axios.get(`${API}/category/category`)
       setCategory(resp.data.data)
 
 

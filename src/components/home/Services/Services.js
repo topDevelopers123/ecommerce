@@ -16,6 +16,7 @@ function Services() {
                       </div>
                       <div className="col-lg-3 col-md-6 col-12">
                           <div className="single-service">
+                            <div className='pulse'></div>
                               <i className="bi bi-arrow-return-right"></i>
                               <h4>Free Return</h4>
                               <p className="m-0">Within 30 days returns</p>

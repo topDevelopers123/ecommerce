@@ -29,7 +29,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://e-commerce-backend-4tmn.onrender.com/api/v1",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+
+import bgImg from "../NewArrivals/img/bg.avif"
 import { useProductContext } from '../../../Context/index.context';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,6 +42,16 @@ function FeaturedProducts() {
                         </h2>
                         <div className="bdr"></div>
                     </div>
+                    <div className='row'>
+                        <div className='col-md-3 d-md-block d-none'>
+                            <div className='fp_aside_text' style={{
+                                backgroundImage: 'url(' + bgImg + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'cover', backgroundPosition: 'center'
+                            }}>
+                                <h5>Discover the Best Deals <br /> on Top-Rated Products!</h5>
+                            </div>
+                        </div>
+                        <div className='col-md-9 col-sm-12 col-12'>
                     <OwlCarousel
                         className="owl-theme"
                         loop
@@ -69,6 +81,8 @@ function FeaturedProducts() {
                             </div>
                         ))}
                     </OwlCarousel>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

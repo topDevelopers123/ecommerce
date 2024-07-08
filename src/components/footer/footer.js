@@ -25,7 +25,7 @@ function footer() {
                     <Link to="/about"><li className='text-light'>About Us</li></Link>
                     <Link to="/PrivacyPolicy"><li className='text-light'>Privacy Policy</li></Link>
                     <Link to="/TermsAndConditions"><li className='text-light'>Terms & Conditions</li></Link>
-                    <Link to="/RefundsCancellation"><li className='text-light'>Refunds & Cancellation</li></Link>
+                    <Link to="/ReturnCancellation"><li className='text-light'>Refunds & Cancellation</li></Link>
                     <Link to="/contact"><li className='text-light'>Contact Us</li></Link>
                   </ul>
                 </div>

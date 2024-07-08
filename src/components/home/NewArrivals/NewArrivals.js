@@ -5,6 +5,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useProductContext } from '../../../Context/index.context';
 import { useNavigate } from 'react-router-dom';
+import bgImg from "../NewArrivals/img/bgImg.avif"
 
 function ShopByCategory() {
     const { productData } = useProductContext();
@@ -31,7 +32,11 @@ function ShopByCategory() {
 
     return (
         <div>
-            <section className="new_arrivals">
+            {/* New Arrivals start */}
+            <section className="new_arrivals" style={{
+                backgroundImage: 'url(' + bgImg + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover', backgroundPosition: 'center'
+            }}>
                 <div className="container">
                     <div className="head_title">
                         <h2>New Arrivals</h2>

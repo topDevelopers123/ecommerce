@@ -11,7 +11,8 @@ import tp01 from "../home/img/trending/1.jpg";
 import StarRatings from "react-star-ratings";
 
 function ProductDetail() {
-  const { productDetailsData, addReview, disable } = useProductDetailsContext()
+  const {  addReview, disable } = useProductDetailsContext()
+  const { productData } = useProductContext()
   const { id } = useParams()
   const [qty, setQty] = useState(1)
   const { addToCart2 } = useCartContext()
@@ -37,7 +38,7 @@ function ProductDetail() {
 
 
 
-  const getReview = productDetailsData?.filter((item) => item?._id === id)[0];
+  const getReview = productData?.filter((item) => item?._id === id)[0];
 
 
   getReview?.Review?.map((rev) => {
@@ -53,27 +54,28 @@ function ProductDetail() {
   }
 
   const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
-    const newFiles = files.slice(0, 3)
-    const newImages = newFiles.map(file => ({
-      id: file.name + file.size,
+    const files = Array.from(event.target.files).slice(0, 3);
+    const newImages = files.map(file => ({
+      id: `${file.name}-${file.size}`,
       url: URL.createObjectURL(file),
-      file: file
+      file
     }));
+
     setSelectedImages(prevImages => [...prevImages, ...newImages]);
     setReviewData(prevDetail => ({
       ...prevDetail,
-      image: [...prevDetail.image, ...newImages.map(image => image.file)]
+      image: [...prevDetail.image, ...newImages.map(img => img.file)]
     }));
   };
 
   const handleImageDelete = (id) => {
-    setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
+    setSelectedImages(prevImages => prevImages.filter(img => img.id !== id));
     setReviewData(prevDetail => ({
       ...prevDetail,
-      image: prevDetail.image.filter(image => image.name + image.size !== id)
+      image: prevDetail.image.filter(file => `${file.name}-${file.size}` !== id)
     }));
   };
+
 
   const submitHandler = async () => {
     if (!reviewData.title || !reviewData.message || !reviewData.rating) {
@@ -118,7 +120,7 @@ function ProductDetail() {
   }
 
 
-  const data = productDetailsData?.filter((item, i) => {
+  const data = productData?.filter((item, i) => {
     return id === item._id
   })[0]
 
@@ -126,7 +128,6 @@ function ProductDetail() {
 
   const filter = data?.ProductDetails?.filter((item) => item.color === color)
   const filter2 = filter?.filter((item) => item._id === size)[0]
-
 
   const [details, setDetails] = useState({
     product_id: "",
@@ -147,7 +148,7 @@ function ProductDetail() {
     setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
 
-  }, [productDetailsData])
+  }, [productData])
 
 
 
@@ -182,23 +183,15 @@ function ProductDetail() {
 
 
             {
-              // productDetailsData?.filter((item) => {
-              //   return item?._id === id
-              // }).map((ite, ind) => (
-              //   <>
-              //     {productDetailId = ite?.ProductDetails[0]?._id}
-              //     {ite?.ProductDetails.filter((ele) => {
-              //       return ele._id === productDetailId
-              //     }).map((element,i) => (
-
+          
               <div className="row details-snippet1">
                 <div className="col-md-7" >
                   <div className="row">
                     <div key="" className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
                       {filter ? filter[0]?.image.map((photo, i) => (
-                        <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
+                        <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
                       )) : Prouctdetail?.image.map((photo, i) => (
-                        <img className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
+                        <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
                     </div>
                     <div className="col-md-10 col-sm-10 order-1 order-sm-2">
                       <div className="product-image">
@@ -232,23 +225,14 @@ function ProductDetail() {
 
                       <div className="select-colors d-flex">
                         <div className="color blue ">
-                          <div className="">
-
-                            {/* {arr.map((color) => {
-                                    if (color === element.color) {
-                                      console.log(color)
-                                    }
-                                  })} */}
+                          <div className="d-flex">
                             {(data?.ProductDetails?.map((photo, i) => (
-                              <>
-                                {photo?.image.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo.color); setSize(photo._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
-                               
-                              </>
+                           
+                                <div key={i}>
+                                {photo?.image?.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo?.color); setSize(photo?._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                                </div>
                             )))}
 
-                            {/* {ite?.ProductDetails.map((forId) => (
-                                    
-                              ))} */}
                           </div>
                         </div>
 
@@ -264,8 +248,8 @@ function ProductDetail() {
                   <div>
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
-                      {filter?.map((item) => (
-                        <span className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`} onClick={() => setSize(item._id)} >
+                      {filter?.map((item, i) => (
+                        <span key={i} className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`} onClick={() => setSize(item?._id)} >
                           {item?.Size}
                         </span>
                       ))}
@@ -365,22 +349,18 @@ function ProductDetail() {
                   {getReview?.Review?.length > 0 ?
                     <div className="customer_reviews text-start">
                       <div className="ratings">
-                        <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i class="bi bi-star-fill" style={{ color: "gold" }}></i></span></h2>
+                        <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i className="bi bi-star-fill" style={{ color: "gold" }}></i></span></h2>
                         <p> {totalReview} Reviews</p>
                       </div>
 
-                      {getReview?.Review?.map((rev) => (
-                        <div className="uploaded_images mt-4">
-
+                      {getReview?.Review?.map((rev, i) => (
+                        <div key={i} className="uploaded_images mt-4">
                           {/* {console.log()} */}
-                          <h5>{rev?.title}</h5><span>{rev?.rating} <i class="bi bi-star-fill" style={{ color: "gold" }}></i></span>
-
-
+                          <h5>{rev?.title}</h5><span>{rev?.rating} <i className="bi bi-star-fill" style={{ color: "gold" }}></i></span>
                           <p> {rev?.message}</p>
                           <div className="d-flex">
-                            {rev?.image?.map((photo) => (
-
-                              <img src={photo?.image_url} width={100} height={150} alt="" />
+                            {rev?.image?.map((photo, i) => (
+                              <img key={i} src={photo?.image_url} width={100} height={150} alt="" />
                             ))}
 
                           </div>
@@ -389,21 +369,7 @@ function ProductDetail() {
                     </div>
                     : <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
                   }
-
                 </div>
-
-
-                {/* {getReview?.Review?.map((rev) => (
-                  <>
-                  <p>{rev.title}</p>
-                  <h5>{rev.message}</h5>
-                  {rev?.image?.map((pic)=>(
-                    <img src={pic?.image_url} width={100} height={150} alt="" />
-                  ))}
-                  </>
-                ))} */}
-
-
 
                 <div className="tab-pane container fade" id="addReview">
                   <div className="review">
@@ -515,7 +481,7 @@ function ProductDetail() {
               },
               1200: {
                 items: 4, // 4 items in desktop view
-              },
+              },   
             }}
           >
             <div className="item">

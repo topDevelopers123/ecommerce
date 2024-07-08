@@ -1,20 +1,21 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../index.context";
 
 
 export const wishlistContext = createContext();
 
 function WishlistProvider({ children }) {
+    const { authorizeToken, API } = useAuthContext()
     const [wishlistData, setWishlistData] = useState(null);
     const [wishlistLength, setWishlistLength] = useState(0)
-    const token = localStorage.getItem("token")
 
 
     const getWishlistData = async () => {
         try {
-            const resp = await axios.get('/wishlist/get', {
-                headers: { 'Authorization': token, },
+            const resp = await axios.get(`${API}/wishlist/get`, {
+                headers: { 'Authorization': authorizeToken, },
             })
             setWishlistData(resp.data.data)
             setWishlistLength(resp.data.data.length)
@@ -26,11 +27,10 @@ function WishlistProvider({ children }) {
 
     const addToWishlist = async (data) => {
        
-        console.log(data);
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post(`/wishlist/add`, data, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const resp = await axios.post(`${API}/wishlist/add`, data, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -50,8 +50,8 @@ function WishlistProvider({ children }) {
     const deleteWishlistProduct = async(id) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.delete(`/wishlist/delete/${id}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const resp = await axios.delete(`${API}/wishlist/delete/${id}`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -68,8 +68,11 @@ function WishlistProvider({ children }) {
     }
 
     useEffect(() => {
-        getWishlistData()
-    }, [])
+        if (authorizeToken){
+            
+            getWishlistData()
+        }
+    }, [authorizeToken])
 
     return (
         <wishlistContext.Provider value={{ wishlistData, addToWishlist, wishlistLength, deleteWishlistProduct }}>
