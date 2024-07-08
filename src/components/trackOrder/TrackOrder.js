@@ -1,8 +1,11 @@
 import React from 'react'
 import './TrackOrder.css'
+import { Link } from 'react-router-dom'
+import { useOrderContext } from '../../Context/index.context'
 
 function TrackOrder() {
-
+    const { orderDetail } = useOrderContext()
+    console.log(orderDetail)
 
     return (
         <div>
@@ -11,6 +14,7 @@ function TrackOrder() {
                     <article className="card">
                         <header className="card-header"> My Orders / Tracking </header>
                         <div className="card-body">
+
                             <h6>Order ID: OD45345345435</h6>
                             <article className="card">
                                 <div className="card-body row">
@@ -28,7 +32,38 @@ function TrackOrder() {
                             </div>
                             <hr />
 
-                            <div className="checkout_total_box w-50 ms-auto me-auto ">
+                            <div className='order_table'>
+                                <table class="table table-info table-striped table-responsive ">
+                                    <thead >
+                                        <tr >
+                                            <th className='text-white bgprimary' scope="col">Product Image</th>
+                                            <th className='text-white bgprimary' scope="col">Product Title</th>
+                                            <th className='text-white bgprimary' scope="col">Price</th>
+                                            <th className='text-white bgprimary' scope="col">Quantity</th>
+                                            <th className='text-white bgprimary' scope="col">Status</th>
+                                            <th className='text-white bgprimary' scope="col">More Info.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {orderDetail?.UserOrder?.map((item, i) => (
+                                            <tr>
+                                                {console.log(item, "here")}
+                                                <td><img width={100} src={item?.image} alt='product_img' /></td>
+                                                <td>{item?.Product[0]?.title}</td>
+                                                <td>{item?.ProductDetails[0]?.sellingPrice}</td>
+                                                <td>{item.quantity}</td>
+                                                <td>{item.status}</td>
+                                                <td className='text-success'>View More</td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            
+
+                            <div className="submitBtn w-50 ms-auto me-auto ">
                                 <button>Continue Shopping</button>
                             </div>
                         </div>

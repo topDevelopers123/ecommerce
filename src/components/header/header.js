@@ -69,7 +69,7 @@ function Header() {
               </button>
 
               <div className={`serach_preiew bg-white  rounded shadow ${flag3 ? "p-3":"display:none"}`}>
-                  {Searchdata?.map((item, i) => <p className="p-3" key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchdata(null)}} >{item?.title}</p>)   }  
+                  {Searchdata?.map((item, i) => <p className="px-3 py-1" key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchdata(null)}} >{item?.title}</p>)   }  
                   
                 </div>             
             </div>
@@ -77,10 +77,6 @@ function Header() {
                     
           <div className={`col-lg-3 col-md-3 col-sm-4 col-5 d-flex justify-content-center nav_icons align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2  right_icons_box ${flag ? "d-none " : "d-flex"}`}>
             <div className="d-flex navbar_right_icon icons_div justify-content-center  w-100 ">
-            
-
-            
-
                 <div className=" d-flex  text-center position-relative align-items-center">
                   <Link to="/wishlist" className="text-center">
                   {" "}
@@ -116,12 +112,9 @@ function Header() {
               </div>
             </div>
           </div>
-
-
         </div>
       </nav>
         <div className={`profile_main_box p-3 shadow-lg ${flag2 ? "d-block" : "d-none"}`}>
-
           <h6>Welcome</h6>
           <p>To access account and manage orders.</p>
           <div className="d-flex justify-content-around border-bottom">
@@ -132,9 +125,7 @@ function Header() {
             <Link to=""><p>Orders <i className="bi bi-chevron-right"></i></p></Link>
             <Link to=""><p>Wishlist <i className="bi bi-chevron-right"></i></p></Link>
             <Link to=""><p>Saved Addresses <i className="bi bi-chevron-right"></i></p></Link>
-            
           </div>
-
         </div>
         <CategoryPage/>
       </header>

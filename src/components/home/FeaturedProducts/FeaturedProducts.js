@@ -78,6 +78,10 @@ function FeaturedProducts() {
                                     alt={item?.product_title}
                                     onClick={() => productDetailsPage(item?._id)}
                                 />
+                                <h5 className="card-title mt-2">{item.title}</h5>
+                                <p className="pricing">
+                                    ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
+                                </p>
                             </div>
                         ))}
                     </OwlCarousel>
