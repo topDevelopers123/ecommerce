@@ -35,7 +35,7 @@ function CategoryPage() {
                             {category?.map((maincategory, i) => (
                                 <div key={i} onClick={(e) => MainCategorySearchHandler(e, maincategory.category_name)} className="mt-3  text-center col-4">
 
-                                    <div className="mens_cate ">
+                                    <div className="mens_cate flex align-items-center flex-column">
 
                                         <img
                                             src={maincategory.image.image_url}

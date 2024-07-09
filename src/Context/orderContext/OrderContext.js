@@ -24,6 +24,7 @@ function OrderContextProvider({ children }) {
 
             toast.dismiss(toastId);
             toast.success(resp.data.message)
+            window.location.href = "/thankyou"
            
 
         } catch (error) {

@@ -192,7 +192,7 @@ function Products() {
             <div className="col-12 d-flex  poducts_filter_main_div   col-12 d-flex ">
               <div className={flag ? "col-lg-3 col-md-12 col-sm-12 col-12 hide_filter filter_mini_div " : "col-lg-3 col-md-12 col-sm-12 col-12  filter_mini_div  show_filters"}>
                 <div className="d-flex p-2 ">
-                  <div className="w-100 range_div">
+                  <div className="w-50 range_div">
                     <h4>Filters</h4>
                     <input
                       type="range"
