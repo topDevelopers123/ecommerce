@@ -352,9 +352,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={() => singleProductOrder(
-                                                    window.location.href = "/thankyou"
-                                                )}>Confirm Order</button>
+                                                <button onClick={singleProductOrder}>Confirm Order</button>
 
                                             </div>
 
