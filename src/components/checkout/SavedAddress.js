@@ -14,7 +14,7 @@ import { useUserAddressContext } from '../../Context/index.context';
 
 function SavedAddress() {
 
-    const { UserAddressData, addNewAddress, updateOldAddress } = useUserAddressContext();
+    const { UserAddressData, addNewAddress, updateOldAddress, deleteAddress } = useUserAddressContext();
     const [modalVisible, setModalVisible] = useState(false);
     const [stateid, setstateid] = useState(0);
     const [countryid, setCountryid] = useState(0);
@@ -100,6 +100,10 @@ function SavedAddress() {
         }
     }
 
+    const handleDeleteAddress = async (id) => {
+        await deleteAddress(id);
+    };
+
     return (
         <div>
             <div className='p-5'>
@@ -126,13 +130,29 @@ function SavedAddress() {
                                                 <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
-                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}>Edit</span>
+                                                <span className='delAdd editAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}><i class="bi bi-pencil-square"></i>Edit</span>
                                             </div>
                                         </label>
+
+                                        <span
+                                            className='delAddBtn'
+                                            onClick={() => handleDeleteAddress(item?._id)}>
+                                            <i class="bi bi-trash"></i>Delete
+                                        </span>
+
                                     </div>
                                     <hr />
                                 </div>
                             ))}
+
+
+
+
+
+
+
+
+
 
 
                             <div className='p-2'>
