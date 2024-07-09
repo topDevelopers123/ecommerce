@@ -37,7 +37,7 @@ function Header() {
   return (
     <>
     <header>
-      <nav className="navbar  navbar-expand-xl navbar-dark sticky-top d-flex p-0">
+      <nav className="navbar  navbar-expand-xl navbar-dark d-flex p-0">
         <div className="container-fluid p-0 m-0 w-100 h-100 ">
           <div className={`col-lg-2 col-md-2 col-sm-2 ${flag ? "col-2" : "col-2"} h-100  d-flex justify-content-center align-items-center`}>
             <Link to="/" className="navbar-brand ps-md-5 ps-0">
