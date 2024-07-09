@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuthContext } from "../../../Context/index.context"; 
 
 function ShortBanners() {
+    const { API } = useAuthContext()
     const [shortBanner, setShortBanner] = useState(null);
+    
     const getbannerData = async () => {
         try {
            
-            const resp2 = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/shortBanner/get'
+            const resp2 = await axios.get(`${API}/shortBanner/get`
             )
             setShortBanner(resp2.data.data)
         } catch (error) {
