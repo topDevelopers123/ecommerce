@@ -47,9 +47,9 @@ function ProductDetail() {
   })
   
 
-  const redirectHandler = (product_id, id) => {
+  const redirectHandler = (product_id, id, image) => {
     
-    navigate(`/oldAddress/${product_id}/${id}`)
+    navigate(`/oldAddress/${product_id}/${id}?image=${image}&&qty=${qty}`)
     window.scrollTo(0, 0);
   }
 
@@ -131,8 +131,9 @@ function ProductDetail() {
 
   const [details, setDetails] = useState({
     product_id: "",
-    productDetails: "",
+    productDetails: size,
     quantity: null,
+    image:""
   })
 
   const [wishDetails, setWishDetails] = useState({
@@ -147,6 +148,7 @@ function ProductDetail() {
     setSize(Prouctdetail?._id)
     setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
+    
 
   }, [productData])
 
@@ -154,9 +156,14 @@ function ProductDetail() {
 
   // console.log(details);
 
-  const addToCartHandler = () => {
-
-    addToCart2(details)
+  const addToCartHandler = (product_id, productDetails, quantity, image) => {
+    // console.log(product_id, product_detail_id, qty, image);
+    const obj = {product_id,
+      productDetails,
+      quantity,
+      image
+    }
+    addToCart2(obj)
   }
 
   const wishListHandler = () => {
@@ -251,7 +258,9 @@ function ProductDetail() {
                       {filter?.map((item, i) => (
                         <span key={i} className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`} onClick={() => setSize(item?._id)} >
                           {item?.Size}
+                         
                         </span>
+                        
                       ))}
                     </div>
                   </div>
@@ -290,14 +299,16 @@ function ProductDetail() {
 
                   <div className="row">
                     <div className="d-flex">
-                      <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(); setDetails({ ...details, product_id: data?._id, productDetails: filter2?._id, quantity: qty }) }}>
+                      <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(data?._id, filter2?._id, qty, filter[0]?.image[0]?.image_url) }}>
 
                         Add to basket
                       </button>
 
-                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id,filter2?._id)}>
+                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id, filter2?._id, filter[0]?.image[0]?.image_url )}>
                         Buy Now
                       </button>
+                    
+                      
                      
                       
                     </div>

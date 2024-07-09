@@ -13,7 +13,7 @@ import "react-country-state-city/dist/react-country-state-city.css";
 
 import toast from 'react-hot-toast';
 import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext } from '../../Context/index.context';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import ProductDetail from '../productDetails/productDetail';
 
 
@@ -28,7 +28,11 @@ function OldAddress() {
     const [countryid, setCountryid] = useState(0);
     const { productDetailsData } = useProductDetailsContext()
     const { product_id, id } = useParams()
-
+    const { search } = useLocation()
+    const urlParams = new URLSearchParams(search);
+    const imageUrl = urlParams.get('image')
+    const qty = urlParams.get('qty')
+  
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
     const [charges, setCharges] = useState(0)
@@ -62,10 +66,12 @@ function OldAddress() {
         product_detail_id: "",
         user_id: "",
         charges: "",
-        payment_type: "cash",
+        payment_type: "COD",
         address_id: "",
         payment_status: "pending",
-        status: "pending"
+        status: "pending",
+        image:imageUrl,
+        quantity:qty
     })
 
 
@@ -92,7 +98,7 @@ function OldAddress() {
 
 
     let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
-    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index] }))
+    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index], image: i?.image, quantity:i?.quantity}))
 
 
 
@@ -255,26 +261,27 @@ function OldAddress() {
                                 <div className="wrapper">
                                     {id ?
                                         <>
-
-                                            <div className="group">
-                                                <table>
-                                                    <tbody>
-
-                                                        <tr className=''>
-                                                            <td className="item-img">
-                                                                <img src={product_detail_Filter?.image[0]?.image_url} />
+                                            
+                                    <div className="group">
+                                        <table>
+                                            <tbody>
+                                               
+                                                    <tr className=''>
+                                                        <td className="item-img">
+                                                            <img src={imageUrl} />
+                                                        </td>
+                                                       
+                                                        <td className="item-details">
+                                                            <span className="item-title">{product_id_filter?.title}</span>
+                                                          
+                                                        </td>
+                                                        <td className="item-details">
+                                                            <span className="item-qty">Quantity : {qty}</span>
                                                             </td>
-                                                            <td className="item-details">
-                                                                <span className="item-title">{product_id_filter?.title}</span>
+                                                        </tr> 
 
-                                                            </td>
-                                                            <td className="item-details">
-                                                                <span className="item-qty">Quantity : {product_detail_Filter?.selling_quantity}</span>
-
-
-                                                            </td>
-                                                            <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
-                                                        </tr>
+                                       
+                                               
 
 
 
@@ -287,7 +294,7 @@ function OldAddress() {
                                                 <tbody>
                                                     <tr>
                                                         <td className="item-qty">Subtotal</td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice}</td>
+                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice * qty}</td>
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Shipping</td>
@@ -295,7 +302,7 @@ function OldAddress() {
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Total</td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice + singleProductData?.charges}</td>
+                                                        <td className="item-price">₹{(product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -345,9 +352,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={() => singleProductOrder(
-                                                    window.location.href = "/thankyou"
-                                                )}>Confirm Order</button>
+                                                <button onClick={singleProductOrder}>Confirm Order</button>
 
                                             </div>
 
