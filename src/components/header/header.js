@@ -5,7 +5,7 @@ import logo2 from './header_images/FINAL LOGO white with Drop Shadow.png'
 import "./header.css";
 import CategoryPage from "./CategoryPage"
 import { useCartContext, useProductContext, useWishlistContext } from "../../Context/index.context";
-import { useToaster } from "react-hot-toast";
+import toast, { useToaster } from "react-hot-toast";
  
 function Header() {
   const { wishlistLength } = useWishlistContext()
@@ -36,8 +36,8 @@ function Header() {
 
   const logout = ()=>{
       localStorage.clear()
-    naviate('/')
-      
+      toast.success("Logout Successfully !")
+     window.location.href = "/"      
   }
 
 
