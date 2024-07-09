@@ -61,7 +61,8 @@ function OldAddress() {
         address_id: "",
         payment_type: "COD",
         payment_status: "pending",
-        status: "pending"
+        status: "pending",
+        razorpay_payment_id:""
     })
 
 
@@ -75,7 +76,8 @@ function OldAddress() {
         payment_status: "pending",
         status: "pending",
         image:imageUrl,
-        quantity:qty
+        quantity:qty,
+        razorpay_payment_id: ""
     })
 
 
@@ -129,8 +131,17 @@ function OldAddress() {
 
     }, [cartData, radio])
 
-    const checkOut = () => {
+    const checkOut = (amount) => {
+
+        if (finalData.payment_type === "online") {
+            HandlePayement(amount)
+        }
+        else {
             addOrder(finalData)
+        }
+
+            
+
     }
 
     total = getTotel + localCharges
@@ -222,7 +233,7 @@ function OldAddress() {
                     razorpay_payment_id: response.razorpay_payment_id,
                     razorpay_signature: response.razorpay_signature
                 };
-                console.log(paymentData)               
+                addOrder({ ...finalData, payment_status: "success", razorpay_payment_id:paymentData?.razorpay_payment_id })              
             },
             prefill: {
                 name: 'Your Name',
@@ -236,15 +247,63 @@ function OldAddress() {
                 color: '#3399cc'
             }
         };
+        // console.log("Done");
 
         const rzp1 = new window.Razorpay(options);
         rzp1.open();
     };
 
-    const singleProductOrder = () => {
-        console.log(singleProductData)
+
+
+    const HandlePayementForByNow = async (amount) => {
+
+        const newData = {
+            amount
+        }
+        const order = await axios.post(`${API}/order/payement`, newData)
+
+        const options = {
+            key: process.env.REACT_APP_KEY,
+            amount: order.data.amount,
+            currency: order.data.currency,
+            name: 'Mayavi Fashion',
+            description: 'Test Transaction',
+            image: logo,
+            order_id: order.data.id,
+            handler: async function (response) {
+                console.log(response)
+                const paymentData = {
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature
+                };
+                addSingleOrder({ ...singleProductData, payment_status: "success", razorpay_payment_id: paymentData?.razorpay_payment_id })
+            },
+            prefill: {
+                name: 'Your Name',
+                email: 'youremail@example.com',
+                contact: '9999999999'
+            },
+            notes: {
+                address: 'Razorpay Corporate Office'
+            },
+            theme: {
+                color: '#3399cc'
+            }
+        };
+        // console.log("Done");
+
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
+    };
+
+
+    
+    const singleProductOrder = (amount) => {
+        console.log(singleProductData, amount);
+        
         if (singleProductData.payment_type === "online") {
-            HandlePayement()
+            HandlePayementForByNow(amount)
         }
         else {
             addSingleOrder(singleProductData);
@@ -340,7 +399,7 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row">
                                                                 <div className="select-icon">
-                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setSingleProductData({ ...singleProductData, payment_type: e.target.value }); HandlePayement((product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges)}} />
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setSingleProductData({ ...singleProductData, payment_type: e.target.value }); }} />
                                                                     <label htmlFor="radio1"></label>
                                                                 </div>
                                                                 <div className="select-txt">
@@ -373,7 +432,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={singleProductOrder}>Confirm Order</button>
+                                                <button onClick={() => singleProductOrder((product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges)}>Confirm Order</button>
                                             </div>
                                         </>                                        
                                         :
@@ -430,11 +489,11 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row">
                                                                 <div className="select-icon">
-                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setFinalData({ ...finalData, payment_type: e.target.value }); HandlePayement(total) }} />
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setFinalData({ ...finalData, payment_type: e.target.value });  }} />
                                                                     <label htmlFor="radio1"></label>
                                                                 </div>
                                                                 <div className="select-txt">
-                                                                    <p className="pymt-type-name" onClick={ HandlePayement}  >Online Payment</p>
+                                                                    <p className="pymt-type-name"   >Online Payment</p>
 
                                                                 </div>
                                                                 <div className="select-logo">
@@ -466,7 +525,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={checkOut}>Confirm Order</button>
+                                                <button onClick={() => checkOut(total)}>Confirm Order</button>
 
                                             </div>
                                         </>}
