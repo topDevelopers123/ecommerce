@@ -3,16 +3,19 @@ import toast from "react-hot-toast";
 import { createContext,  useEffect,  useState } from "react";
 import { useAuthContext } from "../index.context";
 
+
 export const OrderContext = createContext();
 
 function OrderContextProvider({ children }) {
     const { API, authorizeToken } = useAuthContext()
+ 
     const [disable, setDisable] = useState(false)
     const [orderDetail, setOrderDetail] = useState(null)
     const token = localStorage.getItem("token")
 
     // console.log(authorizeToken)    
     const addOrder = async (data) => {
+     
         
         setDisable(true)
         const toastId = toast.loading('Loading...');
@@ -24,6 +27,8 @@ function OrderContextProvider({ children }) {
 
             toast.dismiss(toastId);
             toast.success(resp.data.message)
+       
+            window.location.href = "/thankyou"
            
 
         } catch (error) {
@@ -36,12 +41,12 @@ function OrderContextProvider({ children }) {
     }
 
     const addSingleOrder = async (data) => {
-
+        
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
 
-            const resp = await axios.post('https://e-commerce-backend-4tmn.onrender.com/api/v1/order/buynow', data, {
+            const resp = await axios.post(`${API}/order/buynow`, data, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
 

@@ -36,6 +36,7 @@ function Header() {
 
   return (
     <>
+<<<<<<< HEAD
       <header>
         <nav className="navbar  navbar-expand-xl navbar-dark sticky-top d-flex p-0">
           <div className="container-fluid p-0 m-0 w-100 h-100 ">
@@ -55,6 +56,27 @@ function Header() {
                     type="search"
                     placeholder="Search here.."
                     aria-label="Search"
+=======
+    <header>
+      <nav className="navbar  navbar-expand-xl navbar-dark d-flex p-0">
+        <div className="container-fluid p-0 m-0 w-100 h-100 ">
+          <div className={`col-lg-2 col-md-2 col-sm-2 ${flag ? "col-2" : "col-2"} h-100  d-flex justify-content-center align-items-center`}>
+            <Link to="/" className="navbar-brand ps-md-5 ps-0">
+              {/* Mayavi */}
+              <img src={logo2}></img>
+            </Link>
+          </div>
+       
+           <div className={`col-lg-7  ${flag ? "col-md-10 col-sm-10 col-10 rounded" : "col-5"} d-flex justify-content-center align-items-center h-100  `  }>
+            <div className="nav_right_div d-flex h-100 align-items-center justify-content-center ">
+              <div className={`search_Bar    ${flag ? " d-lg-flex d-md-flex d-sm-flex " : "d-none"} w-75`}>
+            
+              <input
+                className="form-control w-100"
+                type="search"
+                placeholder="Search here.."
+                aria-label="Search" 
+>>>>>>> origin/main
                     value={search}
                     onChange={handleSearch}
                   />

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TrackOrder.css'
 import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
+import Trackmodal from './Trackmodal'
 
 function TrackOrder() {
     const { orderDetail } = useOrderContext()
+    const [toggle,setToggle]= useState(false)
     console.log(orderDetail)
 
     return (
@@ -33,7 +35,7 @@ function TrackOrder() {
                             <hr />
 
                             <div className='order_table'>
-                                <table class="table table-info table-striped table-responsive ">
+                                <table class="table table-secondary table-striped table-responsive ">
                                     <thead >
                                         <tr >
                                             <th className='text-white bgprimary' scope="col">Product Image</th>
@@ -48,12 +50,12 @@ function TrackOrder() {
                                         {orderDetail?.UserOrder?.map((item, i) => (
                                             <tr>
                                                 {console.log(item, "here")}
-                                                <td><img width={100} src={item?.image} alt='product_img' /></td>
+                                                <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
                                                 <td>{item?.Product[0]?.title}</td>
                                                 <td>{item?.ProductDetails[0]?.sellingPrice}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>{item.status}</td>
-                                                <td className='text-success'>View More</td>
+                                                <td className='text-success' onClick={()=>setToggle(true)} >View More</td>
                                             </tr>
                                         ))}
 
@@ -61,6 +63,8 @@ function TrackOrder() {
                                 </table>
                             </div>
 
+
+                           
                             
 
                             <div className="submitBtn w-50 ms-auto me-auto ">
@@ -70,6 +74,7 @@ function TrackOrder() {
                     </article>
                 </div>
             </section>
+            {toggle ? <Trackmodal setToggle={setToggle}  /> : null}
         </div>
     )
 }

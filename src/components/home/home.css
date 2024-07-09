@@ -348,6 +348,10 @@
 
 .tp_area .card-body .card-title {
     color: #4D869C;
+    white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
 }
 
 .tp_area .card-body .card-text {
@@ -371,6 +375,7 @@
 .card-body button {
     font-size: 12px;
     width: 100%;
+    margin: 10px;
 }
 
 .pulse {

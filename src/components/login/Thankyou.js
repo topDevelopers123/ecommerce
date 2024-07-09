@@ -16,7 +16,7 @@ function Thankyou() {
               <h3>Thank you for shopping with us ..!</h3>
               <p>Your order has been placed successfully !</p>
               <div className="submitBtn w-50 ms-auto me-auto ">
-                <Link to="/products"><button>Continue Shopping</button></Link>
+                <Link to="/"><button>Continue Shopping</button></Link>
               </div>
             </div>
           </div>
