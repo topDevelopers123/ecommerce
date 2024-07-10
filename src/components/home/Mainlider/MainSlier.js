@@ -24,7 +24,7 @@ function MainSlier() {
   return (
     <div>
           {/* Slider section start  */}
-          <section className="main_slider mt-3">
+          <section className="main_slider ">
               <div
                   id="carouselExampleControls"
                   className="carousel slide"

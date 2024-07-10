@@ -312,7 +312,7 @@ function OldAddress() {
 
     return (
         <div>
-            <div className='p-5'>
+            <div className='py-5 px-2 p-md-5'>
                 <div className='container'>
                     <div className='row'>
                         <h5>Select Your Address</h5>

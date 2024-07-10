@@ -3,11 +3,14 @@ import './TrackOrder.css'
 import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
+import Invoice from './Invoice'
 
 function TrackOrder() {
     const { orderDetail } = useOrderContext()
-    const [toggle,setToggle]= useState(false)
-    console.log(orderDetail)
+    const [toggle, setToggle] = useState(false)
+
+    const [invoice, setInvoice] = useState(false)
+    const [invoiceData,setInvoiceData] = useState([])
 
     return (
         <div>
@@ -35,37 +38,45 @@ function TrackOrder() {
                             <hr />
 
                             <div className='order_table'>
-                                <table class="table table-secondary table-striped table-responsive ">
-                                    <thead >
-                                        <tr >
-                                            <th className='text-white bgprimary' scope="col">Product Image</th>
-                                            <th className='text-white bgprimary' scope="col">Product Title</th>
-                                            <th className='text-white bgprimary' scope="col">Price</th>
-                                            <th className='text-white bgprimary' scope="col">Quantity</th>
-                                            <th className='text-white bgprimary' scope="col">Status</th>
-                                            <th className='text-white bgprimary' scope="col">More Info.</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {orderDetail?.UserOrder?.map((item, i) => (
-                                            <tr>
-                                                {console.log(item, "here")}
-                                                <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
-                                                <td>{item?.Product[0]?.title}</td>
-                                                <td>{item?.ProductDetails[0]?.sellingPrice}</td>
-                                                <td>{item.quantity}</td>
-                                                <td>{item.status}</td>
-                                                <td className='text-success' onClick={()=>setToggle(true)} >View More</td>
+                                <div className='table-responsive'>
+                                    <table class="table table-secondary table-striped  ">
+                                        <thead >
+                                            <tr >
+                                                <th className='text-white bgprimary' scope="col">Product Image</th>
+                                                <th className='text-white bgprimary' scope="col">Product Title</th>
+                                                <th className='text-white bgprimary' scope="col">Price</th>
+                                                <th className='text-white bgprimary' scope="col">Quantity</th>
+                                                <th className='text-white bgprimary' scope="col">Status</th>
+                                                <th className='text-white bgprimary' scope="col">More Info.</th>
                                             </tr>
-                                        ))}
+                                        </thead>
+                                        <tbody>
+                                            {orderDetail?.UserOrder?.map((item, i) => (
+                                                <>
+                                                    <tr>
 
-                                    </tbody>
-                                </table>
+                                                        <td><img width={100} src={item?.image} style={{ height: "60px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' /></td>
+                                                        <td>{item?.Product[0]?.title.slice(0,15)}...</td>
+                                                        <td>{item?.ProductDetails[0]?.sellingPrice}</td>
+                                                        <td>{item.quantity}</td>
+                                                        <td>{item.status}</td>
+                                                        <td className='text-success' onClick={() => setToggle(true)} >View More</td>
+                                                    </tr>
+                                                    <div className='flex w-full my-2 gap- justify-between items-center'>
+                                                        <button>Return</button>
+                                                        <button onClick={() => { setInvoice(!invoice); setInvoiceData (item)}}>Invoice</button>
+                                                    </div>
+                                                </>
+                                            ))}
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
 
-                           
-                            
+
+
 
                             <div className="submitBtn w-50 ms-auto me-auto ">
                                 <button>Continue Shopping</button>
@@ -74,7 +85,10 @@ function TrackOrder() {
                     </article>
                 </div>
             </section>
-            {toggle ? <Trackmodal setToggle={setToggle}  /> : null}
+            {toggle ? <Trackmodal setToggle={setToggle} /> : null}
+            {invoice ? <Invoice setInvoice={setInvoice} data={invoiceData} /> : null}
+
+
         </div>
     )
 }

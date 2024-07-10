@@ -3,6 +3,7 @@ import OldAddress from "../checkout/OldAddress";
 import TrackOrder from "../trackOrder/TrackOrder";
 import Wishlist from "../wishlist/Wishlist";
 import New_password from "../login/New_password"
+import Invoice from "../trackOrder/Invoice";
 
 export const PrivateRoutes = [
     {
@@ -33,6 +34,11 @@ export const PrivateRoutes = [
     {
         path: "/newPassword",
         element: <New_password />
-    }
-    ,
+    },
+    
+    {
+        path: "/invoice",
+        element: <Invoice />
+    },
+
 ]
