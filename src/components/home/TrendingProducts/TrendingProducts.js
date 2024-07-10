@@ -17,7 +17,6 @@ function TrendingProducts() {
     }
 
     const addtocartHandler = (product_id, productDetails_id, image) => {
-<<<<<<< HEAD
         if (token === null) {
 
             navigate(`/login`);
@@ -25,9 +24,6 @@ function TrendingProducts() {
             return
         }
         
-=======
-
->>>>>>> gyanendra
         addToCart(product_id, productDetails_id, image)
     }
 
