@@ -11,26 +11,30 @@ import ProductProvider from "./Context/productContext/ProductContext";
 import UserAddressProvider from "./Context/userAddressContext/UserAddressContext";
 import ProductDetailsProvider from "./Context/productDetailsContext/ProductDetailsContext";
 import OrderContextProvider from "./Context/orderContext/OrderContext";
+import ContactUsProvider from "./Context/contactUsContext/ContactUsContext";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <CategoryContextProvider>
-        <ProductProvider>
-          <ProductDetailsProvider>
-            <UserAddressProvider>
-              <WishlistProvider>
-                <CartProvider>
-                  <OrderContextProvider>
-                  <App />
-                  </OrderContextProvider>
-                </CartProvider>
-              </WishlistProvider>
-            </UserAddressProvider>
-          </ProductDetailsProvider>
-        </ProductProvider>
-      </CategoryContextProvider>
+      <ContactUsProvider>
+        <CategoryContextProvider>
+          <ProductProvider>
+            <ProductDetailsProvider>
+              <UserAddressProvider>
+                <WishlistProvider>
+                  <CartProvider>
+                    <OrderContextProvider>
+                      <App />
+                    </OrderContextProvider>
+                  </CartProvider>
+                </WishlistProvider>
+              </UserAddressProvider>
+            </ProductDetailsProvider>
+          </ProductProvider>
+        </CategoryContextProvider>
+      </ContactUsProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );
