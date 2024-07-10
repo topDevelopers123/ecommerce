@@ -126,7 +126,6 @@ function OldAddress() {
 
 
     useEffect(() => {
-
         setFinalData({ ...finalData, cartId: cartId, address_id: radio })
         setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
 
@@ -148,7 +147,6 @@ function OldAddress() {
     total = getTotel + localCharges
 
     const newAddress = () => {
-
         setModalVisible(true);
     };
 
@@ -168,19 +166,14 @@ function OldAddress() {
             return item?._id === id
         })
         setUpdateAddress(get);
-        // console.log(get, id);
     }
 
     const updateAddressHandle = (id) => {
-
-        // console.log(id);
-        // console.log(updateAddress?.id);
         updateOldAddress(data, id);
     }
 
     const radioHandler = (e, value) => {
         setData({ ...data, addressType: value })
-
     }
 
     const createNewAddress = (val) => {
