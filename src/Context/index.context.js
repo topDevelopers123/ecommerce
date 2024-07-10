@@ -6,7 +6,8 @@ import { CartContext } from "./cartContext/CartContext";
 import { ProductContext } from "./productContext/ProductContext";
 import { UserAddressContext } from "./userAddressContext/UserAddressContext";
 import { ProductDetailsContext } from "./productDetailsContext/ProductDetailsContext";
-import { OrderContext } from "./orderContext/OrderContext"; 
+import { OrderContext } from "./orderContext/OrderContext";
+import { ContactUsContext } from "./contactUsContext/ContactUsContext";
 
 
 
@@ -19,3 +20,4 @@ export const useProductContext = () => useContext(ProductContext);
 export const useProductDetailsContext = () => useContext(ProductDetailsContext)
 export const useUserAddressContext = () => useContext(UserAddressContext);
 export const useOrderContext = () => useContext(OrderContext);
+export const useContactUsContext = () => useContext(ContactUsContext);

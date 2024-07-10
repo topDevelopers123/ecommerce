@@ -14,7 +14,7 @@ function App() {
     <>
       <Toaster />
       <BrowserRouter>
-       <MainRoutes />
+        <MainRoutes />
       </BrowserRouter>
     </>
   );

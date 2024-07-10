@@ -68,7 +68,7 @@ function TrackOrder() {
                             
 
                             <div className="submitBtn w-50 ms-auto me-auto ">
-                                <button>Continue Shopping</button>
+                                <Link to="/"> <button>Continue Shopping</button></Link>
                             </div>
                         </div>
                     </article>
