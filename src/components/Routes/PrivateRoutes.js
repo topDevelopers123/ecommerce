@@ -2,12 +2,8 @@ import Cart from "../Cart/Cart";
 import OldAddress from "../checkout/OldAddress";
 import TrackOrder from "../trackOrder/TrackOrder";
 import Wishlist from "../wishlist/Wishlist";
-<<<<<<< HEAD
-
-=======
 import New_password from "../login/New_password"
 import SavedAddress from "../checkout/SavedAddress";
->>>>>>> gyanendra
 
 export const PrivateRoutes = [
     {
