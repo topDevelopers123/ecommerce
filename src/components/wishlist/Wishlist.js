@@ -5,19 +5,39 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCartContext, useWishlistContext } from '../../Context/index.context';
 
 function Wishlist() {
+<<<<<<< HEAD
+    const { wishlistData, deleteWishlistProduct } = useWishlistContext()
+    const { addToCart } = useCartContext()
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+=======
     const { wishlistData, deleteWishlistProduct } = useWishlistContext();
     const { addToCart } = useCartContext();
     const navigate = useNavigate();
 
+>>>>>>> gyanendra
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     };
 
     const addToCartHandler = (product_id, productDetails) => {
+<<<<<<< HEAD
+        if (token === null) {
+
+            navigate(`/login`);
+            window.scrollTo(0, 0);
+            return
+        }
+           const quantity = 1
+        addToCart(product_id, productDetails, quantity)
+    }
+
+=======
         const quantity = 1;
         addToCart(product_id, productDetails, quantity);
     };
+>>>>>>> gyanendra
 
     return (
         <div>

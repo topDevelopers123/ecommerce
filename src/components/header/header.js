@@ -1,4 +1,17 @@
 
+<<<<<<< HEAD
+  const [flag, setFlag] = useState(false)
+  const [flag2, setFlag2] = useState(false)
+  const [flag3,setflag3] = useState(false)
+  const [Searchdata,setSearchdata]= useState([])
+  const [search,setSearch]= useState("")
+  const token = localStorage.getItem("token")
+  const {  productData, setProductData } = useProductContext() 
+  const navigate = useNavigate() 
+  const show_searchBar = () => {
+    flag ? setFlag(false) : setFlag(true)
+  }
+=======
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo2 from './header_images/FINAL LOGO white with Drop Shadow.png';
@@ -34,17 +47,53 @@ function Header() {
   const showSearchBar = () => {
     setFlag(!flag);
   };
+>>>>>>> gyanendra
 
   const toggleFlag2 = () => {
     setFlag2(!flag2);
   };
 
+<<<<<<< HEAD
+  const wishListHandler = () =>{
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
+
+    naviate('/wishlist')
+ 
+  }
+  const addToCartHandler = () =>{
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
+
+    naviate('/cart')
+ 
+  }
+
+
+
+  
+
+  const logout = ()=>{
+      localStorage.clear()
+      toast.success("Logout Successfully !")
+     window.location.href = "/"      
+  }
+=======
   const handleSearch = (e) => {
     const { value } = e.target;
     setSearch(value);
     const filter = value && productData && productData.filter((item) => item.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')));
     setSearchData(filter || []);
   };
+>>>>>>> gyanendra
 
   const logout = () => {
     localStorage.clear();
@@ -93,6 +142,18 @@ function Header() {
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
+          </div>
+                    
+          <div className={`col-lg-3 col-md-3 col-sm-4 col-5 d-flex justify-content-center nav_icons align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2  right_icons_box ${flag ? "d-none " : "d-flex"}`}>
+            <div className="d-flex navbar_right_icon icons_div justify-content-center  w-100 ">
+                <div className=" d-flex  text-center position-relative align-items-center" onClick={() => wishListHandler()}>
+                  <Link to="" className="text-center" >
+                  {" "}
+                  <i className="bi bi-suit-heart"></i>
+                  <span>Wishlist</span>
+                </Link>
+=======
 
             <div className={`col-lg-3 col-md-3 col-sm-4 col-5 d-flex justify-content-center nav_icons align-items-center h-100 right_icons_box ${flag ? "d-none" : "d-flex"}`}>
               <div className="d-flex navbar_right_icon icons_div justify-content-center w-100">
@@ -101,15 +162,37 @@ function Header() {
                     <i className="bi bi-suit-heart"></i>
                     <span>Wishlist</span>
                   </Link>
+>>>>>>> gyanendra
                   <div className="para_cart d-flex justify-content-center align-items-center">
                     <p className="text-light m-0">{wishlistLength}</p>
                   </div>
                 </div>
 
+<<<<<<< HEAD
+                <div className="d-flex  position-relative text-center  justify-content-center  align-items-center" onClick={() => addToCartHandler()}>
+                <Link to="" className="text-center">
+                   <i className="bi bi-cart3"></i>
+                   <span>Bag</span>
+                </Link>
+                <div className="para_cart d-flex justify-content-center align-items-center">
+                    <p className="text-light m-0">{cartLength}</p>
+                </div>
+              </div>
+
+                <div className="d-flex  position-relative  text-center justify-content-center   align-items-center" >
+                {flag2 ? 
+                    <Link to="#" onClick={toggleFlag2} className="text-center">
+                <i className="bi bi-x-lg "></i>
+                </Link>
+                    : <Link to="#" onClick={toggleFlag2} className="text-center">
+                    <i className="bi bi-person-circle"></i>
+                    <span>Profile</span>
+=======
                 <div className="d-flex position-relative text-center justify-content-center align-items-center">
                   <Link to="/cart" className="text-center">
                     <i className="bi bi-cart3"></i>
                     <span>Bag</span>
+>>>>>>> gyanendra
                   </Link>
                   <div className="para_cart d-flex justify-content-center align-items-center">
                     <p className="text-light m-0">{cartLength}</p>

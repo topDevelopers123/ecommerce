@@ -1,6 +1,10 @@
 import React from 'react'
 import './Cart.css'
+<<<<<<< HEAD
+import {  Link, useNavigate } from 'react-router-dom'
+=======
 import { useNavigate } from 'react-router-dom'
+>>>>>>> gyanendra
 import { useCartContext } from '../../Context/index.context'
 
 function Cart() {
@@ -46,7 +50,11 @@ function Cart() {
                     </div>
                 </div>
                 <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center flex-row flex-wrap '>
+<<<<<<< HEAD
+                    {cartData?.length > 0 ? cartData?.map((item,i)=>(
+=======
                     {cartData?.map((item, i) => (
+>>>>>>> gyanendra
                         <>
 
                             <div className=' col-lg-2 col-md-3 col-sm-5 col-5 mt-3' onClick={() => productDetailsPage(item?.product_id?._id)}>
@@ -87,9 +95,16 @@ function Cart() {
                                 <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3" onClick={() => deleteCartProduct(item?._id)}></i></h6>
                             </div>
                         </>
+<<<<<<< HEAD
+                    ))
+                : <h4>Cart Empty</h4>}
+                   
+                    
+=======
                     ))}
 
 
+>>>>>>> gyanendra
                 </div>
 
 
@@ -111,6 +126,18 @@ function Cart() {
                                 <div className='d-flex justify-content-between'>
                                     <p>Cart Subtotal</p>
                                     <p>₹ {getTotel}</p>
+<<<<<<< HEAD
+                                            </div>
+                                            <hr />
+                                           
+                                            <button className='mt-5' onClick={()=>checkoutPage()}>CHECKOUT</button>
+                                <button><Link to="/">CONTINUE SHOPPING</Link></button>
+
+                                        </div>
+                                    </div>
+
+=======
+>>>>>>> gyanendra
                                 </div>
                                 <hr />
                                 <div className='d-flex justify-content-between'>

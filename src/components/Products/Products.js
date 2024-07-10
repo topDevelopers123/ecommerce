@@ -68,6 +68,7 @@ function Products() {
     }
   })
 
+  const token = localStorage.getItem("token")
  
   let ratingAvg = 0;
 
@@ -168,11 +169,22 @@ function Products() {
   }
 
   const addToCartHandler = (product_id, productDetailsId, image) => {
-    
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     addToCart(product_id, productDetailsId, image)
   }
 
   const addToWishlistHandler = (product_id, product_detail_id) => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     const data = {
       product_id: product_id,
       product_detail_id: product_detail_id

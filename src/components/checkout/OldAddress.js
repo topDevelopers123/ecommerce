@@ -168,8 +168,37 @@ function OldAddress() {
         setUpdateAddress(get);
     }
 
-    const updateAddressHandle = (id) => {
-        updateOldAddress(data, id);
+    const updateAddressHandle = (val, id) => {
+        if (val.fullname.trim() === "") {
+            toast.error("Full name is required")
+        }
+        else if (val.phone.trim() === "") {
+            toast.error("Phone Number is required")
+        }
+        else if (val.country.trim() === "") {
+            toast.error("Country is required")
+        }
+        else if (val.addressType.trim() === "") {
+            toast.error("Address Type is required")
+        }
+        else if (val.state.trim() === "") {
+            toast.error("State is required")
+        }
+        else if (val.city.trim() === "") {
+            toast.error("City is required")
+        }
+        else if (val.area.trim() === "") {
+            toast.error("Area is required")
+        }
+        else if (val.house_no.trim() === "") {
+            toast.error("House No is required")
+        }
+        else if (val.pincode.trim() === "") {
+            toast.error("Pincode is required")
+        }else{
+
+            updateOldAddress(data, id);
+        }
     }
 
     const radioHandler = (e, value) => {
@@ -443,8 +472,10 @@ function OldAddress() {
                                                         {cartData?.map((item) => (
                                                             <tr className=''>
                                                                 <td className="item-img">
-                                                                    <img src={item?.productDetails?.image[0].image_url} />
+                                                                    <img src={item?.image} />
+
                                                                 </td>
+                                                              
                                                                 <td className="item-details">
                                                                     <span className="item-title">{item?.product_id?.title}</span>
 
@@ -614,7 +645,7 @@ function OldAddress() {
                                             <span className={data?.addressType === "Work" ? "bg-secondary text-white px-3 rounded-pill" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
 
-                                        <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
+                                        <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(data, item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
 
                                     </form>
                                 </div>

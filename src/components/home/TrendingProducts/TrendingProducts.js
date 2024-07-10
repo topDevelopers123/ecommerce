@@ -1,29 +1,51 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
+
 import { useCartContext, useProductContext, useWishlistContext } from "../../../Context/index.context";
 
 function TrendingProducts() {
     const { productData } = useProductContext()
     const { addToCart } = useCartContext()
     const { addToWishlist } = useWishlistContext()
+    const token = localStorage.getItem("token")
     const navigate = useNavigate();
+  
     const productDetailsPage = (id) => {
+       
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     }
 
     const addtocartHandler = (product_id, productDetails_id, image) => {
+<<<<<<< HEAD
+        if (token === null) {
 
+            navigate(`/login`);
+            window.scrollTo(0, 0);
+            return
+        }
+        
+=======
+
+>>>>>>> gyanendra
         addToCart(product_id, productDetails_id, image)
     }
 
     const wishlistHandler = (item_Id, ite_Id) => {
-        const obj = {
-            product_id: item_Id,
-            product_detail_id: ite_Id
+        if (token === null) {
+            
+            navigate(`/login`);
+            window.scrollTo(0, 0);
+            return
         }
+            const obj = {
+                product_id: item_Id,
+                product_detail_id: ite_Id
+            }
 
-        addToWishlist(obj)
+            addToWishlist(obj)
+        
+        
     }
 
     const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
