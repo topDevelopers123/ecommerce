@@ -133,7 +133,7 @@ function Header() {
         <div className={`profile_main_box p-3 shadow-lg ${flag2 ? "d-block" : "d-none"}`}>
           {isLoggedIn ? (
             <div className="manage_account py-2">
-              <Link to="/orders"><p>Orders <i className="bi bi-chevron-right"></i></p></Link>
+              <Link to="/track_order"><p>Orders <i className="bi bi-chevron-right"></i></p></Link>
               <Link to="/wishlist"><p>Wishlist <i className="bi bi-chevron-right"></i></p></Link>
               <Link to="/savedAddress"><p>Saved Addresses <i className="bi bi-chevron-right"></i></p></Link>
               <p className="cursor-pointer logoutBtn" onClick={logout}>Logout <i className="bi bi-chevron-right"></i></p>
