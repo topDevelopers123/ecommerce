@@ -52,39 +52,41 @@ function FeaturedProducts() {
                             </div>
                         </div>
                         <div className='col-md-9 col-sm-12 col-12'>
-                    <OwlCarousel
-                        className="owl-theme"
-                        loop
-                        margin={10}
-                        nav={false}
-                        items={4}
-                        dots={false}
-                        responsive={{
-                            0: {
-                                items: 4,
-                            },
-                            768: {
-                                items: 3,
-                            },
-                            1200: {
-                                items: 4,
-                            },
-                        }}
-                    >
-                        {shuffledProducts?.map((item, i) => (
-                            <div key={i} className="item">
-                                <img
-                                    src={item?.ProductDetails[0]?.image[0]?.image_url}
-                                    alt={item?.product_title}
-                                    onClick={() => productDetailsPage(item?._id)}
-                                />
-                                <h5 className="card-title mt-2">{item.title}</h5>
-                                <p className="pricing">
-                                    ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
-                                </p>
-                            </div>
-                        ))}
-                    </OwlCarousel>
+                            <OwlCarousel
+                                className="owl-theme"
+                                loop
+                                margin={10}
+                                nav={false}
+                                items={4}
+                                dots={false}
+                                responsive={{
+                                    0: {
+                                        items: 4,
+                                    },
+                                    768: {
+                                        items: 3,
+                                    },
+                                    1200: {
+                                        items: 4,
+                                    },
+                                }}
+                            >
+                                {shuffledProducts?.map((item, i) => (
+                                    <div key={i} className="item">
+                                        <img
+                                            src={item?.ProductDetails[0]?.image[0]?.image_url}
+                                            alt={item?.product_title}
+                                            onClick={() => productDetailsPage(item?._id)}
+                                        />
+                                        <h5 className="card-title mt-2">{item?.title.length <= 5
+                                            ? item?.title
+                                            : `${item?.title.slice(0, 15)}...`}</h5>
+                                        <p className="pricing">
+                                            ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
+                                        </p>
+                                    </div>
+                                ))}
+                            </OwlCarousel>
                         </div>
                     </div>
                 </div>
