@@ -17,8 +17,9 @@ function Header() {
   const [flag3,setflag3] = useState(false)
   const [Searchdata,setSearchdata]= useState([])
   const [search,setSearch]= useState("")
-  
-  const {  productData, setProductData } = useProductContext()  
+  const token = localStorage.getItem("token")
+  const {  productData, setProductData } = useProductContext() 
+  const navigate = useNavigate() 
   const show_searchBar = () => {
     flag ? setFlag(false) : setFlag(true)
   }
@@ -33,6 +34,33 @@ function Header() {
     const filter = value && productData && productData.filter((item) => item.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')))
     setSearchdata(filter || null)
   }
+
+  const wishListHandler = () =>{
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
+
+    naviate('/wishlist')
+ 
+  }
+  const addToCartHandler = () =>{
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
+
+    naviate('/cart')
+ 
+  }
+
+
+
+  
 
   const logout = ()=>{
       localStorage.clear()
@@ -84,8 +112,8 @@ function Header() {
                     
           <div className={`col-lg-3 col-md-3 col-sm-4 col-5 d-flex justify-content-center nav_icons align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2  right_icons_box ${flag ? "d-none " : "d-flex"}`}>
             <div className="d-flex navbar_right_icon icons_div justify-content-center  w-100 ">
-                <div className=" d-flex  text-center position-relative align-items-center">
-                  <Link to="/wishlist" className="text-center">
+                <div className=" d-flex  text-center position-relative align-items-center" onClick={() => wishListHandler()}>
+                  <Link to="" className="text-center" >
                   {" "}
                   <i className="bi bi-suit-heart"></i>
                   <span>Wishlist</span>
@@ -95,8 +123,8 @@ function Header() {
                 </div>
               </div>
 
-              <div className="d-flex  position-relative text-center  justify-content-center  align-items-center">
-                <Link to="/cart" className="text-center">
+                <div className="d-flex  position-relative text-center  justify-content-center  align-items-center" onClick={() => addToCartHandler()}>
+                <Link to="" className="text-center">
                    <i className="bi bi-cart3"></i>
                    <span>Bag</span>
                 </Link>

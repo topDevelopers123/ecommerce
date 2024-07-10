@@ -7,6 +7,7 @@ import { useCartContext, useWishlistContext } from '../../Context/index.context'
 function Wishlist() {
     const { wishlistData, deleteWishlistProduct } = useWishlistContext()
     const { addToCart } = useCartContext()
+    const token = localStorage.getItem("token")
     const navigate = useNavigate()
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
@@ -17,6 +18,12 @@ function Wishlist() {
 
 
     const addToCartHandler = (product_id, productDetails) => {
+        if (token === null) {
+
+            navigate(`/login`);
+            window.scrollTo(0, 0);
+            return
+        }
            const quantity = 1
         addToCart(product_id, productDetails, quantity)
     }

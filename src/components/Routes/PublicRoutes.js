@@ -7,7 +7,9 @@ import Register from "../register/register"
 import PrivacyPolicy from "../footer/PrivacyPolicy"
 import TermsAndConditions from "../footer/TermsAndConditions"
 import Email_verify from "../login/Email_verify"
+import OtpVerify from '../login/Otp_verify'
 import Change_password from "../login/Change_password"
+import New_password from '../login/New_password'
 import ReturnCancellation from "../footer/ReturnCancellation";
 
 
@@ -56,9 +58,7 @@ export const PublicRoute = [
     {
         path: "/ReturnCancellation",
         element: <ReturnCancellation />
-    }
-    ,
-
+    },
     {
         path: "/emailVerify",
         element: <Email_verify />
@@ -68,4 +68,14 @@ export const PublicRoute = [
         path: "/Change_password",
         element: <Change_password />
     }
+    ,
+    {
+        path: "/otpVerify",
+        element: <OtpVerify />
+    },
+    {
+        path: "/newPassword",
+        element: <New_password />
+    }
+    
 ]
