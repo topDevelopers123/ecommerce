@@ -13,11 +13,12 @@ const Invoice = ({ setInvoice, data }) => {
     };
 
     return (
-        <div className='bg-gray-500 py-24 absolute w-full top-0 left-0'>
+        <div className='bg-gray-500 py-24 absolute  w-full top-0 left-0'>
             <h1 className='absolute top-10 right-10 cursor-pointer' onClick={() => setInvoice(false)}>
                 <i className="bi bi-x-lg text-white"></i>
             </h1>
-            <button onClick={printDocument}>Download</button>
+            <div className='text-center'>
+                <button className='text-white btn bg-[#4d869c] ' onClick={printDocument}>Download</button></div>
             <div className=" w-[595px] h-[842px] mx-auto bg-white p-6 rounded-lg shadow-lg" id="invoice">
                 <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center">
@@ -28,7 +29,7 @@ const Invoice = ({ setInvoice, data }) => {
                     </div>
                 </div>
 
-                <div className='mb-4'>
+                <div className='mb-4 text-center'>
                     <p><strong>Invoice Number: </strong> 1330</p>
                     <p>Date: 02/03/2024</p>
                 </div>
