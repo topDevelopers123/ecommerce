@@ -17,9 +17,21 @@
     font-size: 20px;
 }
 
-.newAdd .delAdd {
+.newAdd .editAdd {
+    color: blue;
+    cursor: pointer;
+font-weight: 600;
+}
+.newAdd .delAdd i{
+    padding-right: 6px;
+}
+.newAdd .delAddBtn{
     color: red;
     cursor: pointer;
+    font-weight: 600;
+}
+.newAdd .delAddBtn i{
+    padding-right: 6px;
 }
 
 button {

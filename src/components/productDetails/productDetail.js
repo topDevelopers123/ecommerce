@@ -26,7 +26,7 @@ function ProductDetail() {
   let ratingAvg = 0;
   let totalReview = 0;
   const [error, setError] = useState("")
-
+  const token = localStorage.getItem("token")
   const [reviewData, setReviewData] = useState({
     title: "",
     message: "",
@@ -48,6 +48,12 @@ function ProductDetail() {
   
 
   const redirectHandler = (product_id, id, image) => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     
     navigate(`/oldAddress/${product_id}/${id}?image=${image}&&qty=${qty}`)
     window.scrollTo(0, 0);
@@ -157,6 +163,12 @@ function ProductDetail() {
   // console.log(details);
 
   const addToCartHandler = (product_id, productDetails, quantity, image) => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     // console.log(product_id, product_detail_id, qty, image);
     const obj = {product_id,
       productDetails,
@@ -167,6 +179,12 @@ function ProductDetail() {
   }
 
   const wishListHandler = () => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     addToWishlist(wishDetails)
 
   }
@@ -194,10 +212,10 @@ function ProductDetail() {
               <div className="row details-snippet1">
                 <div className="col-md-7" >
                   <div className="row">
-                    <div key="" className="col-md-2 col-sm-2 mini-preview order-2 order-sm-1">
-                      {filter ? filter[0]?.image.map((photo, i) => (
+                    <div key="" className="col-md-2 col-sm-2 mini-preview flex d-md-block order-2 order-sm-1">
+                      {filter ? filter[0]?.image?.map((photo, i) => (
                         <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
-                      )) : Prouctdetail?.image.map((photo, i) => (
+                      )) : Prouctdetail?.image?.map((photo, i) => (
                         <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
                     </div>
                     <div className="col-md-10 col-sm-10 order-1 order-sm-2">

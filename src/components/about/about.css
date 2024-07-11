@@ -4,7 +4,6 @@
     position: relative;
     color: white;
     text-align: center;
-    margin: 30px 0;
 }
 
 .about .overlay {
@@ -33,7 +32,7 @@
     color: #fff;
 }
 
-/* Image Gallery  */           
+/* Image Gallery  */
 .image-gallery {
     width: 100%;
     padding: 40px 0px;
@@ -53,16 +52,16 @@
 }
 
 .about-btn {
-    padding: 20px 30px;
-    background-color: #7AB2B2;
+    padding: 18px 30px;
+    background-color: #4D869C;
     color: #fff;
     transition: .3s ease-in-out;
     border: none;
 }
 
 .about-btn:hover {
-    background-color: #CDE8E5;
-    color: #333;
+    background-color: #7AB2B2;
+    color: #fff;
 }
 
 /* Objective */
@@ -85,6 +84,8 @@
 .objective-img img {
     width: 30%;
     border: 10px solid #555;
+    height: 250px;
+    object-fit: cover;
 }
 
 .objective-img {
@@ -124,7 +125,7 @@
     top: 30px;
 }
 
-/* Counter Section   */ 
+/* Counter Section   */
 .charity_para {
     font-weight: bold;
     font-size: 26px;
@@ -151,12 +152,14 @@
 
 /* Responsive */
 @media screen and (max-width: 567px) {
-    .donate-row{
+    .donate-row {
         height: auto;
     }
+
     .charity_para {
-            font-size: 20px;
-        }
+        font-size: 20px;
+    }
+
     .about .overlay {
         height: 265px;
         z-index: 2;
@@ -269,15 +272,17 @@
     .charity-images img {
         width: 130px;
     }
-        .about-btn{
-            padding: 12px 18px !important;
-            font-size: 14px;
-        }
-        .img_gllry{
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
+
+    .about-btn {
+        padding: 12px 18px !important;
+        font-size: 14px;
+    }
+
+    .img_gllry {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
 
     /* Objective  */
     .objective-img img {
@@ -288,6 +293,7 @@
         width: 500px;
         height: 500px;
     }
+
     .objective-circle {
         left: -120px;
     }
@@ -310,15 +316,16 @@
 
     /* What we do  */
 
-        .donate-row{
-            margin: 10px;
-        }
+    .donate-row {
+        margin: 10px;
+    }
+
     .donate-row h2 {
         font-size: 22px;
     }
 
     /* Counter  */
-    .charity_para{
+    .charity_para {
         font-size: 22px;
     }
 }

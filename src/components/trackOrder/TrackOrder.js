@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TrackOrder.css'
 import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
+import Trackmodal from './Trackmodal'
+import { boolean } from 'yup'
+import Invoice from './Invoice'
 
 function TrackOrder() {
     const { orderDetail } = useOrderContext()
-    console.log(orderDetail)
+    const [invoice, setInvoice] = useState(false)
+    const [toggle,setToggle]= useState({
+        boolean_val:false,
+        data:[]
+    })
+
+    
+
+    // console.log(orderDetail)
 
     return (
         <div>
@@ -15,25 +26,20 @@ function TrackOrder() {
                         <header className="card-header"> My Orders / Tracking </header>
                         <div className="card-body">
 
-                            <h6>Order ID: OD45345345435</h6>
+                       
                             <article className="card">
                                 <div className="card-body row">
-                                    <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />29 june 2024 </div>
+                                    <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
                                     <div className="col-md-3 col-12"> <strong>Shipping BY:</strong> <br /> BLUEDART, | <i className="fa fa-phone"></i> +1598675986 </div>
                                     <div className="col-md-3 col-12"> <strong>Status:</strong> <br /> Picked by the courier </div>
                                     <div className="col-md-3 col-12"> <strong>Tracking #:</strong> <br /> BD045903594059 </div>
                                 </div>
                             </article>
-                            <div className="track">
-                                <div className="step active"> <span className="icon"> <i className="bi bi-check2"></i> </span> <span className="text">Order confirmed</span> </div>
-                                <div className="step active"> <span className="icon"> <i className="bi bi-person-circle"></i> </span> <span className="text"> Picked by courier</span> </div>
-                                <div className="step"> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>
-                                <div className="step"> <span className="icon"> <i className="bi bi-box"></i> </span> <span className="text">Ready for pickup</span> </div>
-                            </div>
+                           
                             <hr />
 
                             <div className='order_table'>
-                                <table class="table table-info table-striped table-responsive ">
+                                <table class="table table-secondary table-striped table-responsive ">
                                     <thead >
                                         <tr >
                                             <th className='text-white bgprimary' scope="col">Product Image</th>
@@ -45,31 +51,56 @@ function TrackOrder() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orderDetail?.UserOrder?.map((item, i) => (
+                                        {/* {orderDetail?.UserOrder?.map((item, i) => (
                                             <tr>
-                                                {console.log(item, "here")}
-                                                <td><img width={100} src={item?.image} alt='product_img' /></td>
+                                            
+                                                <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
                                                 <td>{item?.Product[0]?.title}</td>
                                                 <td>{item?.ProductDetails[0]?.sellingPrice}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>{item.status}</td>
-                                                <td className='text-success'>View More</td>
+                                                <td className='text-success' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
                                             </tr>
-                                        ))}
+                                        </thead>
+                                        <tbody> */}
+                                            {orderDetail?.UserOrder?.map((item, i) => (
+                                                <>
+                                                    <tr>
 
-                                    </tbody>
-                                </table>
+                                                        <td><img width={100} src={item?.image} style={{ height: "60px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' /></td>
+                                                        <td>{item?.Product[0]?.title.slice(0,15)}...</td>
+                                                        <td>{item?.ProductDetails[0]?.sellingPrice}</td>
+                                                        <td>{item.quantity}</td>
+                                                        <td>{item.status}</td>
+                                                        <td className='text-success' onClick={() => setToggle(true)} >View More</td>
+                                                    </tr>
+                                                    <div className='flex w-full my-2 gap- justify-between items-center'>
+                                                        <button>Return</button>
+                                                        <button>Invoice</button>
+                                                    </div>
+                                                </>
+                                            ))}
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
-                            
+
+
+
 
                             <div className="submitBtn w-50 ms-auto me-auto ">
-                                <button>Continue Shopping</button>
+                                <Link to="/"> <button>Continue Shopping</button></Link>
                             </div>
-                        </div>
+                      
                     </article>
                 </div>
             </section>
+            
+
+
+            {toggle?.boolean_val ? <Trackmodal setToggle={setToggle} toggle={{toggle}}  /> : null}
         </div>
     )
 }

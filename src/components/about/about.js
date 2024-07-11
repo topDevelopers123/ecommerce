@@ -7,6 +7,7 @@ import charity4 from "./images/charity04.jpg";
 import charity5 from "./images/charity05.png";
 import charity6 from "./images/charity06.jpg";
 import banner01 from "./images/charity01.jpg";
+import { Link } from "react-router-dom";
 
 function About() {
   const [downloadCount1, setDownloadCount1] = useState(0);
@@ -88,7 +89,7 @@ function About() {
                 <p>
                   Fashion is all about comfort and elegance. Mayavi Fashion stands out for hope and change. All clothing for men, women, and kids. With a foundation of giving back, Mayavi Fashion's principle stands out by giving a positive impact to society. Every penny earned is funneled to donations and charity. Mayavi Fashion's mission is simple yet profound: to use the power of fashion to create meaningful change. A core message from Mayavi Fashion is to be ethical and sustainable. Mayavi Fashion believes in the power of community and collaboration. The brand partners with various nonprofit organizations and charities to ensure that funds are directed where they are needed the most. 
                 </p>
-                <button className="about-btn rounded">Contact Us</button>
+                <Link to='/contact'> <button className="about-btn rounded">Contact Us</button></Link>
               </div>
             </div>
 

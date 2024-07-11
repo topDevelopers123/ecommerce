@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../home.css";
 import axios from "axios";
+import { useAuthContext } from "../../../Context/index.context";
 
 function MainSlier() {
     const [bannner, setBanner] = useState(null);
+    const {API} = useAuthContext()
     const getbannerData = async () => {
         try {
-            const resp = await axios.get('https://e-commerce-backend-4tmn.onrender.com/api/v1/banner/get'
+            const resp = await axios.get(`${API}/banner/get`
             )
             
             setBanner(resp.data.data)
@@ -22,7 +24,7 @@ function MainSlier() {
   return (
     <div>
           {/* Slider section start  */}
-          <section className="main_slider mt-3">
+          <section className="main_slider ">
               <div
                   id="carouselExampleControls"
                   className="carousel slide"

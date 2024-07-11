@@ -23,8 +23,7 @@ function ShopByCategory() {
         if (productData && productData.length > 0) {
             setFirstFourProducts(productData?.slice(0, 4));
             setLastFourProducts(productData?.slice(-4));
-        }
-        else {
+        } else {
             setFirstFourProducts([]);
             setLastFourProducts([]);
         }
@@ -43,7 +42,6 @@ function ShopByCategory() {
                         <div className="bdr"></div>
                     </div>
                     <div className="categories">
-
                         <OwlCarousel
                             className="owl-theme"
                             loop
@@ -73,11 +71,14 @@ function ShopByCategory() {
                                         onClick={() => productDetailsPage(item?._id)}
                                         style={{ cursor: 'pointer' }}
                                     />
-                                    <h4>{item?.title}</h4>
+                                    <h4>
+                                        {item?.title.length <= 5
+                                            ? item?.title
+                                            : `${item?.title.slice(0, 20)}...`}
+                                    </h4>
                                 </div>
                             ))}
                         </OwlCarousel>
-
                     </div>
                 </div>
             </section>

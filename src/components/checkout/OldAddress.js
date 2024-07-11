@@ -12,9 +12,11 @@ import "react-country-state-city/dist/react-country-state-city.css";
 
 
 import toast from 'react-hot-toast';
-import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext } from '../../Context/index.context';
+import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext } from '../../Context/index.context';
 import { useLocation, useParams } from 'react-router-dom';
 import ProductDetail from '../productDetails/productDetail';
+import axios from 'axios';
+import logo from "../header/header_images/logo.png" 
 
 
 
@@ -32,6 +34,8 @@ function OldAddress() {
     const urlParams = new URLSearchParams(search);
     const imageUrl = urlParams.get('image')
     const qty = urlParams.get('qty')
+
+    const {API} = useAuthContext()
   
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
@@ -57,7 +61,8 @@ function OldAddress() {
         address_id: "",
         payment_type: "COD",
         payment_status: "pending",
-        status: "pending"
+        status: "pending",
+        razorpay_payment_id:""
     })
 
 
@@ -71,7 +76,8 @@ function OldAddress() {
         payment_status: "pending",
         status: "pending",
         image:imageUrl,
-        quantity:qty
+        quantity:qty,
+        razorpay_payment_id: ""
     })
 
 
@@ -120,23 +126,27 @@ function OldAddress() {
 
 
     useEffect(() => {
-
         setFinalData({ ...finalData, cartId: cartId, address_id: radio })
         setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
 
     }, [cartData, radio])
 
-    const checkOut = () => {
+    const checkOut = (amount) => {
 
-        addOrder(finalData)
+        if (finalData.payment_type === "online") {
+            HandlePayement(amount)
+        }
+        else {
+            addOrder(finalData)
+        }
 
+            
 
     }
 
     total = getTotel + localCharges
 
     const newAddress = () => {
-
         setModalVisible(true);
     };
 
@@ -156,19 +166,43 @@ function OldAddress() {
             return item?._id === id
         })
         setUpdateAddress(get);
-        // console.log(get, id);
     }
 
-    const updateAddressHandle = (id) => {
+    const updateAddressHandle = (val, id) => {
+        if (val.fullname.trim() === "") {
+            toast.error("Full name is required")
+        }
+        else if (val.phone.trim() === "") {
+            toast.error("Phone Number is required")
+        }
+        else if (val.country.trim() === "") {
+            toast.error("Country is required")
+        }
+        else if (val.addressType.trim() === "") {
+            toast.error("Address Type is required")
+        }
+        else if (val.state.trim() === "") {
+            toast.error("State is required")
+        }
+        else if (val.city.trim() === "") {
+            toast.error("City is required")
+        }
+        else if (val.area.trim() === "") {
+            toast.error("Area is required")
+        }
+        else if (val.house_no.trim() === "") {
+            toast.error("House No is required")
+        }
+        else if (val.pincode.trim() === "") {
+            toast.error("Pincode is required")
+        }else{
 
-        // console.log(id);
-        // console.log(updateAddress?.id);
-        updateOldAddress(data, id);
+            updateOldAddress(data, id);
+        }
     }
 
     const radioHandler = (e, value) => {
         setData({ ...data, addressType: value })
-
     }
 
     const createNewAddress = (val) => {
@@ -206,27 +240,115 @@ function OldAddress() {
 
 
 
+    const HandlePayement = async (amount) => {
+       
+        const newData = {
+            amount
+        }
+        const order = await axios.post(`${API}/order/payement`, newData)
+
+        const options = {
+            key: process.env.REACT_APP_KEY,
+            amount: order.data.amount,
+            currency: order.data.currency,
+            name: 'Mayavi Fashion',
+            description: 'Test Transaction',
+            image: logo,
+            order_id: order.data.id,
+            handler: async function (response) {
+                console.log(response)
+                const paymentData = {
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature
+                };
+                addOrder({ ...finalData, payment_status: "success", razorpay_payment_id:paymentData?.razorpay_payment_id })              
+            },
+            prefill: {
+                name: 'Your Name',
+                email: 'youremail@example.com',
+                contact: '9999999999'
+            },
+            notes: {
+                address: 'Razorpay Corporate Office'
+            },
+            theme: {
+                color: '#3399cc'
+            }
+        };
+        // console.log("Done");
+
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
+    };
 
 
-    const singleProductOrder = () => {
 
-        addSingleOrder(singleProductData);
+    const HandlePayementForByNow = async (amount) => {
 
+        const newData = {
+            amount
+        }
+        const order = await axios.post(`${API}/order/payement`, newData)
+
+        const options = {
+            key: process.env.REACT_APP_KEY,
+            amount: order.data.amount,
+            currency: order.data.currency,
+            name: 'Mayavi Fashion',
+            description: 'Test Transaction',
+            image: logo,
+            order_id: order.data.id,
+            handler: async function (response) {
+                console.log(response)
+                const paymentData = {
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature
+                };
+                addSingleOrder({ ...singleProductData, payment_status: "success", razorpay_payment_id: paymentData?.razorpay_payment_id })
+            },
+            prefill: {
+                name: 'Your Name',
+                email: 'youremail@example.com',
+                contact: '9999999999'
+            },
+            notes: {
+                address: 'Razorpay Corporate Office'
+            },
+            theme: {
+                color: '#3399cc'
+            }
+        };
+        // console.log("Done");
+
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
+    };
+
+
+    
+    const singleProductOrder = (amount) => {
+        console.log(singleProductData, amount);
+        
+        if (singleProductData.payment_type === "online") {
+            HandlePayementForByNow(amount)
+        }
+        else {
+            addSingleOrder(singleProductData);
+        }
     }
-
 
     return (
         <div>
-            <div className='p-5'>
+            <div className='py-5 px-2 p-md-5'>
                 <div className='container'>
                     <div className='row'>
                         <h5>Select Your Address</h5>
                         <div className='newAdd col-lg-8 col-md-7 p-3'>
                             <div>
                                 <h6>Your Addresses</h6>
-
                             </div>
-
                             {UserAddressData?.map((item, i) => (
                                 <div className='p-1' key={i}>
                                     <div className="form-check">
@@ -235,7 +357,6 @@ function OldAddress() {
 
                                         <label className="form-check-label" htmlFor="exampleRadios1">
                                             <div className='preAdd gap-2'>
-
                                                 <span> {item.house_no}</span>&nbsp;
                                                 <span>{item.area}</span>&nbsp;
                                                 <span>{item?.city}</span>&nbsp;
@@ -249,7 +370,6 @@ function OldAddress() {
                                 </div>
                             ))}
 
-
                             <div className='p-2'>
                                 <button onClick={newAddress}><span className='addplus'>+</span> Add new Address</button>
                             </div>
@@ -260,12 +380,10 @@ function OldAddress() {
                             <div className="checkout_total_box">
                                 <div className="wrapper">
                                     {id ?
-                                        <>
-                                            
+                                        <>                                           
                                     <div className="group">
                                         <table>
-                                            <tbody>
-                                               
+                                            <tbody>                                               
                                                     <tr className=''>
                                                         <td className="item-img">
                                                             <img src={imageUrl} />
@@ -278,13 +396,7 @@ function OldAddress() {
                                                         <td className="item-details">
                                                             <span className="item-qty">Quantity : {qty}</span>
                                                             </td>
-                                                        </tr> 
-
-                                       
-                                               
-
-
-
+                                                        </tr>                          
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -316,14 +428,14 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row">
                                                                 <div className="select-icon">
-                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setSingleProductData({ ...singleProductData, payment_type: e.target.value }); }} />
                                                                     <label htmlFor="radio1"></label>
                                                                 </div>
                                                                 <div className="select-txt">
                                                                     <p className="pymt-type-name">Online Payment</p>
 
                                                                 </div>
-                                                                <div className="select-logo">
+                                                                <div className="select-logo" >
                                                                     <img src={online} alt="Online" />
                                                                 </div>
                                                             </div>
@@ -342,32 +454,28 @@ function OldAddress() {
                                                                     <div className="select-logo-sub logo-spacer">
                                                                         <img src={cod} alt="COD" />
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
                                                     </form>
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={singleProductOrder}>Confirm Order</button>
-
+                                                <button onClick={() => singleProductOrder((product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges)}>Confirm Order</button>
                                             </div>
-
-
-                                        </>
-                                        : <>
-
+                                        </>                                        
+                                        :
+                                         <>
                                             <div className="group">
                                                 <table>
                                                     <tbody>
                                                         {cartData?.map((item) => (
                                                             <tr className=''>
                                                                 <td className="item-img">
-                                                                    <img src={item?.productDetails?.image[0].image_url} />
+                                                                    <img src={item?.image} />
+
                                                                 </td>
+                                                              
                                                                 <td className="item-details">
                                                                     <span className="item-title">{item?.product_id?.title}</span>
 
@@ -412,11 +520,11 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row">
                                                                 <div className="select-icon">
-                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setFinalData({ ...finalData, payment_type: e.target.value });  }} />
                                                                     <label htmlFor="radio1"></label>
                                                                 </div>
                                                                 <div className="select-txt">
-                                                                    <p className="pymt-type-name">Online Payment</p>
+                                                                    <p className="pymt-type-name"   >Online Payment</p>
 
                                                                 </div>
                                                                 <div className="select-logo">
@@ -431,7 +539,7 @@ function OldAddress() {
                                                                     <label htmlFor="radio2"></label>
                                                                 </div>
                                                                 <div className="select-txt hr">
-                                                                    <p className="pymt-type-name">Cash on Delivery</p>
+                                                                    <p className="pymt-type-name" >Cash on Delivery</p>
 
                                                                 </div>
                                                                 <div className="select-logo">
@@ -448,7 +556,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={checkOut}>Confirm Order</button>
+                                                <button onClick={() => checkOut(total)}>Confirm Order</button>
 
                                             </div>
                                         </>}
@@ -537,7 +645,7 @@ function OldAddress() {
                                             <span className={data?.addressType === "Work" ? "bg-secondary text-white px-3 rounded-pill" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
 
-                                        <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
+                                        <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(data, item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
 
                                     </form>
                                 </div>
