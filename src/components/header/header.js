@@ -69,10 +69,7 @@ function Header() {
     const filter = value && productData && productData.filter((item) => item.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')));
     setSearchData(filter || []);
   };
-
-  
-
- 
+>>>>>>> gyanendra
 
   const logout = () => {
     localStorage.clear();
@@ -154,8 +151,8 @@ function Header() {
                     : 
                   <div className="para_cart d-flex justify-content-center align-items-center">
                     <p className="text-light m-0">{cartLength}</p>
-                  </div>}
-                </div> */}
+                  </div>
+                </div>
 
                 <div className="d-flex position-relative text-center justify-content-center align-items-center">
                   {flag2 ?
@@ -170,6 +167,7 @@ function Header() {
                 </div>
               </div>
             </div>
+          </div>
         </nav>
 
         <div className={`profile_main_box p-3 shadow-lg ${flag2 ? "d-block" : "d-none"}`}>
