@@ -666,7 +666,11 @@
   }
 
   .tp_area .card img {
-    height: 150px;
+    height: 150px !important;
     object-fit: cover;
+  }
+
+  .mens_cate {
+    margin: 0 !important;
   }
 }

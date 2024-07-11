@@ -23,7 +23,7 @@ function TrackOrder() {
                         <div className="card-body">
 
                        
-                            <article className="card">
+                            <article className="card mb-4">
                                 <div className="card-body row">
                                     <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
                                     <div className="col-md-3 col-12"> <strong>Shipping BY:</strong> <br /> BLUEDART, | <i className="fa fa-phone"></i> +1598675986 </div>
@@ -48,6 +48,7 @@ function TrackOrder() {
                                     </thead>
                                     <tbody>
                                         {orderDetail?.UserOrder?.map((item, i) => (
+                                            <>
                                             <tr>
                                                 {/* of */}
                                                 <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
@@ -57,6 +58,11 @@ function TrackOrder() {
                                                 <td>{item.status}</td>
                                                 <td className='text-success' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
                                             </tr>
+                                             <div className='flex w-full my-2 gap- justify-between items-center'>
+                                        <button>Return</button>
+                                        <button>Invoice</button>
+                                    </div>
+                                            </>
                                         ))}
 
                                     </tbody>

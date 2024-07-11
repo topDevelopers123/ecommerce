@@ -6,6 +6,7 @@ import Wishlist from "../wishlist/Wishlist";
 
 
 import New_password from "../login/New_password"
+import Invoice from "../trackOrder/Invoice";
 import SavedAddress from "../checkout/SavedAddress";
 
 export const PrivateRoutes = [
@@ -28,7 +29,7 @@ export const PrivateRoutes = [
         path: "/OldAddress/:product_id/:id?",
         element: <OldAddress />
     }
-    ,
+    , 
     {
         path: "/track_order",
         element: <TrackOrder />
@@ -37,6 +38,15 @@ export const PrivateRoutes = [
     
     ,
     {
+        path: "/newPassword",
+        element: <New_password />
+    },
+    
+    {
+        path: "/invoice",
+        element: <Invoice />
+    },
+{
         path: "/savedAddress",
         element: <SavedAddress />
     }
