@@ -13,6 +13,10 @@ function Cart() {
     }
 
     const checkoutPage = () => {
+        if (cartData?.length  < 1) {
+            navigate("/")
+            return
+        }
         navigate(`/OldAddress`);
         window.scrollTo(0, 0);
 
@@ -22,7 +26,7 @@ function Cart() {
     // let sellingPrice = 0
     // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
 
-    console.log(cartData);
+    // console.log(cartData);
 
 
 

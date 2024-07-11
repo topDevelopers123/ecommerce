@@ -276,7 +276,7 @@ function ProductDetail() {
                             {(data?.ProductDetails?.map((photo, i) => (
                            
                                 <div key={i}>
-                                {photo?.image?.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo?.color); setSize(photo?._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
+                                {photo?.image?.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent object-cover" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo?.color); setSize(photo?._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
                                 </div>
                             )))}
 
@@ -569,3 +569,4 @@ function ProductDetail() {
 }
 
 export default ProductDetail;
+

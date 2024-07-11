@@ -21,7 +21,7 @@ function Trackmodal({ toggle, setToggle }) {
                                 <button onClick={() => setToggle({...toggle, boolean_value:false})}><i className="bi bi-x-circle m-0 p-0 " style={{fontSize: "30px"}}></i></button>
                             </div>
                             <div className='flex px-4 gap-3 '>
-                                <div className='col-md-4 d-flex justify-content-center align-items-center'>
+                                <div className='col-md-4 d-flex justify-content-center '>
                                     <div className='productImg'>
                                         <img src={toggle?.toggle?.data?.image} alt='img'/>
                                     </div>

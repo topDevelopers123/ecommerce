@@ -3,6 +3,7 @@ import logo from "./header_images/logo.png"
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthContext, useCartContext, useProductContext, useWishlistContext } from '../../Context/index.context'
 import CategoryPage from './CategoryPage'
+import toast from 'react-hot-toast'
 
 const Header2 = () => {
     const { authorizeToken } = useAuthContext()
@@ -14,6 +15,13 @@ const Header2 = () => {
     const naviate = useNavigate()
 
     const [search, setSearch] = useState("")
+    const [toggle,setoggle] = useState(false)
+    
+    const handleLogout =() => {
+        toast.success("Logout successfull !!")
+        localStorage.clear()
+        window.location.href = "/"
+    }
 
     const handleSearch = useCallback((e) => {
         const { value } = e.target;
@@ -49,7 +57,7 @@ const Header2 = () => {
                     <input type='search' value={search} placeholder='Search Here ...' onChange={handleSearch}  className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' ><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
-                        {Searchdata?.map((item, i) => <p className="px-3 py-1" key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
+                        {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
 
                     </div>
                 </div>
@@ -70,8 +78,14 @@ const Header2 = () => {
                                 <span className=' absolute -top-2 -right-1 h-5 w-5 rounded-full flex items-center justify-center bg-[#CDE8E5] text-sm text-black font-medium' >{cartLength}</span>
                                 <span className='text-xs font-normal' >Cart</span>
                             </Link>
-                            <span className='text-xl md:text-2xl text-white flex flex-col justify-center items-center' ><i className="bi bi-person-circle"></i>
+                            <span className='text-xl md:text-2xl text-white flex flex-col justify-center items-center' onClick={()=>setoggle(!toggle)} ><i className="bi bi-person-circle"></i>
                                 <span className='text-xs font-normal ' >Profile</span>
+                                <div className={` ${toggle ? "block" : "hidden"} bg-white shadow overflow-hidden  absolute top-20 right-5 rounded-xl py-2 px-1 w-24 sm:w-44 z-50 `}>
+                                    <button className=' w-full text-sm sm:text-lg  text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md ' onClick={()=>{naviate("/track_order");setoggle(false)}} >Orders &gt; </button>
+                                    <button className=' w-full text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 'onClick={()=>{naviate("/wishlist"); setoggle(false)}}>Wishlist &gt; </button>
+                                    <button className=' w-full text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={()=>{naviate("/savedAddress"); setoggle(false)}} >Address &gt; </button>
+                                    <button className=' w-full  text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={handleLogout} >Logout  </button>
+                                </div>
                             </span>
                         </div> : <>
 
@@ -84,6 +98,8 @@ const Header2 = () => {
 
             </header>
             <CategoryPage />
+
+            
         </>
     )
 }

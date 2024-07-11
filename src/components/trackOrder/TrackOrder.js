@@ -53,7 +53,7 @@ function TrackOrder() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orderDetail?.UserOrder?.map((item, i) => (
+                                        {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
                                             <>
                                             <tr>
                                                 {/* of */}

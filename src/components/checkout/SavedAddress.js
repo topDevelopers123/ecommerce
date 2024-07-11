@@ -109,7 +109,6 @@ function SavedAddress() {
             <div className='p-5'>
                 <div className='container'>
                     <div className='row'>
-                        <h5>Select Your Address</h5>
                         <div className='newAdd col-lg-12 col-md-8 p-3'>
                             <div>
                                 <h6>Your Addresses</h6>
@@ -120,7 +119,7 @@ function SavedAddress() {
                                 <div className='p-1' key={i}>
                                     <div className="form-check">
                                         <div className='mb-1'>{item.fullname} <span className="ms-3 bg-secondary px-3 rounded rounded-pill text-white ">{item?.addressType}</span></div>
-                                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value={item?._id} defaultChecked={i === 0} onChange={(e) => setRadio(e.target.value)} />
+
 
                                         <label className="form-check-label" htmlFor="exampleRadios1">
                                             <div className='preAdd gap-2'>
@@ -130,15 +129,18 @@ function SavedAddress() {
                                                 <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
+                                                <div className='flex gap-5 my-3'>
                                                 <span className='delAdd editAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}><i class="bi bi-pencil-square"></i>Edit</span>
+                                                <span
+                                                    className='delAddBtn'
+                                                    onClick={() => handleDeleteAddress(item?._id)}>
+                                                    <i class="bi bi-trash"></i>Delete
+                                                </span>
+                                                </div>
                                             </div>
                                         </label>
 
-                                        <span
-                                            className='delAddBtn'
-                                            onClick={() => handleDeleteAddress(item?._id)}>
-                                            <i class="bi bi-trash"></i>Delete
-                                        </span>
+                                       
 
                                     </div>
                                     <hr />

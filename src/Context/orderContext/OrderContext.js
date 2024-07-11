@@ -41,7 +41,7 @@ function OrderContextProvider({ children }) {
     }
 
     const addSingleOrder = async (data) => {
-        
+        console.log(data);
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -52,7 +52,7 @@ function OrderContextProvider({ children }) {
 
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            window.location.href ="/thankyou"
+            // window.location.href ="/thankyou"
 
 
         } catch (error) {

@@ -19,7 +19,9 @@ function Products() {
   const [allProductData, setAllProductData] = useState(productData)
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
-  // console.log(allProductData.length)
+
+
+
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
   const [toggle, setToggle] = useState({
@@ -93,11 +95,11 @@ function Products() {
     console.log(productData)
 
     const newData = data?.filter((item) => {
-      return item.sub_category[0].sub_category_name === sub_category
+      return item.sub_category[0]?.sub_category_name === sub_category
     })
 
     const finalData = newData?.filter((item) => {
-      return item.sub_inner_category[0].sub_inner_category_name === sub_inner_Category
+      return item.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category
     })
 
     setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
@@ -156,7 +158,7 @@ function Products() {
       }).filter((cat) => cat?.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category);
       
       
-      setAllProductData(bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : priceFilter)
+      setAllProductData(bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : priceFilter?.length > 0 ? priceFilter : productData?.filter((cat) => cat?.category[0]?.category_name === main))
 
     }
 
@@ -216,14 +218,14 @@ function Products() {
                     <p>
                       Range : {range > 100 ? "0-" : ""} {range}
                     </p>
-                    <button className="btn go_btn  fw-bold text-light  " onClick={()=>priceFilterHandler()}>
+                    <button className="btn go_btn  fw-bold text-light  m-0" onClick={()=>priceFilterHandler()}>
                       FILTER
                     </button>
                   </div>
 
-                  <div className="d-flex justify-content-end px-2 w-100 clear_all">
+                  {/* <div className="d-flex justify-content-end px-2 w-100 clear_all">
                     <Link to="void::javascript" className="text-decoration-none fw-bold">CLEAR ALL</Link>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className={flag ? "flex-direction-column col-12 d-flex flex-wrap" : "flex-direction-row col-12 d-flex flex-wrap"}>
@@ -321,7 +323,7 @@ function Products() {
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
                   <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item)=>item?.ProductDetails[0]?.image[0]?.image_url) } alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
-                    <h6 className="mt-2 ps-2">{item?.title}</h6>
+                    <h6 className="mt-2 ps-2 short-title">{item?.title}</h6>
                     <p className="ps-2 py-0 my-0 desc">{item?.description?.slice(0, 30)}...</p>
                     <div className="d-flex flex-column">
                       <div>
