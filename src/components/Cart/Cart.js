@@ -134,11 +134,7 @@ function Cart() {
                         </div>
 
                     </div>
-<<<<<<< HEAD
-              
-=======
             
->>>>>>> origin/main
 
     )
 }
