@@ -70,8 +70,9 @@ function About() {
 
         <div className="overlay">
           <div className="content">
-            <h2>Motive of Charity</h2>
-            <p>“Everyone can be great because everyone can serve.</p>
+            <h2>CATALYST FOR CHANGE</h2>
+            <p>The heartbeat of humanity "or"
+              light we share to brighten the world for others</p>
           </div>
         </div>
       </section>
@@ -221,7 +222,7 @@ function About() {
        
         <div className="row">
           <div className="col-lg-3  col-md-6 col-sm-6">
-            <div className="donate-row">
+            <div className="donate-row rounded shadow">
               <h5>INNOVATIVE DESIGN AND QUALITY</h5>
               <p>
                 We prioritize state of the fine art and premium quality in every piece of clothing ensuring our customers. Receive stylish and durable product. 
@@ -230,7 +231,7 @@ function About() {
           </div>
 
           <div className="col-lg-3 col-md-6 col-sm-6">
-            <div className="donate-row">
+            <div className="donate-row rounded shadow">
               <h5>SUSTAINABLE <br></br> PRACTICES</h5>
               <p>
                 We commit to sustainable sourcing go material and ethical labor practices, reducing our environmental impact and promoting fair working condition. 
@@ -239,7 +240,7 @@ function About() {
           </div>
 
           <div className="col-lg-3  col-md-6 col-sm-6">
-            <div className="donate-row">
+            <div className="donate-row rounded shadow">
               <h5>PHILANTHROPIC INITIATIVES</h5>
               <p>
                 A significant portion of our profit is dedicated to charitable causes supporting programs that provide clothing shelter and essential service to underprivileged communities. 
@@ -248,7 +249,7 @@ function About() {
           </div>
 
           <div className="col-lg-3  col-md-6 col-sm-6">
-            <div className="donate-row">
+            <div className="donate-row rounded shadow">
               <h5>CUSTOMERS EMPOWERMENT</h5>
               <p>
                 By choosing mayavi fashion our customers contribute to a broader mission of social welfare and upliftment merging style with social responsibility. 

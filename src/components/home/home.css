@@ -376,11 +376,12 @@
 .tp_area .cart_n_buy {
     position: absolute;
     bottom: 0px;
+    width: 100%;
 }
 
 .card-body button {
     font-size: 12px;
-    width: 100%;
+    width: 80%;
     margin: 10px;
 }
 
