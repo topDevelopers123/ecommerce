@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import logo from "./header_images/logo.png"
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthContext, useCartContext, useProductContext, useWishlistContext } from '../../Context/index.context'
@@ -10,7 +10,7 @@ const Header2 = () => {
     const { wishlistLength } = useWishlistContext()
     const { cartLength } = useCartContext()
     const { productData } = useProductContext()
-    const [Searchdata, setSearchdata] = useState([])
+    const [Searchdata, setSearchData] = useState([])
     const [searchToggle, setSearchToggle] = useState(false)
     const naviate = useNavigate()
 
@@ -23,12 +23,26 @@ const Header2 = () => {
         window.location.href = "/"
     }
 
-    const handleSearch = (e) => {
-        const { value } = e.target
-        setSearch(value)
-        const filter = value && productData && productData.filter((item) => item.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')))
-        setSearchdata(filter || null)
-    }
+    const handleSearch = useCallback((e) => {
+        const { value } = e.target;
+        setSearch(value);
+
+        if (value && productData) {
+            const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+            const filter = productData.filter((item) => {
+                const categoryMatch = item?.category[0]?.category_name?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
+                const subCategoryMatch = item?.sub_category[0]?.sub_category_name.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
+                return categoryMatch || subCategoryMatch;
+            });
+            setSearchData(filter);
+        } else {
+            setSearchData(null);
+        }
+    }, [productData]);
+
+    
+
+
     return (
         <>
             <header className='flex bg-[#4D869C] justify-between items-center md:px-5 py-2 ' >
@@ -40,10 +54,10 @@ const Header2 = () => {
 
 
                 <div className={`${searchToggle ? "block absolute w-full top-20 z-50" : "hidden w-3/6 md:block md:relative"} `} >
-                    <input type='search' placeholder='Search Here ...' onChange={handleSearch} className='py-2 px-4 w-full rounded-full shadow-lg' />
+                    <input type='search' value={search} placeholder='Search Here ...' onChange={handleSearch}  className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' ><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
-                        {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchdata(null) }} >{item?.title}</p>)}
+                        {Searchdata?.map((item, i) => <p className="px-3 py-1" key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
 
                     </div>
                 </div>

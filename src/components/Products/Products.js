@@ -19,9 +19,7 @@ function Products() {
   const [allProductData, setAllProductData] = useState(productData)
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
-
-
-
+  // console.log(allProductData.length)
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
   const [toggle, setToggle] = useState({
@@ -92,6 +90,7 @@ function Products() {
       return item?.category[0]?.category_name === main
 
     })
+    console.log(productData)
 
     const newData = data?.filter((item) => {
       return item.sub_category[0]?.sub_category_name === sub_category
@@ -390,48 +389,7 @@ function Products() {
       </div>
 
 
-      <section className="featured_products p-0">
-        <div className="container">
-          <div className="head_title">
-            <h2 className="fp_heading" data-text="Featured Products">
-              Related Products
-            </h2>
-            <div className="bdr"></div>
-          </div>
-          <OwlCarousel
-            className="owl-theme"
-            loop
-            margin={10}
-            nav
-            items={4}
-            dots={false}
-            responsive={{
-              0: {
-                items: 3, // 1 item in mobile view
-              },
-              568: {
-                items: 3, // 3 items in tablet view
-              },
-              768: {
-                items: 3, // 3 items in tablet view
-              },
-              1200: {
-                items: 4, // 4 items in desktop view
-              },
-            }}
-          >
-            <div className="item item2">
-              <img src={fea01} alt="Featured Product 1" />
-            </div>
-            <div className="item item2">
-              <img src={fea02} alt="Featured Product 2" />
-            </div>
-            <div className="item item2">
-              <img src={fea03} alt="Featured Product 3" />
-            </div>
-          </OwlCarousel>
-        </div>
-      </section>
+     
 
     </div>
 
