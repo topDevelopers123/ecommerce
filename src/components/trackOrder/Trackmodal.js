@@ -23,7 +23,7 @@ function Trackmodal({ toggle, setToggle }) {
                             <div className='flex px-4 gap-3 '>
                                 <div className='col-md-4 d-flex justify-content-center align-items-center'>
                                     <div className='productImg'>
-                                        <img src={toggle?.toggle?.data?.image}/>
+                                        <img src={toggle?.toggle?.data?.image} alt='img'/>
                                     </div>
                                 </div>
                                 <div className='col-md-8'>

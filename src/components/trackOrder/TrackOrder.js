@@ -4,17 +4,13 @@ import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
 import { boolean } from 'yup'
-import Invoice from './Invoice'
 
 function TrackOrder() {
     const { orderDetail } = useOrderContext()
-    const [invoice, setInvoice] = useState(false)
     const [toggle,setToggle]= useState({
         boolean_val:false,
         data:[]
     })
-
-    
 
     // console.log(orderDetail)
 
@@ -27,7 +23,7 @@ function TrackOrder() {
                         <div className="card-body">
 
                        
-                            <article className="card">
+                            <article className="card mb-4">
                                 <div className="card-body row">
                                     <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
                                     <div className="col-md-3 col-12"> <strong>Shipping BY:</strong> <br /> BLUEDART, | <i className="fa fa-phone"></i> +1598675986 </div>
@@ -51,9 +47,10 @@ function TrackOrder() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {/* {orderDetail?.UserOrder?.map((item, i) => (
+                                        {orderDetail?.UserOrder?.map((item, i) => (
+                                            <>
                                             <tr>
-                                            
+                                                {/* of */}
                                                 <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
                                                 <td>{item?.Product[0]?.title}</td>
                                                 <td>{item?.ProductDetails[0]?.sellingPrice}</td>
@@ -61,45 +58,28 @@ function TrackOrder() {
                                                 <td>{item.status}</td>
                                                 <td className='text-success' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
                                             </tr>
-                                        </thead>
-                                        <tbody> */}
-                                            {orderDetail?.UserOrder?.map((item, i) => (
-                                                <>
-                                                    <tr>
+                                             <div className='flex w-full my-2 gap- justify-between items-center'>
+                                        <button>Return</button>
+                                        <button>Invoice</button>
+                                    </div>
+                                            </>
+                                        ))}
 
-                                                        <td><img width={100} src={item?.image} style={{ height: "60px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' /></td>
-                                                        <td>{item?.Product[0]?.title.slice(0,15)}...</td>
-                                                        <td>{item?.ProductDetails[0]?.sellingPrice}</td>
-                                                        <td>{item.quantity}</td>
-                                                        <td>{item.status}</td>
-                                                        <td className='text-success' onClick={() => setToggle(true)} >View More</td>
-                                                    </tr>
-                                                    <div className='flex w-full my-2 gap- justify-between items-center'>
-                                                        <button>Return</button>
-                                                        <button>Invoice</button>
-                                                    </div>
-                                                </>
-                                            ))}
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
 
 
-
-
+                           
+                            
 
                             <div className="submitBtn w-50 ms-auto me-auto ">
                                 <Link to="/"> <button>Continue Shopping</button></Link>
                             </div>
-                      
+                        </div>
                     </article>
                 </div>
             </section>
-            
-
-
             {toggle?.boolean_val ? <Trackmodal setToggle={setToggle} toggle={{toggle}}  /> : null}
         </div>
     )
