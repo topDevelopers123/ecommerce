@@ -9,6 +9,8 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
 import tp01 from "../home/img/trending/1.jpg";
 import StarRatings from "react-star-ratings";
+import { computeHeadingLevel } from "@testing-library/react";
+
 
 function ProductDetail() {
   const {  addReview, disable } = useProductDetailsContext()
@@ -22,7 +24,24 @@ function ProductDetail() {
   const [size, setSize] = useState(null)
   const [selectedImages, setSelectedImages] = useState([]);
   const navigate = useNavigate()
+  const param = useParams()
+  
+  // const [changeColor,setColor] = useState()
+  let filterProduct = productData?.filter((item) => item._id === param.id)
+  let reletedProduct = []
+  
+  
+  
+  
 
+  productData?.map((item) => {
+  
+    if (item?.sub_inner_category[0]?._id === filterProduct[0]?.sub_inner_category[0]?._id) {
+      reletedProduct.push(item)
+    }
+  })
+
+  
   let ratingAvg = 0;
   let totalReview = 0;
   const [error, setError] = useState("")
@@ -125,6 +144,7 @@ function ProductDetail() {
     }
   }
 
+  
 
   const data = productData?.filter((item, i) => {
     return id === item._id
@@ -134,6 +154,8 @@ function ProductDetail() {
 
   const filter = data?.ProductDetails?.filter((item) => item.color === color)
   const filter2 = filter?.filter((item) => item._id === size)[0]
+
+
 
   const [details, setDetails] = useState({
     product_id: "",
@@ -156,7 +178,7 @@ function ProductDetail() {
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
     
 
-  }, [productData])
+  }, [productData,param])
 
 
 
@@ -485,15 +507,16 @@ function ProductDetail() {
       </section>
       {/* Product details section end */}
 
-      {/* Featured products start */}
-      <section className="interested_prod">
+
+      <section className="featured_products p-0">
         <div className="container">
           <div className="head_title">
             <h2 className="fp_heading" data-text="Featured Products">
-              You might interested in
+              Related Products
             </h2>
             <div className="bdr"></div>
           </div>
+
           <OwlCarousel
             className="owl-theme"
             loop
@@ -503,110 +526,44 @@ function ProductDetail() {
             dots={false}
             responsive={{
               0: {
-                items: 1, // 1 item in mobile view
+                items: 3, // 1 item in mobile view
+              },
+              568: {
+                items: 3, // 3 items in tablet view
               },
               768: {
-                items: 2, // 3 items in tablet view
+                items: 3, // 3 items in tablet view
               },
               1200: {
-                items: 4, // 4 items in desktop view
-              },   
+                items: 4 // 4 items in desktop view
+              },
             }}
           >
-            <div className="item">
-              <div className="card">
-                <div className="add_icons">
-                  <div className="icons">
-                    <i className="bi bi-heart-fill"></i>
-                  </div>
-                  <div className="icons">
-                    <i className="bi bi-share-fill"></i>
-                  </div>
-                </div>
-                <img src={tp01} className="tp_img" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                  <p className="card-text">
-                    Some quick example text to build on ..
-                  </p>
-                  <p className="pricing">
-                    ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                  </p>
-                  <div className="d-flex">
-                    <button className="btn btn-block addBtn">
-                      Add to basket
-                    </button>
-                    <button className="btn btn-block addBtn ms-2">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="item">
-              <div className="card">
-                <div className="add_icons">
-                  <div className="icons">
-                    <i className="bi bi-heart-fill"></i>
-                  </div>
-                  <div className="icons">
-                    <i className="bi bi-share-fill"></i>
-                  </div>
-                </div>
-                <img src={tp01} className="tp_img" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                  <p className="card-text">
-                    Some quick example text to build on ..
-                  </p>
-                  <p className="pricing">
-                    ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                  </p>
-                  <div className="d-flex">
-                    <button className="btn btn-block addBtn">
-                      Add to basket
-                    </button>
-                    <button className="btn btn-block addBtn ms-2">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="item">
-              <div className="card">
-                <div className="add_icons">
-                  <div className="icons">
-                    <i className="bi bi-heart-fill"></i>
-                  </div>
-                  <div className="icons">
-                    <i className="bi bi-share-fill"></i>
-                  </div>
-                </div>
-                <img src={tp01} className="tp_img" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">Navy Blue Printed Shirt</h5>
-                  <p className="card-text">
-                    Some quick example text to build on ..
-                  </p>
-                  <p className="pricing">
-                    ₹429 <s> ₹999</s> <span>57% off</span>{" "}
-                  </p>
-                  <div className="d-flex">
-                    <button className="btn btn-block addBtn">
-                      Add to basket
-                    </button>
-                    <button className="btn btn-block addBtn ms-2">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+         
+            {reletedProduct?.map((item, i) => <div onClick={() =>{
+
+              navigate(`/productdetails/${item?._id}`)
+              window.scrollTo(0, 0);
+            }} key={i} className="item item2">
+
+              <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.title} />
+              <h5 className="card-title mt-2">{item?.title.length <= 5
+                ? item?.title
+                : `${item?.title.slice(0, 15)}...`}</h5>
+              <p className="pricing">
+                ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
+              </p>
+            </div>)}
+
+
           </OwlCarousel>
+
         </div>
       </section>
-      {/* Featured products end  */}
+
+
+
+    
     </div>
   );
 }
