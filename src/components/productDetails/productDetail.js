@@ -26,7 +26,7 @@ function ProductDetail() {
   let ratingAvg = 0;
   let totalReview = 0;
   const [error, setError] = useState("")
-
+  const token = localStorage.getItem("token")
   const [reviewData, setReviewData] = useState({
     title: "",
     message: "",
@@ -48,6 +48,12 @@ function ProductDetail() {
   
 
   const redirectHandler = (product_id, id, image) => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     
     navigate(`/oldAddress/${product_id}/${id}?image=${image}&&qty=${qty}`)
     window.scrollTo(0, 0);
@@ -157,6 +163,12 @@ function ProductDetail() {
   // console.log(details);
 
   const addToCartHandler = (product_id, productDetails, quantity, image) => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     // console.log(product_id, product_detail_id, qty, image);
     const obj = {product_id,
       productDetails,
@@ -167,6 +179,12 @@ function ProductDetail() {
   }
 
   const wishListHandler = () => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     addToWishlist(wishDetails)
 
   }

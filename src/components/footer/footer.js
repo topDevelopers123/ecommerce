@@ -44,7 +44,7 @@ function footer() {
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>Get In Touch</h6>
                   <ul className="p-0">
-                    <p className='text-light'>355, 3rd Floor, Aggarwal Millennium Tower-1, Netaji Subhas Place, Pitam Pura, New Delhi - 110 034</p>
+                    <p className='text-light'>BK-1/54, SHALIMAR BAGH , North West Delhi, DL, 110088</p>
                     <Link to="mailto:mayavifashion@gmail.com"><li className='text-light'>mayavifashion@gmail.com</li></Link>
                     {/* <li className='text-light'>9262852851</li> */}
                   </ul>
@@ -59,7 +59,7 @@ function footer() {
         <div className='container mt-3'>
           <div className='row'>
             <div className='col-lg-8 col-md-12 col-12'>
-              <p className='text-light'>Copyright © 2024 | All Rights Reserved | Paras Parivaar Pvt Ltd. New Delhi</p>
+              <p className='text-light'>Copyright © 2024 | All Rights Reserved | Mayavi Fashion LLP -  New Delhi</p>
             </div>
             <div className='col-lg-4 col-md-12 col-12 d-flex justify-content-end pe-5'>
               <i className="bi bi-facebook mx-3 text-light"></i>

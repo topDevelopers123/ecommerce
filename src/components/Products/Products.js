@@ -68,6 +68,7 @@ function Products() {
     }
   })
 
+  const token = localStorage.getItem("token")
  
   let ratingAvg = 0;
 
@@ -168,11 +169,22 @@ function Products() {
   }
 
   const addToCartHandler = (product_id, productDetailsId, image) => {
-    
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     addToCart(product_id, productDetailsId, image)
   }
 
   const addToWishlistHandler = (product_id, product_detail_id) => {
+    if (token === null) {
+
+      navigate(`/login`);
+      window.scrollTo(0, 0);
+      return
+    }
     const data = {
       product_id: product_id,
       product_detail_id: product_detail_id
@@ -221,28 +233,28 @@ function Products() {
                     <ul className="dropdown-menu p-0">
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="5" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, five: { checked: e.target.checked, value: e.target.value } })} />
-                        <li className="dropdown-item">5★ & above</li>
+                        <li className="dropdown-item">5 ★ or less</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">4★ & above</li>
+                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">4 ★ or less</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">3★ & above</li>
+                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">3 ★ or less</li>
                       </div>
 
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="2" id="flexCheckIndeterminate" onChange={(e) => setToggle({
                           ...toggle
                           , second: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">2★ & above</li>
+                        })} /><li className="dropdown-item">2 ★ or less</li>
                       </div>
 
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
                           , first: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">1★ & above</li>
+                        })} /><li className="dropdown-item">1 ★ or less</li>
                       </div>
                     </ul>
                   </div>
@@ -258,31 +270,31 @@ function Products() {
                         <input className="form-check-input" type="checkbox" value="50" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , five: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">50% or more</li>
+                        })} /><li className="dropdown-item">50% or less</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="40" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , four: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">40% or more</li>
+                        })} /><li className="dropdown-item">40% or less</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="30" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , third: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">30% or more</li>
+                        })} /><li className="dropdown-item">30% or less</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="20" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , second: { checked: e.target.checked, value: e.target.value }
-                        })}  /><li className="dropdown-item">20% or more</li>
+                        })}  /><li className="dropdown-item">20% or less</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="10" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , first: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">10% or more</li>
+                        })} /><li className="dropdown-item">10% or less</li>
                       </div>
                     </ul>
                   </div>
