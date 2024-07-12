@@ -80,11 +80,11 @@ const Header2 = () => {
                             </Link>
                             <span className='text-xl md:text-2xl text-white flex flex-col justify-center items-center' onClick={()=>setoggle(!toggle)} ><i className="bi bi-person-circle"></i>
                                 <span className='text-xs font-normal ' >Profile</span>
-                                <div className={` ${toggle ? "block" : "hidden"} bg-white shadow overflow-hidden  absolute top-20 right-5 rounded-xl py-2 px-1 w-24 sm:w-44 z-50 `}>
-                                    <button className=' w-full text-sm sm:text-lg  text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md ' onClick={()=>{naviate("/track_order");setoggle(false)}} >Orders &gt; </button>
-                                    <button className=' w-full text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 'onClick={()=>{naviate("/wishlist"); setoggle(false)}}>Wishlist &gt; </button>
-                                    <button className=' w-full text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={()=>{naviate("/savedAddress"); setoggle(false)}} >Address &gt; </button>
-                                    <button className=' w-full  text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={handleLogout} >Logout  </button>
+                                <div className={` ${toggle ? "block" : "hidden"} bg-white shadow overflow-hidden  absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem]  z-50 `}>
+                                    <button className=' w-full text-sm sm:text-lg flex justify-evenly py-2  text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md ' onClick={() => { naviate("/track_order"); setoggle(false) }} ><i className="bi bi-box-seam text-black"></i> Orders &gt; </button>
+                                    <button className=' w-full text-sm sm:text-lg border-bottom border-[#e7e7e7] py-2 flex justify-evenly text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/wishlist"); setoggle(false) }}><i className="bi bi-heart text-black"></i> Wishlist &gt; </button>
+                                    <button className=' w-full text-sm sm:text-lg flex justify-evenly border-bottom border-[#e7e7e7] py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/savedAddress"); setoggle(false) }} ><i className="bi bi-house-door text-black"></i> Address &gt; </button>
+                                    <button className=' w-full  text-sm sm:text-lg flex justify-evenly py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={handleLogout} ><i className="bi bi-box-arrow-right text-black"></i> Logout  </button>
                                 </div>
                             </span>
                         </div> : <>

@@ -106,7 +106,7 @@ function SavedAddress() {
 
     return (
         <div>
-            <div className='p-5'>
+            <div className='py-5 px-2 p-md-5'>
                 <div className='container'>
                     <div className='row'>
                         <div className='newAdd col-lg-12 col-md-8 p-3'>
