@@ -57,7 +57,7 @@ const Header2 = () => {
                     <input type='search' value={search} placeholder='Search Here ...' onChange={handleSearch}  className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' ><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
-                        {Searchdata?.map((item, i) => <p className="px-3 py-1" key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
+                        {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
 
                     </div>
                 </div>
