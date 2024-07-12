@@ -24,20 +24,6 @@ function ProductDetail() {
   const navigate = useNavigate()
   const param = useParams()
   
-  // const [changeColor,setColor] = useState()
-  let filterProduct = productData?.filter((item) => item._id === param.id)
-  let reletedProduct = []
-  
-  
-  
-  
-
-  productData?.map((item) => {
-  
-    if (item?.sub_inner_category[0]?._id === filterProduct[0]?.sub_inner_category[0]?._id) {
-      reletedProduct.push(item)
-    }
-  })
 
   
   let ratingAvg = 0;
@@ -148,7 +134,11 @@ function ProductDetail() {
     return id === item._id
   })[0]
 
+ 
+
   const Prouctdetail = data?.ProductDetails[0]
+  const relatedProduct = productData?.filter((item) => item.sub_inner_category[0]?.sub_inner_category_name === data.sub_inner_category[0]?.sub_inner_category_name )
+  console.log(relatedProduct)
 
   const filter = data?.ProductDetails?.filter((item) => item.color === color)
   const filter2 = filter?.filter((item) => item._id === size)[0]
@@ -169,7 +159,7 @@ function ProductDetail() {
 
   useEffect(() => {
 
-    setImage(filter ? filter[0]?.image[0]?.image_url : Prouctdetail?.image[0]?.image_url)
+    setImage( Prouctdetail?.image[0]?.image_url)
     setColor(Prouctdetail?.color)
     setSize(Prouctdetail?._id)
     setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
@@ -225,7 +215,6 @@ function ProductDetail() {
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
-
 
             {
           
@@ -538,7 +527,7 @@ function ProductDetail() {
             }}
           >
          
-            {reletedProduct?.map((item, i) => <div onClick={() =>{
+            {relatedProduct?.map((item, i) => <div onClick={() =>{
 
               navigate(`/productdetails/${item?._id}`)
               window.scrollTo(0, 0);

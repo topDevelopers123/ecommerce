@@ -126,14 +126,7 @@ function Cart() {
                                     </div>
 
                                 </div>
-                                <hr />
-                                <div className='d-flex justify-content-between'>
-                                    <div>You Pay</div>
-                                    <div>₹0.00</div>
-                                </div>
-                                <button className='mt-5' onClick={() => checkoutPage()}>CHECKOUT</button>
-                                <button>CONTINUE SHOPPING</button>
-
+                               
                             </div>
                         </div>
 
