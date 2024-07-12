@@ -3,26 +3,24 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const Invoice = ({ setInvoice, data }) => {
-    console.log(data);
     const printDocument = () => {
-        const input = document.getElementById('invoice');
-        html2canvas(input)
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF();
-                pdf.addImage(imgData, 'PNG', 0, 0);
-                pdf.save("invoice.pdf");
-            });
+        var doc = new jsPDF("p", "pt", "a4")
+        doc.html(document.getElementById("invoice"), {
+            callback: function (pdf) {
+                pdf.save("Invoice.pdf")
+            }
+        })
     };
 
     return (
-        <div className='bg-gray-500 py-24 absolute w-full top-0 left-0'>
+        <div className='bg-gray-500 py-24 absolute  w-full top-0 left-0'>
             <h1 className='absolute top-10 right-10 cursor-pointer' onClick={() => setInvoice(false)}>
                 <i className="bi bi-x-lg text-white"></i>
             </h1>
-            <button onClick={printDocument}>Download</button>
-            <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg" id="invoice">
-                <div className="flex justify-between items-center mb-8">
+            <div className='text-center'>
+                <button className='text-white btn bg-[#4d869c] ' onClick={printDocument}>Download</button></div>
+            <div className=" w-[595px] h-[842px] mx-auto bg-white p-6 rounded-lg shadow-lg" id="invoice">
+                <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center">
                         <img src="./image/invoice.png" alt="Logo" className="h-16 mr-4" />
                     </div>
@@ -31,19 +29,19 @@ const Invoice = ({ setInvoice, data }) => {
                     </div>
                 </div>
 
-                <div className='mb-4'>
+                <div className='mb-4 text-center'>
                     <p><strong>Invoice Number: </strong> 1330</p>
                     <p>Date: 02/03/2024</p>
                 </div>
-                <div className='h-1 bg-[#4d869c] mb-4'></div>
+                <div className='h-1 bg-[#4d869c] mb-2'></div>
 
-                <div className="flex justify-between mb-8 py-3">
+                <div className="flex justify-between mb-2 py-1">
                     <div>
                         <h3 className="text-lg font-bold text-gray-800">Bill From</h3>
-                        <p className="text-gray-600">Mayavi Fashion</p>
-                        <p className="text-gray-600">First str, 28-32, Chicago, USA</p>
-                        <p className="text-gray-600">mayavifashion@gmail.com</p>
-                        <p className="text-gray-600">8029697597</p>
+                        <p className="text-gray-600 font-medium text-black">Mayavi Fashion</p>
+                        <p className="text-gray-600 font-medium text-black">First str, 28-32, Chicago, USA</p>
+                        <p className="text-gray-600 font-medium text-black">mayavifashion@gmail.com</p>
+                        <p className="text-gray-600 font-medium text-black">8029697597</p>
                     </div>
                     <div>
                         <h3 className="text-lg font-bold text-gray-800">Bill to</h3>
@@ -53,7 +51,7 @@ const Invoice = ({ setInvoice, data }) => {
                         <p className="text-gray-600">{data.UserAddress[0].phone}</p>
                     </div>
                 </div>
-                <div className='table-responsive mb-8'>
+                <div className='table-responsive mb-4'>
                     <table className="w-full border-collapse">
                         <thead className="border-y-2 border-black">
                             <tr>
@@ -66,7 +64,7 @@ const Invoice = ({ setInvoice, data }) => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td className="py-2 px-4">{data.Product[0].title}</td>
+                                <td className="py-2  font-medium px-4">{data.Product[0].title}</td>
                                 <td className="py-2 px-4">{data.quantity}</td>
                                 <td className="py-2 px-4">{data.ProductDetails[0].MRP}</td>
                                 <td className="py-2 px-4">9%</td>
@@ -75,33 +73,29 @@ const Invoice = ({ setInvoice, data }) => {
                         </tbody>
                     </table>
                 </div>
-                <div className='h-1 bg-[#4d869c] mb-4'></div>
+                <div className='h-1 bg-[#4d869c] mb-2'></div>
 
-                <div className="flex justify-between mb-8 mt-3">
+                <div className="flex justify-between mb-4 mt-3 ">
                     <div>
                         <h3 className="text-lg font-bold text-gray-800">Terms & Conditions</h3>
                         {/* Add any terms and conditions here */}
                     </div>
-                    <div>
-                        <div className="flex justify-between mb-2">
-                            <p className="text-gray-600">Subtotal:</p>
-                            <p className="text-gray-600">₹ 6999</p>
+                    <div className='w-60'>
+                        <div className="flex justify-between  ">
+                            <p className=" text-gray-600 font-bold">Subtotal:</p>
+                            <p className="text-gray-600 font-medium">&#8377; 6999</p>
                         </div>
-                        <div className="flex justify-between mb-2">
-                            <p className="text-gray-600">Discount (20%):</p>
-                            <p className="text-gray-600">₹ 20</p>
+                        <div className="flex justify-between ">
+                            <p className="text-gray-600 font-bold">Discount (20%):</p>
+                            <p className="text-gray-600 font-medium">&#8377; 20</p>
                         </div>
-                        <div className="flex justify-between mb-2">
-                            <p className="text-gray-600">Tax:</p>
-                            <p className="text-gray-600">₹ 200</p>
+                        <div className="flex justify-between ">
+                            <p className="text-gray-600 font-bold">Tax:</p>
+                            <p className="text-gray-600 font-medium">&#8377; 200</p>
                         </div>
-                        <div className="flex justify-between mb-2">
-                            <p className="text-gray-600">Paid:</p>
-                            <p className="text-gray-600">₹ 5999</p>
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="text-blue-600 font-bold">Balance Due:</p>
-                            <p className="text-blue-600 font-bold">₹ 8,480.00</p>
+                        <div className="flex justify-between border-y-2 items-center border-black">
+                            <p className="text-black font-bold">Paid:</p>
+                            <p className="text-black font-medium">&#8377; 8,480.00</p>
                         </div>
                     </div>
                 </div>

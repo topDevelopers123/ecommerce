@@ -14,15 +14,16 @@ function Wishlist() {
         window.scrollTo(0, 0);
     };
 
-    const addToCartHandler = (product_id, productDetails) => {
+    const addToCartHandler = (product_id, productDetails, image) => {
+      
         if (token === null) {
 
             navigate(`/login`);
             window.scrollTo(0, 0);
             return
         }
-           const quantity = 1
-        addToCart(product_id, productDetails, quantity)
+        
+        addToCart(product_id, productDetails, image)
     }
 
 
@@ -74,8 +75,9 @@ function Wishlist() {
                                             {item?.product_detail_id?.sellingPrice}
                                         </h6>
                                         <div className='col-lg-2 col-md-12 col-sm-9 col-9 add_to_cart_delete_box'>
-                                            <button onClick={() => addToCartHandler(item?.product_id?._id, item?.product_detail_id?._id)}>ADD TO CART</button>
+                                            <button onClick={() => addToCartHandler(item?.product_id?._id, item?.product_detail_id?._id, item?.product_detail_id?.image[0]?.image_url)}>ADD TO CART</button>
                                         </div>
+                                    
                                         <div className='col-lg-2 col-md-12 col-sm-3 col-3'>
                                             <i className="bi bi-trash3" onClick={() => deleteWishlistProduct(item?._id)}></i>
                                         </div>

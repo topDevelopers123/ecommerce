@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
 import { boolean } from 'yup'
+import Invoice from './Invoice'
 
 function TrackOrder() {
+
+    const [invoice, setInvoice] = useState(false)
+    const [invoicedata, setInvoicedata] = useState([])
     const { orderDetail } = useOrderContext()
     const [toggle,setToggle]= useState({
         boolean_val:false,
@@ -15,6 +19,7 @@ function TrackOrder() {
     // console.log(orderDetail)
 
     return (
+        <>
         <div>
             <section className='tracking_order_pg'>
                 <div className="container">
@@ -35,7 +40,8 @@ function TrackOrder() {
                             <hr />
 
                             <div className='order_table'>
-                                <table class="table table-secondary table-striped table-responsive ">
+                                <div className='table-responsive'>
+                                <table class="table table-secondary table-striped  ">
                                     <thead >
                                         <tr >
                                             <th className='text-white bgprimary' scope="col">Product Image</th>
@@ -47,7 +53,7 @@ function TrackOrder() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orderDetail?.UserOrder?.map((item, i) => (
+                                        {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
                                             <>
                                             <tr>
                                                 {/* of */}
@@ -58,15 +64,16 @@ function TrackOrder() {
                                                 <td>{item.status}</td>
                                                 <td className='text-success' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
                                             </tr>
-                                             <div className='flex w-full my-2 gap- justify-between items-center'>
+                                             <div className='flex w-full my-2 gap-2 justify-between items-center'>
                                         <button>Return</button>
-                                        <button>Invoice</button>
+                                                    <button onClick={() => { setInvoice(!invoice); setInvoicedata(item)}}>Invoice</button>
                                     </div>
                                             </>
                                         ))}
 
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
 
 
@@ -82,6 +89,8 @@ function TrackOrder() {
             </section>
             {toggle?.boolean_val ? <Trackmodal setToggle={setToggle} toggle={{toggle}}  /> : null}
         </div>
+        {invoice? <Invoice setInvoice={setInvoice} data = {invoicedata}  /> : null}
+       </>
     )
 }
 

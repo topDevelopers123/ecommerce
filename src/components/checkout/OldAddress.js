@@ -131,18 +131,18 @@ function OldAddress() {
 
     }, [cartData, radio])
 
-    const checkOut = (amount) => {
+    // const checkOut = (amount) => {
 
-        if (finalData.payment_type === "online") {
-            HandlePayement(amount)
-        }
-        else {
-            addOrder(finalData)
-        }
+    //     if (finalData.payment_type === "online") {
+    //         HandlePayement(amount)
+    //     }
+    //     else {
+    //         addOrder(finalData)
+    //     }
 
             
 
-    }
+    // }
 
     total = getTotel + localCharges
 
@@ -241,103 +241,147 @@ function OldAddress() {
 
 
     const HandlePayement = async (amount) => {
-       
         const newData = {
-            amount
+            amount,
+            PaymenType: finalData.payment_type,
+        };
+
+        const order = await axios.post(`${API}/order/payement`, newData);
+      
+
+        if (finalData.payment_type === "COD") {
+            // Handle COD order directly without invoking Razorpay
+            await addOrder({
+                ...finalData,
+                payment_status: "pending",
+                razorpay_payment_id: null,
+                razorpay_order_id: order.data.id,
+            });
+
+            // Optionally, redirect the user to a confirmation page or show a success message
+            console.log("Order placed successfully with COD");
+            return;
         }
-        const order = await axios.post(`${API}/order/payement`, newData)
 
         const options = {
             key: process.env.REACT_APP_KEY,
             amount: order.data.amount,
             currency: order.data.currency,
-            name: 'Mayavi Fashion',
-            description: 'Test Transaction',
+            name: "Mayavi Fashion",
+            description: "Test Transaction",
             image: logo,
             order_id: order.data.id,
             handler: async function (response) {
-                console.log(response)
                 const paymentData = {
                     razorpay_order_id: response.razorpay_order_id,
                     razorpay_payment_id: response.razorpay_payment_id,
-                    razorpay_signature: response.razorpay_signature
+                    razorpay_signature: response.razorpay_signature,
                 };
-                addOrder({ ...finalData, payment_status: "success", razorpay_payment_id:paymentData?.razorpay_payment_id })              
+                await addOrder({
+                    ...finalData,
+                    payment_status: "success",
+                    razorpay_payment_id: paymentData?.razorpay_payment_id,
+                    razorpay_order_id: paymentData?.razorpay_order_id,
+                });
             },
             prefill: {
-                name: 'Your Name',
-                email: 'youremail@example.com',
-                contact: '9999999999'
+                name: "Your Name",
+                email: "youremail@example.com",
+                contact: "9999999999",
             },
             notes: {
-                address: 'Razorpay Corporate Office'
+                address: "Razorpay Corporate Office",
             },
             theme: {
-                color: '#3399cc'
-            }
+                color: "#3399cc",
+            },
         };
-        // console.log("Done");
 
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();
+        if (order.data.payment_capture !== 0) {
+            const rzp1 = new window.Razorpay(options);
+            rzp1.open();
+        }
     };
 
 
-
     const HandlePayementForByNow = async (amount) => {
-
+       
         const newData = {
-            amount
-        }
-        const order = await axios.post(`${API}/order/payement`, newData)
+            amount,
+            PaymenType: singleProductData.payment_type,
+        };
 
+        const order = await axios.post(`${API}/order/payement`, newData);
+        console.log(order);
+
+        if (singleProductData.payment_type === "COD") {
+            // Handle COD order directly without invoking Razorpay
+            await addSingleOrder({
+                ...singleProductData,
+                payment_status: "pending",
+                razorpay_payment_id: null,
+                razorpay_order_id: order.data.id,
+            });
+
+            // Optionally, redirect the user to a confirmation page or show a success message
+            console.log("Order placed successfully with COD");
+            return;
+        }
+      
         const options = {
+            
             key: process.env.REACT_APP_KEY,
             amount: order.data.amount,
             currency: order.data.currency,
-            name: 'Mayavi Fashion',
-            description: 'Test Transaction',
+            name: "Mayavi Fashion",
+            description: "Test Transaction",
             image: logo,
             order_id: order.data.id,
             handler: async function (response) {
-                console.log(response)
                 const paymentData = {
                     razorpay_order_id: response.razorpay_order_id,
                     razorpay_payment_id: response.razorpay_payment_id,
-                    razorpay_signature: response.razorpay_signature
+                    razorpay_signature: response.razorpay_signature,
                 };
-                addSingleOrder({ ...singleProductData, payment_status: "success", razorpay_payment_id: paymentData?.razorpay_payment_id })
+                
+                await addSingleOrder({
+                    ...singleProductData,
+                    payment_status: "success",
+                    razorpay_payment_id: paymentData?.razorpay_payment_id,
+                    razorpay_order_id: paymentData?.razorpay_order_id,
+                });
             },
             prefill: {
-                name: 'Your Name',
-                email: 'youremail@example.com',
-                contact: '9999999999'
+                name: "Your Name",
+                email: "youremail@example.com",
+                contact: "9999999999",
             },
             notes: {
-                address: 'Razorpay Corporate Office'
+                address: "Razorpay Corporate Office",
             },
             theme: {
-                color: '#3399cc'
-            }
+                color: "#3399cc",
+            },
         };
-        // console.log("Done");
 
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();
+        if (order.data.payment_capture !== 0) {
+            const rzp1 = new window.Razorpay(options);
+            rzp1.open();
+        }
     };
 
 
     
-    const singleProductOrder = (amount) => {
-        console.log(singleProductData, amount);
+    // const   = (amount) => {
+    //     console.log(singleProductData, amount);
         
-        if (singleProductData.payment_type === "online") {
-            HandlePayementForByNow(amount)
-        }
-        else {
-            addSingleOrder(singleProductData);
-        }
-    }
+    //     if (singleProductData.payment_type === "online") {
+    //         HandlePayementForByNow(amount)
+    //     }
+    //     else {
+    //         addSingleOrder(singleProductData);
+    //     }
+    // }
 
     return (
         <div>
@@ -461,7 +505,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={() => singleProductOrder((product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges)}>Confirm Order</button>
+                                                <button onClick={() => HandlePayementForByNow((product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges)}>Confirm Order</button>
                                             </div>
                                         </>                                        
                                         :
@@ -556,7 +600,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={() => checkOut(total)}>Confirm Order</button>
+                                                <button onClick={()=>HandlePayement(total)} >Confirm Order online</button>
 
                                             </div>
                                         </>}

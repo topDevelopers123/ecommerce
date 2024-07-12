@@ -1,59 +1,47 @@
-
-import React, { useState, useEffect } from 'react';
-import logo from "./header_images/logo.png";
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthContext, useCartContext, useProductContext, useWishlistContext } from '../../Context/index.context';
-import CategoryPage from './CategoryPage';
-import toast from 'react-hot-toast';
+import React, { useCallback, useState } from 'react'
+import logo from "./header_images/logo.png"
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthContext, useCartContext, useProductContext, useWishlistContext } from '../../Context/index.context'
+import CategoryPage from './CategoryPage'
+import toast from 'react-hot-toast'
 
 const Header2 = () => {
-    const { authorizeToken } = useAuthContext();
-    const { wishlistLength } = useWishlistContext();
-    const { cartLength } = useCartContext();
-    const { productData } = useProductContext();
-    const [searchData, setSearchData] = useState([]);
-    const [searchToggle, setSearchToggle] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [dropdownTimeout, setDropdownTimeout] = useState(null);
-    const navigate = useNavigate();
-    const [search, setSearch] = useState('');
+    const { authorizeToken } = useAuthContext()
+    const { wishlistLength } = useWishlistContext()
+    const { cartLength } = useCartContext()
+    const { productData } = useProductContext()
+    const [Searchdata, setSearchData] = useState([])
+    const [searchToggle, setSearchToggle] = useState(false)
+    const naviate = useNavigate()
 
-    const handleSearch = (e) => {
+    const [search, setSearch] = useState("")
+    const [toggle, setoggle] = useState(false)
+
+    const handleLogout = () => {
+        toast.success("Logout successfull !!")
+        localStorage.clear()
+        window.location.href = "/"
+    }
+
+    const handleSearch = useCallback((e) => {
         const { value } = e.target;
         setSearch(value);
-        const filter =
-            value &&
-            productData &&
-            productData.filter((item) =>
-                item.title
-                    .toLowerCase()
-                    .replace(/[^a-zA-Z0-9]/g, '')
-                    .includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''))
-            );
-        setSearchData(filter || null);
-    };
 
-    const handleMouseEnter = () => {
-        clearTimeout(dropdownTimeout);
-        setDropdownOpen(true);
-    };
+        if (value && productData) {
+            const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+            const filter = productData.filter((item) => {
+                const categoryMatch = item?.category[0]?.category_name?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
+                const subCategoryMatch = item?.sub_category[0]?.sub_category_name.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
+                return categoryMatch || subCategoryMatch;
+            });
+            setSearchData(filter);
+        } else {
+            setSearchData(null);
+        }
+    }, [productData]);
 
-    const handleMouseLeave = () => {
-        const timeout = setTimeout(() => setDropdownOpen(false), 200);
-        setDropdownTimeout(timeout);
-    };
-    const logout = () => {
-        localStorage.clear();
-        // setIsLoggedIn(false);
-        toast.success("Logout Successfully!");
-        window.location.href = "/";
-    };
 
-    useEffect(() => {
-        return () => {
-            clearTimeout(dropdownTimeout);
-        };
-    }, [dropdownTimeout]);
+
 
     return (
         <>
@@ -62,35 +50,18 @@ const Header2 = () => {
                     <img src={logo} className='size-full' alt='logo' />
                 </Link>
 
-                <div className={`${searchToggle ? 'block absolute w-full top-20 z-50' : 'hidden w-3/6 md:block md:relative'}`}>
-                    <input
-                        type='search'
-                        placeholder='Search Here ...'
-                        onChange={handleSearch}
-                        className='py-2 px-4 w-full rounded-full shadow-lg'
-                    />
-                    <span className='absolute top-2 right-4 font-bold'>
-                        <i className='bi bi-search'></i>
-                    </span>
-                    <div className='bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3 z-50'>
-                        {searchData?.map((item, i) => (
-                            <p
-                                className='px-3 py-1'
-                                key={i}
-                                onClick={() => {
-                                    navigate(`/productdetails/${item._id}`);
-                                    setSearch('');
-                                    setSearchData(null);
-                                }}
-                            >
-                                {item?.title}
-                            </p>
-                        ))}
+
+                <div className={`${searchToggle ? "block absolute w-full top-20 z-50" : "hidden w-3/6 md:block md:relative"} `} >
+                    <input type='search' value={search} placeholder='Search Here ...' onChange={handleSearch} className='py-2 px-4 w-full rounded-full shadow-lg' />
+                    <span className='absolute top-2 right-4 font-bold ' ><i className="bi bi-search"></i></span>
+                    <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
+                        {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
+
                     </div>
                 </div>
 
                 <div className='flex-shrink-0 flex px-2 py-3 items-center space-x-8'>
-                    {authorizeToken ? (
+                    {authorizeToken ? 
                         <div className='flex gap-2'>
                             <span
                                 onClick={() => setSearchToggle(!searchToggle)}
@@ -119,46 +90,27 @@ const Header2 = () => {
                                 </span>
                                 <span className='text-xs font-normal'>Cart</span>
                             </Link>
-                            <div
-                                className='relative'
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                <span className='text-xl md:text-2xl text-white flex flex-col justify-center items-center cursor-pointer'>
-                                    <i className='bi bi-person-circle'></i>
-                                    <span className='text-xs font-normal'>Profile</span>
-                                </span>
-                                {dropdownOpen && (
-                                    <div className='absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50'>
-                                        <Link to='/track_order' className='block px-4 py-2 text-gray-800 hover:bg-gray-200'>
-                                            Orders
-                                        </Link>
-                                        <Link to='/wishlist' className='block px-4 py-2 text-gray-800 hover:bg-gray-200'>
-                                            Wishlist
-                                        </Link>
-                                        <Link to='/saved-address' className='block px-4 py-2 text-gray-800 hover:bg-gray-200'>
-                                            Saved Address
-                                        </Link>
-                                        <p className='block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer' onClick={logout}>
-                                            Logout
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ) : (
-                        <div className='flex flex-col items-center'>
-                            <h6 className='text-white'>Welcome</h6>
-                            <p className='text-white'>To access account and manage orders.</p>
-                            <div className='flex justify-around border-t border-b py-2'>
-                                <Link to="/login" className="text-white p-2 btn rounded-0 btn-outline-primary">LOGIN</Link>
-                                <Link to="/register" className="text-white p-2 btn rounded-0 btn-outline-primary">REGISTER</Link>
-                            </div>
-                        </div>
-                    )}
+                            <span className='text-xl md:text-2xl text-white flex flex-col justify-center items-center' onClick={() => setoggle(!toggle)} ><i className="bi bi-person-circle"></i>
+                                <span className='text-xs font-normal ' >Profile</span>
+                                <div className={` ${toggle ? "block" : "hidden"} bg-white shadow overflow-hidden  absolute top-20 right-5 rounded-xl py-2 px-1 w-24 sm:w-44 z-50 `}>
+                                    <button className=' w-full text-sm sm:text-lg  text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md ' onClick={() => { naviate("/track_order"); setoggle(false) }} >Orders &gt; </button>
+                                    <button className=' w-full text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/wishlist"); setoggle(false) }}>Wishlist &gt; </button>
+                                    <button className=' w-full text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/savedAddress"); setoggle(false) }} >Address &gt; </button>
+                                    <button className=' w-full  text-sm sm:text-lg text-black m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={handleLogout} >Logout  </button>
+                                </div>
+                            </span>
+                        </div> : <>
+
+                        <Link to="/login" className="text-white  hover:bg-indigo-200 hover:text-black inline-flex items-center justify-center px-3 py-2  text-sm font-medium rounded-md shadow-sm " >Login</Link>
+                        <Link to="/register" className="text-gray-800 bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm "
+                        >Sign up
+                        </Link>
+                    </>}
                 </div>
             </header>
             <CategoryPage />
+
+
         </>
     );
 };

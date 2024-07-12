@@ -41,7 +41,7 @@ function OrderContextProvider({ children }) {
     }
 
     const addSingleOrder = async (data) => {
-        
+        console.log(data);
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
