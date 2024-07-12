@@ -19,9 +19,7 @@ function Products() {
   const [allProductData, setAllProductData] = useState(productData)
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
-
-
-
+  // console.log(allProductData.length)
   const [range, setRenge] = useState(100);
   const [flag, setFlag] = useState(false)
   const [toggle, setToggle] = useState({
