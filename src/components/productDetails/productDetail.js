@@ -7,9 +7,7 @@ import { useCartContext, useProductContext, useProductDetailsContext, useWishlis
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
-import tp01 from "../home/img/trending/1.jpg";
 import StarRatings from "react-star-ratings";
-import { computeHeadingLevel } from "@testing-library/react";
 
 
 function ProductDetail() {
@@ -237,7 +235,7 @@ function ProductDetail() {
                     <div key="" className="col-md-2 col-sm-2 mini-preview flex d-md-block order-2 order-sm-1">
                       {filter ? filter[0]?.image?.map((photo, i) => (
                         <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
-                      )) : Prouctdetail?.image?.map((photo, i) => (
+                      )) : Prouctdetail?.image?.map((photo, i) => ( 
                         <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
                     </div>
                     <div className="col-md-10 col-sm-10 order-1 order-sm-2">

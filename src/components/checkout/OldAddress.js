@@ -600,7 +600,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={()=>HandlePayement(total)} >Confirm Order online</button>
+                                                <button onClick={()=>HandlePayement(total)} >Confirm Order </button>
 
                                             </div>
                                         </>}
