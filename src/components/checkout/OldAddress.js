@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './OldAddress.css';
 import './checkout.css'
 import cod from "./img/cod.png";
@@ -43,6 +44,7 @@ function OldAddress() {
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
     const [radio, setRadio] = useState()
+    const navigate = useNavigate()
     const [data, setData] = useState({
         fullname: "",
         phone: "",
@@ -369,6 +371,12 @@ function OldAddress() {
             rzp1.open();
         }
     };
+
+    useEffect(()=>{
+        if (cartData?.length < 1) {
+            navigate("/")
+        }
+    }, [cartData])
 
 
     
