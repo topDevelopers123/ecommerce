@@ -10,14 +10,24 @@ import ShortBanners from "./ShortBanners/ShortBanners";
 import TrendingProducts from "./TrendingProducts/TrendingProducts";
 import Services from "./Services/Services";
 import "./home.css";
+import { useProductContext } from "../../Context/index.context";
 
 function Home() {
+  const {productData} = useProductContext()
+  const [data,setData] = useState([])
+  
+
+  useEffect(() => {
+    setData(productData);
+  }, [productData]);
+
+
   return (
     <>
       <div>
         <MainSlier />
-        <FeaturedProducts />
-        <NewArrivals />
+        <FeaturedProducts data1={productData}/>
+        <NewArrivals data={productData} />
         <ShortBanners />
         <TrendingProducts />
         <Services />        

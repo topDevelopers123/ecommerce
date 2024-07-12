@@ -373,7 +373,7 @@ function OldAddress() {
     };
 
     useEffect(()=>{
-        if (cartData?.length < 1) {
+        if (cartData?.length === 0) {
             navigate("/")
         }
     }, [cartData])

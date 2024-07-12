@@ -1,40 +1,26 @@
 
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { useProductContext } from '../../../Context/index.context';
 import { useNavigate } from 'react-router-dom';
 import bgImg from "../NewArrivals/img/bgImg.avif"
 
-function ShopByCategory() {
-    const { productData } = useProductContext();
+function ShopByCategory({data}) {
     const navigate = useNavigate();
 
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     };
-
-    const [firstFourProducts, setFirstFourProducts] = useState(productData?.slice(0, 4));
-    const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
-
-    useEffect(() => {
-        if (productData && productData.length > 0) {
-            setFirstFourProducts(productData?.slice(0, 4));
-            setLastFourProducts(productData?.slice(-4));
-        } else {
-            setFirstFourProducts([]);
-            setLastFourProducts([]);
-        }
-    }, [productData]);
+    
 
     return (
         <div>
             {/* New Arrivals start */}
             <section className="new_arrivals" style={{
                 backgroundImage: 'url(' + bgImg + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover', backgroundPosition: 'center'
+                 backgroundPosition: 'center'
             }}>
                 <div className="container">
                     <div className="head_title">
@@ -63,7 +49,7 @@ function ShopByCategory() {
                                 },
                             }}
                         >
-                            {firstFourProducts?.map((item, i) => (
+                            {data?.slice(0,4)?.map((item, i) => (
                                 <div key={i} className="item">
                                     <img
                                         src={item?.ProductDetails[0]?.image[0]?.image_url}
