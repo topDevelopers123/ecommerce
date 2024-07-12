@@ -66,7 +66,7 @@ function TrackOrder() {
                                             </tr>
                                              <div className='flex w-full my-2 gap-2 justify-between items-center'>
                                         <button>Return</button>
-                                                    <button onClick={() => { setInvoice(!invoice); setInvoicedata(item)}}>Invoice</button>
+                                                    <button onClick={() => { setInvoice(!invoice); setInvoicedata(item) ; window.scroll(0,0)}}>Invoice</button>
                                     </div>
                                             </>
                                         ))}
