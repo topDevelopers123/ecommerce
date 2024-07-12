@@ -495,7 +495,7 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row-last">
                                                                 <div className="select-icon hr">
-                                                                    <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
+                                                                    <input type="radio" id="radio2" name="radios" value="COD" defaultChecked onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
                                                                     <label htmlFor="radio2"></label>
                                                                 </div>
                                                                 <div className="select-txt hr">
@@ -587,7 +587,7 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row-last">
                                                                 <div className="select-icon hr">
-                                                                    <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
+                                                                    <input type="radio" id="radio2" name="radios" value="COD" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
                                                                     <label htmlFor="radio2"></label>
                                                                 </div>
                                                                 <div className="select-txt hr">
