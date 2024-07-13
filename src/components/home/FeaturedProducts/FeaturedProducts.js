@@ -8,7 +8,7 @@ import bgImg from "../NewArrivals/img/bg.avif"
 import { useNavigate } from 'react-router-dom';
 
 function FeaturedProducts({data1}) {
-    console.log(data1)
+
     const navigate = useNavigate();
 
     const productDetailsPage = (id) => {
