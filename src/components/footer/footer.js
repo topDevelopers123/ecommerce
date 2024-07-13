@@ -30,7 +30,7 @@ function footer() {
                   </ul>
                 </div>
 
-                <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
+                {/* <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>SHOP BY CATEGORY</h6>
                   <ul className="p-0">
                     <Link to=""><li className='text-light'>Shirts</li></Link>
@@ -39,7 +39,7 @@ function footer() {
                     <Link to=""><li className='text-light'>Men's Formal Wear</li></Link>
                     <Link to=""><li className='text-light'>Women's Ethnic Wear</li></Link>
                   </ul>
-                </div>
+                </div> */}
 
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>Get In Touch</h6>
