@@ -69,7 +69,7 @@ function Header() {
     const filter = value && productData && productData.filter((item) => item.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')));
     setSearchData(filter || []);
   };
->>>>>>> gyanendra
+
 
   const logout = () => {
     localStorage.clear();
