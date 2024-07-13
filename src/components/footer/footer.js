@@ -46,7 +46,7 @@ function footer() {
                   <ul className="p-0">
                     <p className='text-light'>BK-1/54, SHALIMAR BAGH , North West Delhi, DL, 110088</p>
                     <Link to="mailto:mayavifashion@gmail.com"><li className='text-light'>mayavifashion@gmail.com</li></Link>
-                    {/* <li className='text-light'>9262852851</li> */}
+                    <Link to="tel:9999999987"> <li className='text-light'>+91-99XXXXXXXX</li></Link>
                   </ul>
                 </div>
                 
