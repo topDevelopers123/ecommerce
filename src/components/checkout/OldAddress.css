@@ -87,7 +87,7 @@ form label {
 form input {
     width: calc(100% - 22px);
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     box-sizing: border-box;
     background-color: #EEF7FF;
     border: none;

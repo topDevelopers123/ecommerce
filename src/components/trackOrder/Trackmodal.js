@@ -7,7 +7,7 @@ function Trackmodal({ toggle, setToggle }) {
         <>
 
        
-            <div className="font-sans bg-gray-100 flex items-center justify-center h-screen">
+            <div className=" bg-gray-100 flex items-center justify-center h-screen">
                 <div x-data="{ showPrivacyPolicy: true }">
 
             
@@ -29,54 +29,54 @@ function Trackmodal({ toggle, setToggle }) {
                                 <div className='col-md-8'>
                                     <div className='productInfo'>
                                         <form>
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Product Name : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.Product[0]?.title}</span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.Product[0]?.title}</span>
                                                 
                                                
                                             </div>
 
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Product Description : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.Product[0]?.description}</span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.Product[0]?.description}</span>
 
 
                                             </div>
                                             <hr/>
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Price : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.ProductDetails[0]?.sellingPrice}</span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.ProductDetails[0]?.sellingPrice}</span>
 
 
                                             </div>
 
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2' >
                                                 <span className='fw-bold'>Quantity : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.quantity}</span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.quantity}</span>
 
 
                                             </div>
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Size : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.ProductDetails[0]?.Size}</span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.ProductDetails[0]?.Size}</span>
                                             </div>
 
                                             {/* address, trackOrder,  */}
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Address : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.house_no} {toggle?.toggle?.data?.UserAddress[0]?.area} {toggle?.toggle?.data?.UserAddress[0]?.city} {toggle?.toggle?.data?.UserAddress[0]?.state} {toggle?.toggle?.data?.UserAddress[0]?.country} {toggle?.toggle?.data?.UserAddress[0]?.pincode}</span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.house_no} {toggle?.toggle?.data?.UserAddress[0]?.area} {toggle?.toggle?.data?.UserAddress[0]?.city} {toggle?.toggle?.data?.UserAddress[0]?.state} {toggle?.toggle?.data?.UserAddress[0]?.country} {toggle?.toggle?.data?.UserAddress[0]?.pincode}</span>
 
                                             </div>
 
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Phone Number : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.phone} </span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.phone} </span>
 
                                             </div>
 
-                                            <div className='col-md-12 px-2'>
+                                            <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Alternate Number : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm font-bold leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.phone2} </span>
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.phone2} </span>
 
                                             </div>
 
@@ -84,7 +84,7 @@ function Trackmodal({ toggle, setToggle }) {
 
                                         
                                     </div>
-                                    <div className="track">
+                                    <div className="track mb-3">
                                         <div className="step active"> <span className="icon"> <i className="bi bi-check2"></i> </span> <span className="text">Order confirmed</span> </div>
                                         <div className="step "> <span className="icon"> <i className="bi bi-person-circle"></i> </span> <span className="text"> Picked by courier</span> </div>
                                         <div className="step"> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>

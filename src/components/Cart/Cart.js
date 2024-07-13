@@ -43,6 +43,7 @@ function Cart() {
                     <div className='wish-text wish-text-1 text-center flex-wrap  col-lg-10 d-flex justify-content-between'>
                         <h6 className='col-lg-2  col-12'>NAME</h6>
                         <h6 className='col-lg-2  col-12'>UNIT PRICE</h6>
+                        <h6 className='col-lg-2  col-12'>Size</h6>
                         <h6 className='col-lg-2  col-12'>QUANTITY</h6>
                         <h6 className='col-lg-2  col-12'>TOTAL</h6>
                         <h6 className='col-lg-2  col-12'>DELETE</h6>
@@ -69,6 +70,7 @@ function Cart() {
                                 </h6>
 
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice}</h6>
+                                <h6>{item?.productDetails?.Size}</h6>
                                 <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity justify-content-md-center'>
 
 
@@ -126,14 +128,7 @@ function Cart() {
                                     </div>
 
                                 </div>
-                                <hr />
-                                <div className='d-flex justify-content-between'>
-                                    <div>You Pay</div>
-                                    <div>₹0.00</div>
-                                </div>
-                                <button className='mt-5' onClick={() => checkoutPage()}>CHECKOUT</button>
-                                <button>CONTINUE SHOPPING</button>
-
+                               
                             </div>
                         </div>
 

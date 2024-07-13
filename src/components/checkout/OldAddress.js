@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './OldAddress.css';
 import './checkout.css'
 import cod from "./img/cod.png";
@@ -43,6 +44,7 @@ function OldAddress() {
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
     const [radio, setRadio] = useState()
+    const navigate = useNavigate()
     const [data, setData] = useState({
         fullname: "",
         phone: "",
@@ -370,6 +372,12 @@ function OldAddress() {
         }
     };
 
+    useEffect(()=>{
+        if (cartData?.length === 0) {
+            navigate("/")
+        }
+    }, [cartData])
+
 
     
     // const   = (amount) => {
@@ -487,7 +495,7 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row-last">
                                                                 <div className="select-icon hr">
-                                                                    <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
+                                                                    <input type="radio" id="radio2" name="radios" value="COD" defaultChecked onChange={(e) => setSingleProductData({ ...singleProductData, payment_type: e.target.value })} />
                                                                     <label htmlFor="radio2"></label>
                                                                 </div>
                                                                 <div className="select-txt hr">
@@ -579,7 +587,7 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row-last">
                                                                 <div className="select-icon hr">
-                                                                    <input type="radio" id="radio2" name="radios" value="cash" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
+                                                                    <input type="radio" id="radio2" name="radios" value="COD" defaultChecked onChange={(e) => setFinalData({ ...finalData, payment_type: e.target.value })} />
                                                                     <label htmlFor="radio2"></label>
                                                                 </div>
                                                                 <div className="select-txt hr">
@@ -600,7 +608,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={()=>HandlePayement(total)} >Confirm Order online</button>
+                                                <button onClick={()=>HandlePayement(total)} >Confirm Order</button>
 
                                             </div>
                                         </>}

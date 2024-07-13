@@ -62,11 +62,11 @@ function TrackOrder() {
                                                 <td>{item?.ProductDetails[0]?.sellingPrice}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>{item.status}</td>
-                                                <td className='text-success' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
+                                                <td className='text-success cursor-pointer' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
                                             </tr>
                                              <div className='flex w-full my-2 gap-2 justify-between items-center'>
                                         <button>Return</button>
-                                                    <button onClick={() => { setInvoice(!invoice); setInvoicedata(item)}}>Invoice</button>
+                                                    <button onClick={() => { setInvoice(!invoice); setInvoicedata(item) ; window.scroll(0,0)}}>Invoice</button>
                                     </div>
                                             </>
                                         ))}
@@ -75,11 +75,7 @@ function TrackOrder() {
                                 </table>
                                 </div>
                             </div>
-
-
-                           
-                            
-
+                                                       
                             <div className="submitBtn w-50 ms-auto me-auto ">
                                 <Link to="/"> <button>Continue Shopping</button></Link>
                             </div>

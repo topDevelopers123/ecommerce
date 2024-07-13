@@ -67,7 +67,7 @@
     padding: 7px 10px;
     border: none;
     outline: none;
-    font-size: 12px;
+    font-size: 14px;
     background-color: #4D869C;
     color: #fff;
     transition: all 0.3s ease;
@@ -209,7 +209,7 @@
     }
 
     .add_to_cart_div button {
-        padding-inline: 20px;
+        padding-inline: 35px;
     }
 
     .range_div_2 {
