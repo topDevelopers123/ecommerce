@@ -30,7 +30,7 @@ function footer() {
                   </ul>
                 </div>
 
-                {/* <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
+                <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>SHOP BY CATEGORY</h6>
                   <ul className="p-0">
                     <Link to=""><li className='text-light'>Shirts</li></Link>
@@ -39,14 +39,14 @@ function footer() {
                     <Link to=""><li className='text-light'>Men's Formal Wear</li></Link>
                     <Link to=""><li className='text-light'>Women's Ethnic Wear</li></Link>
                   </ul>
-                </div> */}
+                </div>
 
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>Get In Touch</h6>
                   <ul className="p-0">
                     <p className='text-light'>BK-1/54, SHALIMAR BAGH , North West Delhi, DL, 110088</p>
                     <Link to="mailto:mayavifashion@gmail.com"><li className='text-light'>mayavifashion@gmail.com</li></Link>
-                    {/* <li className='text-light'>9262852851</li> */}
+                    <Link to="tel:9999999987"> <li className='text-light'>+91-99XXXXXXXX</li></Link>
                   </ul>
                 </div>
                 
