@@ -25,7 +25,7 @@ function Home() {
   return (
     <>
       <div>
-        <MainSlier />
+        <MainSlier /> 
         <FeaturedProducts data1={productData}/>
         <NewArrivals data={productData} />
         <ShortBanners />

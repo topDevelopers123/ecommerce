@@ -319,8 +319,9 @@ function Products() {
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
                 {allProductData?.map((item) =>
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
-                  <div className="d-flex flex-column justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
+                  <div className="d-flex flex-column card justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item)=>item?.ProductDetails[0]?.image[0]?.image_url) } alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
+                    <div className="card-body">
                     <h6 className="mt-2 ps-2 short-title">{item?.title}</h6>
                     <p className="ps-2 py-0 my-0 desc">{item?.description?.slice(0, 30)}...</p>
                     <div className="d-flex flex-column">
@@ -347,7 +348,7 @@ function Products() {
                           <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id, item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url))}>Add To Cart</button>
                         </div>
 
-                        <div className="px-2 d-flex align-items-center justify-content-between">
+                        <div className="p-0 px-md-2 d-flex align-items-center justify-content-between">
                           <div className="icons">
                             <i className="bi bi-share px-2 mx-1" title="Share"></i>
                           </div>
@@ -357,6 +358,7 @@ function Products() {
                         </div>
 
                       </div>
+                    </div>
                     </div>
                   </div>
                 </div>)

@@ -70,7 +70,7 @@ function Cart() {
                                 </h6>
 
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice}</h6>
-                                <h6>{item?.productDetails?.Size}</h6>
+                                <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >{item?.productDetails?.Size}</h6>
                                 <div className='col-lg-2 col-md-12 col-sm-12 col-12 d-flex quentity justify-content-md-center'>
 
 

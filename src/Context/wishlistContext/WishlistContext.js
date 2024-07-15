@@ -40,6 +40,8 @@ function WishlistProvider({ children }) {
         }
     }
 
+    
+
     const deleteWishlistProduct = async(id) => {
         const toastId = toast.loading('Loading...');
         try {
