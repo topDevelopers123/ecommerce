@@ -406,7 +406,7 @@ function Products() {
                         <p className="mb-0 text-light ">{(item?.ProductDetails ? (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP) * 100).toFixed() : (productData?.map((ite) => (ite?.ProductDetails[0]?.MRP - ite?.ProductDetails[0]?.sellingPrice / productData?.map((ite) => ite?.ProductDetails[0]?.MRP) * 100).toFixed())))}% OFF</p>
                       </div>
 
-                      <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
+                      <div className="add_to_cart_div  py-3 px-2 d-flex align-items-center  justify-content-between w-100">
                         <div className="">
                           <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id, item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url))} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}>Add To Cart</button>
                         </div>
