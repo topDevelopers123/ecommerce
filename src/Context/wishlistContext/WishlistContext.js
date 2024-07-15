@@ -8,7 +8,7 @@ export const wishlistContext = createContext();
 
 function WishlistProvider({ children }) {
     const { authorizeToken, API } = useAuthContext()
-    const [wishlistData, setWishlistData] = useState(null);
+    const [wishlistData, setWishlistData] = useState([]);
     const [wishlistLength, setWishlistLength] = useState(0)
 
     const getWishlistData = async () => {
@@ -57,6 +57,30 @@ function WishlistProvider({ children }) {
 
     }
 
+
+    // For Wishlist Icon Color
+
+    const CheckWishlistData = (id) => {
+        const checkWishlist = wishlistData?.filter((item) =>
+
+            item?.product_detail_id?._id === id
+        )
+        console.log(checkWishlist);
+        if (checkWishlist?.length > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    const removeWishlist = (id) => {
+        const checkWishlist = wishlistData?.filter((item) =>
+            // console.log(item)
+            item?.product_detail_id?._id === id
+        )[0]
+        deleteWishlistProduct(checkWishlist?._id);
+    }
+
     useEffect(() => {
         if (authorizeToken){
             getWishlistData()
@@ -64,7 +88,7 @@ function WishlistProvider({ children }) {
     }, [authorizeToken])
 
     return (
-        <wishlistContext.Provider value={{ wishlistData, addToWishlist, wishlistLength, deleteWishlistProduct }}>
+        <wishlistContext.Provider value={{ wishlistData, addToWishlist, wishlistLength, deleteWishlistProduct, CheckWishlistData, removeWishlist }}>
             {children}
         </wishlistContext.Provider>
     )

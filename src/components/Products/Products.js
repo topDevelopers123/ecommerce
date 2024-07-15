@@ -12,7 +12,7 @@ import { useCartContext, useCategoryContext, useProductContext, useProductDetail
 function Products() {
 
   const { addToCart } = useCartContext()
-  const { addToWishlist } = useWishlistContext()
+  const { addToWishlist, wishlistData, deleteWishlistProduct, CheckWishlistData, removeWishlist } = useWishlistContext()
   const { productDetailsData } = useProductDetailsContext()
   const { selectedCategory } = useCategoryContext()
   const { productData } = useProductContext()
@@ -329,31 +329,31 @@ function Products() {
                         <input className="form-check-input" type="checkbox" value="50" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , five: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">50% or mordffddfd</li>
+                        })} /><li className="dropdown-item">50% or more</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="40" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , four: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">40% or mordffddfd</li>
+                        })} /><li className="dropdown-item">40% or more</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="30" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , third: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">30% or mordffddfd</li>
+                        })} /><li className="dropdown-item">30% or more</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="20" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , second: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">20% or mordffddfd</li>
+                        })} /><li className="dropdown-item">20% or more</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="10" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , first: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">10% or mordffddfd</li>
+                        })} /><li className="dropdown-item">10% or more</li>
                       </div>
                     </ul>
                   </div>
@@ -407,7 +407,7 @@ function Products() {
 
                       <div className="add_to_cart_div  py-2 px-2 d-flex align-items-center  justify-content-between w-100">
                         <div className="">
-                          <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id, item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url))}>Add To Cart</button>
+                          <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id, item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url))} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}>Add To Cart</button>
                         </div>
 
                         <div className="px-2 d-flex align-items-center justify-content-between">
@@ -415,7 +415,7 @@ function Products() {
                             <i className="bi bi-share px-2 mx-1" title="Share"></i>
                           </div>
                           <div className="icons">
-                            <i className="bi bi-heart px-2 mx-1" title="Wishlist" onClick={() => addToWishlistHandler(item?._id, item.ProductDetails[0]?._id)}></i>
+                            <i className={`bi bi-heart-fill px-2 mx-1 ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-300" : ""}`} title="Wishlist" onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) :  addToWishlistHandler(item?._id, item.ProductDetails[0]?._id); }} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}></i>
                           </div>
                         </div>
 
