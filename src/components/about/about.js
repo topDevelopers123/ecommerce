@@ -96,7 +96,7 @@ function About() {
 
             <div className="col-md-6">
               <div className="img_gllry">
-                <div className="row">
+                <div className="flex">
                   <div className="col-md-4">
                     <div className="charity-images ">
                       <img src={charity1} alt="Charity 1" />

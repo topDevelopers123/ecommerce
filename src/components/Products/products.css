@@ -34,15 +34,15 @@
     text-overflow: ellipsis;
 }
 
-.short-title{
+.short-title {
     color: #4D869C;
-        white-space: nowrap;
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.discount_div{
+.discount_div {
     background-color: #4D869C;
     padding: 0px 12px;
     border-radius: 8px;
@@ -257,8 +257,12 @@
     }
 
     .card_mini_div {
-        margin: 0;
-        height: auto !important;
+        margin: 5px;
+        height: 240px !important;
+    }
+
+    .card_mini_div .card-body {
+        padding: 5px;
     }
 
 }
@@ -337,14 +341,25 @@
 @media screen and (max-width: 398px) {
 
     .add_to_cart_div button {
-        padding-inline: 13px !important;
-
-
+        padding: 5px 10px !important;
+        font-size: 8px;
+        margin: 0;
+        width: 100%;
     }
 
     .range_div button {
         padding-block: 5px !important;
 
+    }
+
+    .add_to_cart_div div .icons {
+        width: 25px;
+        height: 25px;
+        margin: 0 2px;
+    }
+
+    .add_to_cart_div div .icons i {
+        font-size: 10px;
     }
 
     .clear_all a {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { useCartContext, useProductContext, useWishlistContext } from "../../../Context/index.context";
+import Share from './Share';
 
 function TrendingProducts() {
     const { productData } = useProductContext()
@@ -47,10 +48,8 @@ function TrendingProducts() {
  
     }
 
-
-  
-
-
+    const [share, setShare] = useState(false)
+    console.log(share)
 
     const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
 
@@ -107,7 +106,7 @@ function TrendingProducts() {
                                                     
                                                 </div>
                                                 <div className="icons">
-                                                    <i className="bi bi-share-fill"></i>
+                                                    <i className="bi bi-share-fill" onClick={()=>setShare(!share)}></i>
                                                 </div>
                                             </div>
                                             <h5 className="card-title">{item.title}</h5>
@@ -134,8 +133,11 @@ function TrendingProducts() {
                             ))}
                         </div>
                     </div>
+
+                    
                 </div>
             </section>
+            {share ? <Share setShare={setShare}  /> : null}
         </div>
     )
 }
