@@ -63,7 +63,7 @@ const Header2 = () => {
 
 
                 <div className={`${searchToggle ? "block absolute w-full top-20 z-50" : "hidden w-3/6 md:block md:relative"} `} >
-                    <input type='search' value={search} placeholder='Search Here ...' onChange={(e)=>setSearch((e.target.value).toLowerCase())}  className='py-2 px-4 w-full rounded-full shadow-lg' />
+                    <input type='text' value={search} placeholder='Search Here ...' onChange={(e)=>setSearch((e.target.value).toLowerCase())}  className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' onClick={handleSearch}><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
                         {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
