@@ -69,8 +69,8 @@ function Products() {
   })
 
   const token = localStorage.getItem("token")
- 
-  let ratingAvg = 0;
+
+
 
   const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r) => i + r.rating, 0) / item?.Review?.length) <= 4);
 
@@ -78,91 +78,150 @@ function Products() {
   // console.log(getReview);
 
 
-  // console.log(ratingAvg);
+
+
+  // console.log(search_Data);
+
+
 
   const main = searchParams.get("category")
   const sub_category = searchParams.get("subcategory")
   const sub_inner_Category = searchParams.get("sunInnercategory")
+  const search_Data = searchParams.get("search")
 
+
+
+
+
+
+
+
+
+
+
+
+  const priceFilterHandler = () => {
+
+    const priceFilter = productData?.filter((item) => {
+
+      return item?.ProductDetails[0]?.sellingPrice <= range
+    }).filter((cat) => cat?.category[0]?.category_name === main);
+
+    const bySubCategory = priceFilter?.filter((item) => {
+      return item?.ProductDetails[0]?.sellingPrice <= range
+    }).filter((cat) => cat?.sub_category[0]?.sub_category_name === sub_category);
+
+
+    const bySubInnerCategory = bySubCategory?.filter((item) => {
+      return item?.ProductDetails[0]?.sellingPrice <= range
+    }).filter((cat) => cat?.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category);
+
+    const getReview = (bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : bySubInnerCategory?.length > 0 ? bySubInnerCategory : priceFilter?.length > 0 ? priceFilter : productData)?.filter((item) => (item?.Review?.reduce((i, r) => i + r.rating, 0) / item?.Review?.length) >= ((toggle?.five?.checked ? toggle?.five?.value : 0) || (toggle?.four?.checked ? toggle?.four?.value : 0) || (toggle?.third?.checked ? toggle?.third?.value : 0) || (toggle?.second?.checked ? toggle?.second?.value : 0) || (toggle?.first?.checked ? toggle?.first?.value : 0)))?.filter((cat) => cat?.category[0]?.category_name === main);
+
+    const discountFilter = (getReview?.length > 0 ? getReview : bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : bySubInnerCategory?.length > 0 ? bySubInnerCategory : priceFilter?.length > 0 ? priceFilter : productData)?.filter((item) => {
+
+      return (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)?.toFixed(1)) >= ((discountToggle?.five?.checked ? discountToggle?.five?.value : 0) || (discountToggle?.four?.checked ? discountToggle?.four?.value : 0) || (discountToggle?.third?.checked ? discountToggle?.third?.value : 0) || (discountToggle?.second?.checked ? discountToggle?.second?.value : 0) || (discountToggle?.first?.checked ? discountToggle?.first?.value : 0))
+
+    })
+
+    setAllProductData(discountFilter?.length > 0 ? discountFilter : productData?.filter((cat) => cat?.category[0]?.category_name === main))
+
+
+  }
 
   useEffect(() => {
-    let data = productData?.filter((item) => {
-      return item?.category[0]?.category_name === main
-
-    })
-    console.log(productData)
-
-    const newData = data?.filter((item) => {
-      return item.sub_category[0]?.sub_category_name === sub_category
-    })
-
-    const finalData = newData?.filter((item) => {
-      return item.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category
-    })
-
-    setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
-
-  },
-    [param, productData])
+    priceFilterHandler()
+  }, [productData])
 
 
-  useEffect(()=>{
-    const getReview = productDetailsData?.filter((item) => (item?.Review?.reduce((i, r) => i + r.rating, 0) / item?.Review?.length) <= ((toggle?.five?.checked ? toggle?.five?.value : 0) || (toggle?.four?.checked ? toggle?.four?.value : 0) || (toggle?.third?.checked ? toggle?.third?.value : 0) || (toggle?.second?.checked ? toggle?.second?.value : 0) || (toggle?.first?.checked ? toggle?.first?.value : 0)))?.filter((cat) => cat?.category[0]?.category_name === main);
-
-    getReview?.length > 0 && getReview?.filter((item) => {
-
-      return (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)?.toFixed(1)) <= ((discountToggle?.five?.checked ? discountToggle?.five?.value : 0) || (discountToggle?.four?.checked ? discountToggle?.four?.value : 0) || (discountToggle?.third?.checked ? discountToggle?.third?.value : 0) || (discountToggle?.second?.checked ? discountToggle?.second?.value : 0) || (discountToggle?.first?.checked ? discountToggle?.first?.value : 0))
-
-    })?.filter((cate) => cate?.category[0]?.category_name === main);
 
   
 
-    // setAllProductData(toggle?.five?.checked || toggle?.four?.checked || toggle?.third?.checked || toggle?.second?.checked || toggle?.first?.checked === true || getReview?.length > 0 ? getReview : productData?.filter((cat) => cat?.category[0]?.category_name === main))
-    // console.log(getReview);
-    const discountFilter = getReview?.length > 0 ? getReview?.filter((item) => {
 
-      return (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)?.toFixed(1)) <= ((discountToggle?.five?.checked ? discountToggle?.five?.value : 0) || (discountToggle?.four?.checked ? discountToggle?.four?.value : 0) || (discountToggle?.third?.checked ? discountToggle?.third?.value : 0) || (discountToggle?.second?.checked ? discountToggle?.second?.value : 0) || (discountToggle?.first?.checked ? discountToggle?.first?.value : 0))
 
-    }) : productData?.filter((item) => {
+  
 
-      return (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)?.toFixed(1)) <= ((discountToggle?.five?.checked ? discountToggle?.five?.value : 0) || (discountToggle?.four?.checked ? discountToggle?.four?.value : 0) || (discountToggle?.third?.checked ? discountToggle?.third?.value : 0) || (discountToggle?.second?.checked ? discountToggle?.second?.value : 0) || (discountToggle?.first?.checked ? discountToggle?.first?.value : 0))
+  const filterBYSerach = productData?.filter((item) => {
 
-    })?.filter((cate) => cate?.category[0]?.category_name === main);
+    return (((item?.title)?.toLowerCase())?.search(`${search_Data}`)) >= 0
+  })
 
-    
-    
-    setAllProductData( discountFilter?.length > 0 ? discountFilter : getReview?.length > 0 ? getReview : productData?.filter((cat) => cat?.category[0]?.category_name === main))
-  }, [toggle, discountToggle])
+  useEffect(() => {
+   
+   
+    setAllProductData(filterBYSerach?.length > 0 ? filterBYSerach : productData)
+  }, [search_Data])
 
   // console.log(allProductData);
-  
-    // useEffect(()=>{
-      
-    // }, [])
+
+  const priceFilterHandler2 = () => {
+    
+
+    const priceFilter = filterBYSerach?.filter((item) => {
+
+      return item?.ProductDetails[0]?.sellingPrice <= range
+    })
+
+    const bySubCategory = priceFilter?.filter((item) => {
+      return item?.ProductDetails[0]?.sellingPrice <= range
+    })
 
 
-    const priceFilterHandler = () => {
-      const priceFilter = productData?.filter((item)=>{
-        return item?.ProductDetails[0]?.sellingPrice <= range
-      }).filter((cat) => cat?.category[0]?.category_name === main);
+    const bySubInnerCategory = bySubCategory?.filter((item) => {
+      return item?.ProductDetails[0]?.sellingPrice <= range
+    })
 
-      const bySubCategory = priceFilter?.filter((item) => {
-        return item?.ProductDetails[0]?.sellingPrice <= range
-      }).filter((cat) => cat?.sub_category[0]?.sub_category_name === sub_category);
+    const getReview = (bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : bySubInnerCategory?.length > 0 ? bySubInnerCategory : priceFilter?.length > 0 ? priceFilter : filterBYSerach)?.filter((item) => (item?.Review?.reduce((i, r) => i + r.rating, 0) / item?.Review?.length) >= ((toggle?.five?.checked ? toggle?.five?.value : 0) || (toggle?.four?.checked ? toggle?.four?.value : 0) || (toggle?.third?.checked ? toggle?.third?.value : 0) || (toggle?.second?.checked ? toggle?.second?.value : 0) || (toggle?.first?.checked ? toggle?.first?.value : 0)));
 
-     
-      const bySubInnerCategory = bySubCategory?.filter((item) => {
-        return item?.ProductDetails[0]?.sellingPrice <= range
-      }).filter((cat) => cat?.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category);
-      
-      
-      setAllProductData(bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : priceFilter?.length > 0 ? priceFilter : productData?.filter((cat) => cat?.category[0]?.category_name === main))
+    const discountFilter = (getReview?.length > 0 ? getReview : bySubInnerCategory?.length > 0 ? bySubInnerCategory : bySubCategory?.length > 0 ? bySubCategory : bySubInnerCategory?.length > 0 ? bySubInnerCategory : priceFilter?.length > 0 ? priceFilter : filterBYSerach)?.filter((item) => {
 
-    }
+      return (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)?.toFixed(1)) >= ((discountToggle?.five?.checked ? discountToggle?.five?.value : 0) || (discountToggle?.four?.checked ? discountToggle?.four?.value : 0) || (discountToggle?.third?.checked ? discountToggle?.third?.value : 0) || (discountToggle?.second?.checked ? discountToggle?.second?.value : 0) || (discountToggle?.first?.checked ? discountToggle?.first?.value : 0))
+
+    })
+
+    setAllProductData(discountFilter?.length > 0 ? discountFilter : filterBYSerach)
 
 
+  }
 
  
+
+  useEffect(() => {
+
+    if (filterBYSerach?.length > 0 ) {
+      setAllProductData(filterBYSerach)
+    }else{
+      let data = productData?.filter((item) => {
+        return item?.category[0]?.category_name === main
+
+      })
+
+
+      const newData = data?.filter((item) => {
+        return item.sub_category[0]?.sub_category_name === sub_category
+      })
+
+      const finalData = newData?.filter((item) => {
+        return item.sub_inner_category[0]?.sub_inner_category_name === sub_inner_Category
+      })
+
+      setAllProductData(finalData?.length > 0 ? finalData : newData?.length > 0 ? newData : data);
+
+    }
+   
+    
+
+  }, [param, productData])
+
+
+
+
+
+  // console.log(allProductData);
+
+
+
+
   const navigate = useNavigate()
 
   const showFilter = () => {
@@ -214,11 +273,9 @@ function Products() {
                       onChange={(event) => setRenge(event.target.value)}
                     />
                     <p>
-                      Range : {range > 100 ? "0-" : ""} {range}
+                      Range : {range > 100 ? "100-" : ""} {range}
                     </p>
-                    <button className="btn go_btn  fw-bold text-light  m-0" onClick={()=>priceFilterHandler()}>
-                      FILTER
-                    </button>
+
                   </div>
 
                   {/* <div className="d-flex justify-content-end px-2 w-100 clear_all">
@@ -234,28 +291,29 @@ function Products() {
                     <ul className="dropdown-menu p-0">
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="5" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, five: { checked: e.target.checked, value: e.target.value } })} />
-                        <li className="dropdown-item">5 ★ or less</li>
+                        <li className="dropdown-item">5 ★ or more</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">4 ★ or less</li>
+                        <input className="form-check-input" type="checkbox" value="4" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, four: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">4 ★ or more</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">3 ★ or less</li>
+                        <input className="form-check-input" type="checkbox" value="3" id="flexCheckIndeterminate" onChange={(e) => setToggle({ ...toggle, third: { checked: e.target.checked, value: e.target.value } })} /><li className="dropdown-item">3 ★ or more</li>
                       </div>
 
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="2" id="flexCheckIndeterminate" onChange={(e) => setToggle({
                           ...toggle
                           , second: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">2 ★ or less</li>
+                        })} /><li className="dropdown-item">2 ★ or more</li>
                       </div>
 
                       <div className="d-flex">
-                        <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({...toggle
+                        <input className="form-check-input" type="checkbox" defaultValue="1" id="flexCheckIndeterminate" onChange={(e) => setToggle({
+                          ...toggle
                           , first: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">1 ★ or less</li>
+                        })} /><li className="dropdown-item">1 ★ or more</li>
                       </div>
                     </ul>
                   </div>
@@ -271,39 +329,44 @@ function Products() {
                         <input className="form-check-input" type="checkbox" value="50" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , five: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">50% or less</li>
+                        })} /><li className="dropdown-item">50% or mordffddfd</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="40" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , four: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">40% or less</li>
+                        })} /><li className="dropdown-item">40% or mordffddfd</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="30" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , third: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">30% or less</li>
+                        })} /><li className="dropdown-item">30% or mordffddfd</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="20" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , second: { checked: e.target.checked, value: e.target.value }
-                        })}  /><li className="dropdown-item">20% or less</li>
+                        })} /><li className="dropdown-item">20% or mordffddfd</li>
                       </div>
                       <div className="d-flex">
                         <input className="form-check-input" type="checkbox" value="10" id="flexCheckIndeterminate" onChange={(e) => setDiscountToggle({
                           ...discountToggle
                           , first: { checked: e.target.checked, value: e.target.value }
-                        })} /><li className="dropdown-item">10% or less</li>
+                        })} /><li className="dropdown-item">10% or mordffddfd</li>
                       </div>
                     </ul>
                   </div>
 
-                  
+
                 </div>
+                <button className="btn go_btn  fw-bold text-light  m-0 mt-3" onClick={() => { search_Data?.length > 0 ? priceFilterHandler2() : priceFilterHandler() }}>
+                  FILTER
+                </button>
 
               </div>
+
+
 
 
               <div className="container">
@@ -317,7 +380,7 @@ function Products() {
               </div>
 
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
-                {allProductData?.map((item) =>
+                {allProductData?.length > 0 ? allProductData?.map((item) =>
                 (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
                   <div className="d-flex flex-column card justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item)=>item?.ProductDetails[0]?.image[0]?.image_url) } alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
@@ -330,7 +393,7 @@ function Products() {
                         <p className="ps-2 fw-bold text-secondary my-0 py-0">{item?.ProductDetails ? item?.ProductDetails[0].inStock < 10 ? `InStock: ${item?.ProductDetails[0]?.inStock} Left` : "" : productData?.map((ite) => ite?.ProductDetails[0]?.inStock)}</p>
                       </div>
                       <div className="d-flex">
-                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.MRP : productData?.map((ite)=>ite?.ProductDetails[0]?.MRP)} </p></del>
+                        <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.MRP : productData?.map((ite) => ite?.ProductDetails[0]?.MRP)} </p></del>
                         <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.sellingPrice : productData?.map((ite) => ite?.ProductDetails[0]?.sellingPrice)}</p>
 
                       </div>
@@ -363,7 +426,7 @@ function Products() {
                   </div>
                 </div>)
                 )
-                // : <h2 className="w-100 text-center d-flex align-items-center justify-content-center">No Products Avalaible</h2>
+                  : <h2 className="w-100 text-center d-flex align-items-center justify-content-center">No Products Found</h2>
                 }
 
                 {/*<div className="  container pagination_div d-flex justify-content-center   p-4  border">
@@ -391,7 +454,7 @@ function Products() {
       </div>
 
 
-     
+
 
     </div>
 

@@ -48,27 +48,27 @@ function ContactUs() {
                   <div className="row">
                     <div className="col-lg-6 col-md-12">
                       <label htmlFor="name">
-                        Your Name <span>*</span>
+                        Full Name <span>*</span>
                       </label>
-                      <br />
+                      {/* <br /> */}
                       <input
                         type="text"
                         name="name"
-                        placeholder="Your Name"
+                        placeholder="Enter Name"
                         value={formData.name}
                         onChange={handleChange}
                         required
                       />
-                      <br />
+                      {/* <br /> */}
 
                       <label htmlFor="email">
-                        Your Email <span>*</span>
+                         Email Address <span>*</span>
                       </label>
-                      <br />
+                      {/* <br /> */}
                       <input
                         type="email"
                         name="email"
-                        placeholder="Your Email"
+                        placeholder="Enter Email"
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -79,25 +79,25 @@ function ContactUs() {
                       <label htmlFor="sub">
                         Your Subject <span>*</span>
                       </label>
-                      <br />
+                      {/* <br /> */}
                       <input
                         type="text"
                         name="sub"
-                        placeholder="Your Subject"
+                        placeholder="Write Subject"
                         value={formData.sub}
                         onChange={handleChange}
                         required
                       />
-                      <br />
+                      {/* <br /> */}
 
                       <label htmlFor="phone">
-                        Your Phone <span>*</span>
+                         Phone Number <span>*</span>
                       </label>
-                      <br />
+                      {/* <br /> */}
                       <input
                         type="tel"
                         name="phone"
-                        placeholder="Your Phone"
+                        placeholder="Enter Phone"
                         value={formData.phone}
                         onChange={handleChange}
                         required
@@ -107,15 +107,15 @@ function ContactUs() {
                   <label htmlFor="text">
                     Your Message <span>*</span>
                   </label>
-                  <br />
+                  {/* <br /> */}
                   <textarea
                     name="text"
-                    placeholder="Your Message"
+                    placeholder="Write Message"
                     value={formData.text}
                     onChange={handleChange}
                     required
                   />
-                  <br />
+                  {/* <br /> */}
                   <button type="submit">Send Message</button>
                 </form>
               </div>
@@ -127,7 +127,7 @@ function ContactUs() {
                   <div className="contact-icon">
                     <i className="bi bi-telephone"></i>
                     <h4>Call us Now :</h4>
-                    <Link to="tel:9262852851">9262852851</Link>
+                    <Link to="tel:9262852851">+91-99XXXXXXXX</Link>
                     <br />
                   </div>
                   <div className="contact-icon">
@@ -142,9 +142,9 @@ function ContactUs() {
                     <i className="bi bi-geo-alt"></i>
                     <h4>Our Address :</h4>
                     <ul>
-                      <li>355, 3rd Floor, Aggarwal Millennium</li>
-                      <li>Tower-1, Netaji Subhas Place, Pitampura.</li>
-                      <li>New Delhi - 110 034</li>
+                      <li>BK-1/54, SHALIMAR BAGH,</li>
+                      <li>North West Delhi,</li>
+                      <li>DL, 110088</li>
                     </ul>
                   </div>
                 </div>
