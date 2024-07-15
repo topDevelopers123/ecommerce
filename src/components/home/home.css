@@ -11,6 +11,7 @@
     height: 50px;
     top: 35%;
 }
+
 .red {
     color: red;
 }
@@ -103,11 +104,12 @@
 .featured_products {
     padding: 40px 0px;
 }
-.featured_products .owl-carousel .owl-item h5{
-        white-space: nowrap;
-            width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
+
+.featured_products .owl-carousel .owl-item h5 {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .new_arrivals {
@@ -464,7 +466,9 @@
         height: 1rem;
     }
 
-
+    .featured_products {
+        padding: 20px 0px;
+    }
 
     .featured_products .owl-carousel .owl-item img {
         height: 100px;
@@ -524,7 +528,7 @@
         margin: 0;
     }
 
-   .tp_area .card-body {
+    .tp_area .card-body {
         height: 140px !important;
         /* padding: 5px; */
     }
