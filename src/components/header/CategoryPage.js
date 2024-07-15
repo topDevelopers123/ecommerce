@@ -33,7 +33,7 @@ function CategoryPage() {
                         <div className="col-12 d-flex justify-content-around category_mini_div">
 
                             {category?.map((maincategory, i) => (
-                                <div key={i} onClick={(e) => MainCategorySearchHandler(e, maincategory?.category_name)} className="mt-3  text-center col-4">
+                                <div key={i} onClick={(e) => MainCategorySearchHandler(e, maincategory?.category_name)} className="mt-3  text-center ">
 
                                     <div className="mens_cate flex align-items-center flex-column">
 
