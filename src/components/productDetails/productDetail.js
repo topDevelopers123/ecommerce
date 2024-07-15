@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import OwlCarousel from "react-owl-carousel";
-import { useCartContext, useProductContext, useProductDetailsContext, useWishlistContext } from "../../Context/index.context"
+import { useCartContext, useOrderContext, useProductContext, useProductDetailsContext, useWishlistContext } from "../../Context/index.context"
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
@@ -13,10 +13,12 @@ import StarRatings from "react-star-ratings";
 function ProductDetail() {
   const {  addReview, disable } = useProductDetailsContext()
   const { productData } = useProductContext()
+  const { addToWishlist, CheckWishlistData, removeWishlist } = useWishlistContext()
+  const { addToCart2 } = useCartContext()
+  const { orderDetail } = useOrderContext()
+  
   const { id } = useParams()
   const [qty, setQty] = useState(1)
-  const { addToCart2 } = useCartContext()
-  const { addToWishlist } = useWishlistContext()
   const [image, setImage] = useState(null)
   const [color, setColor] = useState("")
   const [size, setSize] = useState(null)
@@ -24,6 +26,7 @@ function ProductDetail() {
   const navigate = useNavigate()
   const param = useParams()
   
+
 
   
   let ratingAvg = 0;
@@ -134,7 +137,12 @@ function ProductDetail() {
     return id === item._id
   })[0]
 
- 
+  const addReviewConditional = orderDetail?.UserOrder?.filter((item) => {
+    // console.log(item?.Product[0]?._id);
+    return data?._id === item?.Product[0]?._id
+  });
+
+  // console.log(addReviewConditional);
 
   const Prouctdetail = data?.ProductDetails[0]
   const relatedProduct = productData?.filter((item) => item.sub_inner_category[0]?.sub_inner_category_name === data.sub_inner_category[0]?.sub_inner_category_name )
@@ -307,14 +315,17 @@ function ProductDetail() {
                         </form>
                       </div>
                     </div>
+                 
+                   
                     <div className="col-md-1 col-1 col-lg-1 mx-2">
-                      <div className="wishlist_btn" onClick={() => { wishListHandler(); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: filter2?._id }) }}>
-                        <i className="bi bi-heart" ></i>
+                      <div className={`wishlist_btn `} >
+                      
+                        <i className={`bi bi-heart-fill ${CheckWishlistData(filter2?._id) ? "text-pink-300" : "text-white"}`} onClick={() => { setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: filter2?._id }); CheckWishlistData(filter2?._id) ? removeWishlist(filter2?._id) : wishListHandler();  }}></i>
                       </div>
                     </div>
                     <div className="col-md-1 col-1 col-lg-1">
                       <div className="wishlist_btn ms-2">
-                        <i className="bi bi-share-fill"></i>
+                        <i className="bi bi-share-fill text-white"></i>
                       </div>
                     </div>
                   </div>
@@ -323,12 +334,12 @@ function ProductDetail() {
 
                   <div className="row">
                     <div className="d-flex">
-                      <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(data?._id, filter2?._id, qty, filter[0]?.image[0]?.image_url) }}>
+                      <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(data?._id, filter2?._id, qty, filter[0]?.image[0]?.image_url) }} disabled={filter2?.inStock < 1 ? true : false}>
 
                         Add to basket
                       </button>
-
-                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id, filter2?._id, filter[0]?.image[0]?.image_url )}>
+                  
+                      <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id, filter2?._id, filter[0]?.image[0]?.image_url)} disabled={filter2?.inStock < 1 ? true : false}>
                         Buy Now
                       </button>
                     
@@ -361,11 +372,13 @@ function ProductDetail() {
                     Reviews
                   </Link>
                 </li>
+                {addReviewConditional?.length > 0 ?
                 <li className="nav-item" >
                   <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
                     Add Reviews
                   </Link>
                 </li>
+                : ""}
               </ul>
               <div className="tab-content mt-4 mb-3">
                 <div className="tab-pane container active" id="home">
@@ -404,8 +417,10 @@ function ProductDetail() {
                     : <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
                   }
                 </div>
+                {addReviewConditional?.length > 0 ?
 
                 <div className="tab-pane container fade" id="addReview">
+                  {/* {console.log(addReviewConditional)} */}
                   <div className="review">
                     <div className="theme-text mr-2 text-start">Product Ratings: </div>
 
@@ -483,6 +498,7 @@ function ProductDetail() {
                     </div>
                   </div>
                 </div>
+                : ""}
               </div>
             </div>
           </div>
