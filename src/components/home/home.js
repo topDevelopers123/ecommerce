@@ -10,12 +10,23 @@ import ShortBanners from "./ShortBanners/ShortBanners";
 import TrendingProducts from "./TrendingProducts/TrendingProducts";
 import Services from "./Services/Services";
 import "./home.css";
-import { useProductContext } from "../../Context/index.context";
+import { useOrderContext, useProductContext } from "../../Context/index.context";
+import {
+  FacebookShareCount,
+  HatenaShareCount,
+  OKShareCount,
+  PinterestShareCount,
+  RedditShareCount,
+  TumblrShareCount,
+  VKShareCount,
+} from "react-share";
 
 function Home() {
   const {productData} = useProductContext()
+ 
   const [data,setData] = useState([])
-  
+ 
+
 
   useEffect(() => {
     setData(productData);
@@ -25,12 +36,12 @@ function Home() {
   return (
     <>
       <div>
-        <MainSlier />
+        <MainSlier /> 
         <FeaturedProducts data1={productData}/>
         <NewArrivals data={productData} />
         <ShortBanners />
         <TrendingProducts />
-        <Services />        
+        <Services />     
       </div>
     </>
   );

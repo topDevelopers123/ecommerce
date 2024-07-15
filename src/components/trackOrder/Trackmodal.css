@@ -126,6 +126,9 @@
 
 /* Mobile  */
 @media screen and (max-width: 578px) {
+    .tracking_order_pg .card{
+        padding: 0;
+    }
     .tracking_order_pg .track .step {
         margin-top: -12px;
     }
@@ -143,4 +146,7 @@
     .tracking_order_pg .track .text {
         font-size: 10px;
     }
+        .track .text{
+            font-size: 12px;
+        }
 }

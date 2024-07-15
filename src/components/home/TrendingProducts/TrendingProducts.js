@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { useCartContext, useProductContext, useWishlistContext } from "../../../Context/index.context";
+import Share from './Share';
 
 function TrendingProducts() {
     const { productData } = useProductContext()
     const { addToCart } = useCartContext()
-    const { addToWishlist } = useWishlistContext()
+    const { addToWishlist, wishlistData, CheckWishlistData, removeWishlist } = useWishlistContext()
     const token = localStorage.getItem("token")
     const navigate = useNavigate();
+    const [check, setCheck] = useState(false)
+    // console.log(wishlistData);
   
     const productDetailsPage = (id) => {
        
@@ -27,6 +30,8 @@ function TrendingProducts() {
         addToCart(product_id, productDetails_id, image)
     }
 
+    
+
     const wishlistHandler = (item_Id, ite_Id) => {
         if (token === null) {
             
@@ -34,15 +39,17 @@ function TrendingProducts() {
             window.scrollTo(0, 0);
             return
         }
-            const obj = {
-                product_id: item_Id,
-                product_detail_id: ite_Id
-            }
 
-            addToWishlist(obj)
-        
-        
+        const obj = {
+            product_id: item_Id,
+            product_detail_id: ite_Id
+        }
+        addToWishlist(obj)
+ 
     }
+
+    const [share, setShare] = useState(false)
+    console.log(share)
 
     const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
 
@@ -83,6 +90,7 @@ function TrendingProducts() {
                     {/* Product Start  */}
                     <div className="tp_area">
                         <div className="row">
+                           
                             {lastFourProducts?.map((item, i) => (
 
                                 <div key={i} className="col-lg-3 col-md-6 col-sm-6 col-6">
@@ -93,10 +101,12 @@ function TrendingProducts() {
                                         <div className="card-body">
                                             <div className="add_icons">
                                                 <div className="icons">
-                                                    <i className={"bi bi-heart-fill"} onClick={() => wishlistHandler(item._id, item.ProductDetails[0]._id)}></i>
+                                                    
+                                                    <i className={`bi bi-heart-fill ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-200" : ""}`} onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) : wishlistHandler(item._id, item.ProductDetails[0]._id)  }}></i>
+                                                    
                                                 </div>
                                                 <div className="icons">
-                                                    <i className="bi bi-share-fill"></i>
+                                                    <i className="bi bi-share-fill" onClick={()=>setShare(!share)}></i>
                                                 </div>
                                             </div>
                                             <h5 className="card-title">{item.title}</h5>
@@ -112,7 +122,7 @@ function TrendingProducts() {
                                                 ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
                                             </p>
                                             <div className="cart_n_buy">
-                                                <button className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id, item?.ProductDetails[0]?.image[0]?.image_url)}>
+                                                <button disabled={item?.ProductDetails[0]?.inStock < 1 ? true : false} className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id, item?.ProductDetails[0]?.image[0]?.image_url)}>
                                                     Add to basket
                                                 </button>
 
@@ -123,8 +133,11 @@ function TrendingProducts() {
                             ))}
                         </div>
                     </div>
+
+                    
                 </div>
             </section>
+            {share ? <Share setShare={setShare}  /> : null}
         </div>
     )
 }

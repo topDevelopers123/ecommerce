@@ -299,7 +299,8 @@
   text-align: center;
   transition: 0.3s ease-in-out;
 }
-.logoutBtn:hover{
+
+.logoutBtn:hover {
   background-color: #7AB2B2;
   color: #000;
 }
@@ -583,8 +584,8 @@
   }
 
   .sub_mega li {
-    line-height: 18px;
-    font-size: 15px;
+    line-height: 1.3;
+    font-size: 10px;
   }
 
   .category_main_div div h6 {
