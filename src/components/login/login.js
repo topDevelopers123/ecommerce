@@ -77,16 +77,18 @@ function Login() {
                   {touched.password && errors.password ? <p className="text-start text-danger ps-1 mt-1">{errors.password}</p> : null}
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
+
                   <div className="mb-3 form-check">
-                    <input
+                    {/* <input
                       type="checkbox"
                       className="form-check-input p-0 border-0 "
                       id="exampleCheck1"
-                    />
-                    <label className="form-check-label m-0" for="exampleCheck1">
+                    /> */}
+                    {/* <label className="form-check-label m-0" for="exampleCheck1">
                       Remember me
-                    </label>
+                    </label> */}
                   </div>
+
                   <p><Link to="/emailVerify">Forget your password ?</Link></p></div>
                 <div className="d-flex align-items-center login_register_box">
                   <button type="submit" className="btn btn-primary login" >
