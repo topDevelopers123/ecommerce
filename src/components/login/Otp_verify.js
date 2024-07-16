@@ -7,8 +7,7 @@ import { useAuthContext } from "../../Context/index.context";
 
 function Otp_verify() {
     const { otpVerify } = useAuthContext();
-    const [otp,setOtp] = useState(null)
-
+    const [otp, setOtp] = useState(null)
 
     return (
         <div>
@@ -17,28 +16,26 @@ function Otp_verify() {
                     <div className="col-lg-6 offset-lg-3 col-12">
                         <div className="login-form">
                             <h2>Verify OTP</h2>
-<form>
+                            <form>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">
                                     </label>
                                     <input
-                                      
                                         type="number"
                                         placeholder="Enter OTP here"
                                         className="form-control"
                                         id="exampleInputEmail1"
                                         onChange={(e) => setOtp(e.target.value)}
-
                                     />
                                 </div>
                             </form>
-                                <div className="d-flex align-items-center">
-                                    <button type="submit" onClick={()=>otpVerify(otp)} className="btn btn-primary ms-3">
+                            <div className="d-flex align-items-center">
+                                <button type="submit" onClick={() => otpVerify(otp)} className="btn btn-primary ms-3">
                                     <Link to="/newPassword">
-                                            Verify OTP
-                                        </Link>
-                                    </button>
-                                </div>
+                                        Verify OTP
+                                    </Link>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

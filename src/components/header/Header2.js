@@ -13,7 +13,6 @@ const Header2 = () => {
     const [Searchdata, setSearchData] = useState([])
     const [searchToggle, setSearchToggle] = useState(false)
     const naviate = useNavigate()
-
     const [search, setSearch] = useState("")
     const [toggle, setoggle] = useState(false)
 
@@ -24,7 +23,6 @@ const Header2 = () => {
     }
 
     const handleSearch2 = useCallback((e) => {
-
         const { value } = e.target;
         setSearch(value);
 
@@ -32,7 +30,6 @@ const Header2 = () => {
             const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
             const filter = productData.filter((item) => {
                 const categoryMatch = item?.title?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
-                
                 return categoryMatch;
             });
             setSearchData(filter);
@@ -41,31 +38,21 @@ const Header2 = () => {
         }
     }, [productData]);
 
-
     const MainCategorySearchHandler = (e, main, sub_category, sunInnercategory) => {
         e.stopPropagation();
-
         naviate(`/products/?category=${main}&&subcategory=${sub_category}&&sunInnercategory=${sunInnercategory}`)
     }
 
-
     const handleSearch = () => {
-
         naviate(`/products?search=${search}`)
         setSearchData(null)
-
-
     };
     const handleSearchKey = (e) => {
         if (e.key === "Enter") {
-            
             naviate(`/products?search=${search}`)
             setSearchData(null)
         }
-
-
     };
-
 
     return (
         <>
@@ -74,13 +61,11 @@ const Header2 = () => {
                     <img src={logo} className='size-full' alt='logo' />
                 </Link>
 
-
                 <div className={`${searchToggle ? "block absolute w-full top-20 z-50" : "hidden w-3/6 md:block md:relative"} `} >
-                    <input type='text' value={search} onKeyDown={handleSearchKey} placeholder='Search Here ...' onChange={(e) => { setSearch((e.target.value).toLowerCase()); handleSearch2(e)}} className='py-2 px-4 w-full rounded-full shadow-lg' />
+                    <input type='text' value={search} onKeyDown={handleSearchKey} placeholder='Search Here ...' onChange={(e) => { setSearch((e.target.value).toLowerCase()); handleSearch2(e) }} className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' onClick={handleSearch}><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
                         {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
-
                     </div>
                 </div>
 
@@ -124,7 +109,6 @@ const Header2 = () => {
                                 </div>
                             </span>
                         </div> : <>
-
                             <Link to="/login" className="text-white  hover:bg-indigo-200 hover:text-black inline-flex items-center justify-center px-3 py-2  text-sm font-medium rounded-md shadow-sm " >Login</Link>
                             <Link to="/register" className="text-gray-800 bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm "
                             >Sign up
@@ -133,8 +117,6 @@ const Header2 = () => {
                 </div>
             </header>
             <CategoryPage />
-
-
         </>
     );
 };

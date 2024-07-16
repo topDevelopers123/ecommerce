@@ -1,26 +1,24 @@
-
-import React  from 'react';
+import React from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useNavigate } from 'react-router-dom';
 import bgImg from "../NewArrivals/img/bgImg.avif"
 
-function ShopByCategory({data}) {
+function ShopByCategory({ data }) {
     const navigate = useNavigate();
 
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     };
-    
 
     return (
         <div>
             {/* New Arrivals start */}
             <section className="new_arrivals" style={{
                 backgroundImage: 'url(' + bgImg + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
-                 backgroundPosition: 'center'
+                backgroundPosition: 'center'
             }}>
                 <div className="container">
                     <div className="head_title">
@@ -49,7 +47,7 @@ function ShopByCategory({data}) {
                                 },
                             }}
                         >
-                            {data?.slice(0,4)?.map((item, i) => (
+                            {data?.slice(0, 4)?.map((item, i) => (
                                 <div key={i} className="item">
                                     <img
                                         src={item?.ProductDetails[0]?.image[0]?.image_url}
