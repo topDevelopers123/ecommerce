@@ -11,12 +11,12 @@ import StarRatings from "react-star-ratings";
 
 
 function ProductDetail() {
-  const {  addReview, disable } = useProductDetailsContext()
+  const { addReview, disable } = useProductDetailsContext()
   const { productData } = useProductContext()
   const { addToWishlist, CheckWishlistData, removeWishlist } = useWishlistContext()
   const { addToCart2 } = useCartContext()
   const { orderDetail } = useOrderContext()
-  
+
   const { id } = useParams()
   const [qty, setQty] = useState(1)
   const [image, setImage] = useState(null)
@@ -25,10 +25,10 @@ function ProductDetail() {
   const [selectedImages, setSelectedImages] = useState([]);
   const navigate = useNavigate()
   const param = useParams()
-  
 
 
-  
+
+
   let ratingAvg = 0;
   let totalReview = 0;
   const [error, setError] = useState("")
@@ -51,7 +51,7 @@ function ProductDetail() {
     ratingAvg += rev?.rating
     totalReview++
   })
-  
+
 
   const redirectHandler = (product_id, id, image) => {
     if (token === null) {
@@ -60,7 +60,7 @@ function ProductDetail() {
       window.scrollTo(0, 0);
       return
     }
-    
+
     navigate(`/oldAddress/${product_id}/${id}?image=${image}&&qty=${qty}`)
     window.scrollTo(0, 0);
   }
@@ -131,7 +131,7 @@ function ProductDetail() {
     }
   }
 
-  
+
 
   const data = productData?.filter((item, i) => {
     return id === item._id
@@ -145,7 +145,7 @@ function ProductDetail() {
   // console.log(addReviewConditional);
 
   const Prouctdetail = data?.ProductDetails[0]
-  const relatedProduct = productData?.filter((item) => item.sub_inner_category[0]?.sub_inner_category_name === data.sub_inner_category[0]?.sub_inner_category_name )
+  const relatedProduct = productData?.filter((item) => item.sub_inner_category[0]?.sub_inner_category_name === data.sub_inner_category[0]?.sub_inner_category_name)
 
   const filter = data?.ProductDetails?.filter((item) => item.color === color)
   const filter2 = filter?.filter((item) => item._id === size)[0]
@@ -156,7 +156,7 @@ function ProductDetail() {
     product_id: "",
     productDetails: size,
     quantity: null,
-    image:""
+    image: ""
   })
 
   const [wishDetails, setWishDetails] = useState({
@@ -166,14 +166,14 @@ function ProductDetail() {
 
   useEffect(() => {
 
-    setImage( Prouctdetail?.image[0]?.image_url)
+    setImage(Prouctdetail?.image[0]?.image_url)
     setColor(Prouctdetail?.color)
     setSize(Prouctdetail?._id)
     setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
-    
 
-  }, [productData,param])
+
+  }, [productData, param])
 
 
 
@@ -185,7 +185,8 @@ function ProductDetail() {
       window.scrollTo(0, 0);
       return
     }
-    const obj = {product_id,
+    const obj = {
+      product_id,
       productDetails,
       quantity,
       image
@@ -222,14 +223,14 @@ function ProductDetail() {
           <div className="product_detail">
 
             {
-          
+
               <div className="row details-snippet1">
                 <div className="col-md-7" >
                   <div className="row">
                     <div key="" className="col-md-2 col-sm-2 mini-preview flex d-md-block order-2 order-sm-1">
                       {filter ? filter[0]?.image?.map((photo, i) => (
                         <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />
-                      )) : Prouctdetail?.image?.map((photo, i) => ( 
+                      )) : Prouctdetail?.image?.map((photo, i) => (
                         <img key={i} className="img-fluid" src={photo.image_url} onClick={() => setImage(photo.image_url)} alt="preview" />))}
                     </div>
                     <div className="col-md-10 col-sm-10 order-1 order-sm-2">
@@ -266,10 +267,10 @@ function ProductDetail() {
                         <div className="color blue ">
                           <div className="d-flex">
                             {(data?.ProductDetails?.map((photo, i) => (
-                           
-                                <div key={i}>
+
+                              <div key={i}>
                                 {photo?.image?.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent object-cover" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo?.color); setSize(photo?._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
-                                </div>
+                              </div>
                             )))}
 
                           </div>
@@ -290,9 +291,9 @@ function ProductDetail() {
                       {filter?.map((item, i) => (
                         <span key={i} className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`} onClick={() => setSize(item?._id)} >
                           {item?.Size}
-                         
+
                         </span>
-                        
+
                       ))}
                     </div>
                   </div>
@@ -315,12 +316,12 @@ function ProductDetail() {
                         </form>
                       </div>
                     </div>
-                 
-                   
+
+
                     <div className="col-md-1 col-1 col-lg-1 mx-2">
                       <div className={`wishlist_btn `} >
-                      
-                        <i className={`bi bi-heart-fill ${CheckWishlistData(filter2?._id) ? "text-pink-300" : "text-white"}`} onClick={() => { setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: filter2?._id }); CheckWishlistData(filter2?._id) ? removeWishlist(filter2?._id) : wishListHandler();  }}></i>
+
+                        <i className={`bi bi-heart-fill ${CheckWishlistData(filter2?._id) ? "text-pink-300" : "text-white"}`} onClick={() => { setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: filter2?._id }); CheckWishlistData(filter2?._id) ? removeWishlist(filter2?._id) : wishListHandler(); }}></i>
                       </div>
                     </div>
                     <div className="col-md-1 col-1 col-lg-1">
@@ -338,14 +339,14 @@ function ProductDetail() {
 
                         Add to basket
                       </button>
-                  
+
                       <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id, filter2?._id, filter[0]?.image[0]?.image_url)} disabled={filter2?.inStock < 1 ? true : false}>
                         Buy Now
                       </button>
-                    
-                      
-                     
-                      
+
+
+
+
                     </div>
                   </div>
                 </div>
@@ -373,12 +374,12 @@ function ProductDetail() {
                   </Link>
                 </li>
                 {addReviewConditional?.length > 0 ?
-                <li className="nav-item" >
-                  <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
-                    Add Reviews
-                  </Link>
-                </li>
-                : ""}
+                  <li className="nav-item" >
+                    <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
+                      Add Reviews
+                    </Link>
+                  </li>
+                  : ""}
               </ul>
               <div className="tab-content mt-4 mb-3">
                 <div className="tab-pane container active" id="home">
@@ -394,111 +395,119 @@ function ProductDetail() {
 
 
                 <div className="tab-pane container fade" id="reviews">
-                  {getReview?.Review?.length > 0 ?
+                  {getReview?.Review?.length > 0 ? (
                     <div className="customer_reviews text-start">
                       <div className="ratings">
-                        <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i className="bi bi-star-fill" style={{ color: "gold" }}></i></span></h2>
+                        <h2 className="">
+                          {(ratingAvg / getReview?.Review?.length).toFixed(1)}
+                          <span className="ms-2">
+                            <i className="bi bi-star-fill" style={{ color: "gold" }}></i>
+                          </span>
+                        </h2>
                         <p> {totalReview} Reviews</p>
                       </div>
-
-                      {getReview?.Review?.map((rev, i) => (
+                      {getReview?.Review?.sort((a, b) => b.rating - a.rating).map((rev, i) => (
                         <div key={i} className="uploaded_images mt-4">
-                          <h5>{rev?.title}</h5><span>{rev?.rating} <i className="bi bi-star-fill" style={{ color: "gold" }}></i></span>
+                          <h5>{rev?.title}</h5>
+                          <span>
+                            {rev?.rating} <i className="bi bi-star-fill" style={{ color: "gold" }}></i>
+                          </span>
                           <p> {rev?.message}</p>
                           <div className="d-flex">
                             {rev?.image?.map((photo, i) => (
                               <img key={i} src={photo?.image_url} width={100} height={150} alt="" />
                             ))}
-
                           </div>
                         </div>
                       ))}
                     </div>
-                    : <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
-                  }
+                  ) : (
+                    <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
+                  )}
                 </div>
+
                 {addReviewConditional?.length > 0 ?
 
-                <div className="tab-pane container fade" id="addReview">
-                  {/* {console.log(addReviewConditional)} */}
-                  <div className="review">
-                    <div className="theme-text mr-2 text-start">Product Ratings: </div>
+                  <div className="tab-pane container fade" id="addReview">
+                    {/* {console.log(addReviewConditional)} */}
+                    <div className="review">
+                      <div className="theme-text mr-2 text-start">Product Ratings: </div>
 
-                    <div className="userRating text-start">
-                      <StarRatings
-                        rating={reviewData.rating}
-                        starRatedColor="gold"
-                        changeRating={changeRating}
-                        numberOfStars={5}
-                        name="rating"
-                      />
-                    </div>
-                    <div className="my-3 text-start">
-                      <label htmlFor="" className="form-label text-start">Add Title</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name=""
-                        id=""
-                        placeholder="Add Title" required
-                        onChange={(e) => setReviewData({ ...reviewData, title: e.target.value })} />
-                    </div>
-                    <div className="mb-3 text-start">
-                      <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
-                      <input
-                        id="image-upload"
-                        type="file"
-                        accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                        multiple // Allow multiple files
-                        onChange={handleImageChange}
-                      />
-                    </div>
-                    <div className="image-preview mt-4">
-                      {selectedImages.map((image, index) => (
-                        <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                          <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
-                          <button
-                            type="button"
-                            onClick={() => handleImageDelete(image.id)}
-                            style={{
-                              position: 'absolute',
-                              top: '5px',
-                              right: '5px',
-                              background: 'red',
-                              color: 'white',
-                              border: 'none',
-                              borderRadius: '50%',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            &times;
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="my-3 text-start">
-                      <label htmlFor="" className="form-label text-start">Your Review</label>
-                      <textarea
-                        type="text"
-                        className="form-control"
-                        name=""
-                        id=""
-                        rows={5}
-                        required
-                        aria-describedby="helpId"
-                        placeholder="Add your review"
-                        onChange={(e) => setReviewData({ ...reviewData, message: e.target.value })}
-                      />
-                    </div>
-                    {error ? <p className="text-danger text-start mt-3">{error}</p> : ""}
-                    <div className="submitBtn">
+                      <div className="userRating text-start">
+                        <StarRatings
+                          rating={reviewData.rating}
+                          starRatedColor="gold"
+                          changeRating={changeRating}
+                          numberOfStars={5}
+                          name="rating"
+                        />
+                      </div>
+                      <div className="my-3 text-start">
+                        <label htmlFor="" className="form-label text-start">Add Title</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name=""
+                          id=""
+                          placeholder="Add Title" required
+                          onChange={(e) => setReviewData({ ...reviewData, title: e.target.value })} />
+                      </div>
+                      <div className="mb-3 text-start">
+                        <label htmlFor="image-upload" className="form-label mb-3 ">Upload Images</label><br />
+                        <input
+                          id="image-upload"
+                          type="file"
+                          accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                          multiple // Allow multiple files
+                          onChange={handleImageChange}
+                        />
+                      </div>
+                      <div className="image-preview mt-4">
+                        {selectedImages.map((image, index) => (
+                          <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                            <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                            <button
+                              type="button"
+                              onClick={() => handleImageDelete(image.id)}
+                              style={{
+                                position: 'absolute',
+                                top: '5px',
+                                right: '5px',
+                                background: 'red',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '50%',
+                                cursor: 'pointer'
+                              }}
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="my-3 text-start">
+                        <label htmlFor="" className="form-label text-start">Your Review</label>
+                        <textarea
+                          type="text"
+                          className="form-control"
+                          name=""
+                          id=""
+                          rows={5}
+                          required
+                          aria-describedby="helpId"
+                          placeholder="Add your review"
+                          onChange={(e) => setReviewData({ ...reviewData, message: e.target.value })}
+                        />
+                      </div>
+                      {error ? <p className="text-danger text-start mt-3">{error}</p> : ""}
+                      <div className="submitBtn">
 
-                      <button onClick={() => { setReviewData({ ...reviewData, product_id: id }); submitHandler() }} disabled={disable} className={disable ? "bg-danger" : ""}> Post
-                      </button>
+                        <button onClick={() => { setReviewData({ ...reviewData, product_id: id }); submitHandler() }} disabled={disable} className={disable ? "bg-danger" : ""}> Post
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                : ""}
+                  : ""}
               </div>
             </div>
           </div>
@@ -538,8 +547,8 @@ function ProductDetail() {
               },
             }}
           >
-         
-            {relatedProduct?.map((item, i) => <div onClick={() =>{
+
+            {relatedProduct?.map((item, i) => <div onClick={() => {
 
               navigate(`/productdetails/${item?._id}`)
               window.scrollTo(0, 0);
@@ -562,7 +571,7 @@ function ProductDetail() {
 
 
 
-    
+
     </div>
   );
 }
