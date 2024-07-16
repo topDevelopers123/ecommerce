@@ -49,7 +49,7 @@ function TrendingProducts() {
     }
 
     const [share, setShare] = useState(false)
-    console.log(share)
+   
 
     const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
 
