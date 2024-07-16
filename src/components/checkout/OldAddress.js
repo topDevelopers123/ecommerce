@@ -458,11 +458,17 @@ function OldAddress() {
                                                 <tbody>
                                                     <tr>
                                                         <td className="item-qty">Subtotal</td>
-                                                        <td className="item-price">₹{product_detail_Filter?.sellingPrice * qty}</td>
+                                                        <td className="item-price">₹{(product_detail_Filter?.sellingPrice * qty) - (((product_detail_Filter?.sellingPrice * qty) / 100) * 18).toFixed()}</td>
+                                                        {}
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="item-qty">GST (18%)</td>
+                                                        <td className="item-price">+ ₹{(((product_detail_Filter?.sellingPrice * qty) / 100) * 18).toFixed()}</td>
+                                                      
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Shipping</td>
-                                                        <td className="item-price">₹{singleProductData?.charges}</td>
+                                                        <td className="item-price">+ ₹{singleProductData?.charges}</td>
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Total</td>
@@ -550,11 +556,15 @@ function OldAddress() {
                                                 <tbody>
                                                     <tr>
                                                         <td className="item-qty">Subtotal</td>
-                                                        <td className="item-price">₹{getTotel}</td>
+                                                        <td className="item-price">₹{(getTotel) - (((getTotel) / 100) * 18).toFixed()}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="item-qty">GST (18%)</td>
+                                                        <td className="item-price">+ ₹{(((getTotel) / 100) * 18).toFixed()}</td>
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Shipping</td>
-                                                        <td className="item-price">₹{localCharges}</td>
+                                                        <td className="item-price">+ ₹{localCharges}</td>
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Total</td>

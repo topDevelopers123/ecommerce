@@ -10,8 +10,8 @@ function Services() {
                       <div className="col-lg-3 col-md-6 col-12">
                           <div className="single-service">
                               <i className="bi bi-rocket  "></i>
-                              <h4>Free shiping</h4>
-                              <p className="m-0">Orders over $100</p>
+                              <h4>Delivery</h4>
+                              <p className="m-0">On time delivery</p>
                           </div>
                       </div>
                       <div className="col-lg-3 col-md-6 col-12">
