@@ -1,5 +1,4 @@
 import React from 'react';
-import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const Invoice = ({ setInvoice, data }) => {
@@ -55,11 +54,11 @@ const Invoice = ({ setInvoice, data }) => {
                     <table className="w-full border-collapse ">
                         <thead className="">
                             <tr className='border-y-2' >
-                                <th className="py-1 px-4">Item</th>
-                                <th className="py-1 px-4">Quantity</th>
-                                <th className="py-1 px-4">Rate</th>
-                                <th className="py-1 px-4">TAX</th>
-                                <th className="py-1 px-4">AMOUNT</th>
+                                <th className="pt-1 pb-4 px-4">Item</th>
+                                <th className="pt-1 pb-4 px-4">Quantity</th>
+                                <th className="pt-1 pb-4 px-4">Rate</th>
+                                <th className="pt-1 pb-4 px-4">TAX</th>
+                                <th className="pt-1 pb-4 px-4">AMOUNT</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -71,6 +71,7 @@
     background-color: #4D869C;
     color: #fff;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .add_to_cart_div div button:hover {
