@@ -8,6 +8,13 @@
 .order_table tr td{
     vertical-align: middle;
 }
+.order_table table button{
+    background-color: #cde8e5 !important;
+
+}
+.order_table table tr{
+        border-top: 1px solid #e7e7e7;
+}
 
 .tracking_order_pg .card {
     position: relative;

@@ -41,7 +41,7 @@ function TrackOrder() {
 
                             <div className='order_table'>
                                 <div className='table-responsive'>
-                                <table class="table table-secondary table-striped  ">
+                                <table class="table">
                                     <thead >
                                         <tr >
                                             <th className='text-white bgprimary' scope="col">Product Image</th>
@@ -59,14 +59,14 @@ function TrackOrder() {
                                                 {/* of */}
                                                 <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
                                                 <td>{item?.Product[0]?.title}</td>
-                                                <td>{item?.ProductDetails[0]?.sellingPrice}</td>
+                                                <td>₹ {item?.ProductDetails[0]?.sellingPrice}</td>
                                                 <td>{item.quantity}</td>
                                                 <td>{item.status}</td>
                                                 <td className='text-success cursor-pointer' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
                                             </tr>
                                              <div className='flex w-full my-2 gap-2 justify-between items-center'>
-                                        <button>Return</button>
-                                                    <button onClick={() => { setInvoice(!invoice); setInvoicedata(item) ; window.scroll(0,0)}}>Invoice</button>
+                                        <button className=' rounded shadow-sm'>Return</button>
+                                                    <button className=' rounded shadow-sm'  onClick={() => { setInvoice(!invoice); setInvoicedata(item) ; window.scroll(0,0)}}>Invoice</button>
                                     </div>
                                             </>
                                         ))}
