@@ -49,7 +49,7 @@ function footer() {
                     <Link to="tel:9999999987"> <li className='text-light'>+91-99XXXXXXXX</li></Link>
                   </ul>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -61,12 +61,14 @@ function footer() {
             <div className='col-lg-8 col-md-12 col-12'>
               <p className='text-light'>Copyright © 2024 | All Rights Reserved | Mayavi Fashion LLP -  New Delhi</p>
             </div>
-            <div className='col-lg-4 col-md-12 col-12 d-flex justify-content-end pe-5'>
-              <i className="bi bi-facebook mx-3 text-light"></i>
-              <i className="bi bi-instagram mx-3 text-light"></i>
-              <i className="bi bi-twitter-x mx-3 text-light"></i>
-              <i className="bi bi-youtube mx-3 text-light"></i>
+
+            <div className='col-lg-4 col-md-12 col-12 d-flex justify-content-end pe-5 socialMediaIcon'>
+              <Link target='_blank' to="https://www.facebook.com/paras.guruji/">  <i className="bi bi-facebook mx-3 text-light"></i></Link>
+              <Link target='_blank' to="https://www.instagram.com/parasparivaar/">  <i className="bi bi-instagram mx-3 text-light"></i></Link>
+              <Link target='_blank' to="https://x.com/paras_parivaar/"><i className="bi bi-twitter-x mx-3 text-light"></i></Link>
+              <Link target='_blank' to="https://www.youtube.com/@parasbhaiji">  <i className="bi bi-youtube mx-3 text-light"></i></Link>
             </div>
+
           </div>
         </div>
       </div>

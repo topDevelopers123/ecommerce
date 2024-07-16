@@ -23,47 +23,60 @@ const Header2 = () => {
         window.location.href = "/"
     }
 
-    // const handleSearch = useCallback((e) => {
-    //     const { value } = e.target;
-    //     setSearch(value);
+    const handleSearch2 = useCallback((e) => {
 
-    //     if (value && productData) {
-    //         const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-    //         const filter = productData.filter((item) => {
-    //             const categoryMatch = item?.category[0]?.category_name?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
-    //             const subCategoryMatch = item?.sub_category[0]?.sub_category_name.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
-    //             return categoryMatch || subCategoryMatch;
-    //         });
-    //         setSearchData(filter);
-    //     } else {
-    //         setSearchData(null);
-    //     }
-    // }, [productData]);
+        const { value } = e.target;
+        setSearch(value);
+
+        if (value && productData) {
+            const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+            const filter = productData.filter((item) => {
+                const categoryMatch = item?.title?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
+                
+                return categoryMatch;
+            });
+            setSearchData(filter);
+        } else {
+            setSearchData(null);
+        }
+    }, [productData]);
+
+
     const MainCategorySearchHandler = (e, main, sub_category, sunInnercategory) => {
         e.stopPropagation();
 
         naviate(`/products/?category=${main}&&subcategory=${sub_category}&&sunInnercategory=${sunInnercategory}`)
     }
 
-    
-    const handleSearch = () => {
-       
-        naviate(`/products?search=${search}`)
 
-        
+    const handleSearch = () => {
+
+        naviate(`/products?search=${search}`)
+        setSearchData(null)
+
+
+    };
+    const handleSearchKey = (e) => {
+        if (e.key === "Enter") {
+            
+            naviate(`/products?search=${search}`)
+            setSearchData(null)
+        }
+
+
     };
 
 
     return (
         <>
-            <header className='flex bg-[#4D869C] justify-between items-center md:px-5 py-2'>
+            <header className='flex position-sticky sticky-top bg-[#4D869C] justify-between items-center md:px-5 py-2'>
                 <Link to='/' className='h-12 sm:h-16'>
                     <img src={logo} className='size-full' alt='logo' />
                 </Link>
 
 
                 <div className={`${searchToggle ? "block absolute w-full top-20 z-50" : "hidden w-3/6 md:block md:relative"} `} >
-                    <input type='text' value={search} placeholder='Search Here ...' onChange={(e)=>setSearch((e.target.value).toLowerCase())}  className='py-2 px-4 w-full rounded-full shadow-lg' />
+                    <input type='text' value={search} onKeyDown={handleSearchKey} placeholder='Search Here ...' onChange={(e) => { setSearch((e.target.value).toLowerCase()); handleSearch2(e)}} className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' onClick={handleSearch}><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
                         {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
@@ -72,7 +85,7 @@ const Header2 = () => {
                 </div>
 
                 <div className='flex-shrink-0 flex px-2 py-3 items-center space-x-8'>
-                    {authorizeToken ? 
+                    {authorizeToken ?
                         <div className='flex gap-2'>
                             <span
                                 onClick={() => setSearchToggle(!searchToggle)}
@@ -112,11 +125,11 @@ const Header2 = () => {
                             </span>
                         </div> : <>
 
-                        <Link to="/login" className="text-white  hover:bg-indigo-200 hover:text-black inline-flex items-center justify-center px-3 py-2  text-sm font-medium rounded-md shadow-sm " >Login</Link>
-                        <Link to="/register" className="text-gray-800 bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm "
-                        >Sign up
-                        </Link>
-                    </>}
+                            <Link to="/login" className="text-white  hover:bg-indigo-200 hover:text-black inline-flex items-center justify-center px-3 py-2  text-sm font-medium rounded-md shadow-sm " >Login</Link>
+                            <Link to="/register" className="text-gray-800 bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm "
+                            >Sign up
+                            </Link>
+                        </>}
                 </div>
             </header>
             <CategoryPage />

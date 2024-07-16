@@ -8,6 +8,7 @@ function TrendingProducts() {
     const { productData } = useProductContext()
     const { addToCart } = useCartContext()
     const { addToWishlist, wishlistData, CheckWishlistData, removeWishlist } = useWishlistContext()
+    const { share, setShare } = useProductContext()
     const token = localStorage.getItem("token")
     const navigate = useNavigate();
     const [check, setCheck] = useState(false)
@@ -48,7 +49,7 @@ function TrendingProducts() {
  
     }
 
-    const [share, setShare] = useState(false)
+   
     console.log(share)
 
     const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));

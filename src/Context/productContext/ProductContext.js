@@ -9,6 +9,8 @@ function ProductProvider({ children }) {
 
     const [productData, setProductData] = useState(null);
 
+    const [share, setShare] = useState(false)
+
 
     const getProductData = async () => {
         try {
@@ -25,7 +27,7 @@ function ProductProvider({ children }) {
         getProductData();
     }, [])
     return (
-        <ProductContext.Provider value={{ productData, setProductData }}>
+        <ProductContext.Provider value={{ productData, setProductData, share, setShare }}>
             {children}
         </ProductContext.Provider>
     )
