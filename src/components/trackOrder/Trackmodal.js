@@ -2,7 +2,7 @@ import React from 'react'
 import './Trackmodal.css'
 
 function Trackmodal({ toggle, setToggle }) {
-    console.log(toggle);
+
     return (
         <>
 

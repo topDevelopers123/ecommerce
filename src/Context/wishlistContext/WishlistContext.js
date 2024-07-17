@@ -67,7 +67,7 @@ function WishlistProvider({ children }) {
 
             item?.product_detail_id?._id === id
         )
-        console.log(checkWishlist);
+        
         if (checkWishlist?.length > 0) {
             return true
         } else {
