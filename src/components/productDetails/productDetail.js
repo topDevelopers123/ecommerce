@@ -461,7 +461,7 @@ function ProductDetail() {
             dots={false}
             responsive={{
               0: {
-                items: 3, // 1 item in mobile view
+                items: 3, // 3 item in mobile view
               },
               568: {
                 items: 3, // 3 items in tablet view

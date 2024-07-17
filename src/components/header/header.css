@@ -118,8 +118,6 @@
   width: 50% !important;
 }
 
-
-
 .icons_div div i:hover {
   color: #eef7ff;
   scale: 1.2;
@@ -181,9 +179,10 @@
 }
 
 .category_main_div div img {
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
+  object-fit: cover
 }
 
 .sub_categeries {
@@ -388,7 +387,7 @@
     border-bottom-right-radius: 50% !important;
     margin-right: 10px;
   }
-
+ 
   .search_btn:hover,
   .search_btn:active {
     background-color: #000 !important;
