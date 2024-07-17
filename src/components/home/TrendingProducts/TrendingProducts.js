@@ -10,9 +10,9 @@ function TrendingProducts() {
     const { share, setShare } = useProductContext()
     const token = localStorage.getItem("token")
     const navigate = useNavigate();
-    const [check, setCheck] = useState(false)
-    // console.log(wishlistData);
+    const [product_id, setProduct_id] = useState("")
 
+  
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
@@ -92,7 +92,8 @@ function TrendingProducts() {
                                                     <i className={`bi bi-heart-fill ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-200" : ""}`} onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) : wishlistHandler(item._id, item.ProductDetails[0]._id) }}></i>
                                                 </div>
                                                 <div className="icons">
-                                                    <i className="bi bi-share-fill" onClick={() => setShare(!share)}></i>
+                                                    <i className="bi bi-share-fill" onClick={() => { setShare(!share); setProduct_id(item?._id)}}></i>
+                                                    
                                                 </div>
                                             </div>
                                             <h5 className="card-title">{item.title}</h5>
@@ -120,7 +121,7 @@ function TrendingProducts() {
                     </div>
                 </div>
             </section>
-            {share ? <Share setShare={setShare} /> : null}
+            {share ? <Share setShare={setShare} product_id={product_id} /> : null}
         </div>
     )
 }

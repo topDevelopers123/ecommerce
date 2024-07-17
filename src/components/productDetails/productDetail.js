@@ -156,7 +156,6 @@ function ProductDetail() {
       window.scrollTo(0, 0);
       return
     }
-
     const obj = {
       product_id,
       productDetails,
@@ -327,16 +326,23 @@ function ProductDetail() {
                 </div>
 
                 <div className="tab-pane container fade" id="reviews">
-                  {getReview?.Review?.length > 0 ?
+                  {getReview?.Review?.length > 0 ? (
                     <div className="customer_reviews text-start">
                       <div className="ratings">
-                        <h2 className="">{(ratingAvg / getReview?.Review?.length).toFixed(1)}<span className="ms-2"><i className="bi bi-star-fill" style={{ color: "gold" }}></i></span></h2>
+                        <h2 className="">
+                          {(ratingAvg / getReview?.Review?.length).toFixed(1)}
+                          <span className="ms-2">
+                            <i className="bi bi-star-fill" style={{ color: "gold" }}></i>
+                          </span>
+                        </h2>
                         <p> {totalReview} Reviews</p>
                       </div>
-
-                      {getReview?.Review?.map((rev, i) => (
+                      {getReview?.Review?.sort((a, b) => b.rating - a.rating).map((rev, i) => (
                         <div key={i} className="uploaded_images mt-4">
-                          <h5>{rev?.title}</h5><span>{rev?.rating} <i className="bi bi-star-fill" style={{ color: "gold" }}></i></span>
+                          <h5>{rev?.title}</h5>
+                          <span>
+                            {rev?.rating} <i className="bi bi-star-fill" style={{ color: "gold" }}></i>
+                          </span>
                           <p> {rev?.message}</p>
                           <div className="d-flex">
                             {rev?.image?.map((photo, i) => (
@@ -346,9 +352,11 @@ function ProductDetail() {
                         </div>
                       ))}
                     </div>
-                    : <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
-                  }
+                  ) : (
+                    <h3 style={{ fontWeight: "400" }}>No Reviews Yet</h3>
+                  )}
                 </div>
+
                 {addReviewConditional?.length > 0 ?
 
                   <div className="tab-pane container fade" id="addReview">

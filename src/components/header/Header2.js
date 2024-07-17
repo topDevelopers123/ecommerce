@@ -104,7 +104,11 @@ const Header2 = () => {
                                 <div className={` ${toggle ? "block" : "hidden"} bg-white shadow overflow-hidden  absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem]  z-50 `}>
                                     <button className=' w-full text-sm sm:text-lg flex justify-evenly py-2  text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md ' onClick={() => { naviate("/track_order"); setoggle(false) }} ><i className="bi bi-box-seam text-black"></i> Orders &gt; </button>
                                     <button className=' w-full text-sm sm:text-lg border-bottom border-[#e7e7e7] py-2 flex justify-evenly text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/wishlist"); setoggle(false) }}><i className="bi bi-heart text-black"></i> Wishlist &gt; </button>
+
                                     <button className=' w-full text-sm sm:text-lg flex justify-evenly border-bottom border-[#e7e7e7] py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/savedAddress"); setoggle(false) }} ><i className="bi bi-house-door text-black"></i> Address &gt; </button>
+
+                                    <button className=' w-full text-sm sm:text-lg flex justify-evenly border-bottom border-[#e7e7e7] py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/changePassword"); setoggle(false) }} ><i class="bi bi-lock text-black"></i> Password &gt; </button>
+
                                     <button className=' w-full  text-sm sm:text-lg flex justify-evenly py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={handleLogout} ><i className="bi bi-box-arrow-right text-black"></i> Logout  </button>
                                 </div>
                             </span>
