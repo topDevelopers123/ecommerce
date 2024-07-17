@@ -133,13 +133,15 @@ const Header2 = () => {
                                 <i className='bi bi-person-circle'></i>
                                 <span className='text-xs font-normal'>Profile</span>
                                 <div className={`${toggle ? 'block' : 'hidden'} bg-white shadow overflow-hidden absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem] z-50`}>
-                                    <div className='w-full text-sm sm:text-lg py-2 px-2 text-[#676767]'>
+
+                                    <div className='w-full text-sm sm:text-lg py-2 px-3 cursor-text  text-[#4D869C] border-bottom border-[#e7e7e7]'>
                                   
                                         <p> {getUser?.name}</p>
                                         <p> {getUser?.email}</p>
                                     </div>
+
                                     <button
-                                        className='w-full text-sm sm:text-lg flex justify-evenly py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md'
+                                        className='w-full text-sm sm:text-lg flex justify-evenly py-2 text-[#676767] border-bottom border-[#e7e7e7] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md'
                                         onClick={() => {
                                             naviate('/track_order');
                                             setoggle(false);
