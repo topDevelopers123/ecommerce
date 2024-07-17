@@ -32,7 +32,7 @@ const Header2 = () => {
             const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
             const filter = productData.filter((item) => {
                 const categoryMatch = item?.title?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
-                
+
                 return categoryMatch;
             });
             setSearchData(filter);
@@ -58,7 +58,7 @@ const Header2 = () => {
     };
     const handleSearchKey = (e) => {
         if (e.key === "Enter") {
-            
+
             naviate(`/products?search=${search}`)
             setSearchData(null)
         }
@@ -76,7 +76,7 @@ const Header2 = () => {
 
 
                 <div className={`${searchToggle ? "block absolute w-full top-20 z-50" : "hidden w-3/6 md:block md:relative"} `} >
-                    <input type='text' value={search} onKeyDown={handleSearchKey} placeholder='Search Here ...' onChange={(e) => { setSearch((e.target.value).toLowerCase()); handleSearch2(e)}} className='py-2 px-4 w-full rounded-full shadow-lg' />
+                    <input type='text' value={search} onKeyDown={handleSearchKey} placeholder='Search Here ...' onChange={(e) => { setSearch((e.target.value).toLowerCase()); handleSearch2(e) }} className='py-2 px-4 w-full rounded-full shadow-lg' />
                     <span className='absolute top-2 right-4 font-bold ' onClick={handleSearch}><i className="bi bi-search"></i></span>
                     <div className="bg-white shadow-md absolute top-full rounded-md w-full md:w-2/3  z-50">
                         {Searchdata?.map((item, i) => <p className="px-3 py-1 cursor-pointer " key={i} onClick={() => { naviate(`/productdetails/${item._id}`); setSearch(""); setSearchData(null) }} >{item?.title}</p>)}
@@ -119,7 +119,11 @@ const Header2 = () => {
                                 <div className={` ${toggle ? "block" : "hidden"} bg-white shadow overflow-hidden  absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem]  z-50 `}>
                                     <button className=' w-full text-sm sm:text-lg flex justify-evenly py-2  text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 rounded-e-md ' onClick={() => { naviate("/track_order"); setoggle(false) }} ><i className="bi bi-box-seam text-black"></i> Orders &gt; </button>
                                     <button className=' w-full text-sm sm:text-lg border-bottom border-[#e7e7e7] py-2 flex justify-evenly text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/wishlist"); setoggle(false) }}><i className="bi bi-heart text-black"></i> Wishlist &gt; </button>
+
                                     <button className=' w-full text-sm sm:text-lg flex justify-evenly border-bottom border-[#e7e7e7] py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/savedAddress"); setoggle(false) }} ><i className="bi bi-house-door text-black"></i> Address &gt; </button>
+
+                                    <button className=' w-full text-sm sm:text-lg flex justify-evenly border-bottom border-[#e7e7e7] py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={() => { naviate("/changePassword"); setoggle(false) }} ><i class="bi bi-lock text-black"></i> Password &gt; </button>
+
                                     <button className=' w-full  text-sm sm:text-lg flex justify-evenly py-2 text-[#676767] m-0 hover:bg-gray-300 duration-150 p-0 text-start px-2 ' onClick={handleLogout} ><i className="bi bi-box-arrow-right text-black"></i> Logout  </button>
                                 </div>
                             </span>
