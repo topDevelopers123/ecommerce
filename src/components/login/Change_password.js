@@ -22,11 +22,11 @@ function ChangePassword() {
     });
 
     const { values, handleSubmit, handleChange, errors, touched } = useFormik({
-        initialValues,
-        validationSchema,
+        initialValues: initialValues,
+        validationSchema: validationSchema,
         onSubmit: (values) => {
             changePassword(values);
-            // console.log(values)
+            console.log(values)
         },
     });
 
