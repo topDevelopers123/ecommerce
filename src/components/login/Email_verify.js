@@ -12,7 +12,6 @@ function EmailVerify() {
 
     const initialValues = {
         email: "",
-        password:""
     };
 
     const emailVerified = yup.object({
