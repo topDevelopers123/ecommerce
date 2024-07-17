@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
-    const [orderDetail, setOrderDetail] =  useState(null)
+    const [orderDetail, setOrderDetail] = useState(null)
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"));
     const API = process.env.REACT_APP_API
     // console.log(API);
@@ -85,10 +85,12 @@ function AuthContextProvider({ children }) {
     const changePassword = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post(`${API}/user/password`, data);
-            localStorage.setItem("token", resp.data.token);
+            const resp = await axios.post(`${API}/user/password`, data, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
+
+            });
             setAuthorizeToken(resp.data.token);
-         
+
             toast.success(resp.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
@@ -97,7 +99,7 @@ function AuthContextProvider({ children }) {
         }
     };
 
-  
+
 
     return (
         <AuthContext.Provider value={{ register, login, emailVerify, otpVerify, newPassword, changePassword, authorizeToken, API }}>
