@@ -8,6 +8,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./productDetail.css";
 import StarRatings from "react-star-ratings";
+import Share from "../home/TrendingProducts/Share";
 
 
 function ProductDetail() {
@@ -16,6 +17,8 @@ function ProductDetail() {
   const { addToWishlist, CheckWishlistData, removeWishlist } = useWishlistContext()
   const { addToCart2 } = useCartContext()
   const { orderDetail } = useOrderContext()
+  const { share, setShare } = useProductContext()
+  const [product_id, setProduct_id] = useState("")
   
   const { id } = useParams()
   const [qty, setQty] = useState(1)
@@ -325,10 +328,11 @@ function ProductDetail() {
                     </div>
                     <div className="col-md-1 col-1 col-lg-1">
                       <div className="wishlist_btn ms-2">
-                        <i className="bi bi-share-fill text-white"></i>
+                        <i className="bi bi-share-fill text-white" onClick={() => { setShare(!share); setProduct_id(data?._id) }}></i>
                       </div>
                     </div>
                   </div>
+                 
 
                   <hr />
 
@@ -348,6 +352,8 @@ function ProductDetail() {
                       
                     </div>
                   </div>
+
+                  {share ? <Share setShare={setShare} product_id={product_id} /> : null}
                 </div>
               </div>
               // ))}

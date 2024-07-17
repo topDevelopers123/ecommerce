@@ -8,6 +8,7 @@ import fea03 from "../home/img/3.jpg";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import { useCartContext, useCategoryContext, useProductContext, useProductDetailsContext, useWishlistContext } from "../../Context/index.context";
+import Share from "../home/TrendingProducts/Share";
 
 function Products() {
 
@@ -16,6 +17,8 @@ function Products() {
   const { productDetailsData } = useProductDetailsContext()
   const { selectedCategory } = useCategoryContext()
   const { productData } = useProductContext()
+  const { share, setShare } = useProductContext()
+  const [product_id, setProduct_id] = useState("")
   const [allProductData, setAllProductData] = useState(productData)
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
@@ -413,8 +416,9 @@ function Products() {
 
                         <div className="p-0 px-md-2 d-flex align-items-center justify-content-between">
                           <div className="icons">
-                            <i className="bi bi-share px-2 mx-1" title="Share"></i>
+                              <i className="bi bi-share px-2 mx-1" title="Share" onClick={() => { setShare(!share); setProduct_id(item?._id) }}></i>
                           </div>
+                        
                           <div className="icons">
                             <i className={`bi bi-heart-fill px-2 mx-1 ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-300" : ""}`} title="Wishlist" onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) :  addToWishlistHandler(item?._id, item.ProductDetails[0]?._id); }} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}></i>
                           </div>
@@ -424,7 +428,9 @@ function Products() {
                     </div>
                     </div>
                   </div>
-                </div>)
+                  {share ? <Share setShare={setShare} product_id={product_id} /> : null}
+                </div>
+                )
                 )
                   : <h2 className="w-100 text-center d-flex align-items-center justify-content-center">No Products Found</h2>
                 }

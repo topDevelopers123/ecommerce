@@ -16,7 +16,7 @@ const Invoice = ({ setInvoice, data }) => {
     const dateStr = data?.createdAt?.split("T")[0].split("-")
 
     return (
-        <div className='bg-gray-500 py-24 absolute  w-full top-0 left-0'>
+        <div className='bg-gray-500 py-24 absolute h-[260vh]  w-full top-0 left-0'>
             <h1 className='absolute top-30 right-10 cursor-pointer' onClick={() => setInvoice(false)}>
                 <i className="bi bi-x-lg text-white"></i>
             </h1>

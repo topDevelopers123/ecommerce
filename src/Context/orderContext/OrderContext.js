@@ -41,7 +41,7 @@ function OrderContextProvider({ children }) {
     }
 
     const addSingleOrder = async (data) => {
-        console.log(data);
+        
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -64,6 +64,8 @@ function OrderContextProvider({ children }) {
         }
     }
     const getOrder = async () => {
+        setDisable(true)
+       
         try {
             const res = await axios.get(`${API}/user/get-order`, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
@@ -73,6 +75,24 @@ function OrderContextProvider({ children }) {
            
         } catch (error) {
             console.log(error)
+        }
+    }
+    const updateOrder = async (data, id) => {
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.put(`${API}/order/update/${id}`, data, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
+            } )
+            getOrder()
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            // console.log(res?.data.data[0])
+            
+           
+        } catch (error) {
+            console.log(error)
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
         }
     }
 
@@ -85,7 +105,7 @@ function OrderContextProvider({ children }) {
 
 
     return (
-        <OrderContext.Provider value={{ addOrder, addSingleOrder, getOrder, orderDetail }}>
+        <OrderContext.Provider value={{ addOrder, addSingleOrder, getOrder, updateOrder, orderDetail }}>
             {children}
         </OrderContext.Provider>
     )
