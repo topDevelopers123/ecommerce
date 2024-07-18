@@ -21,7 +21,7 @@ function Register() {
   const registered = yup.object({
     name: yup.string().required("Name is Required "),
     email: yup.string().email().required("Email is Required"),
-    phone: yup.string().required("Mobile Number is Required"),
+    phone: yup.string().min(10).required("Mobile Number is Required"),
     password: yup.string().min(6).max(16).required("Password is Required"),
     confirm_Password: yup.string().min(6).max(16).required("Confirm Password does not Match")
   })

@@ -17,6 +17,8 @@ function ProductDetail() {
   const { addToCart2 } = useCartContext()
   const { orderDetail } = useOrderContext()
   const { share, setShare } = useProductContext()
+  const [product_id, setProduct_id] = useState("")
+  
   const { id } = useParams()
   const [qty, setQty] = useState(1)
   const [image, setImage] = useState(null)
@@ -265,12 +267,13 @@ function ProductDetail() {
                       </div>
                     </div>
                     <div className="col-md-1 col-1 col-lg-1">
-                      <div className="wishlist_btn ms-2" onClick={() => setShare(!share)}>
-                        <i className="bi bi-share-fill text-white"></i>
+                      <div className="wishlist_btn ms-2">
+                        <i className="bi bi-share-fill text-white" onClick={() => { setShare(!share); setProduct_id(data?._id) }}></i>
                       </div>
                     </div>
                   </div>
-                  {share ? <Share setShare={setShare} /> : null}
+                 
+
                   <hr />
                   <div className="row">
                     <div className="d-flex">
@@ -282,6 +285,8 @@ function ProductDetail() {
                       </button>
                     </div>
                   </div>
+
+                  {share ? <Share setShare={setShare} product_id={product_id} /> : null}
                 </div>
               </div>
               // ))}

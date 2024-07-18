@@ -2,15 +2,16 @@ import React from 'react'
 import './Trackmodal.css'
 
 function Trackmodal({ toggle, setToggle }) {
+  
 
     return (
         <>
 
             <div className=" bg-gray-100 flex items-center justify-center h-screen">
                 <div x-data="{ showPrivacyPolicy: true }">
-                    <div className="fixed z-10 inset-0  flex items-center justify-center">
+                    <div className="fixed  inset-0  flex items-center justify-center">
                         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                        <div className="relative bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 h-[550px] max-w-full overflow-x-hidden overflow-y-scroll p-3">
+                        <div className="relative py-5 bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 h-[550px] max-w-full overflow-x-hidden overflow-y-scroll p-3">
 
                             <div className="px-6 flex justify-between  align-items-center ">
                                 <h3 className=" leading-6 font-medium text-gray-900 ">Product Details </h3>
@@ -70,9 +71,9 @@ function Trackmodal({ toggle, setToggle }) {
                                     </div>
                                     <div className="track mb-3">
                                         <div className="step active"> <span className="icon"> <i className="bi bi-check2"></i> </span> <span className="text">Order confirmed</span> </div>
-                                        <div className="step "> <span className="icon"> <i className="bi bi-person-circle"></i> </span> <span className="text"> Picked by courier</span> </div>
-                                        <div className="step"> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>
-                                        <div className="step"> <span className="icon"> <i className="bi bi-box"></i> </span> <span className="text">Ready for pickup</span> </div>
+                                       
+                                        <div className={`step ${toggle?.toggle?.data?.status === "pending" || toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>
+                                        <div className={`step ${toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-box"></i> </span> <span className="text">Delivered</span> </div>
                                     </div>
                                 </div>
                             </div>
