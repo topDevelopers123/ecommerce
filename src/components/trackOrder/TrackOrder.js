@@ -3,41 +3,19 @@ import './TrackOrder.css'
 import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
-import { boolean } from 'yup'
-import Invoice from './Invoice'
-import { logDOM } from '@testing-library/react'
 
 function TrackOrder() {
 
-    const [invoice, setInvoice] = useState(false)
-    const [invoicedata, setInvoicedata] = useState([])
     const { orderDetail, updateOrder } = useOrderContext()
-    const [id, setId] = useState("")
     const [cancelOrder, setCancelOrder] = useState({
         payment_status: "",
         status: ""
     })
 
-
     const [toggle, setToggle] = useState({
         boolean_val: false,
-        data: []
+        data: [] 
     })
-    
-
-    const cancelOrderHandler = (id, payment_status) =>{
-        // setCancelOrder({...cancelOrder,payment_status:payment_status})
-        const obj = {
-            payment_status: payment_status,
-            status: "cancelled"
-        }
-        updateOrder(obj, id)
-    
-    }
- 
-    
-
-
 
     return (
         <>
@@ -60,52 +38,37 @@ function TrackOrder() {
 
                                 <hr />
 
-                                <div className='order_table'>
-                                    <div className='table-responsive'>
-                                        <table class="table">
-                                            <thead >
-                                                <tr >
-                                                    <th className='text-white bgprimary' scope="col">Product Image</th>
-                                                    <th className='text-white bgprimary' scope="col">Product Title</th>
-                                                    <th className='text-white bgprimary' scope="col">Price</th>
-                                                    <th className='text-white bgprimary' scope="col">Quantity</th>
-                                                    <th className='text-white bgprimary' scope="col">Status</th>
-                                                    <th className='text-white bgprimary' scope="col">More Info.</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
-                                                    <>
-                                                        <tr className={`${item?.status === "cancelled" ? "opacity-50" : ""}`}>
-                                                            {/* of */}
-                                                            <td><img width={100} src={item?.image} style={{ height: "60px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' /></td>
-                                                            <td>{item?.Product[0]?.title}</td>
-                                                            <td>₹ {item?.ProductDetails[0]?.sellingPrice}</td>
-                                                            <td>{item.quantity}</td>
-                                                            <td className={`${item?.status === "cancelled" ? "text-danger  fw-bold rounded-full " : ""} ${item?.status === "pending" ? "text-warning fw-bold" : ""} ${item?.status === "delivered" ? "text-success fw-bold" : ""}`}>{item.status}</td>
-                                                            
-                                                            <td className='text-success cursor-pointer'  ><button disabled={item?.status === "cancelled" ? true : false} onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>View More</button></td>
+                                <div className='orders_sec my-3'>
+                                    <div className='container'>
 
-                                                        </tr>
-                                                        {item?.status === "cancelled" ? "" : <div className='flex w-full my-2 gap-2 justify-between items-center'>
-                                                            {item?.status === "pending" ? "" : <>
-                                                            <button className=' rounded shadow-sm'>Return</button>
-                                                            <button className=' rounded shadow-sm' onClick={() => { setInvoice(!invoice); setInvoicedata(item); window.scroll(0, 0) }}>Invoice</button>
-                                                            </>
-                                                        }
-                                                            <button className={`${item?.status === "delivered" ? "d-none" : ""} w-100 rounded shadow-sm`} onClick={() => {
-                                                                cancelOrderHandler(item?._id, item?.payment_status)
-                                                            }}>Order Cancel</button>
-                                                            {/* {console.log(item)} */}
-
-
-                                                        </div>}
-                                                        
-                                                    </>
-                                                ))}
-
-                                            </tbody>
-                                        </table>
+                                        <h4 className='fw-light'> Your Orders  </h4>
+                                        {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
+                                            <>
+                                                <div className='orders'>
+                                                    <div className='flex justify-between py-3 items-center'>
+                                                        <div className='flex gap-3'>
+                                                            <div className='product_img'>
+                                                                <img width={100} src={item?.image} style={{ height: "60px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' />
+                                                            </div>
+                                                            <div className='product_title'>
+                                                                {item?.Product[0]?.title}
+                                                               <div className=' sm:flex block gap-3 py-2'>
+                                                                <div >
+                                                                        <button className={`${item?.status === "cancelled" ? "bg-red-400 shadow text-center w-100  text-white rounded-full px-3 py-1 text-sm " : ""} ${item?.status === "pending" ? "bg-orange-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""} ${item?.status === "delivered" ? "bg-green-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""}`}>
+                                                                {item.status}
+                                                                        </button>
+                                                                </div>
+                                                                    <div ><button className='view-product w-100  bg-gray-300 rounded-full px-3 py-1 text-sm text-center' disabled={item?.status === "cancelled" ? true : false} onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
+                                                                    View product</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div><i className="bi bi-chevron-right"></i></div>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        ))}
                                     </div>
                                 </div>
 
@@ -118,9 +81,11 @@ function TrackOrder() {
                 </section>
                 {toggle?.boolean_val ? <Trackmodal setToggle={setToggle} toggle={{ toggle }} /> : null}
             </div>
-            {invoice ? <Invoice setInvoice={setInvoice} data={invoicedata} /> : null}
         </>
     )
 }
 
 export default TrackOrder
+
+
+
