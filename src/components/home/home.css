@@ -61,7 +61,7 @@
 }
 
 .featured_products .owl-carousel .owl-item img {
-    height: auto;
+    height: 300px;
     object-fit: cover;
     border-radius: 20px;
     cursor: pointer;
