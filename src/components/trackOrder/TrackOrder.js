@@ -5,7 +5,7 @@ import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
 
 function TrackOrder() {
-
+    
     const { orderDetail, updateOrder } = useOrderContext()
     const [cancelOrder, setCancelOrder] = useState({
         payment_status: "",
@@ -25,8 +25,6 @@ function TrackOrder() {
                         <article className="card">
                             <header className="card-header"> My Orders / Tracking </header>
                             <div className="card-body">
-
-
                                 <article className="card mb-4">
                                     <div className="card-body row d-flex justify-between">
                                         <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
@@ -40,7 +38,6 @@ function TrackOrder() {
 
                                 <div className='orders_sec my-3'>
                                     <div className='container'>
-
                                         <h4 className='fw-light'> Your Orders  </h4>
                                         {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
                                             <>
