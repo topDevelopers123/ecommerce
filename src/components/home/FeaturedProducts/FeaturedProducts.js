@@ -1,23 +1,17 @@
-
 import React, { useEffect, useState } from 'react';
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-
 import bgImg from "../NewArrivals/img/bg.avif"
 import { useNavigate } from 'react-router-dom';
 
-function FeaturedProducts({data1}) {
-
+function FeaturedProducts({ data1 }) {
     const navigate = useNavigate();
 
     const productDetailsPage = (id) => {
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     };
-
-   
-   
 
     return (
         <div>
@@ -58,7 +52,7 @@ function FeaturedProducts({data1}) {
                                     },
                                 }}
                             >
-                                {data1?.slice(0,6)?.reverse().map((item, i) => (
+                                {data1?.slice(0, 6)?.reverse().map((item, i) => (
                                     <div key={i} className="item">
                                         <img
                                             src={item?.ProductDetails[0]?.image[0]?.image_url}
@@ -72,7 +66,7 @@ function FeaturedProducts({data1}) {
                                             ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
                                         </p>
                                     </div>
-                                )) }
+                                ))}
                             </OwlCarousel>
                         </div>
                     </div>

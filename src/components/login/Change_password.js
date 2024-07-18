@@ -37,7 +37,6 @@ function ChangePassword() {
                     <div className="col-lg-6 offset-lg-3 col-12">
                         <div className="login-form">
                             <h2>Change Password</h2>
-
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="oldpassword" className="form-label">

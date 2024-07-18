@@ -40,7 +40,7 @@ function Header() {
     setFlag2(!flag2);
   };
 
-  const wishListHandler = () =>{
+  const wishListHandler = () => {
     if (token === null) {
 
       navigate(`/login`);
@@ -49,9 +49,9 @@ function Header() {
     }
 
     navigate('/wishlist')
- 
+
   }
-  const addToCartHandler = () =>{
+  const addToCartHandler = () => {
     if (token === null) {
 
       navigate(`/login`);
@@ -60,7 +60,7 @@ function Header() {
     }
 
     navigate('/cart')
- 
+
   }
 
   const handleSearch = (e) => {
@@ -119,31 +119,31 @@ function Header() {
               </div>
             </div>
           </div>
-                    
+
           <div className={`col-lg-3 col-md-3 col-sm-4 col-5 d-flex justify-content-center nav_icons align-items-center h-100 order-lg-3 order-md-2 order-sm-2 order-2  right_icons_box ${flag ? "d-none " : "d-flex"}`}>
             <div className="d-flex navbar_right_icon icons_div justify-content-center  w-100 ">
-                <div className=" d-flex  text-center position-relative align-items-center" onClick={() => wishListHandler()}>
-                  <Link to="" className="text-center" >
+              <div className=" d-flex  text-center position-relative align-items-center" onClick={() => wishListHandler()}>
+                <Link to="" className="text-center" >
                   {" "}
                   <i className="bi bi-suit-heart"></i>
                   <span>Wishlist</span>
                 </Link>
-                  <div className="para_cart d-flex justify-content-center align-items-center">
-                    <p className="text-light m-0">{wishlistLength}</p>
-                  </div>
-                </div>
-
-                <div className="d-flex  position-relative text-center  justify-content-center  align-items-center" onClick={() => addToCartHandler()}>
-                <Link to="" className="text-center">
-                   <i className="bi bi-cart3"></i>
-                   <span>Bag</span>
-                </Link>
                 <div className="para_cart d-flex justify-content-center align-items-center">
-                    <p className="text-light m-0">{cartLength}</p>
+                  <p className="text-light m-0">{wishlistLength}</p>
                 </div>
               </div>
 
-                {/* <div className="d-flex  position-relative  text-center justify-content-center   align-items-center" >
+              <div className="d-flex  position-relative text-center  justify-content-center  align-items-center" onClick={() => addToCartHandler()}>
+                <Link to="" className="text-center">
+                  <i className="bi bi-cart3"></i>
+                  <span>Bag</span>
+                </Link>
+                <div className="para_cart d-flex justify-content-center align-items-center">
+                  <p className="text-light m-0">{cartLength}</p>
+                </div>
+              </div>
+
+              {/* <div className="d-flex  position-relative  text-center justify-content-center   align-items-center" >
                 {flag2 ? 
                     <Link to="#" onClick={toggleFlag2} className="text-center">
                 <i className="bi bi-x-lg "></i>

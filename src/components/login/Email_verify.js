@@ -50,7 +50,6 @@ function EmailVerify() {
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                     />
-
                                     {touched.email && errors.email ? (
                                         <p className="text-start text-danger ps-1 mt-1">
                                             {errors.email}
@@ -60,8 +59,7 @@ function EmailVerify() {
 
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
-                                        <Link to="/otpVerify">Verify Email</Link>
-                                        
+                                        <Link to="/otpVerify">Verify Email</Link>                                        
                                     </button>
                                 </div>
                             </form>

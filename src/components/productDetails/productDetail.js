@@ -10,7 +10,6 @@ import "./productDetail.css";
 import StarRatings from "react-star-ratings";
 import Share from "../home/TrendingProducts/Share";
 
-
 function ProductDetail() {
   const { addReview, disable } = useProductDetailsContext()
   const { productData } = useProductContext()
@@ -29,9 +28,6 @@ function ProductDetail() {
   const navigate = useNavigate()
   const param = useParams()
 
-
-
-
   let ratingAvg = 0;
   let totalReview = 0;
   const [error, setError] = useState("")
@@ -44,21 +40,15 @@ function ProductDetail() {
     image: []
   });
 
-
-
-
   const getReview = productData?.filter((item) => item?._id === id)[0];
-
 
   getReview?.Review?.map((rev) => {
     ratingAvg += rev?.rating
     totalReview++
   })
 
-
   const redirectHandler = (product_id, id, image) => {
     if (token === null) {
-
       navigate(`/login`);
       window.scrollTo(0, 0);
       return
@@ -91,7 +81,6 @@ function ProductDetail() {
     }));
   };
 
-
   const submitHandler = async () => {
     if (!reviewData.title || !reviewData.message || !reviewData.rating) {
       setError("All Field are Mendatory (Title, Message, Rating)")
@@ -103,11 +92,9 @@ function ProductDetail() {
     formData.append('message', reviewData.message);
     formData.append('rating', reviewData.rating);
 
-
     reviewData.image.forEach((file) => {
       formData.append(`image`, file);
     });
-
 
     try {
       const result = await addReview(formData);
@@ -119,22 +106,17 @@ function ProductDetail() {
     }
   };
 
-
   const addValue = () => {
     if (qty < 5) {
-
       setQty(qty + 1)
     }
   }
 
   const removeValue = () => {
     if (qty > 1) {
-
       setQty(qty - 1)
     }
   }
-
-
 
   const data = productData?.filter((item, i) => {
     return id === item._id
@@ -145,15 +127,11 @@ function ProductDetail() {
     return data?._id === item?.Product[0]?._id
   });
 
-  // console.log(addReviewConditional);
-
   const Prouctdetail = data?.ProductDetails[0]
   const relatedProduct = productData?.filter((item) => item.sub_inner_category[0]?.sub_inner_category_name === data.sub_inner_category[0]?.sub_inner_category_name)
 
   const filter = data?.ProductDetails?.filter((item) => item.color === color)
   const filter2 = filter?.filter((item) => item._id === size)[0]
-
-
 
   const [details, setDetails] = useState({
     product_id: "",
@@ -161,29 +139,21 @@ function ProductDetail() {
     quantity: null,
     image: ""
   })
-
   const [wishDetails, setWishDetails] = useState({
     product_id: "",
     product_detail_id: ""
   })
 
   useEffect(() => {
-
     setImage(Prouctdetail?.image[0]?.image_url)
     setColor(Prouctdetail?.color)
     setSize(Prouctdetail?._id)
     setDetails({ ...details, product_id: data?._id, productDetails: Prouctdetail?._id, quantity: qty })
     setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: Prouctdetail?._id })
-
-
   }, [productData, param])
-
-
-
 
   const addToCartHandler = (product_id, productDetails, quantity, image) => {
     if (token === null) {
-
       navigate(`/login`);
       window.scrollTo(0, 0);
       return
@@ -199,13 +169,11 @@ function ProductDetail() {
 
   const wishListHandler = () => {
     if (token === null) {
-
       navigate(`/login`);
       window.scrollTo(0, 0);
       return
     }
     addToWishlist(wishDetails)
-
   }
 
   const changeRating = (newRating) => {
@@ -215,18 +183,12 @@ function ProductDetail() {
     }));
   };
 
-
-
-
   return (
     <div>
-
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
-
             {
-
               <div className="row details-snippet1">
                 <div className="col-md-7" >
                   <div className="row">
@@ -243,66 +205,46 @@ function ProductDetail() {
                     </div>
                   </div>
                 </div >
-
                 <div className="col-md-5">
                   <div className="theme-text mr-2">Category : <span className="text-secondary">{data?.category[0]?.category_name}</span></div>
-
-
                   <div><h3>{data?.title}</h3></div>
-
                   <div className="price my-2">
                     ₹{filter2?.sellingPrice} &nbsp; <strike className="original-price">   ₹{filter2?.MRP}</strike> <span>{((filter2?.MRP - filter2?.sellingPrice) / filter2?.MRP * 100)?.toFixed()}% OFF</span>
                   </div>
-
                   <div className="delivery shadow">Free Delivery</div>
                   <div className="theme-text subtitle mb-3">Brief Description:</div>
                   <div className="brief-description">
                     {data?.description}
                   </div>
-
                   <hr />
-
                   <div>
                     <div className="subtitle my-3 theme-text">Colors:</div>
                     <div className="d-flex flex-row gap-2 p-2">
-
                       <div className="select-colors d-flex">
                         <div className="color blue ">
                           <div className="d-flex">
                             {(data?.ProductDetails?.map((photo, i) => (
-
                               <div key={i}>
                                 {photo?.image?.length > 0 && <img src={photo?.image[0]?.image_url} alt="" className="mx-1 bg-transparent object-cover" style={{ width: "100px", height: "100px" }} onClick={() => { setColor(photo?.color); setSize(photo?._id); setImage(photo?.image[0]?.image_url); setDetails({ ...details, product_id: data?._id, productDetails: photo?._id, quantity: qty }); setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: photo?._id }) }} />}
                               </div>
                             )))}
-
                           </div>
                         </div>
-
-
                       </div>
-
-
                     </div>
                   </div>
-
                   <hr />
-
                   <div>
                     <div>Size: </div>
                     <div className="subtitle my-3 theme-text size">
                       {filter?.map((item, i) => (
                         <span key={i} className={`px-2 py-1 border border-dark mx-1 ${item?._id === size ? "bg-secondary text-light" : ""}`} onClick={() => setSize(item?._id)} >
                           {item?.Size}
-
                         </span>
-
                       ))}
                     </div>
                   </div>
-
                   <hr />
-
                   <div className="row">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
@@ -319,11 +261,8 @@ function ProductDetail() {
                         </form>
                       </div>
                     </div>
-
-
                     <div className="col-md-1 col-1 col-lg-1 mx-2">
                       <div className={`wishlist_btn `} >
-
                         <i className={`bi bi-heart-fill ${CheckWishlistData(filter2?._id) ? "text-pink-300" : "text-white"}`} onClick={() => { setWishDetails({ ...wishDetails, product_id: data?._id, product_detail_id: filter2?._id }); CheckWishlistData(filter2?._id) ? removeWishlist(filter2?._id) : wishListHandler(); }}></i>
                       </div>
                     </div>
@@ -336,21 +275,14 @@ function ProductDetail() {
                  
 
                   <hr />
-
                   <div className="row">
                     <div className="d-flex">
                       <button className="btn btn-block addBtn" onClick={() => { addToCartHandler(data?._id, filter2?._id, qty, filter[0]?.image[0]?.image_url) }} disabled={filter2?.inStock < 1 ? true : false}>
-
                         Add to basket
                       </button>
-
                       <button className="btn btn-block addBtn ms-3" onClick={() => redirectHandler(id, filter2?._id, filter[0]?.image[0]?.image_url)} disabled={filter2?.inStock < 1 ? true : false}>
                         Buy Now
                       </button>
-
-
-
-
                     </div>
                   </div>
 
@@ -373,7 +305,6 @@ function ProductDetail() {
                     Description
                   </Link>
                 </li>
-
                 <li className="nav-item">
                   <Link className="nav-link" data-bs-toggle="tab" to="#reviews">
                     Reviews
@@ -398,7 +329,6 @@ function ProductDetail() {
                     corporis temporibus ad?
                   </div>
                 </div>
-
 
                 <div className="tab-pane container fade" id="reviews">
                   {getReview?.Review?.length > 0 ? (
@@ -438,7 +368,6 @@ function ProductDetail() {
                     {/* {console.log(addReviewConditional)} */}
                     <div className="review">
                       <div className="theme-text mr-2 text-start">Product Ratings: </div>
-
                       <div className="userRating text-start">
                         <StarRatings
                           rating={reviewData.rating}
@@ -507,7 +436,6 @@ function ProductDetail() {
                       </div>
                       {error ? <p className="text-danger text-start mt-3">{error}</p> : ""}
                       <div className="submitBtn">
-
                         <button onClick={() => { setReviewData({ ...reviewData, product_id: id }); submitHandler() }} disabled={disable} className={disable ? "bg-danger" : ""}> Post
                         </button>
                       </div>
@@ -521,7 +449,6 @@ function ProductDetail() {
       </section>
       {/* Product details section end */}
 
-
       <section className="featured_products p-0">
         <div className="container">
           <div className="head_title">
@@ -530,7 +457,6 @@ function ProductDetail() {
             </h2>
             <div className="bdr"></div>
           </div>
-
           <OwlCarousel
             className="owl-theme"
             loop
@@ -540,7 +466,7 @@ function ProductDetail() {
             dots={false}
             responsive={{
               0: {
-                items: 3, // 1 item in mobile view
+                items: 3, // 3 item in mobile view
               },
               568: {
                 items: 3, // 3 items in tablet view
@@ -555,11 +481,9 @@ function ProductDetail() {
           >
 
             {relatedProduct?.map((item, i) => <div onClick={() => {
-
               navigate(`/productdetails/${item?._id}`)
               window.scrollTo(0, 0);
             }} key={i} className="item item2">
-
               <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.title} />
               <h5 className="card-title mt-2">{item?.title.length <= 5
                 ? item?.title
@@ -568,16 +492,9 @@ function ProductDetail() {
                 ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}
               </p>
             </div>)}
-
-
           </OwlCarousel>
-
         </div>
       </section>
-
-
-
-
     </div>
   );
 }
