@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import logo from './header_images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
+import "./Header2.css";
 import { useAuthContext, useCartContext, useProductContext, useWishlistContext } from '../../Context/index.context';
 import CategoryPage from './CategoryPage';
 import toast from 'react-hot-toast';
@@ -23,7 +24,7 @@ const Header2 = () => {
         window.location.href = '/';
     };
 
-    
+
 
     const handleSearch2 = useCallback(
         (e) => {
@@ -132,12 +133,26 @@ const Header2 = () => {
                             >
                                 <i className='bi bi-person-circle'></i>
                                 <span className='text-xs font-normal'>Profile</span>
-                                <div className={`${toggle ? 'block' : 'hidden'} bg-white shadow overflow-hidden absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem] z-50`}>
+                                <div className={`${toggle ? 'block' : 'hidden'}  bg-white profileDiv shadow overflow-hidden absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem] z-50`}>
 
-                                    <div className='w-full text-sm sm:text-lg py-2 px-3 cursor-text  text-[#4D869C] border-bottom border-[#e7e7e7]'>
-                                  
-                                        <p> {getUser?.name}</p>
-                                        <p> {getUser?.email}</p>
+                                    <div className='userProfile w-full text-sm sm:text-lg py-2 px-3 cursor-text '>
+                                        <div>
+                                            <div className="usershape">
+                                                <div className="usercircle"></div>
+                                            </div>
+
+                                            <div className='profileImg '>
+                                                <p ><i className="bi bi-person-circle"></i></p>
+                                            </div>
+
+                                            <div className='userName'>
+                                                <p> {getUser?.name}</p>
+                                            </div>
+
+                                            <div className='userEmail'>
+                                                <p >{getUser?.email}</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <button

@@ -23,10 +23,7 @@ function Cart() {
     }
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity, 0)
 
-    // let sellingPrice = 0
-    // cartData?.map((item)=> sellingPrice += item.productDetails.sellingPrice * item.quantity )
-
-    // console.log(cartData);
+   
 
 
 
