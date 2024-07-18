@@ -50,11 +50,11 @@ function TrackOrder() {
 
 
                                 <article className="card mb-4">
-                                    <div className="card-body row">
+                                    <div className="card-body row d-flex justify-between">
                                         <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
                                         <div className="col-md-3 col-12"> <strong>Shipping BY:</strong> <br /> BLUEDART, | <i className="fa fa-phone"></i> +1598675986 </div>
-                                        <div className="col-md-3 col-12"> <strong>Status:</strong> <br /> Picked by the courier </div>
-                                        <div className="col-md-3 col-12"> <strong>Tracking #:</strong> <br /> BD045903594059 </div>
+                                        {/* <div className="col-md-3 col-12"> <strong>Status:</strong> <br /> Picked by the courier </div>
+                                        <div className="col-md-3 col-12"> <strong>Tracking #:</strong> <br /> BD045903594059 </div> */}
                                     </div>
                                 </article>
 
@@ -88,9 +88,11 @@ function TrackOrder() {
 
                                                         </tr>
                                                         {item?.status === "cancelled" ? "" : <div className='flex w-full my-2 gap-2 justify-between items-center'>
+                                                            {item?.status === "pending" ? "" : <>
                                                             <button className=' rounded shadow-sm'>Return</button>
                                                             <button className=' rounded shadow-sm' onClick={() => { setInvoice(!invoice); setInvoicedata(item); window.scroll(0, 0) }}>Invoice</button>
-
+                                                            </>
+                                                        }
                                                             <button className={`${item?.status === "delivered" ? "d-none" : ""} w-100 rounded shadow-sm`} onClick={() => {
                                                                 cancelOrderHandler(item?._id, item?.payment_status)
                                                             }}>Order Cancel</button>
