@@ -2,18 +2,36 @@
     padding: 30px 0px;
 }
 
-.order_table .table .bgprimary{
+.orders_sec {
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.orders {
+    border-block: 1px solid #e7e7e7;
+}
+
+.order_table .table .bgprimary {
     background-color: #4d869c !important;
 }
-.order_table tr td{
+
+.order_table tr td {
     vertical-align: middle;
 }
-.order_table table button{
-    background-color: #cde8e5 !important;
 
+.order_table table button {
+    background-color: #cde8e5 !important;
+    width: 150px;
 }
-.order_table table tr{
-        border-top: 1px solid #e7e7e7;
+
+.order_table table tr {
+    border-top: 1px solid #e7e7e7;
 }
 
 .tracking_order_pg .card {

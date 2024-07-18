@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Trackmodal.css'
+import { useOrderContext } from '../../Context/index.context'
+import Invoice from './Invoice'
 
 function Trackmodal({ toggle, setToggle }) {
-  
+    const [invoice, setInvoice] = useState(false)
+    const [invoicedata, setInvoicedata] = useState([])
+    const {  updateOrder } = useOrderContext()
+
+
+    const cancelOrderHandler = (id, payment_status) => {
+        // setCancelOrder({...cancelOrder,payment_status:payment_status})
+        const obj = {
+            payment_status: payment_status,
+            status: "cancelled"
+        }
+        updateOrder(obj, id)
+
+    }
 
     return (
         <>
@@ -75,7 +90,20 @@ function Trackmodal({ toggle, setToggle }) {
                                         <div className={`step ${toggle?.toggle?.data?.status === "pending" || toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>
                                         <div className={`step ${toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-box"></i> </span> <span className="text">Delivered</span> </div>
                                     </div>
+
+                                    
                                 </div>
+                                {toggle?.toggle?.data?.status === "cancelled" ? "" : <div className='flex w-full mt-5 gap-2 justify-between items-center'>
+                                    <button className=' rounded shadow-sm bg-[#4d869c] text-white'>Return</button>
+                                    <button className=' rounded shadow-sm bg-[#4d869c] text-white' onClick={() => { setInvoice(!invoice); setInvoicedata(toggle?.toggle?.data); window.scroll(0, 0) }}>Invoice</button>
+
+                                    <button className={`${toggle?.toggle?.data?.status === "delivered" ? "d-none" : ""} rounded shadow-sm bg-[#4d869c] text-white`} onClick={() => {
+                                        cancelOrderHandler(toggle?.toggle?.data?._id, toggle?.toggle?.data?.payment_status)
+                                    }}>Order Cancel</button>
+                                    {/* {console.log(item)} */}
+
+
+                                </div>}
                             </div>
 
                             {/* <div className="bg-gray-50 px-4 py-3 sm:px-6 flex align-items justify-end p-4 gap-4 flex-row">
@@ -85,7 +113,7 @@ function Trackmodal({ toggle, setToggle }) {
                     </div>
                 </div>
             </div>
-
+            {invoice ? <Invoice setInvoice={setInvoice} data={invoicedata} /> : null}
 
         </>
     )
