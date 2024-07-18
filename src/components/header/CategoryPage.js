@@ -5,12 +5,8 @@ import { useCategoryContext } from "../../Context/index.context";
 import { useNavigate } from "react-router-dom";
 
 function CategoryPage() {
-
     const navigate = useNavigate()
     const { category, showCategory } = useCategoryContext()
-
-
-
 
     // console.log("1", filterCategory)
     //     console.log("2",selectedSubCategory)
@@ -18,12 +14,8 @@ function CategoryPage() {
 
     const MainCategorySearchHandler = (e, main, sub_category, sunInnercategory) => {
         e.stopPropagation();
-
         navigate(`/products/?category=${main}&&subcategory=${sub_category}&&sunInnercategory=${sunInnercategory}`)
     }
-
-
-
 
     return (
         <div>
@@ -31,12 +23,9 @@ function CategoryPage() {
                 <div className="container">
                     <div className="row category_main_div">
                         <div className="col-12 d-flex justify-content-around category_mini_div">
-
                             {category?.map((maincategory, i) => (
                                 <div key={i} onClick={(e) => MainCategorySearchHandler(e, maincategory?.category_name)} className="mt-3  text-center ">
-
                                     <div className="mens_cate flex align-items-center flex-column">
-
                                         <img
                                             src={maincategory?.image?.image_url}
                                             alt=""
@@ -51,13 +40,10 @@ function CategoryPage() {
                                                 <h4 className="mt-2" >{subcat?.sub_category_name}</h4>
                                                 <ul className="p-0 pb-3" >
                                                     {subcat?.InnerCategory?.map((item, k) => (
-
                                                         <li key={k} onClick={(e) => MainCategorySearchHandler(e, maincategory?.category_name, subcat?.sub_category_name, item?.sub_inner_category_name)}   >{item?.sub_inner_category_name}</li>
-
                                                     ))}
                                                 </ul>
                                             </div>))}
-
                                     </div>
                                 </div>))}
                         </div>

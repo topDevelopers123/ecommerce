@@ -10,16 +10,12 @@ import {
     StateSelect,
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
-
-
 import toast from 'react-hot-toast';
 import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext } from '../../Context/index.context';
 import { useLocation, useParams } from 'react-router-dom';
 import ProductDetail from '../productDetails/productDetail';
 import axios from 'axios';
 import logo from "../header/header_images/logo.png" 
-
-
 
 function OldAddress() {
 
@@ -67,7 +63,6 @@ function OldAddress() {
         razorpay_payment_id:""
     })
 
-
     const [singleProductData, setSingleProductData] = useState({
         product_id: "",
         product_detail_id: "",
@@ -82,13 +77,10 @@ function OldAddress() {
         razorpay_payment_id: ""
     })
 
-
     let n = 0;
     let total = 0;
     cartData?.map((item) => (
-
         n += item?.product_id?.zonal_charges
-
     ));
 
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity, 0)
@@ -96,24 +88,18 @@ function OldAddress() {
     useEffect(() => {
         setRadio(UserAddressData?.map((item) => item?._id)[0])
         setLocalCharges(n)
-
     }, [UserAddressData])
 
     const selectedData = UserAddressData?.filter((item) => (
         item?._id === radio
     ))[0]
 
-
-
     let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
     let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index], image: i?.image, quantity:i?.quantity}))
-
-
 
     const addressFilter = UserAddressData?.filter((item) => {
         return item?._id === selectedData?._id
     })[0]
-
 
     const product_id_filter = productDetailsData?.filter((item) => {
         return item._id === product_id
@@ -123,14 +109,11 @@ function OldAddress() {
         return item?._id === id
     })[0]
 
-
     let charges_s = selectedData?.state === "Delhi" ? product_id_filter?.zonal_charges : product_id_filter?.national_charges
-
 
     useEffect(() => {
         setFinalData({ ...finalData, cartId: cartId, address_id: radio })
         setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
-
     }, [cartData, radio])
 
     // const checkOut = (amount) => {
@@ -141,9 +124,6 @@ function OldAddress() {
     //     else {
     //         addOrder(finalData)
     //     }
-
-            
-
     // }
 
     total = getTotel + localCharges
@@ -198,7 +178,6 @@ function OldAddress() {
         else if (val.pincode.trim() === "") {
             toast.error("Pincode is required")
         }else{
-
             updateOldAddress(data, id);
         }
     }
@@ -240,8 +219,6 @@ function OldAddress() {
         }
     }
 
-
-
     const HandlePayement = async (amount) => {
         const newData = {
             amount,
@@ -250,7 +227,6 @@ function OldAddress() {
 
         const order = await axios.post(`${API}/order/payement`, newData);
       
-
         if (finalData.payment_type === "COD") {
             // Handle COD order directly without invoking Razorpay
             await addOrder({
@@ -305,9 +281,7 @@ function OldAddress() {
         }
     };
 
-
     const HandlePayementForByNow = async (amount) => {
-       
         const newData = {
             amount,
             PaymenType: singleProductData.payment_type,
@@ -331,7 +305,6 @@ function OldAddress() {
         }
       
         const options = {
-            
             key: process.env.REACT_APP_KEY,
             amount: order.data.amount,
             currency: order.data.currency,
@@ -427,7 +400,6 @@ function OldAddress() {
                             </div>
                         </div>
 
-
                         <div className="col-lg-4 col-md-5 col-12">
                             <div className="checkout_total_box">
                                 <div className="wrapper">
@@ -440,10 +412,8 @@ function OldAddress() {
                                                         <td className="item-img">
                                                             <img src={imageUrl} />
                                                         </td>
-                                                       
                                                         <td className="item-details">
                                                             <span className="item-title">{product_id_filter?.title}</span>
-                                                          
                                                         </td>
                                                         <td className="item-details">
                                                             <span className="item-qty">Quantity : {qty}</span>
@@ -464,7 +434,6 @@ function OldAddress() {
                                                     <tr>
                                                         <td className="item-qty">GST (18%)</td>
                                                         <td className="item-price">+ ₹{(((product_detail_Filter?.sellingPrice * qty) / 100) * 18).toFixed()}</td>
-                                                      
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">Shipping</td>
@@ -491,7 +460,6 @@ function OldAddress() {
                                                                 </div>
                                                                 <div className="select-txt">
                                                                     <p className="pymt-type-name">Online Payment</p>
-
                                                                 </div>
                                                                 <div className="select-logo" >
                                                                     <img src={online} alt="Online" />
@@ -506,7 +474,6 @@ function OldAddress() {
                                                                 </div>
                                                                 <div className="select-txt hr">
                                                                     <p className="pymt-type-name">Cash on Delivery</p>
-
                                                                 </div>
                                                                 <div className="select-logo">   
                                                                     <div className="select-logo-sub logo-spacer">
@@ -531,23 +498,16 @@ function OldAddress() {
                                                             <tr className=''>
                                                                 <td className="item-img">
                                                                     <img src={item?.image} />
-
                                                                 </td>
-                                                              
                                                                 <td className="item-details">
                                                                     <span className="item-title">{item?.product_id?.title}</span>
-
                                                                 </td>
                                                                 <td className="item-details">
                                                                     <span className="item-qty">Quantity : {item?.quantity}</span>
-
-
                                                                 </td>
                                                                 <td className="item-price">₹{item?.productDetails?.sellingPrice}</td>
                                                             </tr>
-
                                                         ))}
-
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -587,7 +547,6 @@ function OldAddress() {
                                                                 </div>
                                                                 <div className="select-txt">
                                                                     <p className="pymt-type-name"   >Online Payment</p>
-
                                                                 </div>
                                                                 <div className="select-logo">
                                                                     <img src={online} alt="Online" />
@@ -602,35 +561,24 @@ function OldAddress() {
                                                                 </div>
                                                                 <div className="select-txt hr">
                                                                     <p className="pymt-type-name" >Cash on Delivery</p>
-
                                                                 </div>
                                                                 <div className="select-logo">
                                                                     <div className="select-logo-sub logo-spacer">
                                                                         <img src={cod} alt="COD" />
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
                                                     </form>
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
                                                 <button onClick={()=>HandlePayement(total)} >Confirm Order</button>
-
                                             </div>
                                         </>}
-
-
                                 </div>
-
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -660,11 +608,9 @@ function OldAddress() {
                                         <label htmlFor='street'>Address *</label>
                                         <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' defaultValue={item ? item?.area : ""} name='street' placeholder='Enter Address' required />
 
-
                                         {/* 
                                         <label htmlFor='city'>City *</label>
                                         <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' defaultValue={item ? item?.city : ""} name='city' placeholder='Enter City' required /> */}
-
 
                                         {/* <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' defaultValue={item ? item?.state : ""} name='state' placeholder='Enter State' required /> */}
 
@@ -695,24 +641,19 @@ function OldAddress() {
                                             }}
                                             placeHolder="Select City"
                                         />
-
                                         {/* <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' defaultValue={item ? item?.country : ""} name='state' placeholder='Enter Country' required /> */}
 
                                         <label htmlFor='zip'>Zip Code *</label>
                                         <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
 
-
                                         <div className='d-flex gap-2'>
                                             <span className={data?.addressType === "Home" ? "bg-secondary text-white px-3  rounded-pill" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
                                             <span className={data?.addressType === "Work" ? "bg-secondary text-white px-3 rounded-pill" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
-
                                         <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(data, item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
-
                                     </form>
                                 </div>
                             ))}
-
                         </div>
                         :
                         <div className='newAdd modal'>
@@ -734,7 +675,7 @@ function OldAddress() {
 
                                     <label htmlFor='street'>Address *</label>
                                     <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' />
-
+                                    
                                     <label htmlFor='state'>Country *</label>
                                     <CountrySelect
                                         onChange={(e) => {
@@ -744,7 +685,6 @@ function OldAddress() {
                                         placeHolder="Select Country"
                                     />
 
-
                                     <label htmlFor='state'>State *</label>
                                     <StateSelect
                                         countryid={countryid}
@@ -753,7 +693,6 @@ function OldAddress() {
                                         }}
                                         placeHolder="Select State"
                                     />
-
                                     <label htmlFor='city'>City *</label>
                                     <CitySelect
                                         countryid={countryid}
@@ -763,7 +702,6 @@ function OldAddress() {
                                         }}
                                         placeHolder="Select City"
                                     />
-
                                     <label htmlFor='zip'>Zip Code *</label>
                                     <input  onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code'  />
                                         <div className='d-flex align-items-baseline justify-content-start'>
@@ -774,13 +712,10 @@ function OldAddress() {
                                     <label htmlFor='street'>Home</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' style={{ width: "30%" }} />
                                     </div>
-
                                     <button onClick={() => { createNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
-
                                 </form>
                             </div>
                         </div>
-
                     }
                 </div>
             )}

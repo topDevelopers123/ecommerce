@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-
 import { useCartContext, useProductContext, useWishlistContext } from "../../../Context/index.context";
 import Share from './Share';
 
@@ -15,27 +14,21 @@ function TrendingProducts() {
 
   
     const productDetailsPage = (id) => {
-       
         navigate(`/productdetails/${id}`);
         window.scrollTo(0, 0);
     }
 
     const addtocartHandler = (product_id, productDetails_id, image) => {
         if (token === null) {
-
             navigate(`/login`);
             window.scrollTo(0, 0);
             return
         }
-        
         addToCart(product_id, productDetails_id, image)
     }
 
-    
-
     const wishlistHandler = (item_Id, ite_Id) => {
         if (token === null) {
-            
             navigate(`/login`);
             window.scrollTo(0, 0);
             return
@@ -46,11 +39,7 @@ function TrendingProducts() {
             product_detail_id: ite_Id
         }
         addToWishlist(obj)
- 
     }
-
-   
-
 
     const [lastFourProducts, setLastFourProducts] = useState(productData?.slice(-4));
 
@@ -91,9 +80,7 @@ function TrendingProducts() {
                     {/* Product Start  */}
                     <div className="tp_area">
                         <div className="row">
-                           
                             {lastFourProducts?.map((item, i) => (
-
                                 <div key={i} className="col-lg-3 col-md-6 col-sm-6 col-6">
                                     <div className="card" >
                                         <>
@@ -102,9 +89,7 @@ function TrendingProducts() {
                                         <div className="card-body">
                                             <div className="add_icons">
                                                 <div className="icons">
-                                                    
-                                                    <i className={`bi bi-heart-fill ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-200" : ""}`} onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) : wishlistHandler(item._id, item.ProductDetails[0]._id)  }}></i>
-                                                    
+                                                    <i className={`bi bi-heart-fill ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-200" : ""}`} onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) : wishlistHandler(item._id, item.ProductDetails[0]._id) }}></i>
                                                 </div>
                                                 <div className="icons">
                                                     <i className="bi bi-share-fill" onClick={() => { setShare(!share); setProduct_id(item?._id)}}></i>
@@ -127,7 +112,6 @@ function TrendingProducts() {
                                                 <button disabled={item?.ProductDetails[0]?.inStock < 1 ? true : false} className="btn btn-block addBtn" onClick={() => addtocartHandler(item._id, item.ProductDetails[0]._id, item?.ProductDetails[0]?.image[0]?.image_url)}>
                                                     Add to basket
                                                 </button>
-
                                             </div>
                                         </div>
                                     </div>
@@ -135,8 +119,6 @@ function TrendingProducts() {
                             ))}
                         </div>
                     </div>
-
-                    
                 </div>
             </section>
             {share ? <Share setShare={setShare} product_id={product_id} /> : null}

@@ -36,10 +36,7 @@ function NewPassword() {
                     <div className="col-lg-6 offset-lg-3 col-12">
                         <div className="login-form">
                             <h2>Create New Password</h2>
-
                             <form onSubmit={handleSubmit}>
-
-
                                 <div className="mb-3">
                                     <label htmlFor="newPassword" className="form-label">
                                         New Password *
@@ -79,7 +76,6 @@ function NewPassword() {
                                 <div className="d-flex align-items-center">
                                     <button type="submit" className="btn btn-primary ms-3">
                                         <Link to="/login">Submit</Link>
-
                                     </button>
                                 </div>
                             </form>

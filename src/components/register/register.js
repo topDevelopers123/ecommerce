@@ -7,9 +7,7 @@ import { Formik, useFormik } from "formik";
 import * as yup from 'yup'
 import { useAuthContext } from "../../Context/index.context";
 
-
 function Register() {
-
   const { register } = useAuthContext()
   const initialValue = {
     name: "",
@@ -36,7 +34,6 @@ function Register() {
     }
   })
 
-
   return (
     <div>
       {/* Login form section start  */}
@@ -45,7 +42,6 @@ function Register() {
           <div className="col-lg-6 offset-lg-3 col-12">
             <div className="login-form">
               <h2>REGISTER</h2>
-
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label for="exampleInputEmail1" className="form-label">
@@ -131,7 +127,6 @@ function Register() {
                   {touched.confirm_Password && errors.confirm_Password ? <p className="text-start text-danger ps-1 mt-1">{errors.confirm_Password}</p> : null}
                 </div>
 
-
                 <div className="d-flex align-items-center login_register_box">
                   <button type="submit" className="btn btn-primary  login">
                     Register
@@ -141,8 +136,6 @@ function Register() {
                       Login
                     </Link>
                   </button>
-
-
                 </div>
               </form>
             </div>
