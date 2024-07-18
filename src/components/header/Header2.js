@@ -136,21 +136,22 @@ const Header2 = () => {
                                 <div className={`${toggle ? 'block' : 'hidden'}  bg-white profileDiv shadow overflow-hidden absolute top-20 right-5 rounded-xl py-2 px-1 sm:w-52 w-[8rem] z-50`}>
 
                                     <div className='userProfile w-full text-sm sm:text-lg py-2 px-3 cursor-text '>
+                                        <div>
+                                            <div className="usershape">
+                                                <div className="usercircle"></div>
+                                            </div>
 
-                                        {/* <div className="usershape">
-                                            <div className="usercircle"></div>
-                                        </div> */}
+                                            <div className='profileImg '>
+                                                <p ><i class="bi bi-person-circle"></i></p>
+                                            </div>
 
-                                        <div className='profileImg d-flex justify-content-center align-items-center'>
-                                            <p ><i class="bi bi-person-circle"></i></p>
-                                        </div>
+                                            <div className='userName'>
+                                                <p> {getUser?.name}</p>
+                                            </div>
 
-                                        <div className='userName'>
-                                            <p> {getUser?.name}</p>
-                                        </div>
-
-                                        <div className='userEmail'>
-                                            <p >{getUser?.email}</p>
+                                            <div className='userEmail'>
+                                                <p >{getUser?.email}</p>
+                                            </div>
                                         </div>
                                     </div>
 
