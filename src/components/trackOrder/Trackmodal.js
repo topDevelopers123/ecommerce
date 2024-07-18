@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Trackmodal.css'
 import { useOrderContext } from '../../Context/index.context'
 import Invoice from './Invoice'
+import { data } from 'jquery'
 
 function Trackmodal({ toggle, setToggle }) {
     const [invoice, setInvoice] = useState(false)
@@ -70,6 +71,7 @@ function Trackmodal({ toggle, setToggle }) {
                                                 <span className='fw-bold'>Address : </span>
                                                 <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.UserAddress[0]?.house_no} {toggle?.toggle?.data?.UserAddress[0]?.area} {toggle?.toggle?.data?.UserAddress[0]?.city} {toggle?.toggle?.data?.UserAddress[0]?.state} {toggle?.toggle?.data?.UserAddress[0]?.country} {toggle?.toggle?.data?.UserAddress[0]?.pincode}</span>
                                             </div>
+                                          
 
                                             <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Phone Number : </span>
@@ -94,9 +96,11 @@ function Trackmodal({ toggle, setToggle }) {
                                     
                                 </div>
                                 {toggle?.toggle?.data?.status === "cancelled" ? "" : <div className='flex w-full mt-5 gap-2 justify-between items-center'>
+                                    {toggle?.toggle?.data?.status === "pending" ? "" : <>
                                     <button className=' rounded shadow-sm bg-[#4d869c] text-white'>Return</button>
                                     <button className=' rounded shadow-sm bg-[#4d869c] text-white' onClick={() => { setInvoice(!invoice); setInvoicedata(toggle?.toggle?.data); window.scroll(0, 0) }}>Invoice</button>
-
+                                    </>
+                                    }
                                     <button className={`${toggle?.toggle?.data?.status === "delivered" ? "d-none" : ""} rounded shadow-sm bg-[#4d869c] text-white`} onClick={() => {
                                         cancelOrderHandler(toggle?.toggle?.data?._id, toggle?.toggle?.data?.payment_status)
                                     }}>Order Cancel</button>
