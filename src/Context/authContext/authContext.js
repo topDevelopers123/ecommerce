@@ -11,7 +11,7 @@ function AuthContextProvider({ children }) {
     const API = process.env.REACT_APP_API
     // console.log(API);
 
-   
+
 
     // Register
     const register = async (data) => {
@@ -44,7 +44,7 @@ function AuthContextProvider({ children }) {
             setAuthorizeToken(resp.data.token);
             toast.success(resp.data.message);
             const newData = {
-                name:resp.data.data.name,
+                name: resp.data.data.name,
                 email: resp.data.data.email
             }
             localStorage.setItem("user", JSON.stringify(newData))
@@ -103,10 +103,9 @@ function AuthContextProvider({ children }) {
         try {
             const resp = await axios.post(`${API}/user/password`, data, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
-
             });
             setAuthorizeToken(resp.data.token);
-
+            window.location.href = "/";
             toast.success(resp.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || "An error occurred");
@@ -114,8 +113,6 @@ function AuthContextProvider({ children }) {
             toast.dismiss(toastId);
         }
     };
-
-
 
     return (
         <AuthContext.Provider value={{ register, login, emailVerify, otpVerify, newPassword, changePassword, authorizeToken, API, getUser }}>
