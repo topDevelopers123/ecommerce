@@ -65,7 +65,6 @@ const Invoice = ({ setInvoice, data }) => {
                             <tr>
                                 <td className="py-1  font-medium px-4">{data.Product[0].title}</td>
                                 <td className="py-1 px-2">{data.quantity}</td>
-
                                 {data?.UserAddress[0]?.state.toLowerCase() === "delhi" ?
                                     <>
                                         <td className="py-1 px-2">9%</td>

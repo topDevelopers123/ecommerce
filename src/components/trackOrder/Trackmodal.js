@@ -22,12 +22,11 @@ function Trackmodal({ toggle, setToggle }) {
 
     return (
         <>
-
             <div className=" bg-gray-100 flex items-center justify-center h-screen">
                 <div x-data="{ showPrivacyPolicy: true }">
                     <div className="fixed  inset-0  flex items-center justify-center">
                         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                        <div className="relative py-5 bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 h-[550px] max-w-full overflow-x-hidden overflow-y-scroll p-3">
+                        <div className="relative py-5 bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 h-[550px] overflow-x-hidden overflow-y-scroll p-3">
 
                             <div className="px-6 flex justify-between  align-items-center ">
                                 <h3 className=" leading-6 font-medium text-gray-900 ">Product Details </h3>

@@ -225,7 +225,7 @@
 
     .objective-img img {
         position: relative;
-        width: 35%;
+        width: 50%;
     }
 
     .objective-img {
@@ -241,7 +241,6 @@
     .objective-circle {
         width: 300px;
         height: 300px;
-
     }
 
     .char01Img {
@@ -255,8 +254,6 @@
         top: 30%;
         left: 40%;
     }
-
-
 }
 
 @media screen and (min-width:567px) and (max-width:1024px) {
