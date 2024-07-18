@@ -142,7 +142,7 @@ const Header2 = () => {
                                             </div>
 
                                             <div className='profileImg '>
-                                                <p ><i class="bi bi-person-circle"></i></p>
+                                                <p ><i className="bi bi-person-circle"></i></p>
                                             </div>
 
                                             <div className='userName'>
