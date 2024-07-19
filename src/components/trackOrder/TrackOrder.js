@@ -5,7 +5,7 @@ import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
 
 function TrackOrder() {
-    
+
     const { orderDetail, updateOrder } = useOrderContext()
     const [cancelOrder, setCancelOrder] = useState({
         payment_status: "",
@@ -14,10 +14,10 @@ function TrackOrder() {
 
     const [toggle, setToggle] = useState({
         boolean_val: false,
-        data: [] 
+        data: []
     })
 
-  
+
 
     return (
         <>
@@ -51,15 +51,15 @@ function TrackOrder() {
                                                             </div>
                                                             <div className='product_title'>
                                                                 {item?.Product[0]?.title}
-                                                               <div className=' sm:flex block gap-3 py-2'>
-                                                                <div >
+                                                                <div className=' sm:flex block gap-3 py-2'>
+                                                                    <div >
                                                                         <button className={`${item?.status === "cancelled" ? "bg-red-400 shadow text-center w-100  text-white rounded-full px-3 py-1 text-sm " : ""} ${item?.status === "pending" ? "bg-orange-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""} ${item?.status === "delivered" ? "bg-green-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""}`}>
-                                                                {item.status}
+                                                                            {item.status}
                                                                         </button>
-                                                                </div>
+                                                                    </div>
                                                                     <div ><button className='view-product w-100  bg-gray-300 rounded-full px-3 py-1 text-sm text-center' disabled={item?.status === "cancelled" ? true : false} onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
-                                                                    View product</button>
-                                                                </div>
+                                                                        View product</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
