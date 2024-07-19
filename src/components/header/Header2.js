@@ -1,4 +1,6 @@
 import React, { useCallback, useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import logo from './header_images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import "./Header2.css";
@@ -19,9 +21,24 @@ const Header2 = () => {
     const [toggle, setoggle] = useState(false);
 
     const handleLogout = () => {
-        toast.success('Logout successful !!');
-        localStorage.clear();
-        window.location.href = '/';
+        confirmAlert({
+            title: 'Confirm to logout',
+            message: 'Do you really wants to logout?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        toast.success('Logout successful!');
+                        localStorage.clear();
+                        window.location.href = '/';
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => { }
+                }
+            ]
+        });
     };
 
 
