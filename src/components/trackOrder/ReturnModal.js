@@ -21,7 +21,7 @@ function ReturnModal({ show, onClose }) {
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
         if (files.length + formData.images.length > 3) {
-            alert('You can only upload 3 images.');
+            alert('You can upload only 3 images.');
             return;
         }
         setFormData({
