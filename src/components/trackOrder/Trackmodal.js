@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import './Trackmodal.css'
 import { useOrderContext } from '../../Context/index.context'
 import Invoice from './Invoice'
-import { data } from 'jquery'
+import ReturnModal from './ReturnModal';
 
 function Trackmodal({ toggle, setToggle }) {
     const [invoice, setInvoice] = useState(false)
     const [invoicedata, setInvoicedata] = useState([])
-    const {  updateOrder } = useOrderContext()
+    const { updateOrder } = useOrderContext()
+    const [showReturnModal, setShowReturnModal] = useState(false);
+
 
     const cancelOrderHandler = (id, payment_status) => {
         // setCancelOrder({...cancelOrder,payment_status:payment_status})
@@ -44,7 +46,7 @@ function Trackmodal({ toggle, setToggle }) {
                                             </div>
                                             <div className='col-md-12 px-2 py-2'>
                                                 <span className='fw-bold'>Product Description : </span>
-                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.Product[0]?.description}</span>   
+                                                <span htmlFor="title" className="text-gray-400 text-sm  leading-tight tracking-normal">{toggle?.toggle?.data?.Product[0]?.description}</span>
                                             </div>
                                             <hr />
                                             <div className='col-md-12 px-2 py-2'>
@@ -79,16 +81,21 @@ function Trackmodal({ toggle, setToggle }) {
                                         
                                     </div>
                                     <div className="track mb-3">
-                                        <div className="step active"> <span className="icon"> <i className="bi bi-check2"></i> </span> <span className="text">Order confirmed</span> </div>                                       
+                                        <div className="step active"> <span className="icon"> <i className="bi bi-check2"></i> </span> <span className="text">Order confirmed</span> </div>
+
                                         <div className={`step ${toggle?.toggle?.data?.status === "pending" || toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>
                                         <div className={`step ${toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-box"></i> </span> <span className="text">Delivered</span> </div>
                                     </div>
-                                    
+
+
                                 </div>
                                 {toggle?.toggle?.data?.status === "cancelled" ? "" : <div className='flex w-full mt-5 gap-2 justify-between items-center'>
                                     {toggle?.toggle?.data?.status === "pending" ? "" : <>
-                                        <button className=' rounded shadow-sm bg-[#4d869c] text-sm  px-3 py-1  text-white'>Return</button>
-                                        <button className=' rounded shadow-sm bg-[#4d869c] text-sm  px-3 py-1  text-white' onClick={() => { setInvoice(!invoice); setInvoicedata(toggle?.toggle?.data); window.scroll(0, 0) }}>Invoice</button>
+
+
+                                        <button className='rounded shadow-sm bg-[#4d869c] text-white' onClick={() => setShowReturnModal(true)}>Return</button>
+
+                                        <button className=' rounded shadow-sm bg-[#4d869c] text-white' onClick={() => { setInvoice(!invoice); setInvoicedata(toggle?.toggle?.data); window.scroll(0, 0) }}>Invoice</button>
                                     </>
                                     }
                                     <button className={`${toggle?.toggle?.data?.status === "delivered" ? "d-none" : ""}  text-sm  px-3 py-1 rounded shadow-sm bg-[#4d869c] text-white`} onClick={() => {
@@ -102,14 +109,19 @@ function Trackmodal({ toggle, setToggle }) {
                             {/* <div className="bg-gray-50 px-4 py-3 sm:px-6 flex align-items justify-end p-4 gap-4 flex-row">
                                 <button type="button" className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-black text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400  sm:w-auto sm:text-sm"> Accept </button>
                             </div> */}
+
                         </div>
                     </div>
                 </div>
             </div>
+
             {invoice ? <Invoice setInvoice={setInvoice} data={invoicedata} /> : null}
+            <ReturnModal show={showReturnModal} onClose={() => setShowReturnModal(false)} />
 
         </>
     )
 }
 
 export default Trackmodal
+   
+
