@@ -16,7 +16,6 @@ const Header2 = () => {
     const [Searchdata, setSearchData] = useState([]);
     const [searchToggle, setSearchToggle] = useState(false);
     const naviate = useNavigate();
-
     const [search, setSearch] = useState('');
     const [toggle, setoggle] = useState(false);
 
@@ -41,8 +40,6 @@ const Header2 = () => {
         });
     };
 
-
-
     const handleSearch2 = useCallback(
         (e) => {
             const { value } = e.target;
@@ -52,7 +49,6 @@ const Header2 = () => {
                 const normalizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
                 const filter = productData.filter((item) => {
                     const categoryMatch = item?.title?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').includes(normalizedValue);
-
                     return categoryMatch;
                 });
                 setSearchData(filter);
@@ -65,7 +61,6 @@ const Header2 = () => {
 
     const MainCategorySearchHandler = (e, main, sub_category, sunInnercategory) => {
         e.stopPropagation();
-
         naviate(`/products/?category=${main}&&subcategory=${sub_category}&&sunInnercategory=${sunInnercategory}`);
     };
 
@@ -170,6 +165,7 @@ const Header2 = () => {
                                                 <p >{getUser?.email}</p>
                                             </div>
                                         </div>
+                                        
                                     </div>
 
                                     <button
@@ -204,7 +200,7 @@ const Header2 = () => {
                                         onClick={() => {
                                             naviate('/changePassword');
                                             setoggle(false);
-                                        }}
+                                        }}          
                                     >
                                         <i className='bi bi-lock text-black'></i> Password &gt;
                                     </button>
