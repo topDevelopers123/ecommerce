@@ -88,7 +88,17 @@ function About() {
                   <span>Welcome</span> To MayaviFashion
                 </h2>
                 <p>
-                  Fashion is all about comfort and elegance. Mayavi Fashion stands out for hope and change. All clothing for men, women, and kids. With a foundation of giving back, Mayavi Fashion's principle stands out by giving a positive impact to society. Every penny earned is funneled to donations and charity. Mayavi Fashion's mission is simple yet profound: to use the power of fashion to create meaningful change. A core message from Mayavi Fashion is to be ethical and sustainable. Mayavi Fashion believes in the power of community and collaboration. The brand partners with various nonprofit organizations and charities to ensure that funds are directed where they are needed the most. 
+                  Fashion is all about comfort and elegance. Mayavi Fashion stands out for hope and change.
+                  All clothing for men, women, and kids. With a foundation of giving back, Mayavi
+                  Fashion's principle stands out by giving a positive impact to society. Every
+                  penny earned is funneled to donations and charity. Mayavi Fashion's
+                  mission is simple yet profound: to use the power of fashion to 
+                  create meaningful change. A core message from Mayavi Fashion
+                  is to be ethical and sustainable. Mayavi Fashion believes
+                  in the power of community and collaboration. The brand 
+                  partners with various nonprofit organizations and
+                  charities to ensure that funds are directed
+                  where they are needed the most.
                 </p>
                 <Link to='/contact'> <button className="about-btn rounded">Contact Us</button></Link>
               </div>
@@ -113,7 +123,7 @@ function About() {
 
                   <div className="col-md-4 ">
                     <div className="charity-images ">
-                      <img  src={charity5}></img>
+                      <img src={charity5}></img>
                       <img src={charity4}></img>
                     </div>
                   </div>
@@ -129,21 +139,18 @@ function About() {
         <div className="shape">
           <div className="objective-circle"></div>
         </div>
-
         <div className="container">
           <div className="row">
             <div className="col-md-6">
               <h1 className="obj-head-text">Our Objective</h1>
-
               <div className="objective-img">
-
                 <img className="char01Img" src={charity3}></img>
                 <img className="char02Img" src={charity4}></img>
               </div>
             </div>
 
             <div className="col-md-6">
-                <h1 className="obj-head-text d-none d-sm-block">Our Objective</h1>
+              <h1 className="obj-head-text d-none d-sm-block">Our Objective</h1>
               <div className="text-start">
                 <div className="row">
                   <div className="col-md-6 d-flex w-100">
@@ -153,7 +160,10 @@ function About() {
                     <div>
                       <h2 className="obj-text">Charties</h2>
                       <p>
-                        Mayavi Fashion wants ensures that funds are used to to fostering hope and change in society. Charities are not named the brands overarchibg objectives is to support community initiatives and causes that align with their mission of ehtical and sustainable practices. 
+                        Mayavi Fashion wants ensures that funds are used to to fostering hope and change
+                        in society. Charities are not named the brands overarchibg objectives is to
+                        support community initiatives and causes that align with their mission
+                        of ehtical and sustainable practices.
                       </p>
                     </div>
                   </div>
@@ -167,7 +177,10 @@ function About() {
                     <div>
                       <h2 className="obj-text">Donation</h2>
                       <p>
-                        A significant portion of Mayavi Fashions profit is dedicated to charitable cause particularly those aimed at supporting the needy . This initiative is rooted in the belief that fashion should not only make people look good but also do good . 
+                        A significant portion of Mayavi Fashions profit is dedicated to charitable
+                        cause particularly those aimed at supporting the needy . This initiative
+                        is rooted in the belief that fashion should not only make people look
+                        good but also do good .
                       </p>
                     </div>
                   </div>
@@ -219,13 +232,14 @@ function About() {
       {/* What We do */}
       <div className="donate">
         <h2 className="d-flex justify-content-center">What We Do</h2>
-       
+
         <div className="row">
           <div className="col-lg-3  col-md-6 col-sm-6">
             <div className="donate-row rounded shadow">
               <h5>INNOVATIVE DESIGN AND QUALITY</h5>
               <p>
-                We prioritize state of the fine art and premium quality in every piece of clothing ensuring our customers. Receive stylish and durable product. 
+                We prioritize state of the fine art and premium quality in every piece of clothing ensuring
+                our customers. Receive stylish and durable product.
               </p>
             </div>
           </div>
@@ -234,7 +248,8 @@ function About() {
             <div className="donate-row rounded shadow">
               <h5>SUSTAINABLE <br></br> PRACTICES</h5>
               <p>
-                We commit to sustainable sourcing go material and ethical labor practices, reducing our environmental impact and promoting fair working condition. 
+                We commit to sustainable sourcing go material and ethical labor practices, reducing our
+                environmental impact and promoting fair working condition.
               </p>
             </div>
           </div>
@@ -243,7 +258,8 @@ function About() {
             <div className="donate-row rounded shadow">
               <h5>PHILANTHROPIC INITIATIVES</h5>
               <p>
-                A significant portion of our profit is dedicated to charitable causes supporting programs that provide clothing shelter and essential service to underprivileged communities. 
+                A significant portion of our profit is dedicated to charitable causes supporting programs
+                that provide clothing shelter and essential service to underprivileged communities.
               </p>
             </div>
           </div>
@@ -252,10 +268,12 @@ function About() {
             <div className="donate-row rounded shadow">
               <h5>CUSTOMERS EMPOWERMENT</h5>
               <p>
-                By choosing mayavi fashion our customers contribute to a broader mission of social welfare and upliftment merging style with social responsibility. 
+                By choosing mayavi fashion our customers contribute to a broader mission of social welfare
+                and upliftment merging style with social responsibility.
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>

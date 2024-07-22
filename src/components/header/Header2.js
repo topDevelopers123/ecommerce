@@ -76,10 +76,14 @@ const Header2 = () => {
         }
     };
 
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+    };
+
     return (
         <>
             <header className='flex position-sticky sticky-top bg-[#4D869C] justify-between items-center md:px-5 py-2'>
-                <Link to='/' className='h-12 sm:h-16'>
+                <Link to='/' className='h-12 sm:h-16' onClick={scrollToTop}>
                     <img src={logo} className='size-full' alt='logo' />
                 </Link>
 

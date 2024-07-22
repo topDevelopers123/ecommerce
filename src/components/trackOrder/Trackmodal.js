@@ -93,12 +93,12 @@ function Trackmodal({ toggle, setToggle }) {
                                     {toggle?.toggle?.data?.status === "pending" ? "" : <>
 
 
-                                        <button className='rounded shadow-sm bg-[#4d869c] text-white' onClick={() => setShowReturnModal(true)}>Return</button>
+                                        <button className='rounded text-sm px-3 py-1 shadow-sm bg-[#4d869c] text-white' onClick={() => setShowReturnModal(true)}>Return</button>
 
-                                        <button className=' rounded shadow-sm bg-[#4d869c] text-white' onClick={() => { setInvoice(!invoice); setInvoicedata(toggle?.toggle?.data); window.scroll(0, 0) }}>Invoice</button>
+                                        <button className=' rounded text-sm px-3 py-1 shadow-sm bg-[#4d869c] text-white' onClick={() => { setInvoice(!invoice); setInvoicedata(toggle?.toggle?.data); window.scroll(0, 0) }}>Invoice</button>
                                     </>
                                     }
-                                    <button className={`${toggle?.toggle?.data?.status === "delivered" ? "d-none" : ""}  text-sm  px-3 py-1 rounded shadow-sm bg-[#4d869c] text-white`} onClick={() => {
+                                    <button className={`${toggle?.toggle?.data?.status === "delivered" ? "d-none" : ""}  text-sm  px-3 py-1 rounded text-sm px-3 py-1 shadow-sm bg-[#4d869c] text-white`} onClick={() => {
                                         cancelOrderHandler(toggle?.toggle?.data?._id, toggle?.toggle?.data?.payment_status)
                                     }}>Order Cancel</button>
                                     {/* {console.log(item)} */}

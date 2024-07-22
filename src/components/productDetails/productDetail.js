@@ -18,7 +18,6 @@ function ProductDetail() {
   const { orderDetail } = useOrderContext()
   const { share, setShare } = useProductContext()
   const [product_id, setProduct_id] = useState("")
-  
   const { id } = useParams()
   const [qty, setQty] = useState(1)
   const [image, setImage] = useState(null)
@@ -66,6 +65,8 @@ function ProductDetail() {
       file
     }));
 
+  
+                         
     setSelectedImages(prevImages => [...prevImages, ...newImages]);
     setReviewData(prevDetail => ({
       ...prevDetail,
@@ -245,7 +246,7 @@ function ProductDetail() {
                     </div>
                   </div>
                   <hr />
-                  <div className="row">
+                  <div className="row py-3">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
                         <label htmlFor="size">Quantity</label>

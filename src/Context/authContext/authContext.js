@@ -9,9 +9,6 @@ function AuthContextProvider({ children }) {
     const [getUser, setGetUser] = useState(JSON.parse(localStorage.getItem("user")))
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"));
     const API = process.env.REACT_APP_API
-    // console.log(API);
-
-
 
     // Register
     const register = async (data) => {
