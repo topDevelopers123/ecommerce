@@ -318,17 +318,7 @@ function Products() {
                           <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.MRP : productData?.map((ite) => ite?.ProductDetails[0]?.MRP)} </p></del>
                           <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.sellingPrice : productData?.map((ite) => ite?.ProductDetails[0]?.sellingPrice)}</p>
                         </div>
-
-                        <div className="p-0 px-md-2 d-flex align-items-center justify-content-between">
-                          <div className="icons">
-                              <i className="bi bi-share px-2 mx-1" title="Share" onClick={() => { setShare(!share); setProduct_id(item?._id) }}></i>
-                          </div>
-                        
-                          <div className="icons">
-                            <i className={`bi bi-heart-fill px-2 mx-1 ${CheckWishlistData(item?.ProductDetails[0]?._id) ? "text-pink-300" : ""}`} title="Wishlist" onClick={() => { CheckWishlistData(item?.ProductDetails[0]?._id) ? removeWishlist(item?.ProductDetails[0]?._id) :  addToWishlistHandler(item?._id, item.ProductDetails[0]?._id); }} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}></i>
-                          </div>
-                        </div>
-
+                       
                         <div className="add_to_cart_div  py-3 px-2 d-flex align-items-center  justify-content-between w-100">
                           <div className="">
                             <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id, item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url))} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}>Add To Cart</button>
