@@ -133,7 +133,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,8 +144,12 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
-    position: relative;
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    z-index: 999;
+    overflow: scroll;
+    margin-top: 10%;
 }
 
 .closeButton {
@@ -167,14 +171,16 @@
 }
 
 .radioGroup label {
+
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 16px;
 }
 
 .radioGroup input[type="radio"] {
     margin-right: 10px;
 }
+
 
 .imagePreview {
     display: flex;
@@ -191,11 +197,46 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-.returnTextarea{
+
+.returnTextarea {
     background-color: aliceblue;
     width: 100%;
     height: 100px;
     padding: 8px;
+}
+
+.imageContainer {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.previewImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteButton:hover {
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
 }
 
 

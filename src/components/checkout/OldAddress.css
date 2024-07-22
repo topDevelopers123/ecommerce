@@ -84,7 +84,7 @@ form label {
     margin: 10px 0 5px;
 }
 
-form input {
+.newAdd form input {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 10px;
@@ -93,7 +93,7 @@ form input {
     border: none;
 }
 
-form button {
+ form button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
