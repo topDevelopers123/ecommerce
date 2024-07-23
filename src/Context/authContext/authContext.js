@@ -12,7 +12,7 @@ function AuthContextProvider({ children }) {
 
     // Register
     const register = async (data) => {
-        const toastId = toast.loading('Loading...');
+       const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`${API}/user/create`, data);
             localStorage.setItem("token", resp.data.token);
@@ -118,5 +118,4 @@ function AuthContextProvider({ children }) {
     );
 }
 
-
-export default AuthContextProvider;
+export default AuthContextProvider; 
