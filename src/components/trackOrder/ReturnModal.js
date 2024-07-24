@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './Trackmodal.css';
 import "../checkout/OldAddress.css";
+import { useOrderContext } from '../../Context/index.context';
 
 function ReturnModal({ show, onClose }) {
+    const { returnOrder }=useOrderContext();
+
     const [formData, setFormData] = useState({
         reason: '',
         images: [],
@@ -152,11 +155,13 @@ function ReturnModal({ show, onClose }) {
                     <div>
                         <label htmlFor='upi' className='mt-4'>Enter your UPI Number</label>
                         <input
-                            type="tel"
+                            type="text"
                             name="upi"
                             placeholder="Enter UPI Numbere"
                             className="form-control returnfield"
                             value={formData.upi}
+                            onChange={handleInputChange}
+
                             required
                         />
                     </div>
