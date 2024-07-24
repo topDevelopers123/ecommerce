@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import './Trackmodal.css';
 import "../checkout/OldAddress.css";
 import { useOrderContext } from '../../Context/index.context';
+import { Navigate } from 'react-router-dom';
 
 function ReturnModal({ show, onClose }) {
-    const { returnOrder }=useOrderContext();
+    const { returnOrder } = useOrderContext();
+    const token = localStorage.getItem("token")
+
 
     const [formData, setFormData] = useState({
         reason: '',
@@ -12,6 +15,16 @@ function ReturnModal({ show, onClose }) {
         comment: '',
         upi: ''
     });
+
+    const addToImageHandler = (product_id, productDetails, image) => {
+
+        if (token === null) {
+            Navigate(`/track_order`);
+            window.scrollTo(0, 0);
+            return
+        }
+        returnOrder(product_id, productDetails, image)
+    }
 
     const [selectedReason, setSelectedReason] = useState('');
 
@@ -165,7 +178,10 @@ function ReturnModal({ show, onClose }) {
                             required
                         />
                     </div>
-                    <button className="rounded shadow-sm bg-[#4d869c] text-white" type="submit">Submit</button>
+                    <button
+                        className="rounded shadow-sm bg-[#4d869c] text-white" type="submit"
+                        onClick={() => addToImageHandler()}
+                    >Submit</button>
                 </form>
             </div>
         </div>
@@ -173,3 +189,4 @@ function ReturnModal({ show, onClose }) {
 }
 
 export default ReturnModal;
+
