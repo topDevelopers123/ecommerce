@@ -17,8 +17,6 @@ function TrackOrder() {
         data: []
     })
 
-
-
     return (
         <>
             <div>
@@ -84,7 +82,6 @@ function TrackOrder() {
     )
 }
 
-export default TrackOrder
-
+export default TrackOrder;
 
 

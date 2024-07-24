@@ -185,6 +185,7 @@ function ProductDetail() {
 
   return (
     <div>
+
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
@@ -481,7 +482,7 @@ function ProductDetail() {
               navigate(`/productdetails/${item?._id}`)
               window.scrollTo(0, 0);
             }} key={i} className="item item2">
-              
+
               <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.title} />
               <h5 className="card-title mt-2">{item?.title.length <= 5
                 ? item?.title
@@ -493,6 +494,7 @@ function ProductDetail() {
           </OwlCarousel>
         </div>
       </section>
+      
     </div>
   );
 }

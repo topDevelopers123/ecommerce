@@ -14,13 +14,13 @@ function Wishlist() {
     };
 
     const addToCartHandler = (product_id, productDetails, image) => {
-      
+
         if (token === null) {
             navigate(`/login`);
             window.scrollTo(0, 0);
             return
         }
-        
+
         addToCart(product_id, productDetails, image)
     }
 
@@ -35,7 +35,7 @@ function Wishlist() {
                         <div className='wish-text wish-text-1 text-center col-lg-10 d-flex justify-content-between'>
                             <h6 className='col-lg-2 col-12'>NAME</h6>
                             <h6 className='col-lg-2 col-12'>SIZE</h6>
-                            <h6 className='col-lg-2 col-12'>COLOUR</h6> 
+                            <h6 className='col-lg-2 col-12'>COLOUR</h6>
                             <h6 className='col-lg-2 col-12'>TOTAL</h6>
                             <h6 className='col-lg-2 col-12'>ADD TO CART</h6>
                             <h6 className='col-lg-2 col-12'>DELETE</h6>
@@ -73,7 +73,7 @@ function Wishlist() {
                                         </h6>
                                         <div className='col-lg-2 col-md-12 col-sm-9 col-9 add_to_cart_delete_box'>
                                             <button onClick={() => addToCartHandler(item?.product_id?._id, item?.product_detail_id?._id, item?.product_detail_id?.image[0]?.image_url)} disabled={item?.product_detail_id?.inStock < 1 ? true : false}>ADD TO CART</button>
-                                        </div>                                    
+                                        </div>
                                         <div className='col-lg-2 col-md-12 col-sm-3 col-3'>
                                             <i className="bi bi-trash3" onClick={() => deleteWishlistProduct(item?._id)}></i>
                                         </div>

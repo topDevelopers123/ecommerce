@@ -13,7 +13,7 @@ function footer() {
     <div>
       <div className='container-fluid main_box'>
         <div className='container'>
-          <div className='row'> 
+          <div className='row'>
             <div className='col-12 d-flex flex-wrap'>
               <div className='col-lg-4 col-md-12 co-sm-12 border border-dark p-3'>
                 <Link to="/" className="footer_logo" onClick={scrollToTop}>

@@ -61,13 +61,11 @@ function About() {
 
   return (
     <div>
-      {/* Banner */}
-
+      {/* Banner Section Start */}      
       <section className="about" style={{
         backgroundImage: 'url(' + banner01 + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover', backgroundPosition: 'center'
       }}>
-
         <div className="overlay">
           <div className="content">
             <h2>CATALYST FOR CHANGE</h2>
@@ -76,7 +74,7 @@ function About() {
           </div>
         </div>
       </section>
-
+      {/* Banner Section End */}
 
       {/* Image Gallery */}
       <div className="image-gallery">
@@ -92,10 +90,10 @@ function About() {
                   All clothing for men, women, and kids. With a foundation of giving back, Mayavi
                   Fashion's principle stands out by giving a positive impact to society. Every
                   penny earned is funneled to donations and charity. Mayavi Fashion's
-                  mission is simple yet profound: to use the power of fashion to 
+                  mission is simple yet profound: to use the power of fashion to
                   create meaningful change. A core message from Mayavi Fashion
                   is to be ethical and sustainable. Mayavi Fashion believes
-                  in the power of community and collaboration. The brand 
+                  in the power of community and collaboration. The brand
                   partners with various nonprofit organizations and
                   charities to ensure that funds are directed
                   where they are needed the most.
