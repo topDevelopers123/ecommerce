@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import logo from '../header/header_images/footer_logo.png'
 
 function footer() {
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div>
       <div className='container-fluid main_box'>
@@ -11,7 +16,7 @@ function footer() {
           <div className='row'>
             <div className='col-12 d-flex flex-wrap'>
               <div className='col-lg-4 col-md-12 co-sm-12 border border-dark p-3'>
-                <Link to="/" className="footer_logo">
+                <Link to="/" className="footer_logo" onClick={scrollToTop}>
                   {/* Mayavi */}
                   <img src={logo}></img>
                 </Link>
@@ -21,11 +26,11 @@ function footer() {
                 <div className='col-lg-4 col-md-6 col-sm-6 col-12'>
                   <h6>USEFUL LINKS</h6>
                   <ul className="p-0">
-                    <Link to="/about"><li className='text-light'>About Us</li></Link>
-                    <Link to="/PrivacyPolicy"><li className='text-light'>Privacy Policy</li></Link>
-                    <Link to="/TermsAndConditions"><li className='text-light'>Terms & Conditions</li></Link>
-                    <Link to="/ReturnCancellation"><li className='text-light'>Refunds & Cancellation</li></Link>
-                    <Link to="/contact"><li className='text-light'>Contact Us</li></Link>
+                    <Link to="/about" onClick={scrollToTop}><li className='text-light'>About Us</li></Link>
+                    <Link to="/PrivacyPolicy" onClick={scrollToTop}><li className='text-light'>Privacy Policy</li></Link>
+                    <Link to="/TermsAndConditions" onClick={scrollToTop}><li className='text-light'>Terms & Conditions</li></Link>
+                    <Link to="/ReturnCancellation" onClick={scrollToTop}><li className='text-light'>Refunds & Cancellation</li></Link>
+                    <Link to="/contact" onClick={scrollToTop}><li className='text-light'>Contact Us</li></Link>
                   </ul>
                 </div>
 

@@ -15,7 +15,7 @@ const Invoice = ({ setInvoice, data }) => {
     const dateStr = data?.createdAt?.split("T")[0].split("-")
 
     return (
-        <div className='bg-gray-500 py-24 absolute h-[260vh] w-full top-0 left-0'>
+        <div className='bg-gray-500 py-24 absolute h-[260vh]  w-full top-0 left-0'>
             <h1 className='absolute top-30 right-10 cursor-pointer' onClick={() => setInvoice(false)}>
                 <i className="bi bi-x-lg text-white"></i>
             </h1>
@@ -65,7 +65,6 @@ const Invoice = ({ setInvoice, data }) => {
                             <tr>
                                 <td className="py-1  font-medium px-4">{data.Product[0].title}</td>
                                 <td className="py-1 px-2">{data.quantity}</td>
-
                                 {data?.UserAddress[0]?.state.toLowerCase() === "delhi" ?
                                     <>
                                         <td className="py-1 px-2">9%</td>

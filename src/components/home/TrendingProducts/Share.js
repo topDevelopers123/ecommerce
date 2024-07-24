@@ -17,7 +17,7 @@ function Share(props) {
     const product_id = props?.product_id
     
     const shareUrl = `https://mayavifashion.com/productdetails/${product_id}`;
-   
+
     return (
         <div className="share-container">
             <div className="share_pop fixed sm:w-96 w-80 top-[40%] sm:left-[35%] left-[7%] z-50">

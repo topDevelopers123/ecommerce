@@ -1,93 +1,87 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './TrackOrder.css'
 import { Link } from 'react-router-dom'
 import { useOrderContext } from '../../Context/index.context'
 import Trackmodal from './Trackmodal'
-import { boolean } from 'yup'
-import Invoice from './Invoice'
 
 function TrackOrder() {
 
-    const [invoice, setInvoice] = useState(false)
-    const [invoicedata, setInvoicedata] = useState([])
-    const { orderDetail } = useOrderContext()
-    const [toggle,setToggle]= useState({
-        boolean_val:false,
-        data:[]
+    const { orderDetail, updateOrder } = useOrderContext()
+    const [cancelOrder, setCancelOrder] = useState({
+        payment_status: "",
+        status: ""
     })
 
-    // console.log(orderDetail)
+    const [toggle, setToggle] = useState({
+        boolean_val: false,
+        data: []
+    })
 
     return (
         <>
-        <div>
-            <section className='tracking_order_pg'>
-                <div className="container">
-                    <article className="card">
-                        <header className="card-header"> My Orders / Tracking </header>
-                        <div className="card-body">
+            <div>
+                <section className='tracking_order_pg'>
+                    <div className="container">
+                        <article className="card">
+                            <header className="card-header"> My Orders / Tracking </header>
+                            <div className="card-body">
+                                <article className="card mb-4">
+                                    <div className="card-body row d-flex justify-between">
+                                        <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
+                                        <div className="col-md-3 col-12"> <strong>Shipping BY:</strong> <br /> BLUEDART, | <i className="fa fa-phone"></i> +1598675986 </div>
+                                        {/* <div className="col-md-3 col-12"> <strong>Status:</strong> <br /> Picked by the courier </div>
+                                        <div className="col-md-3 col-12"> <strong>Tracking #:</strong> <br /> BD045903594059 </div> */}
+                                    </div>
+                                </article>
 
-                       
-                            <article className="card mb-4">
-                                <div className="card-body row">
-                                    <div className="col-md-3 col-12"> <strong>Estimated Delivery time:</strong> <br />7 Days </div>
-                                    <div className="col-md-3 col-12"> <strong>Shipping BY:</strong> <br /> BLUEDART, | <i className="fa fa-phone"></i> +1598675986 </div>
-                                    <div className="col-md-3 col-12"> <strong>Status:</strong> <br /> Picked by the courier </div>
-                                    <div className="col-md-3 col-12"> <strong>Tracking #:</strong> <br /> BD045903594059 </div>
-                                </div>
-                            </article>
-                           
-                            <hr />
+                                <hr />
 
-                            <div className='order_table'>
-                                <div className='table-responsive'>
-                                <table class="table">
-                                    <thead >
-                                        <tr >
-                                            <th className='text-white bgprimary' scope="col">Product Image</th>
-                                            <th className='text-white bgprimary' scope="col">Product Title</th>
-                                            <th className='text-white bgprimary' scope="col">Price</th>
-                                            <th className='text-white bgprimary' scope="col">Quantity</th>
-                                            <th className='text-white bgprimary' scope="col">Status</th>
-                                            <th className='text-white bgprimary' scope="col">More Info.</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <div className='orders_sec my-3'>
+                                    <div className='container'>
+                                        <h4 className='fw-light'> Your Orders  </h4>
                                         {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
                                             <>
-                                            <tr>
-                                                {/* of */}
-                                                <td><img width={100} src={item?.image} style={{height: "60px", objectFit: "cover"}} className='shadow-sm rounded' alt='product_img' /></td>
-                                                <td>{item?.Product[0]?.title}</td>
-                                                <td>₹ {item?.ProductDetails[0]?.sellingPrice}</td>
-                                                <td>{item.quantity}</td>
-                                                <td>{item.status}</td>
-                                                <td className='text-success cursor-pointer' onClick={()=>setToggle({...toggle, boolean_val:true, data:item})} >View More</td>
-                                            </tr>
-                                             <div className='flex w-full my-2 gap-2 justify-between items-center'>
-                                        <button className=' rounded shadow-sm'>Return</button>
-                                                    <button className=' rounded shadow-sm'  onClick={() => { setInvoice(!invoice); setInvoicedata(item) ; window.scroll(0,0)}}>Invoice</button>
-                                    </div>
+                                                <div className='orders' onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
+                                                    <div className='flex justify-between py-3 items-center'>
+                                                        <div className='flex gap-3'>
+                                                            <div className='product_img'>
+                                                                <img width={100} src={item?.image} style={{ height: "80px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' />
+                                                            </div>
+                                                            <div className='product_title'>
+                                                                {item?.Product[0]?.title}
+                                                                <div className=' sm:flex block gap-3 py-2'>
+                                                                    <div >
+                                                                        <button className={`${item?.status === "cancelled" ? "bg-red-400 shadow text-center w-100  text-white rounded-full px-3 py-1 text-sm " : ""} ${item?.status === "pending" ? "bg-orange-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""} ${item?.status === "delivered" ? "bg-green-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""}`}>
+                                                                            {item.status}
+                                                                        </button>
+                                                                    </div>
+                                                                    <div ><button className='view-product w-100  bg-gray-300 rounded-full px-3 py-1 text-sm text-center' disabled={item?.status === "cancelled" ? true : false} onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
+                                                                        View product</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div><i className="bi bi-chevron-right"></i></div>
+                                                    </div>
+                                                </div>
                                             </>
                                         ))}
+                                    </div>
+                                </div>
 
-                                    </tbody>
-                                </table>
+                                <div className="submitBtn w-50 ms-auto me-auto ">
+                                    <Link to="/"> <button>Continue Shopping</button></Link>
                                 </div>
                             </div>
-                                                       
-                            <div className="submitBtn w-50 ms-auto me-auto ">
-                                <Link to="/"> <button>Continue Shopping</button></Link>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            {toggle?.boolean_val ? <Trackmodal setToggle={setToggle} toggle={{toggle}}  /> : null}
-        </div>
-        {invoice? <Invoice setInvoice={setInvoice} data = {invoicedata}  /> : null}
-       </>
+                        </article>
+                    </div>
+                </section>
+                {toggle?.boolean_val ? <Trackmodal setToggle={setToggle} toggle={{ toggle }} /> : null}
+            </div>
+        </>
     )
 }
 
-export default TrackOrder
+export default TrackOrder;
+
+

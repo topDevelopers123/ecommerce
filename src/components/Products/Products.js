@@ -11,6 +11,7 @@ function Products() {
   const { selectedCategory } = useCategoryContext()
   const { share, setShare } = useProductContext()
   const { productData } = useProductContext()
+  const [product_id, setProduct_id] = useState("")
   const [allProductData, setAllProductData] = useState(productData)
   let param = useLocation()
   const searchParams = new URLSearchParams(param.search);
@@ -317,14 +318,7 @@ function Products() {
                           <del className=" ps-2 fw-bold text-dark"><p className="fw-bold  fs-6 text-secondary">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.MRP : productData?.map((ite) => ite?.ProductDetails[0]?.MRP)} </p></del>
                           <p className=" ps-2 fs-5  fw-bold text-success">  ₹{item?.ProductDetails ? item?.ProductDetails[0]?.sellingPrice : productData?.map((ite) => ite?.ProductDetails[0]?.sellingPrice)}</p>
                         </div>
-
-                        {/* {console.log(item?.ProductDetails[0]?.sellingPrice)} */}
-                        {/* {console.log((((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP) * 100).toFixed())} */}
-
-                        <div className="discount_div rounded-pill d-flex justify-content-center align-items-center">
-                          <p className="mb-0 text-light ">{(item?.ProductDetails ? (((item?.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP) * 100).toFixed() : (productData?.map((ite) => (ite?.ProductDetails[0]?.MRP - ite?.ProductDetails[0]?.sellingPrice / productData?.map((ite) => ite?.ProductDetails[0]?.MRP) * 100).toFixed())))}% OFF</p>
-                        </div>
-
+                       
                         <div className="add_to_cart_div  py-3 px-2 d-flex align-items-center  justify-content-between w-100">
                           <div className="">
                             <button type="button" onClick={() => addToCartHandler(item?._id, item.ProductDetails[0]?._id, item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url))} disabled={item?.ProductDetails[0].inStock < 0 ? true : false}>Add To Cart</button>
@@ -343,7 +337,9 @@ function Products() {
                     </div>
                     {share ? <Share setShare={setShare} /> : null}
                   </div>
-                </div>)
+                  {share ? <Share setShare={setShare} product_id={product_id} /> : null}
+                </div>
+                )
                 )
                   : <h2 className="w-100 text-center d-flex align-items-center justify-content-center">No Products Found</h2>
                 }

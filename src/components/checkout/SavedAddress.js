@@ -10,17 +10,13 @@ import "react-country-state-city/dist/react-country-state-city.css";
 import toast from 'react-hot-toast';
 import { useUserAddressContext } from '../../Context/index.context';
 
-
-
 function SavedAddress() {
-
     const { UserAddressData, addNewAddress, updateOldAddress, deleteAddress } = useUserAddressContext();
     const [modalVisible, setModalVisible] = useState(false);
     const [stateid, setstateid] = useState(0);
     const [countryid, setCountryid] = useState(0);
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
-    const [radio, setRadio] = useState()
     const [data, setData] = useState({
         fullname: "",
         phone: "",
@@ -35,7 +31,6 @@ function SavedAddress() {
     })
 
     const newAddress = () => {
-
         setModalVisible(true);
     };
 
@@ -58,7 +53,6 @@ function SavedAddress() {
     }
 
     const updateAddressHandle = (id) => {
-
         updateOldAddress(data, id);
     }
 
@@ -112,7 +106,6 @@ function SavedAddress() {
                         <div className='newAdd col-lg-12 col-md-8 p-3'>
                             <div>
                                 <h6>Your Addresses</h6>
-
                             </div>
 
                             {UserAddressData?.map((item, i) => (
@@ -120,48 +113,32 @@ function SavedAddress() {
                                     <div className="form-check">
                                         <div className='mb-1'>{item.fullname} <span className="ms-3 bg-secondary px-3 rounded rounded-pill text-white ">{item?.addressType}</span></div>
 
-
                                         <label className="form-check-label" htmlFor="exampleRadios1">
                                             <div className='preAdd gap-2'>
-
                                                 <span> {item.house_no}</span>&nbsp;
                                                 <span>{item.area}</span>&nbsp;
                                                 <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
                                                 <div className='flex gap-5 my-3'>
-                                                <span className='delAdd editAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}><i class="bi bi-pencil-square"></i>Edit</span>
-                                                <span
-                                                    className='delAddBtn'
-                                                    onClick={() => handleDeleteAddress(item?._id)}>
-                                                    <i class="bi bi-trash"></i>Delete
-                                                </span>
+                                                    <span className='delAdd editAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}><i class="bi bi-pencil-square"></i>Edit</span>
+                                                    <span
+                                                        className='delAddBtn'
+                                                        onClick={() => handleDeleteAddress(item?._id)}>
+                                                        <i class="bi bi-trash"></i>Delete
+                                                    </span>
                                                 </div>
                                             </div>
                                         </label>
-
-                                       
-
                                     </div>
                                     <hr />
                                 </div>
                             ))}
 
-
-
-
-
-
-
-
-
-
-
                             <div className='p-2'>
                                 <button onClick={newAddress}><span className='addplus'>+</span> Add new Address</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -222,18 +199,15 @@ function SavedAddress() {
                                         <label htmlFor='zip'>Zip Code *</label>
                                         <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
 
-
                                         <div className='d-flex gap-2'>
                                             <span className={data?.addressType === "Home" ? "bg-secondary text-white px-3  rounded-pill" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
                                             <span className={data?.addressType === "Work" ? "bg-secondary text-white px-3 rounded-pill" : ""} onClick={(e) => radioHandler(e, "Work")}>Work</span>
                                         </div>
 
                                         <button onClick={() => { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); updateAddressHandle(item?._id) }} className='d-flex justify-content-center' type='submit'>Update Address</button>
-
                                     </form>
                                 </div>
                             ))}
-
                         </div>
                         :
                         <div className='newAdd modal'>
@@ -265,7 +239,6 @@ function SavedAddress() {
                                         placeHolder="Select Country"
                                     />
 
-
                                     <label htmlFor='state'>State *</label>
                                     <StateSelect
                                         countryid={countryid}
@@ -284,7 +257,6 @@ function SavedAddress() {
                                         }}
                                         placeHolder="Select City"
                                     />
-
                                     <label htmlFor='zip'>Zip Code *</label>
                                     <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' />
                                     <div className='d-flex align-items-baseline justify-content-start'>
@@ -295,13 +267,10 @@ function SavedAddress() {
                                         <label htmlFor='street'>Home</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' style={{ width: "30%" }} />
                                     </div>
-
                                     <button onClick={() => { createNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
-
                                 </form>
                             </div>
                         </div>
-
                     }
                 </div>
             )}

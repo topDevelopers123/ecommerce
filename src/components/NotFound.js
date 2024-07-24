@@ -6,14 +6,13 @@ function NotFound() {
     return (
         <div>
             <div className='container'>
-                <div className='not-found'>
-                    <img src={notfound} alt=''/>
-
+                <div className='not-found'>          
+                    <img src={notfound} alt='' />
                     <div className='backtohome'>
-                        <Link to="/"> <button>Back to Home</button></Link>
+                        <Link to="/"><button>Back to Home</button></Link>
                     </div>
                 </div>
-           </div>
+            </div>
         </div>
     )
 }

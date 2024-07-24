@@ -17,6 +17,7 @@ function ProductDetail() {
   const { addToCart2 } = useCartContext()
   const { orderDetail } = useOrderContext()
   const { share, setShare } = useProductContext()
+  const [product_id, setProduct_id] = useState("")
   const { id } = useParams()
   const [qty, setQty] = useState(1)
   const [image, setImage] = useState(null)
@@ -64,6 +65,8 @@ function ProductDetail() {
       file
     }));
 
+  
+                         
     setSelectedImages(prevImages => [...prevImages, ...newImages]);
     setReviewData(prevDetail => ({
       ...prevDetail,
@@ -121,7 +124,6 @@ function ProductDetail() {
   })[0]
 
   const addReviewConditional = orderDetail?.UserOrder?.filter((item) => {
-    // console.log(item?.Product[0]?._id);
     return data?._id === item?.Product[0]?._id
   });
 
@@ -183,6 +185,7 @@ function ProductDetail() {
 
   return (
     <div>
+
       <section className="product-detail-sec">
         <div className="container">
           <div className="product_detail">
@@ -243,7 +246,7 @@ function ProductDetail() {
                     </div>
                   </div>
                   <hr />
-                  <div className="row">
+                  <div className="row py-3">
                     <div className="col-md-6 col-6 col-lg-4">
                       <div className="product-count">
                         <label htmlFor="size">Quantity</label>
@@ -265,12 +268,13 @@ function ProductDetail() {
                       </div>
                     </div>
                     <div className="col-md-1 col-1 col-lg-1">
-                      <div className="wishlist_btn ms-2" onClick={() => setShare(!share)}>
-                        <i className="bi bi-share-fill text-white"></i>
+                      <div className="wishlist_btn ms-2">
+                        <i className="bi bi-share-fill text-white" onClick={() => { setShare(!share); setProduct_id(data?._id) }}></i>
                       </div>
                     </div>
                   </div>
-                  {share ? <Share setShare={setShare} /> : null}
+                 
+
                   <hr />
                   <div className="row">
                     <div className="d-flex">
@@ -282,32 +286,31 @@ function ProductDetail() {
                       </button>
                     </div>
                   </div>
+
+                  {share ? <Share setShare={setShare} product_id={product_id} /> : null}
                 </div>
-              </div>
-              // ))}
-              //           </>
-              //         ))
+              </div>           
             }
 
             <div className="additional-details my-5 text-center">
               <ul className="nav nav-tabs justify-content-center">
                 <li className="nav-item">
                   <Link
-                    className="nav-link active"
+                    className="nav-link active text-[#4d869c]"
                     data-bs-toggle="tab"
                     to="#home"
                   >
                     Description
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" data-bs-toggle="tab" to="#reviews">
+                <li className="nav-item ">
+                  <Link className="nav-link text-[#4d869c]" data-bs-toggle="tab" to="#reviews">
                     Reviews
                   </Link>
                 </li>
                 {addReviewConditional?.length > 0 ?
                   <li className="nav-item" >
-                    <Link className="nav-link" data-bs-toggle="tab" to="#addReview">
+                    <Link className="nav-link text-[#4d869c]" data-bs-toggle="tab" to="#addReview">
                       Add Reviews
                     </Link>
                   </li>
@@ -479,6 +482,7 @@ function ProductDetail() {
               navigate(`/productdetails/${item?._id}`)
               window.scrollTo(0, 0);
             }} key={i} className="item item2">
+
               <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.title} />
               <h5 className="card-title mt-2">{item?.title.length <= 5
                 ? item?.title
@@ -490,9 +494,9 @@ function ProductDetail() {
           </OwlCarousel>
         </div>
       </section>
+      
     </div>
   );
 }
 
 export default ProductDetail;
-
