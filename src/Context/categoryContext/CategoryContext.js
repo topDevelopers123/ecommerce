@@ -15,9 +15,8 @@ function CategoryContextProvider({ children }) {
     try {
       const resp = await axios.get(`${API}/category/category`)
       setCategory(resp.data.data)
-
-
-    } catch (error) {
+    }
+     catch (error) {
       console.log(error)
     }
 
@@ -29,12 +28,10 @@ function CategoryContextProvider({ children }) {
     else if (b) {
       setData(b)
     }else setData(a)
-
   }
   
   useEffect(() => {
     getCategoryData();
-    
   }, [])
 
   return (
@@ -44,3 +41,4 @@ function CategoryContextProvider({ children }) {
   )
 }
 export default CategoryContextProvider;
+

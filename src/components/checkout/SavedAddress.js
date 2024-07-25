@@ -17,7 +17,6 @@ function SavedAddress() {
     const [countryid, setCountryid] = useState(0);
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
-    const [radio, setRadio] = useState()
     const [data, setData] = useState({
         fullname: "",
         phone: "",

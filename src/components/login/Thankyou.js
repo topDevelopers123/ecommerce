@@ -26,4 +26,4 @@ function Thankyou() {
   )
 }
 
-export default Thankyou
+export default Thankyou;

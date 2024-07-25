@@ -19,6 +19,11 @@ function Cart() {
         navigate(`/OldAddress`);
         window.scrollTo(0, 0);
     }
+
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+    };
+
     const getTotel = cartData?.reduce((i, r) => i + r?.productDetails?.sellingPrice * r?.quantity, 0)
 
     return (
@@ -90,7 +95,7 @@ function Cart() {
                                 </div>
                                 <hr />
                                 <button className='mt-5' onClick={() => checkoutPage()}>CHECKOUT</button>
-                                <button><Link to="/">CONTINUE SHOPPING</Link></button>
+                                <button><Link to="/" onClick={scrollToTop}>CONTINUE SHOPPING</Link></button>
                             </div>
                         </div>
                     </div>

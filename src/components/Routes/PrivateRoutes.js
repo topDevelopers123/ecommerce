@@ -17,7 +17,6 @@ export const PrivateRoutes = [
         path: "/cart",
         element: <Cart />
     }
-
     ,
     {
         path: "/OldAddress",
