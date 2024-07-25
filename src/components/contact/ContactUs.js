@@ -127,7 +127,7 @@ function ContactUs() {
                   <div className="contact-icon">
                     <i className="bi bi-telephone"></i>
                     <h4>Call us Now :</h4>
-                    <Link to="tel:9262852851">+91-99XXXXXXXX</Link>
+                    <Link to="tel:99XXXXXXXX">+91-99XXXXXXXX</Link>
                     <br />
                   </div>
                   <div className="contact-icon">

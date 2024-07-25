@@ -17,8 +17,6 @@ function TrackOrder() {
         data: []
     })
 
-
-
     return (
         <>
             <div>
@@ -43,11 +41,11 @@ function TrackOrder() {
                                         <h4 className='fw-light'> Your Orders  </h4>
                                         {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
                                             <>
-                                                <div className='orders'>
+                                                <div className='orders' onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
                                                     <div className='flex justify-between py-3 items-center'>
                                                         <div className='flex gap-3'>
                                                             <div className='product_img'>
-                                                                <img width={100} src={item?.image} style={{ height: "60px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' />
+                                                                <img width={100} src={item?.image} style={{ height: "80px", objectFit: "cover" }} className='shadow-sm rounded' alt='product_img' />
                                                             </div>
                                                             <div className='product_title'>
                                                                 {item?.Product[0]?.title}
@@ -84,7 +82,6 @@ function TrackOrder() {
     )
 }
 
-export default TrackOrder
-
+export default TrackOrder;
 
 

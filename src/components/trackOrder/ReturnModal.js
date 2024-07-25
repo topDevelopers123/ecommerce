@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './Trackmodal.css';
 import "../checkout/OldAddress.css";
@@ -7,7 +6,8 @@ function ReturnModal({ show, onClose }) {
     const [formData, setFormData] = useState({
         reason: '',
         images: [],
-        comment: ''
+        comment: '',
+        upi: ''
     });
 
     const [selectedReason, setSelectedReason] = useState('');
@@ -59,11 +59,11 @@ function ReturnModal({ show, onClose }) {
     return (
         <div className="modalOverlay">
             <div className="modalContent">
-                <button onClick={onClose} className="closeButton">X</button>
+                <button onClick={onClose} className="closeButton"><i className="bi bi-x-circle m-0 p-0 " style={{ fontSize: "30px" }}></i></button>
                 <h2>Return Product</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} autoComplete='off'>
                     <div>
-                        <label>Reason for Return</label>
+                        <label htmlFor='reason'>Reason for Return</label>
                         <div className="radioGroup">
                             <label>
                                 <input
@@ -93,10 +93,20 @@ function ReturnModal({ show, onClose }) {
                                 />
                                 Changed my mind
                             </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="Other"
+                                    checked={selectedReason === 'Other'}
+                                    onChange={handleReasonChange}
+                                    autoComplete='false'
+                                />
+                                Other
+                            </label>
                         </div>
                     </div>
                     <div>
-                        <label>Upload Images</label>
+                        <label htmlFor='upload_img' className='mt-4'>Upload Images</label>
                         <input
                             type="file"
                             name="images"
@@ -126,13 +136,27 @@ function ReturnModal({ show, onClose }) {
                         )}
                     </div>
                     <div>
-                        <label>Description for Return Product !</label>
+                        <label htmlFor='describe' className='mt-4'>Description for Return Product !</label>
                         <textarea
-                            className="returnTextarea"
+                            className="returnfield form-control"
+                            rows={5}
                             placeholder='Write Description here'
                             type="text"
                             name="comment"
                             value={formData.comment}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor='upi' className='mt-4'>Enter your UPI Number</label>
+                        <input
+                            type="number"
+                            name="upi"
+                            placeholder="Enter UPI Numbere"
+                            className="form-control returnfield"
+                            value={formData.upi}
                             onChange={handleInputChange}
                             required
                         />
