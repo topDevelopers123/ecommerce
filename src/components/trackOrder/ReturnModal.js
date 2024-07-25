@@ -11,7 +11,6 @@ function ReturnModal({ show, onClose, data }) {
     const [formData, setFormData] = useState({
         reason: '',
         images: [],
-        comment: '',
         user_id: data?._id,
         product_id: data?.Product[0]?._id,
         product_detail_id: data?.ProductDetails[0]?._id,
@@ -187,7 +186,7 @@ function ReturnModal({ show, onClose, data }) {
 
                     <button className="rounded shadow-sm bg-[#4d869c] text-white" type="submit"
                         onClick={() => returnImageHandler()}>Submit</button>
-                        
+
                 </form>
             </div>
         </div>
