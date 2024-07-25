@@ -20,16 +20,13 @@ function ReturnModal({ show, onClose, data }) {
         description: ''
 
     });
-
     const [selectedReason, setSelectedReason] = useState('');
-
     const handleInputChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
         if (files.length + formData.images.length > 3) {
@@ -41,7 +38,6 @@ function ReturnModal({ show, onClose, data }) {
             images: [...formData.images, ...files]
         });
     };
-
     const handleImageDelete = (index) => {
         const newImages = formData.images.filter((_, i) => i !== index);
         setFormData({
@@ -49,7 +45,6 @@ function ReturnModal({ show, onClose, data }) {
             images: newImages
         });
     };
-
     const handleReasonChange = (e) => {
         setSelectedReason(e.target.value);
         setFormData({
@@ -66,7 +61,6 @@ function ReturnModal({ show, onClose, data }) {
     if (!show) {
         return null;
     }
-
     const returnImageHandler = () => {
         console.log(formData);
         if (token === null) {
@@ -76,8 +70,6 @@ function ReturnModal({ show, onClose, data }) {
         }
         returnProduct(formData)
     }
-
-
     return (
         <div className="modalOverlay">
             <div className="modalContent">
@@ -170,7 +162,6 @@ function ReturnModal({ show, onClose, data }) {
                             required
                         />
                     </div>
-
                     <div>
                         <label htmlFor='upi' className='mt-4'>Enter your UPI Number</label>
                         <input
@@ -183,14 +174,11 @@ function ReturnModal({ show, onClose, data }) {
                             required
                         />
                     </div>
-
                     <button className="rounded shadow-sm bg-[#4d869c] text-white" type="submit"
                         onClick={() => returnImageHandler()}>Submit</button>
-
                 </form>
             </div>
         </div>
     );
 }
-
 export default ReturnModal;
