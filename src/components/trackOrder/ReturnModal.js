@@ -152,11 +152,12 @@ function ReturnModal({ show, onClose }) {
                     <div>
                         <label htmlFor='upi' className='mt-4'>Enter your UPI Number</label>
                         <input
-                            type="tel"
+                            type="number"
                             name="upi"
                             placeholder="Enter UPI Numbere"
                             className="form-control returnfield"
                             value={formData.upi}
+                            onChange={handleInputChange}
                             required
                         />
                     </div>
