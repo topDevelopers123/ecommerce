@@ -2,8 +2,13 @@
 import React, { useState } from 'react';
 import './Trackmodal.css';
 import "../checkout/OldAddress.css";
+import { useOrderContext } from '../../Context/index.context';
+import { Navigate } from 'react-router-dom';
 
 function ReturnModal({ show, onClose }) {
+    const { returnProduct }=useOrderContext();
+    const token = localStorage.getItem("token")
+    const [products,setProducts]=useState([]);
     const [formData, setFormData] = useState({
         reason: '',
         images: [],
@@ -55,6 +60,17 @@ function ReturnModal({ show, onClose }) {
     if (!show) {
         return null;
     }
+
+    const returnImageHandler = (product_id, productDetails, image) => {
+
+        if (token === null) {
+            Navigate(`/login`);
+            window.scrollTo(0, 0);
+            return
+        }
+        returnProduct(product_id, productDetails, image)
+    }
+
 
     return (
         <div className="modalOverlay">
@@ -137,7 +153,8 @@ function ReturnModal({ show, onClose }) {
                             required
                         />
                     </div>
-                    <button className="rounded shadow-sm bg-[#4d869c] text-white" type="submit">Submit</button>
+                    <button className="rounded shadow-sm bg-[#4d869c] text-white" type="submit"
+                       onClick={()=> returnImageHandler()}>Submit</button>
                 </form>
             </div>
         </div>
