@@ -5,14 +5,22 @@ import "../checkout/OldAddress.css";
 import { useOrderContext } from '../../Context/index.context';
 import { Navigate } from 'react-router-dom';
 
-function ReturnModal({ show, onClose }) {
-    const { returnProduct }=useOrderContext();
+function ReturnModal({ show, onClose, data }) {
+    const { returnProduct } = useOrderContext();
+    console.log(data);
     const token = localStorage.getItem("token")
-    const [products,setProducts]=useState([]);
     const [formData, setFormData] = useState({
         reason: '',
         images: [],
-        comment: ''
+        comment: '',
+        user_id: data?._id,
+        product_id: data?.Product[0]?._id,
+        product_detail_id: data?.ProductDetails[0]?._id,
+        address_id: data?.UserAddress[0]?._id,
+        upi_account_no: '9876543217',
+        qty: data?.quantity,
+        description: ''
+
     });
 
     const [selectedReason, setSelectedReason] = useState('');
@@ -61,14 +69,14 @@ function ReturnModal({ show, onClose }) {
         return null;
     }
 
-    const returnImageHandler = (product_id, productDetails, image) => {
-
+    const returnImageHandler = () => {
+        console.log(formData);
         if (token === null) {
             Navigate(`/login`);
             window.scrollTo(0, 0);
             return
         }
-        returnProduct(product_id, productDetails, image)
+        returnProduct(formData)
     }
 
 
@@ -154,7 +162,7 @@ function ReturnModal({ show, onClose }) {
                         />
                     </div>
                     <button className="rounded shadow-sm bg-[#4d869c] text-white" type="submit"
-                       onClick={()=> returnImageHandler()}>Submit</button>
+                        onClick={() => returnImageHandler()}>Submit</button>
                 </form>
             </div>
         </div>

@@ -8,7 +8,7 @@ export const OrderContext = createContext();
 
 function OrderContextProvider({ children }) {
     const { API, authorizeToken } = useAuthContext()
-
+    const [returnProductData, setReturnProductData] = useState([]);
     const [disable, setDisable] = useState(false)
     const [orderDetail, setOrderDetail] = useState(null)
     const token = localStorage.getItem("token")
@@ -104,6 +104,8 @@ function OrderContextProvider({ children }) {
             const resp = await axios.post(`${API}/return/create`, data, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
+            setReturnProductData(resp.data.data)
+            console.log(resp.data)
             toast.dismiss(toastId);
             toast.success(resp.data.message)
 
