@@ -9,7 +9,6 @@ function ReturnModal({ show, onClose, data }) {
     const [formData, setFormData] = useState({
         reason: '',
         image: [],
-        user_id: data?._id,
         product_id: data?.Product[0]?._id,
         product_detail_id: data?.ProductDetails[0]?._id,
         address_id: data?.UserAddress[0]?._id,
@@ -53,7 +52,6 @@ function ReturnModal({ show, onClose, data }) {
     const submitHandler = async () => {
         const formData2 = new FormData();
         formData2.append('reason', formData.reason);
-        formData2.append('user_id', formData.user_id);
         formData2.append('product_id', formData.product_id);
         formData2.append('product_detail_id', formData.product_detail_id);
         formData2.append('address_id', formData.address_id);
@@ -174,7 +172,7 @@ function ReturnModal({ show, onClose, data }) {
                 <div>
                     <label htmlFor='upi_account_no' className='mt-4'>Enter your UPI Number</label>
                     <input
-                        type="number"
+                        type="text"
                         name="upi_account_no"
                         placeholder="Enter UPI Numbere"
                         className="form-control returnfield"
