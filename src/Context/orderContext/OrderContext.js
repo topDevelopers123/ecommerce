@@ -105,7 +105,6 @@ function OrderContextProvider({ children }) {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             setReturnProductData(resp.data.data)
-            console.log(resp.data)
             toast.dismiss(toastId);
             toast.success(resp.data.message)
 
