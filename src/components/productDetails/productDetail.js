@@ -486,6 +486,8 @@ function ProductDetail() {
               <img src={item?.ProductDetails[0]?.image[0]?.image_url} alt={item?.title} />
               <h5 className="card-title mt-2">{item?.title.length <= 5
                 ? item?.title
+
+                
                 : `${item?.title.slice(0, 15)}...`}</h5>
               <p className="pricing">
                 ₹{item?.ProductDetails[0]?.sellingPrice} <s> ₹{item.ProductDetails[0]?.MRP}</s> <span>{Math.round((item.ProductDetails[0]?.MRP - item?.ProductDetails[0]?.sellingPrice) / item?.ProductDetails[0]?.MRP * 100)}% off</span>{" "}

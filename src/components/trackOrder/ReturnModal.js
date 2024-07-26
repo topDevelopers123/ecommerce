@@ -59,7 +59,8 @@ function ReturnModal({ show, onClose }) {
     return (
         <div className="modalOverlay">
             <div className="modalContent">
-                <button onClick={onClose} className="closeButton"><i className="bi bi-x-circle m-0 p-0 " style={{ fontSize: "30px" }}></i></button>
+                <button onClick={onClose} className="closeButton">
+                    <i className="bi bi-x-circle m-0 p-0 " style={{ fontSize: "30px" }}></i></button>
                 <h2>Return Product</h2>
                 <form onSubmit={handleSubmit} autoComplete='off'>
                     <div>
