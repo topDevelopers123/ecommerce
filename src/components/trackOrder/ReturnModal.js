@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import './Trackmodal.css';
 import "../checkout/OldAddress.css";
@@ -15,8 +16,8 @@ function ReturnModal({ show, onClose, data }) {
         upi_account_no: '',
         qty: data?.quantity,
         description: ''
-
     });
+
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files).slice(0, 3);
         const newImages = files.map(file => ({
@@ -29,6 +30,7 @@ function ReturnModal({ show, onClose, data }) {
             image: [...prevDetail.image, ...newImages.map(img => img.file)]
         }));
     };
+
     const handleImageDelete = (id) => {
         setFormData(prevDetail => ({
             ...prevDetail,
@@ -42,6 +44,7 @@ function ReturnModal({ show, onClose, data }) {
             [e.target.name]: e.target.value
         });
     };
+
     const handleReasonChange = (e) => {
         setSelectedReason(e.target.value);
         setFormData({
@@ -49,6 +52,7 @@ function ReturnModal({ show, onClose, data }) {
             reason: e.target.value
         });
     };
+
     const submitHandler = async () => {
         const formData2 = new FormData();
         formData2.append('reason', formData.reason);
@@ -65,14 +69,13 @@ function ReturnModal({ show, onClose, data }) {
 
         try {
             await returnProduct(formData2);
-            window.location.href = ("/track_order")
-            onClose()
-
+            window.location.href = ("/track_order");
+            onClose();
         } catch (error) {
             console.error('Error adding product details:', error);
         }
-
     };
+
     if (!show) {
         return null;
     }
@@ -81,7 +84,8 @@ function ReturnModal({ show, onClose, data }) {
         <div className="modalOverlay">
             <div className="modalContent">
                 <button onClick={onClose} className="closeButton">
-                    <i className="bi bi-x-circle m-0 p-0 " style={{ fontSize: "30px" }}></i></button>
+                    <i className="bi bi-x-circle m-0 p-0" style={{ fontSize: "30px" }}></i>
+                </button>
                 <h2>Return Product</h2>
 
                 <div>
@@ -121,61 +125,66 @@ function ReturnModal({ show, onClose, data }) {
                                 value="Other"
                                 checked={selectedReason === 'Other'}
                                 onChange={handleReasonChange}
-                                autoComplete='false'
                             />
                             Other
                         </label>
                     </div>
                 </div>
-                <div>
-                    <label htmlFor='upload_img' className='mt-4'>Upload Images</label>
-                    <input
-                        type="file"
-                        name="image"
-                        multiple
-                        onChange={handleImageChange}
-                        required
-                    />
-                    {formData.image.length > 0 && (
-                        <div className="imagePreview">
-                            {formData.image.map((image, index) => (
-                                <div key={index} className="imageContainer">
-                                    <img
-                                        src={URL.createObjectURL(image)}
-                                        alt={`preview-${index}`}
-                                        className="previewImage"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => handleImageDelete(index)}
-                                        className="deleteButton"
-                                    >
-                                        &times;
-                                    </button>
+
+                {selectedReason === 'Other' && (
+                    <>
+                        <div>
+                            <label htmlFor='upload_img' className='mt-4'>Upload Images</label>
+                            <input
+                                type="file"
+                                name="image"
+                                multiple
+                                onChange={handleImageChange}
+                                required
+                            />
+                            {formData.image.length > 0 && (
+                                <div className="imagePreview">
+                                    {formData.image.map((image, index) => (
+                                        <div key={index} className="imageContainer">
+                                            <img
+                                                src={URL.createObjectURL(image)}
+                                                alt={`preview-${index}`}
+                                                className="previewImage"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => handleImageDelete(index)}
+                                                className="deleteButton"
+                                            >
+                                                &times;
+                                            </button>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            )}
                         </div>
-                    )}
-                </div>
-                <div>
-                    <label htmlFor='describe' className='mt-4'>Description for Return Product !</label>
-                    <textarea
-                        className="returnfield form-control"
-                        rows={5}
-                        placeholder='Write Description here'
-                        type="text"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
+                        <div>
+                            <label htmlFor='describe' className='mt-4'>Description for Return Product!</label>
+                            <textarea
+                                className="returnfield form-control"
+                                rows={5}
+                                placeholder='Write Description here'
+                                type="text"
+                                name="description"
+                                value={formData.description}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                    </>
+                )}
+
                 <div>
                     <label htmlFor='upi_account_no' className='mt-4'>Enter your UPI Number</label>
                     <input
                         type="text"
                         name="upi_account_no"
-                        placeholder="Enter UPI Numbere"
+                        placeholder="Enter UPI Number"
                         className="form-control returnfield"
                         value={formData.upi_account_no}
                         onChange={handleInputChange}
@@ -183,9 +192,9 @@ function ReturnModal({ show, onClose, data }) {
                     />
                 </div>
                 <button onClick={submitHandler} className="rounded shadow-sm bg-[#4d869c] text-white" type="submit">Submit</button>
-
             </div>
         </div>
     );
 }
+
 export default ReturnModal;
