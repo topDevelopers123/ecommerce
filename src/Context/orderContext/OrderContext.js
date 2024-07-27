@@ -76,6 +76,7 @@ function OrderContextProvider({ children }) {
             console.log(error)
         }
     }
+    
     const updateOrder = async (data, id) => {
         const toastId = toast.loading('Loading...');
         try {

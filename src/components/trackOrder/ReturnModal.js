@@ -131,38 +131,39 @@ function ReturnModal({ show, onClose, data }) {
                     </div>
                 </div>
 
+
+                <div>
+                    <label htmlFor='upload_img' className='mt-4'>Upload Images</label>
+                    <input
+                        type="file"
+                        name="image"
+                        multiple
+                        onChange={handleImageChange}
+                        required
+                    />
+                    {formData.image.length > 0 && (
+                        <div className="imagePreview">
+                            {formData.image.map((image, index) => (
+                                <div key={index} className="imageContainer">
+                                    <img
+                                        src={URL.createObjectURL(image)}
+                                        alt={`preview-${index}`}
+                                        className="previewImage"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => handleImageDelete(index)}
+                                        className="deleteButton"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
                 {selectedReason === 'Other' && (
                     <>
-                        <div>
-                            <label htmlFor='upload_img' className='mt-4'>Upload Images</label>
-                            <input
-                                type="file"
-                                name="image"
-                                multiple
-                                onChange={handleImageChange}
-                                required
-                            />
-                            {formData.image.length > 0 && (
-                                <div className="imagePreview">
-                                    {formData.image.map((image, index) => (
-                                        <div key={index} className="imageContainer">
-                                            <img
-                                                src={URL.createObjectURL(image)}
-                                                alt={`preview-${index}`}
-                                                className="previewImage"
-                                            />
-                                            <button
-                                                type="button"
-                                                onClick={() => handleImageDelete(index)}
-                                                className="deleteButton"
-                                            >
-                                                &times;
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
                         <div>
                             <label htmlFor='describe' className='mt-4'>Description for Return Product!</label>
                             <textarea
