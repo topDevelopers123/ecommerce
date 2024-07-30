@@ -16,7 +16,7 @@ function TrackOrder() {
         boolean_val: false,
         data: []
     })
-
+    
     return (
         <>
             <div>
@@ -41,7 +41,7 @@ function TrackOrder() {
                                         <h4 className='fw-light'> Your Orders  </h4>
                                         {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
                                             <>
-                                                <div className='orders' onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
+                                                <div className='orders' >
                                                     <div className='flex justify-between py-3 items-center'>
                                                         <div className='flex gap-3'>
                                                             <div className='product_img'>
@@ -51,11 +51,11 @@ function TrackOrder() {
                                                                 {item?.Product[0]?.title}
                                                                 <div className=' sm:flex block gap-3 py-2'>
                                                                     <div >
-                                                                        <button className={`${item?.status === "cancelled" ? "bg-red-400 shadow text-center w-100  text-white rounded-full px-3 py-1 text-sm " : ""} ${item?.status === "pending" ? "bg-orange-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""} ${item?.status === "delivered" ? "bg-green-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""}`}>
+                                                                        <button className={`${item?.status === "cancelled" ? "bg-red-400 shadow text-center w-100  text-white rounded-full px-3 py-1 text-sm " : ""} ${item?.status === "pending" ? "bg-orange-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""} ${item?.status === "delivered" ? "bg-green-400 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""} ${item?.status === "returned" ? "bg-slate-500 w-100 shadow text-center  text-white rounded-full px-3 py-1 text-sm" : ""}`}>
                                                                             {item.status}
                                                                         </button>
                                                                     </div>
-                                                                    <div ><button className='view-product w-100  bg-gray-300 rounded-full px-3 py-1 text-sm text-center' disabled={item?.status === "cancelled" ? true : false} onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}>
+                                                                    <div ><button className='view-product w-100  bg-gray-300 rounded-full px-3 py-1 text-sm text-center' onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })}    >
                                                                         View product</button>
                                                                     </div>
                                                                 </div>
@@ -83,5 +83,6 @@ function TrackOrder() {
 }
 
 export default TrackOrder;
+
 
 

@@ -10,6 +10,7 @@ function OrderContextProvider({ children }) {
     const { API, authorizeToken } = useAuthContext()
     const [returnProductData, setReturnProductData] = useState([]);
     const [disable, setDisable] = useState(false)
+    const [disable2, setDisable2] = useState(false)
     const [orderDetail, setOrderDetail] = useState(null)
     const token = localStorage.getItem("token")
 
@@ -77,57 +78,60 @@ function OrderContextProvider({ children }) {
         }
     }
     
-    const updateOrder = async (data, id) => {
+    const updateOrder = async (id, data) => {
+        setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.put(`${API}/order/update/${id}`, data, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-            getOrder()
+            // getOrder()
+            console.log(resp)
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            // console.log(res?.data.data[0])
-
 
         } catch (error) {
             console.log(error)
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
+        finally {
+        setDisable(false)
+    }
     }
 
     // Return Product 
 
     const returnProduct = async (data) => {
-        setDisable(true)
-        const toastId = toast.loading('Loading...');
+        setDisable2(true)
+        // const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`${API}/return/create`, data, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             setReturnProductData(resp.data.data)
-            toast.dismiss(toastId);
-            toast.success(resp.data.message)
+            // toast.dismiss(toastId);
+            // toast.success(resp.data.message)
 
         } catch (error) {
             console.log(error)
-            toast.dismiss(toastId);
+            // toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
 
         } finally {
-            setDisable(false)
+            setDisable2(false)
         }
     }
 
 
     useEffect(() => {
         getOrder()
-    }, [])
+    }, [updateOrder])
 
 
 
     return (
-        <OrderContext.Provider value={{ addOrder, addSingleOrder, getOrder, updateOrder, orderDetail, returnProduct }}>
+        <OrderContext.Provider value={{ addOrder, addSingleOrder, getOrder, updateOrder, orderDetail, returnProduct, disable, disable2 }}>
             {children}
         </OrderContext.Provider>
     )

@@ -17,7 +17,7 @@ function Trackmodal({ toggle, setToggle }) {
             payment_status: payment_status,
             status: "cancelled"
         }
-        updateOrder(obj, id)
+        updateOrder(id, obj)
     }
     return (
         <>
@@ -78,14 +78,16 @@ function Trackmodal({ toggle, setToggle }) {
                                         </form>
 
                                     </div>
-                                    <div className="track mb-3">
+                                    {toggle?.toggle?.data?.status === "returned" || toggle?.toggle?.data?.status === "cancelled" ? "" : <div className="track mb-3">
                                         <div className="step active"> <span className="icon"> <i className="bi bi-check2"></i> </span> <span className="text">Order confirmed</span> </div>
 
                                         <div className={`step ${toggle?.toggle?.data?.status === "pending" || toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-truck"></i> </span> <span className="text"> On the way </span> </div>
                                         <div className={`step ${toggle?.toggle?.data?.status === "delivered" ? "active" : ""}`}> <span className="icon"> <i className="bi bi-box"></i> </span> <span className="text">Delivered</span> </div>
                                     </div>
+                                    }
+
                                 </div>
-                                {toggle?.toggle?.data?.status === "cancelled" ? "" : <div className='flex w-full mt-5 gap-2 justify-between items-center'>
+                                {toggle?.toggle?.data?.status === "cancelled" || toggle?.toggle?.data?.status === "returned" ? "" : <div className='flex w-full mt-5 gap-2 justify-between items-center'>
                                     {toggle?.toggle?.data?.status === "pending" ? "" : <>
 
                                         <button className='rounded text-sm px-3 py-2 shadow-sm bg-[#4d869c] text-white' onClick={() => setShowReturnModal(true)}>Return</button>
@@ -95,6 +97,7 @@ function Trackmodal({ toggle, setToggle }) {
                                     }
                                     <button className={`${toggle?.toggle?.data?.status === "delivered" ? "d-none" : ""} rounded text-sm px-3 py-2 shadow-sm bg-[#4d869c] text-white`} onClick={() => {
                                         cancelOrderHandler(toggle?.toggle?.data?._id, toggle?.toggle?.data?.payment_status)
+                                        setToggle({ ...toggle, boolean_val: false })
                                     }}>Order Cancel</button>
                                     {/* {console.log(item)} */}
 
@@ -107,9 +110,10 @@ function Trackmodal({ toggle, setToggle }) {
             </div>
 
             {invoice ? <Invoice setInvoice={setInvoice} data={invoicedata} /> : null}
-            <ReturnModal show={showReturnModal} data={toggle?.toggle?.data} onClose={() => setShowReturnModal(false)} />
+            <ReturnModal show={showReturnModal} setToggle={setToggle} toggle={toggle} data={toggle?.toggle?.data} onClose={() => setShowReturnModal(false)} />
 
         </>
     )
 }
 export default Trackmodal
+
