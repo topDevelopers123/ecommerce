@@ -12,6 +12,7 @@ import UserAddressProvider from "./Context/userAddressContext/UserAddressContext
 import ProductDetailsProvider from "./Context/productDetailsContext/ProductDetailsContext";
 import OrderContextProvider from "./Context/orderContext/OrderContext";
 import ContactUsProvider from "./Context/contactUsContext/ContactUsContext";
+import TrackOrderProvider from "./Context/trackOrderContext/TrackOrderContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -26,7 +27,9 @@ root.render(
                 <WishlistProvider>
                   <CartProvider>
                     <OrderContextProvider>
-                      <App />
+                      <TrackOrderProvider>
+                        <App />
+                      </TrackOrderProvider>
                     </OrderContextProvider>
                   </CartProvider>
                 </WishlistProvider>

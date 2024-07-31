@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Trackmodal.css'
-import { useOrderContext } from '../../Context/index.context'
+import { useOrderContext, useTrackOrderContext } from '../../Context/index.context'
 import Invoice from './Invoice'
 import ReturnModal from './ReturnModal';
 
@@ -9,7 +9,8 @@ function Trackmodal({ toggle, setToggle }) {
     const [invoicedata, setInvoicedata] = useState([])
     const { updateOrder } = useOrderContext()
     const [showReturnModal, setShowReturnModal] = useState(false);
-
+    const { TrackOrderContext } = useTrackOrderContext();
+    // console.log(TrackOrderContext?.data)
 
     const cancelOrderHandler = (id, payment_status) => {
         // setCancelOrder({...cancelOrder,payment_status:payment_status})
