@@ -8,6 +8,7 @@ import { UserAddressContext } from "./userAddressContext/UserAddressContext";
 import { ProductDetailsContext } from "./productDetailsContext/ProductDetailsContext";
 import { OrderContext } from "./orderContext/OrderContext";
 import { ContactUsContext } from "./contactUsContext/ContactUsContext";
+import { TrackOrderContext } from "./trackOrderContext/TrackOrderContext";
 
 
 
@@ -21,3 +22,4 @@ export const useProductDetailsContext = () => useContext(ProductDetailsContext)
 export const useUserAddressContext = () => useContext(UserAddressContext);
 export const useOrderContext = () => useContext(OrderContext);
 export const useContactUsContext = () => useContext(ContactUsContext);
+export const useTrackOrderContext = () => useContext(TrackOrderContext);
