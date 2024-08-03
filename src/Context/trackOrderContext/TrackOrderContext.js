@@ -1,21 +1,19 @@
 import axios from "axios";
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../index.context";
 
 export const TrackOrderContext = createContext();
 
 function TrackOrderProvider({ children }) {
-    const { API, authorizeToken } = useAuthContext()
+    const { API } = useAuthContext();
 
 
     const addLocationFinder = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const res = await axios.post(`${API}/locationFinder`, data, {
-                headers: { 'Authorization': `Bearer ${authorizeToken}` }
-            })
-            console.log(res.data.data)
+            const res = await axios.post(`${API}/order/locationFinder`, data
+            )
             toast.dismiss(toastId);
             toast.success(res.data.message)
 
@@ -25,10 +23,7 @@ function TrackOrderProvider({ children }) {
             toast.error(error?.response?.data?.message)
         }
     }
-    
-    useEffect(() => {
 
-    }, []);
 
     return (
         <TrackOrderContext.Provider value={{ addLocationFinder }}>

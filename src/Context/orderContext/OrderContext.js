@@ -15,20 +15,16 @@ function OrderContextProvider({ children }) {
     const token = localStorage.getItem("token")
 
     // console.log(authorizeToken)    
+
     const addOrder = async (data) => {
-
-
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
-
             const resp = await axios.post(`${API}/order/create`, data, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-
             window.location.href = "/thankyou"
 
         } catch (error) {

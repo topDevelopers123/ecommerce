@@ -11,11 +11,11 @@ import {
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import toast from 'react-hot-toast';
-import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext } from '../../Context/index.context';
+import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext, useTrackOrderContext } from '../../Context/index.context';
 import { useLocation, useParams } from 'react-router-dom';
 import ProductDetail from '../productDetails/productDetail';
 import axios from 'axios';
-import logo from "../header/header_images/logo.png" 
+import logo from "../header/header_images/logo.png"
 
 function OldAddress() {
 
@@ -32,14 +32,16 @@ function OldAddress() {
     const imageUrl = urlParams.get('image')
     const qty = urlParams.get('qty')
 
-    const {API} = useAuthContext()
-  
+    const { API } = useAuthContext()
+
     // const [zonal_charges, setZonal_charges] = useState(null)
     // const [national_charges, setNational_charges] = useState(null)
     const [charges, setCharges] = useState(0)
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
     const [radio, setRadio] = useState()
+    const { addLocationFinder } = useTrackOrderContext();
+    
     const navigate = useNavigate()
     const [data, setData] = useState({
         fullname: "",
@@ -60,7 +62,7 @@ function OldAddress() {
         payment_type: "COD",
         payment_status: "pending",
         status: "pending",
-        razorpay_payment_id:""
+        razorpay_payment_id: ""
     })
 
     const [singleProductData, setSingleProductData] = useState({
@@ -72,8 +74,8 @@ function OldAddress() {
         address_id: "",
         payment_status: "pending",
         status: "pending",
-        image:imageUrl,
-        quantity:qty,
+        image: imageUrl,
+        quantity: qty,
         razorpay_payment_id: ""
     })
 
@@ -95,7 +97,7 @@ function OldAddress() {
     ))[0]
 
     let x = cartData?.map((item) => selectedData?.state === "Delhi" ? item?.product_id?.zonal_charges : item?.product_id?.national_charges)
-    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index], image: i?.image, quantity:i?.quantity}))
+    let cartId = cartData?.map((i, index) => ({ id: i._id, charges: x[index], image: i?.image, quantity: i?.quantity }))
 
     const addressFilter = UserAddressData?.filter((item) => {
         return item?._id === selectedData?._id
@@ -177,7 +179,7 @@ function OldAddress() {
         }
         else if (val.pincode.trim() === "") {
             toast.error("Pincode is required")
-        }else{
+        } else {
             updateOldAddress(data, id);
         }
     }
@@ -226,7 +228,7 @@ function OldAddress() {
         };
 
         const order = await axios.post(`${API}/order/payement`, newData);
-      
+
         if (finalData.payment_type === "COD") {
             // Handle COD order directly without invoking Razorpay
             await addOrder({
@@ -303,7 +305,7 @@ function OldAddress() {
             console.log("Order placed successfully with COD");
             return;
         }
-      
+
         const options = {
             key: process.env.REACT_APP_KEY,
             amount: order.data.amount,
@@ -318,7 +320,7 @@ function OldAddress() {
                     razorpay_payment_id: response.razorpay_payment_id,
                     razorpay_signature: response.razorpay_signature,
                 };
-                
+
                 await addSingleOrder({
                     ...singleProductData,
                     payment_status: "success",
@@ -352,10 +354,10 @@ function OldAddress() {
     // }, [cartData])
 
 
-    
+
     // const   = (amount) => {
     //     console.log(singleProductData, amount);
-        
+
     //     if (singleProductData.payment_type === "online") {
     //         HandlePayementForByNow(amount)
     //     }
@@ -406,21 +408,21 @@ function OldAddress() {
                             <div className="checkout_total_box">
                                 <div className="wrapper">
                                     {id ?
-                                        <>                                           
-                                    <div className="group">
-                                        <table>
-                                            <tbody>                                               
-                                                    <tr className=''>
-                                                        <td className="item-img">
-                                                            <img src={imageUrl} />
-                                                        </td>
-                                                        <td className="item-details">
-                                                            <span className="item-title">{product_id_filter?.title}</span>
-                                                        </td>
-                                                        <td className="item-details">
-                                                            <span className="item-qty">Quantity : {qty}</span>
+                                        <>
+                                            <div className="group">
+                                                <table>
+                                                    <tbody>
+                                                        <tr className=''>
+                                                            <td className="item-img">
+                                                                <img src={imageUrl} />
                                                             </td>
-                                                        </tr>                          
+                                                            <td className="item-details">
+                                                                <span className="item-title">{product_id_filter?.title}</span>
+                                                            </td>
+                                                            <td className="item-details">
+                                                                <span className="item-qty">Quantity : {qty}</span>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -431,7 +433,7 @@ function OldAddress() {
                                                     <tr>
                                                         <td className="item-qty">Subtotal</td>
                                                         <td className="item-price">₹{(product_detail_Filter?.sellingPrice * qty) - (((product_detail_Filter?.sellingPrice * qty) / 100) * 18).toFixed()}</td>
-                                                        {}
+                                                        { }
                                                     </tr>
                                                     <tr>
                                                         <td className="item-qty">GST (18%)</td>
@@ -477,7 +479,7 @@ function OldAddress() {
                                                                 <div className="select-txt hr">
                                                                     <p className="pymt-type-name">Cash on Delivery</p>
                                                                 </div>
-                                                                <div className="select-logo">   
+                                                                <div className="select-logo">
                                                                     <div className="select-logo-sub logo-spacer">
                                                                         <img src={cod} alt="COD" />
                                                                     </div>
@@ -490,9 +492,9 @@ function OldAddress() {
                                             <div className="group submitBtn">
                                                 <button onClick={() => HandlePayementForByNow((product_detail_Filter?.sellingPrice * qty) + singleProductData?.charges)}>Confirm Order</button>
                                             </div>
-                                        </>                                        
+                                        </>
                                         :
-                                         <>
+                                        <>
                                             <div className="group">
                                                 <table>
                                                     <tbody>
@@ -544,7 +546,7 @@ function OldAddress() {
                                                         <div className="pymt-radio">
                                                             <div className="row-payment-method payment-row">
                                                                 <div className="select-icon">
-                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setFinalData({ ...finalData, payment_type: e.target.value });  }} />
+                                                                    <input type="radio" id="radio1" name="radios" value="online" onChange={(e) => { setFinalData({ ...finalData, payment_type: e.target.value }); }} />
                                                                     <label htmlFor="radio1"></label>
                                                                 </div>
                                                                 <div className="select-txt">
@@ -575,7 +577,7 @@ function OldAddress() {
                                                 </section>
                                             </div>
                                             <div className="group submitBtn">
-                                                <button onClick={()=>HandlePayement(total)} >Confirm Order</button>
+                                                <button onClick={() => HandlePayement(total)} >Confirm Order</button>
                                             </div>
                                         </>}
                                 </div>
@@ -677,7 +679,7 @@ function OldAddress() {
 
                                     <label htmlFor='street'>Address *</label>
                                     <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' />
-                                    
+
                                     <label htmlFor='state'>Country *</label>
                                     <CountrySelect
                                         onChange={(e) => {
@@ -705,13 +707,13 @@ function OldAddress() {
                                         placeHolder="Select City"
                                     />
                                     <label htmlFor='zip'>Zip Code *</label>
-                                    <input  onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code'  />
-                                        <div className='d-flex align-items-baseline justify-content-start'>
-                                    <label htmlFor='street'>Work</label>
+                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' />
+                                    <div className='d-flex align-items-baseline justify-content-start'>
+                                        <label htmlFor='street'>Work</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' style={{ width: "30%" }} />
                                     </div>
                                     <div className='d-flex align-items-baseline justify-content-start'>
-                                    <label htmlFor='street'>Home</label>
+                                        <label htmlFor='street'>Home</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' style={{ width: "30%" }} />
                                     </div>
                                     <button onClick={() => { createNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>

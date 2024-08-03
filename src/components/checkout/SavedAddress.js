@@ -258,7 +258,9 @@ function SavedAddress() {
                                         placeHolder="Select City"
                                     />
                                     <label htmlFor='zip'>Zip Code *</label>
+
                                     <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' />
+
                                     <div className='d-flex align-items-baseline justify-content-start'>
                                         <label htmlFor='street'>Work</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' style={{ width: "30%" }} />
