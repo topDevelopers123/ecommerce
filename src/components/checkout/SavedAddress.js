@@ -209,7 +209,7 @@ function SavedAddress() {
                                         />
 
                                         <label htmlFor='zip'>Zip Code *</label>
-                                        <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
+                                        <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' maxLength={6} required />
                                         {locationData?.IsError === true ? <p className='text-red-400 font-bold'>wrong pincode or delivery not avalable on this pincode </p> : null}
 
                                         <div className='d-flex gap-2'>
@@ -272,7 +272,7 @@ function SavedAddress() {
                                     />
                                     <label htmlFor='zip'>Zip Code *</label>
 
-                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' required />
+                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' maxLength={6} required />
                                     {locationData?.IsError === true ? <p className='text-red-400 font-bold'>wrong pincode or delivery not avalable on this pincode </p> : null}
 
                                     <div className='d-flex align-items-baseline justify-content-start'>
