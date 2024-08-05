@@ -210,6 +210,7 @@ function SavedAddress() {
 
                                         <label htmlFor='zip'>Zip Code *</label>
                                         <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
+                                        {locationData?.IsError === true ? <p className='text-red-400 font-bold'>wrong pincode or delivery not avalable on this pincode </p> : null}
 
                                         <div className='d-flex gap-2'>
                                             <span className={data?.addressType === "Home" ? "bg-secondary text-white px-3  rounded-pill" : ""} onClick={(e) => radioHandler(e, "Home")} >Home</span>
@@ -272,7 +273,8 @@ function SavedAddress() {
                                     <label htmlFor='zip'>Zip Code *</label>
 
                                     <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' required />
-                                    {locationData?.IsError === true ? <p className='text-red-400'>wrong pincode or delivery not avalable on this pincode </p> : null}
+                                    {locationData?.IsError === true ? <p className='text-red-400 font-bold'>wrong pincode or delivery not avalable on this pincode </p> : null}
+
                                     <div className='d-flex align-items-baseline justify-content-start'>
                                         <label htmlFor='street'>Work</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' style={{ width: "30%" }} />
