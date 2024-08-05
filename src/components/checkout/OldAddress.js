@@ -11,9 +11,8 @@ import {
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import toast from 'react-hot-toast';
-import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext, useTrackOrderContext } from '../../Context/index.context';
+import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext } from '../../Context/index.context';
 import { useLocation, useParams } from 'react-router-dom';
-import ProductDetail from '../productDetails/productDetail';
 import axios from 'axios';
 import logo from "../header/header_images/logo.png"
 
@@ -34,14 +33,10 @@ function OldAddress() {
 
     const { API } = useAuthContext()
 
-    // const [zonal_charges, setZonal_charges] = useState(null)
-    // const [national_charges, setNational_charges] = useState(null)
-    const [charges, setCharges] = useState(0)
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
     const [radio, setRadio] = useState()
-    const { addLocationFinder } = useTrackOrderContext();
-    
+
     const navigate = useNavigate()
     const [data, setData] = useState({
         fullname: "",
@@ -118,15 +113,6 @@ function OldAddress() {
         setSingleProductData({ ...singleProductData, product_id: product_id_filter?._id, product_detail_id: product_detail_Filter?._id, address_id: radio, user_id: addressFilter?.user_id, charges: charges_s })
     }, [cartData, radio])
 
-    // const checkOut = (amount) => {
-
-    //     if (finalData.payment_type === "online") {
-    //         HandlePayement(amount)
-    //     }
-    //     else {
-    //         addOrder(finalData)
-    //     }
-    // }
 
     total = getTotel + localCharges
 
@@ -230,15 +216,12 @@ function OldAddress() {
         const order = await axios.post(`${API}/order/payement`, newData);
 
         if (finalData.payment_type === "COD") {
-            // Handle COD order directly without invoking Razorpay
             await addOrder({
                 ...finalData,
                 payment_status: "pending",
                 razorpay_payment_id: null,
                 razorpay_order_id: order.data.id,
             });
-
-            // Optionally, redirect the user to a confirmation page or show a success message
             console.log("Order placed successfully with COD");
             return;
         }
@@ -293,15 +276,12 @@ function OldAddress() {
         console.log(order);
 
         if (singleProductData.payment_type === "COD") {
-            // Handle COD order directly without invoking Razorpay
             await addSingleOrder({
                 ...singleProductData,
                 payment_status: "pending",
                 razorpay_payment_id: null,
                 razorpay_order_id: order.data.id,
             });
-
-            // Optionally, redirect the user to a confirmation page or show a success message
             console.log("Order placed successfully with COD");
             return;
         }
@@ -347,27 +327,6 @@ function OldAddress() {
         }
     };
 
-    // useEffect(()=>{
-    //     if (cartData?.length === 0) {
-    //         navigate("/")
-    //     }
-    // }, [cartData])
-
-
-
-    // const   = (amount) => {
-    //     console.log(singleProductData, amount);
-
-    //     if (singleProductData.payment_type === "online") {
-    //         HandlePayementForByNow(amount)
-    //     }
-    //     else {
-    //         addSingleOrder(singleProductData);
-    //     }
-    // }
-
-
-
     return (
         <div>
             <div className='py-5 px-2 p-md-5'>
@@ -391,7 +350,7 @@ function OldAddress() {
                                                 <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
-                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}>Edit</span>
+                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id)}}}>Edit</span>
                                             </div>
                                         </label>
                                     </div>
@@ -414,7 +373,7 @@ function OldAddress() {
                                                     <tbody>
                                                         <tr className=''>
                                                             <td className="item-img">
-                                                                <img src={imageUrl} />
+                                                                <img src={imageUrl} alt='#' />
                                                             </td>
                                                             <td className="item-details">
                                                                 <span className="item-title">{product_id_filter?.title}</span>
@@ -501,7 +460,7 @@ function OldAddress() {
                                                         {cartData?.map((item) => (
                                                             <tr className=''>
                                                                 <td className="item-img">
-                                                                    <img src={item?.image} />
+                                                                    <img src={item?.image} alt='#' />
                                                                 </td>
                                                                 <td className="item-details">
                                                                     <span className="item-title">{item?.product_id?.title}</span>
@@ -612,12 +571,6 @@ function OldAddress() {
                                         <label htmlFor='street'>Address *</label>
                                         <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' defaultValue={item ? item?.area : ""} name='street' placeholder='Enter Address' required />
 
-                                        {/* 
-                                        <label htmlFor='city'>City *</label>
-                                        <input onChange={(e) => setData({ ...data, city: e.target.value })} type='text' id='city' defaultValue={item ? item?.city : ""} name='city' placeholder='Enter City' required /> */}
-
-                                        {/* <input onChange={(e) => setData({ ...data, state: e.target.value })} type='text' id='state' defaultValue={item ? item?.state : ""} name='state' placeholder='Enter State' required /> */}
-
                                         <label htmlFor='state'>Country *</label>
                                         <CountrySelect
                                             onChange={(e) => {
@@ -645,7 +598,6 @@ function OldAddress() {
                                             }}
                                             placeHolder="Select City"
                                         />
-                                        {/* <input onChange={(e) => setData({ ...data, country: e.target.value })} type='text' id='state' defaultValue={item ? item?.country : ""} name='state' placeholder='Enter Country' required /> */}
 
                                         <label htmlFor='zip'>Zip Code *</label>
                                         <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' defaultValue={item ? item?.pincode : ""} name='zip' placeholder='Enter Zip Code' required />
