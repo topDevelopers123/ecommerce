@@ -11,7 +11,7 @@ import {
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import toast from 'react-hot-toast';
-import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext } from '../../Context/index.context';
+import { useCartContext, useUserAddressContext, useOrderContext, useProductDetailsContext, useAuthContext, useTrackOrderContext } from '../../Context/index.context';
 import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import logo from "../header/header_images/logo.png"
@@ -28,10 +28,11 @@ function OldAddress() {
     const { product_id, id } = useParams()
     const { search } = useLocation()
     const urlParams = new URLSearchParams(search);
-    const imageUrl = urlParams.get('image')
-    const qty = urlParams.get('qty')
-
-    const { API } = useAuthContext()
+    const imageUrl = urlParams.get('image');
+    const qty = urlParams.get('qty');
+    const { API } = useAuthContext();
+    const { createWayBill, wayBillData } = useTrackOrderContext();
+    // console.log(wayBillData?.data);
 
     const [updateAddress, setUpdateAddress] = useState([])
     const [flag, setFlag] = useState(false)
@@ -49,6 +50,18 @@ function OldAddress() {
         area: "",
         house_no: "",
         pincode: ""
+    })
+    // Create WayBill Data 
+    const [createWayBillData, setCreateWayBillData] = useState({
+        UserAddress1: "",
+        UserId: "",
+        UserEmail: "",
+        UserPhone: "",
+        UserName: "",
+        Pincode: "",
+        userPhone2: "",
+        area: "",
+        orderId: ""
     })
 
     const [finalData, setFinalData] = useState({
@@ -350,7 +363,7 @@ function OldAddress() {
                                                 <span>{item?.city}</span>&nbsp;
                                                 <span>{item?.pincode}</span>&nbsp;
                                                 <div className='mt-1'>{item?.phone}</div>
-                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id)}}}>Edit</span>
+                                                <span className='delAdd' onClick={() => { newAddress(); { setData({ ...data, fullname: item?.fullname, area: item?.area, addressType: item?.addressType, city: item?.city, country: item?.country, house_no: item?.house_no, phone: item?.phone, phone2: item?.phone2, state: item?.state, pincode: item?.pincode }); editeAddress(item._id) } }}>Edit</span>
                                             </div>
                                         </label>
                                     </div>
