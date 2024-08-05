@@ -470,8 +470,8 @@ function OldAddress() {
                                             <div className="group">
                                                 <table>
                                                     <tbody>
-                                                        {cartData?.map((item) => (
-                                                            <tr className=''>
+                                                        {cartData?.map((item,i) => (
+                                                            <tr key={i} className=''>
                                                                 <td className="item-img">
                                                                     <img src={item?.image} alt='#' />
                                                                 </td>
