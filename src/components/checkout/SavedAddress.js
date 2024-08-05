@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './OldAddress.css';
 import './checkout.css'
 import {
@@ -8,14 +8,16 @@ import {
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import toast from 'react-hot-toast';
-import { useUserAddressContext } from '../../Context/index.context';
+import { useTrackOrderContext, useUserAddressContext } from '../../Context/index.context';
 
 function SavedAddress() {
     const { UserAddressData, addNewAddress, updateOldAddress, deleteAddress } = useUserAddressContext();
     const [modalVisible, setModalVisible] = useState(false);
     const [stateid, setstateid] = useState(0);
     const [countryid, setCountryid] = useState(0);
-    const [updateAddress, setUpdateAddress] = useState([])
+    const [updateAddress, setUpdateAddress] = useState([]);
+    const { addLocationFinder, locationData, pincodeError, setPincodeError } = useTrackOrderContext();
+
     const [flag, setFlag] = useState(false)
     const [data, setData] = useState({
         fullname: "",
@@ -86,13 +88,23 @@ function SavedAddress() {
         else if (val.house_no.trim() === "") {
             toast.error("House No is required")
         }
-        else if (val.pincode.trim() === "") {
-            toast.error("Pincode is required")
+        else if (val.pincode.trim() === "" || val.pincode.length !== 6) {
+            toast.error("Pincode is required or pincode length should be 6")
         }
         else {
             addNewAddress(val)
         }
     }
+
+    useEffect(() => {
+        if (data?.pincode.length === 6) {
+            addLocationFinder(data?.pincode);
+        }
+        if (data.pincode.length !== 6) {
+            setPincodeError(true)
+        }
+
+    }, [data?.pincode])
 
     const handleDeleteAddress = async (id) => {
         await deleteAddress(id);
@@ -213,22 +225,22 @@ function SavedAddress() {
                         <div className='newAdd modal'>
                             <div className='modal-content'>
                                 <span className='close' onClick={() => { closeModal(); setFlag(false) }}>&times;</span>
-                                <h2>Add New Address</h2>
+                                <h2>Add New Address visha</h2>
                                 <form onSubmit={handleSubmitData}>
                                     <label htmlFor='name'>Full Name</label>
-                                    <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name' name='name' placeholder='Full Name' />
+                                    <input onChange={(e) => setData({ ...data, fullname: e.target.value })} type='text' id='name' name='name' placeholder='Full Name' required />
 
                                     <label htmlFor='street'>Phone Number *</label>
-                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' />
+                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' required />
 
                                     <label htmlFor='street'>Alternate Phone Number </label>
-                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' />
+                                    <input maxLength="10" onChange={(e) => setData({ ...data, phone2: e.target.value })} type='text' id='street' name='street' placeholder='Enter Phone' required />
 
                                     <label htmlFor='street'>House No * </label>
-                                    <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' />
+                                    <input onChange={(e) => setData({ ...data, house_no: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' required />
 
                                     <label htmlFor='street'>Address *</label>
-                                    <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' />
+                                    <input onChange={(e) => setData({ ...data, area: e.target.value })} type='text' id='street' name='street' placeholder='Enter Address' required />
 
                                     <label htmlFor='state'>Country *</label>
                                     <CountrySelect
@@ -236,7 +248,7 @@ function SavedAddress() {
                                             setData({ ...data, country: e.name }); setCountryid(e.id);
                                         }
                                         }
-                                        placeHolder="Select Country"
+                                        placeHolder="Select Country" required
                                     />
 
                                     <label htmlFor='state'>State *</label>
@@ -245,7 +257,7 @@ function SavedAddress() {
                                         onChange={(e) => {
                                             setData({ ...data, state: e.name }); setstateid(e.id)
                                         }}
-                                        placeHolder="Select State"
+                                        placeHolder="Select State" required
                                     />
 
                                     <label htmlFor='city'>City *</label>
@@ -255,12 +267,12 @@ function SavedAddress() {
                                         onChange={(e) => {
                                             setData({ ...data, city: e.name })
                                         }}
-                                        placeHolder="Select City"
+                                        placeHolder="Select City" required
                                     />
                                     <label htmlFor='zip'>Zip Code *</label>
 
-                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' />
-
+                                    <input onChange={(e) => setData({ ...data, pincode: e.target.value })} type='text' id='zip' name='zip' placeholder='Enter Zip Code' required />
+                                    {locationData?.IsError === true ? <p className='text-red-400'>wrong pincode or delivery not avalable on this pincode </p> : null}
                                     <div className='d-flex align-items-baseline justify-content-start'>
                                         <label htmlFor='street'>Work</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' name='addressType' value="Work" placeholder='Enter Address Type' style={{ width: "30%" }} />
@@ -269,7 +281,7 @@ function SavedAddress() {
                                         <label htmlFor='street'>Home</label>
                                         <input onChange={(e) => setData({ ...data, addressType: e.target.value })} type='radio' id='street' value="Home" name='addressType' placeholder='Enter Address Type' style={{ width: "30%" }} />
                                     </div>
-                                    <button onClick={() => { createNewAddress(data) }} className='d-flex justify-content-center' type='submit'>Add New Address</button>
+                                    <button onClick={() => { createNewAddress(data) }} disabled={pincodeError} className={`d-flex justify-content-center ${pincodeError ? "bg-red-500" : "bg-green-200"}`} type='submit'>Add New Address</button>
                                 </form>
                             </div>
                         </div>
@@ -281,4 +293,3 @@ function SavedAddress() {
 }
 
 export default SavedAddress;
-
