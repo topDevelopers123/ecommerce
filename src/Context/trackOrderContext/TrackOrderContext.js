@@ -10,10 +10,11 @@ function TrackOrderProvider({ children }) {
     const [locationData, setLocationData] = useState(null);
     const [pincodeError, setPincodeError] = useState(false);
     const [wayBillData, setWayBillData] = useState(null);
-    const [disable, setDisable] = useState()
+    const [disable, setDisable] = useState();
 
     // Location Finder 
     const addLocationFinder = async (pincode) => {
+        setDisable(true)
         try {
             const res = await axios.post(`${API}/order/locationFinder`, { pincode })
             setLocationData(res?.data)
@@ -23,6 +24,8 @@ function TrackOrderProvider({ children }) {
             } else setPincodeError(true)
         } catch (error) {
             console.log(error)
+        } finally {
+            setDisable(false);
         }
     }
 

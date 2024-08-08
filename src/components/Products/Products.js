@@ -302,8 +302,8 @@ function Products() {
               </div>
 
               <div className="col-lg-9 col-md-12 col-sm-12 col-12 d-flex flex-wrap card_main_div  ">
-                {allProductData?.length > 0 ? allProductData?.map((item) =>
-                (<div className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
+                {allProductData?.length > 0 ? allProductData?.map((item,i) =>
+                (<div key={i} className="col-lg-4 col-md-6 col-sm-6  col-6 p-3  card_div" >
                   <div className="d-flex flex-column card justify-content-center border card_mini_div  position-relative overflow-hidden  w-90">
                     <img src={item?.ProductDetails ? item?.ProductDetails[0]?.image[0]?.image_url : productData?.map((item) => item?.ProductDetails[0]?.image[0]?.image_url)} alt={item?.product_title} onClick={() => productDetailsPage(item._id)} />
                     <div className="card-body">

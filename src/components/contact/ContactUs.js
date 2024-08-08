@@ -34,7 +34,6 @@ function ContactUs() {
     await postContactForm(formData);
     resetForm();
   };
-
   return (
     <div>
       <div className="container">
@@ -62,7 +61,7 @@ function ContactUs() {
                       {/* <br /> */}
 
                       <label htmlFor="email">
-                         Email Address <span>*</span>
+                        Email Address <span>*</span>
                       </label>
                       {/* <br /> */}
                       <input
@@ -91,7 +90,7 @@ function ContactUs() {
                       {/* <br /> */}
 
                       <label htmlFor="phone">
-                         Phone Number <span>*</span>
+                        Phone Number <span>*</span>
                       </label>
                       {/* <br /> */}
                       <input
@@ -156,5 +155,4 @@ function ContactUs() {
     </div>
   );
 }
-
 export default ContactUs;

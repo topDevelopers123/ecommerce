@@ -61,10 +61,10 @@ function About() {
 
   return (
     <div>
-      {/* Banner Section Start */}      
+      {/* Banner Section Start */}
       <section className="about" style={{
         backgroundImage: 'url(' + banner01 + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover', backgroundPosition: 'center'
+        backgroundPosition: 'center'
       }}>
         <div className="overlay">
           <div className="content">
@@ -114,15 +114,15 @@ function About() {
 
                   <div className="col-md-4 ">
                     <div className="charity-images">
-                      <img src={charity3}></img>
-                      <img src={charity6}></img>
+                      <img src={charity3} alt="#"></img>
+                      <img src={charity6} alt="#"></img>
                     </div>
                   </div>
 
                   <div className="col-md-4 ">
                     <div className="charity-images ">
-                      <img src={charity5}></img>
-                      <img src={charity4}></img>
+                      <img src={charity5} alt="#"></img>
+                      <img src={charity4} alt="#"></img>
                     </div>
                   </div>
                 </div>
@@ -142,8 +142,8 @@ function About() {
             <div className="col-md-6">
               <h1 className="obj-head-text">Our Objective</h1>
               <div className="objective-img">
-                <img className="char01Img" src={charity3}></img>
-                <img className="char02Img" src={charity4}></img>
+                <img className="char01Img" src={charity3} alt="#"></img>
+                <img className="char02Img" src={charity4} alt="#"></img>
               </div>
             </div>
 

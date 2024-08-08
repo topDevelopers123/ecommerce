@@ -44,9 +44,9 @@ function Cart() {
                 </div>
                 <div className='wish-items wish-items-4  text-center w-100 d-flex align-items-center justify-content-center flex-row flex-wrap '>
                     {cartData?.length > 0 ? cartData?.map((item, i) => (
-                        <>
+                        <React.Fragment key={i}>
                             <div className=' col-lg-2 col-md-3 col-sm-5 col-5 mt-3' onClick={() => productDetailsPage(item?.product_id?._id)}>
-                                <img src={item?.image} />
+                                <img src={item?.image} alt='#' />
                             </div>
                             <div className='wish-text wish-text-2 mt-3 col-lg-10 col-md-9 col-sm-7 col-7 d-flex justify-content-between align-items-center '>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 '>
@@ -73,7 +73,7 @@ function Cart() {
                                 <h6 className='col-lg-2 col-md-12 col-sm-12 col-12 ' >₹ {item?.productDetails?.sellingPrice * item?.quantity}</h6>
                                 <h6 className='col-lg-2 col-md-12 col-sm-12  col-12'><i className="bi bi-trash3" onClick={() => deleteCartProduct(item?._id)}></i></h6>
                             </div>
-                        </>
+                        </React.Fragment>
                     ))
                         : <h4>Cart Empty</h4>}
                 </div>

@@ -40,8 +40,8 @@ function TrackOrder() {
                                     <div className='container'>
                                         <h4 className='fw-light'> Your Orders  </h4>
                                         {orderDetail?.UserOrder?.slice().reverse().map((item, i) => (
-                                            <>
-                                                <div className='orders' >
+                                            <React.Fragment key={i}>
+                                                <div  className='orders' >
                                                     <div className='flex justify-between py-3 items-center'>
                                                         <div className='flex gap-3'>
                                                             <div className='product_img'>
@@ -64,7 +64,7 @@ function TrackOrder() {
                                                         <div><i className="bi bi-chevron-right"></i></div>
                                                     </div>
                                                 </div>
-                                            </>
+                                            </React.Fragment>
                                         ))}
                                     </div>
                                 </div>
