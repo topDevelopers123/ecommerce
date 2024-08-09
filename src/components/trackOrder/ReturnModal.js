@@ -19,25 +19,25 @@ function ReturnModal({ show, onClose, data, setToggle, toggle }) {
         qty: data?.quantity,
         description: ''
     });
-    
+
     const handleImageChange = (event) => {
-        const maxSize = 500 * 1024; 
+        const maxSize = 500 * 1024;
         let errorMessages = [];
         const files = Array.from(event.target.files).slice(0, 3);
-        if ( formData.image.length > 2) {
+        if (formData.image.length > 2) {
             alert('You can only select up to 3 images.');
             return;
-        } 
+        }
         const newImages = files.map(file => {
-            if (file.size>maxSize) {
+            if (file.size > maxSize) {
                 errorMessages.push(`${file.name}`);
-            } 
+            }
             setErrors(errorMessages);
-           return {
-               id: `${file.name}-${file.size}`,
-               url: URL.createObjectURL(file),
-               file
-           }
+            return {
+                id: `${file.name}-${file.size}`,
+                url: URL.createObjectURL(file),
+                file
+            }
         });
         setFormData(prevDetail => ({
             ...prevDetail,
@@ -46,7 +46,7 @@ function ReturnModal({ show, onClose, data, setToggle, toggle }) {
     };
 
     const handleImageDelete = (index) => {
-        setErrors(errors.filter((item, i) => item== formData.image[index]  ));
+        setErrors(errors.filter((item, i) => item == formData.image[index]));
         setFormData(prevDetail => ({
             ...prevDetail,
             image: prevDetail.image.filter((_, i) => i !== index)
@@ -69,16 +69,16 @@ function ReturnModal({ show, onClose, data, setToggle, toggle }) {
     };
 
     const submitHandler = async () => {
-        if (formData.image.length>3) {
+        if (formData.image.length > 3) {
             alert('You can only select up to 3 images.');
             return;
         }
-        if (errors.length>0) {
+        if (errors.length > 0) {
             alert('image size exceeds 500KB');
             return
         }
-        
-        
+
+
         const formData2 = new FormData();
         formData2.append('reason', formData.reason);
         formData2.append('product_id', formData.product_id);
@@ -91,13 +91,13 @@ function ReturnModal({ show, onClose, data, setToggle, toggle }) {
         formData.image.forEach((file) => {
             formData2.append(`image`, file);
         });
-      
+
         try {
             await returnProduct(formData2);
-            updateOrder(data._id, { status:"returned"})
+            updateOrder(data._id, { status: "returned" })
             // window.location.href = ("/track_order");
             onClose();
-            setToggle({ ...toggle, boolean_val :false})
+            setToggle({ ...toggle, boolean_val: false })
         } catch (error) {
             console.error('Error adding product details:', error);
         }
@@ -181,7 +181,7 @@ function ReturnModal({ show, onClose, data, setToggle, toggle }) {
                                     <img
                                         src={URL.createObjectURL(image)}
                                         alt={`preview-${index}`}
-                                        
+
                                         className="previewImage"
                                     />
                                     <button

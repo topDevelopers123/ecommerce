@@ -14,7 +14,7 @@ function CategoryContextProvider({ children }) {
   const getCategoryData = async () => {
     try {
       const resp = await axios.get(`${API}/category/category`)
-      setCategory(resp.data.data)
+      setCategory(resp?.data?.data)
     }
      catch (error) {
       console.log(error)
